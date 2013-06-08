@@ -2,6 +2,7 @@ language: objective-c
 before_install:
   - sudo easy_install cpp-coveralls
   - brew update
+  - brew uninstall xctool
   - brew install xctool --HEAD
   - gem update cocoapods
 script:
