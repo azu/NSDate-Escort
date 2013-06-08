@@ -3,7 +3,7 @@ before_install:
   - sudo easy_install cpp-coveralls
   - brew update
   - brew uninstall xctool
-  - brew install xctool --HEAD
+  - brew install xctool
   - gem update cocoapods
 script:
   - xctool test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
