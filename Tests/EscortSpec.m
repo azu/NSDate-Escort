@@ -15,11 +15,24 @@ SPEC_BEGIN(EscortSpec)
         beforeEach(^{
             [NSDate stub:@selector(date) andReturn:currentDate];
         });
-        it(@"return Tomorrow", ^{
+        it(@"should return tomorrow", ^{
             NSDate *expectDate = [currentDate dateByAddingTimeInterval:SECONDS_IN_DAY];
             NSDate *tomorrow = [NSDate dateTomorrow];
             [[tomorrow should] equal:expectDate];
         });
     });
+
+    describe(@"#dateYesterday", ^{
+        NSDate *currentDate = [NSDate date];
+        beforeEach(^{
+            [NSDate stub:@selector(date) andReturn:currentDate];
+        });
+        it(@"should return yesterday",^{
+            NSDate *expectDate = [currentDate dateByAddingTimeInterval:-SECONDS_IN_DAY];
+            NSDate *yesterday = [NSDate dateYesterday];
+            [[yesterday should] equal:expectDate];
+        });
+    });
+
 
     SPEC_END

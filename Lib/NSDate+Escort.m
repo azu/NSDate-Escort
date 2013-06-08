@@ -6,7 +6,7 @@
 }
 
 + (NSDate *)dateYesterday {
-    return nil;
+    return [[NSDate date] dateByAddingTimeInterval:-24 * 60 * 60];
 }
 
 
