@@ -2,7 +2,8 @@ language: objective-c
 before_install:
   - sudo easy_install cpp-coveralls
   - brew update
-  - brew install xctool
+  - brew install xctool --HEAD
+  - gem update cocoapods
 script:
   - xctool test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 after_success:
