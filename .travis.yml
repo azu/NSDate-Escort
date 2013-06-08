@@ -1,0 +1,9 @@
+language: objective-c
+before_install:
+  - sudo easy_install cpp-coveralls
+  - brew update
+  - brew install xctool
+script:
+  - xctool test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+after_success:
+  - coveralls --exclude lib --exclude tests --exclude NSDate-escort
