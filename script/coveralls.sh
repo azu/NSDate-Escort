@@ -43,7 +43,7 @@ removeGcov(){
 
 postToCoveralls()
 {
-	coveralls -r ./ -e LogicTests -e Pods
+	coveralls -r ./ -e LogicTests -e Pods -t zBRtr6qFAvTUoavMMNAWgQKxkssyZM9t6
 }
 
 generateGcov
