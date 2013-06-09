@@ -199,7 +199,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 context(@"lastOfWeek", ^{
                     it(@"should be true", ^{
                         NSDate *lastOfWeek = [currentDate dateByUnit:@{
-                            AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
+                            AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
                         }];
                         BOOL match_last = [lastOfWeek isSameWeekAsDate:currentDate];
                         [[theValue(match_last) should] beYes];
