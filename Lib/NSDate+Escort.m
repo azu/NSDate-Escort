@@ -57,9 +57,9 @@
     NSCalendarUnit unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents *components1 = [currentCalendar components:unitFlags fromDate:self];
     NSDateComponents *components2 = [currentCalendar components:unitFlags fromDate:otherDate];
-    return ((components1.year == components2.year) &&
+    return (components1.year == components2.year) &&
         (components1.month == components2.month) &&
-        (components1.day == components2.day));
+        (components1.day == components2.day);
 }
 
 - (BOOL)isToday {
@@ -258,7 +258,8 @@
 }
 
 - (NSInteger)year {
-    return 0;
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSYearCalendarUnit fromDate:self];
+    return [components year];
 }
 
 @end

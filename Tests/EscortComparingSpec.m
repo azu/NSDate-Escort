@@ -206,21 +206,32 @@ SPEC_BEGIN(EscortComparingSpec)
                     });
                 });
             });
+            context(@"when same the week, but difference year", ^{
+                it(@"should be false", ^{
+                    NSDate *nextYearDate = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @([currentDate year] + 1),
+                    }];
+                    BOOL match = [nextYearDate isSameWeekAsDate:currentDate];
+                    [[theValue(match) should] beNo];
+                });
+            });
             context(@"next week", ^{
-                NSDate *nextWeekDate = [currentDate dateByUnit:@{
-                    AZ_DateUnit.week : @([currentDate week] + 1)
-                }];
+                __block NSDate *nextWeekDate;
+                beforeEach(^{
+                    nextWeekDate = [currentDate dateByAddingDays:DAYS_IN_WEEK];
+                });
                 it(@"should be false", ^{
                     BOOL match = [nextWeekDate isSameWeekAsDate:currentDate];
                     [[theValue(match) should] beNo];
                 });
             });
             context(@"previous week", ^{
-                NSDate *nextWeekDate = [currentDate dateByUnit:@{
-                    AZ_DateUnit.week : @([currentDate week] - 1)
-                }];
+                __block NSDate *prevWeekDate;
+                beforeEach(^{
+                    prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK];
+                });
                 it(@"should be false", ^{
-                    BOOL match = [nextWeekDate isSameWeekAsDate:currentDate];
+                    BOOL match = [prevWeekDate isSameWeekAsDate:currentDate];
                     [[theValue(match) should] beNo];
                 });
             });
