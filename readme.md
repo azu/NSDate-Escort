@@ -1,8 +1,6 @@
 # NSDate-escort [![Build Status](https://travis-ci.org/azu/NSDate-Escort.png?branch=master)](https://travis-ci.org/azu/NSDate-Escort) [![Coverage Status](https://coveralls.io/repos/azu/NSDate-Escort/badge.png?branch=master)](https://coveralls.io/r/azu/NSDate-Escort?branch=master)
 
-
-
-- [　] Write a project description
+NSDate Utility
 
 ## Proposal
 
@@ -11,7 +9,7 @@
 - [　] Thread safe API
 - [　] Test Test Test!
 - [　] Test multiple languages
-- [　] 100% Code Coverage [![Coverage Status](https://coveralls.io/repos/azu/NSDate-Escort/badge.png?branch=master)](https://coveralls.io/r/azu/NSDate-Escort?branch=master)
+- [[![Coverage Status](https://coveralls.io/repos/azu/NSDate-Escort/badge.png?branch=master)](https://coveralls.io/r/azu/NSDate-Escort?branch=master)] 100% Code Coverage
 - [✔] MIT License
 
 ## Installation

@@ -29,6 +29,7 @@
 + (NSDate *)dateWithMinutesBeforeNow:(NSInteger) dMinutes;
 
 #pragma mark - Comparing dates
+
 - (BOOL)isEqualToDateIgnoringTime:(NSDate *) aDate;
 
 - (BOOL)isToday;
