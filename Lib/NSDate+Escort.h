@@ -5,6 +5,7 @@
 
 #define SECONDS_IN_MINUTE 60
 #define MINUTES_IN_HOUR 60
+#define DAYS_IN_WEEK 7
 #define SECONDS_IN_HOUR (SECONDS_IN_MINUTE * MINUTES_IN_HOUR)
 #define HOURS_IN_DAY 24
 #define SECONDS_IN_DAY (HOURS_IN_DAY * SECONDS_IN_HOUR)
@@ -16,9 +17,9 @@
 
 + (NSDate *)dateYesterday;
 
-+ (NSDate *)dateWithDaysFromNow:(NSInteger) days;
++ (NSDate *)dateWithDaysFromNow:(NSInteger) dDays;
 
-+ (NSDate *)dateWithDaysBeforeNow:(NSInteger) days;
++ (NSDate *)dateWithDaysBeforeNow:(NSInteger) dDays;
 
 + (NSDate *)dateWithHoursFromNow:(NSInteger) dHours;
 
@@ -109,7 +110,10 @@
 @property(readonly) NSInteger day;
 @property(readonly) NSInteger month;
 @property(readonly) NSInteger week;
+//  in the Gregorian calendar, n is 7 and Sunday is represented by 1.
 @property(readonly) NSInteger weekday;
+@property(readonly) NSInteger firstDayOfWeekday;
+@property(readonly) NSInteger lastDayOfWeekday;
 @property(readonly) NSInteger nthWeekday; // e.g. 2nd Tuesday of the month == 2
 @property(readonly) NSInteger year;
 @end

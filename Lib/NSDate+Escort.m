@@ -21,13 +21,13 @@
     return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
-+ (NSDate *)dateWithDaysFromNow:(NSInteger) days {
-    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] + (SECONDS_IN_DAY * days);
++ (NSDate *)dateWithDaysFromNow:(NSInteger) dDays {
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] + (SECONDS_IN_DAY * dDays);
     return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
-+ (NSDate *)dateWithDaysBeforeNow:(NSInteger) days {
-    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] - (SECONDS_IN_DAY * days);
++ (NSDate *)dateWithDaysBeforeNow:(NSInteger) dDays {
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] - (SECONDS_IN_DAY * dDays);
     return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
@@ -75,7 +75,13 @@
 }
 
 - (BOOL)isSameWeekAsDate:(NSDate *) aDate {
-    return NO;
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components1 = [calendar components:NSWeekCalendarUnit fromDate:self];
+    NSDateComponents *components2 = [calendar components:NSWeekCalendarUnit fromDate:aDate];
+    if (components1.week != components2.week) {
+        return NO;
+    }
+    return (fabs([self timeIntervalSinceDate:aDate]) < (SECONDS_IN_DAY * DAYS_IN_WEEK));
 }
 
 - (BOOL)isThisWeek {
@@ -141,11 +147,13 @@
 
 #pragma mark - Adjusting dates
 - (NSDate *)dateByAddingDays:(NSInteger) dDays {
-    return nil;
+    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] + (SECONDS_IN_DAY * dDays);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 - (NSDate *)dateBySubtractingDays:(NSInteger) dDays {
-    return nil;
+    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] - (SECONDS_IN_DAY * dDays);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 - (NSDate *)dateByAddingHours:(NSInteger) dHours {
@@ -223,11 +231,26 @@
 }
 
 - (NSInteger)week {
-    return 0;
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSWeekCalendarUnit fromDate:self];
+    return [components week];
 }
 
 - (NSInteger)weekday {
-    return 0;
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSWeekdayCalendarUnit fromDate:self];
+    return [components weekday];
+}
+
+- (NSInteger)firstDayOfWeekday {
+    CFCalendarRef currentCalendar = CFCalendarCopyCurrent();
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:self];
+    [components setDay:([components day] -
+        ([components weekday] - CFCalendarGetFirstWeekday(currentCalendar)))];
+    CFRelease(currentCalendar);
+    return [components day];
+}
+
+- (NSInteger)lastDayOfWeekday {
+    return [self firstDayOfWeekday] + (DAYS_IN_WEEK - 1);
 }
 
 - (NSInteger)nthWeekday {

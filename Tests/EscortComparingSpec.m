@@ -168,4 +168,62 @@ SPEC_BEGIN(EscortComparingSpec)
             });
         });
     });
+    describe(@"-isSameWeekAsDate", ^{
+        context(@"when suject is 2010-10-10(Sun)", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @9,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"same week", ^{
+                it(@"should be true", ^{
+                    BOOL match = [currentDate isSameWeekAsDate:currentDate];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"within the week", ^{
+                context(@"firstOfWeek", ^{
+                    it(@"should be true", ^{
+                        // weekday 1...7
+                        NSDate *firstOfWeek = [currentDate dateByUnit:@{
+                            AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
+                        }];
+                        BOOL match_first = [firstOfWeek isSameWeekAsDate:currentDate];
+                        [[theValue(match_first) should] beYes];
+                    });
+                });
+                context(@"lastOfWeek", ^{
+                    it(@"should be true", ^{
+                        NSDate *lastOfWeek = [currentDate dateByUnit:@{
+                            AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
+                        }];
+                        BOOL match_last = [lastOfWeek isSameWeekAsDate:currentDate];
+                        [[theValue(match_last) should] beYes];
+                    });
+                });
+            });
+            context(@"next week", ^{
+                NSDate *nextWeekDate = [currentDate dateByUnit:@{
+                    AZ_DateUnit.week : @([currentDate week] + 1)
+                }];
+                it(@"should be false", ^{
+                    BOOL match = [nextWeekDate isSameWeekAsDate:currentDate];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"previous week", ^{
+                NSDate *nextWeekDate = [currentDate dateByUnit:@{
+                    AZ_DateUnit.week : @([currentDate week] - 1)
+                }];
+                it(@"should be false", ^{
+                    BOOL match = [nextWeekDate isSameWeekAsDate:currentDate];
+                    [[theValue(match) should] beNo];
+                });
+            });
+        });
+    });
     SPEC_END
