@@ -63,15 +63,15 @@
 }
 
 - (BOOL)isToday {
-    return NO;
+    return [self isEqualToDateIgnoringTime:[NSDate date]];
 }
 
 - (BOOL)isTomorrow {
-    return NO;
+    return [self isEqualToDateIgnoringTime:[NSDate dateTomorrow]];
 }
 
 - (BOOL)isYesterday {
-    return NO;
+    return [self isEqualToDateIgnoringTime:[NSDate dateYesterday]];
 }
 
 - (BOOL)isSameWeekAsDate:(NSDate *) aDate {
