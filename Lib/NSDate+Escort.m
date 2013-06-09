@@ -1,7 +1,15 @@
 #import "NSDate+Escort.h"
 
 @implementation NSDate (Escort)
-
+#pragma mark - private
++ (NSCalendar *)AZ_currentCalendar {
+    NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
+    NSCalendar *currentCalendar = [dictionary objectForKey:@"SCDateReader"];
+    if (currentCalendar == nil) {
+        currentCalendar = [NSCalendar currentCalendar];
+    }
+    return currentCalendar;
+}
 #pragma mark - Relative dates from the current date
 + (NSDate *)dateTomorrow {
     NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] + (SECONDS_IN_DAY * 1);
@@ -44,8 +52,14 @@
 }
 
 #pragma mark - Comparing dates
-- (BOOL)isEqualToDateIgnoringTime:(NSDate *) other {
-    return NO;
+- (BOOL)isEqualToDateIgnoringTime:(NSDate *) otherDate {
+    NSCalendar *currentCalendar = [NSDate AZ_currentCalendar];
+    NSCalendarUnit unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSDateComponents *components1 = [currentCalendar components:unitFlags fromDate:self];
+    NSDateComponents *components2 = [currentCalendar components:unitFlags fromDate:otherDate];
+    return ((components1.year == components2.year) &&
+        (components1.month == components2.month) &&
+        (components1.day == components2.day));
 }
 
 - (BOOL)isToday {
@@ -182,6 +196,46 @@
 - (NSInteger)distanceInDaysToDate:(NSDate *) anotherDate {
     return 0;
 }
+#pragma mark - Decomposing dates
+- (NSInteger)nearestHour {
+    return 0;
+}
 
+- (NSInteger)hour {
+    return 0;
+}
+
+- (NSInteger)minute {
+    return 0;
+}
+
+- (NSInteger)seconds {
+    return 0;
+}
+
+- (NSInteger)day {
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSDayCalendarUnit fromDate:self];
+    return [components day];
+}
+
+- (NSInteger)month {
+    return 0;
+}
+
+- (NSInteger)week {
+    return 0;
+}
+
+- (NSInteger)weekday {
+    return 0;
+}
+
+- (NSInteger)nthWeekday {
+    return 0;
+}
+
+- (NSInteger)year {
+    return 0;
+}
 
 @end

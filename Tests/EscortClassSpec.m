@@ -4,7 +4,7 @@
 #import "NSDate+AZDateBuilder.h"
 #import "FakeDateUtil.h"
 
-SPEC_BEGIN(EscortSpec)
+SPEC_BEGIN(EscortClassSpec)
     registerMatchers(@"AZ");// NSDate Custom Matcher
     describe(@"+dateTomorrow", ^{
         NSDate *currentDate = [NSDate date];

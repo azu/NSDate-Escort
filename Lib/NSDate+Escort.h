@@ -30,7 +30,7 @@
 
 #pragma mark - Comparing dates
 
-- (BOOL)isEqualToDateIgnoringTime:(NSDate *) aDate;
+- (BOOL)isEqualToDateIgnoringTime:(NSDate *) otherDate;
 
 - (BOOL)isToday;
 

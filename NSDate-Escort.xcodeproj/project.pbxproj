@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		17B5C207E321906DAEE5F66F /* NSDate+Escort.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C5CD74BE7F1C57C3F0DB /* NSDate+Escort.m */; };
+		17B5C2FFE3FEEB75E50CA314 /* EscortDecomposingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C358741E805CAD131495 /* EscortDecomposingSpec.m */; };
+		17B5C3A7955A50ED6CC3901D /* EscortComparingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C9E3EFBD46D3F0045EE5 /* EscortComparingSpec.m */; };
 		17B5C52491D36B38DD2456AF /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C1558BFBB28DAF36B493 /* AZNSDateKiwiMatcher.m */; };
 		17B5C54FF010D3CC0BBB7BAE /* FakeDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CF3D87C938FC4272C45F /* FakeDateUtil.m */; };
 		17B5C891FCC6AC0AFD120152 /* NSDate+AZDateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C8C3AE299454E73DB434 /* NSDate+AZDateBuilder.m */; };
 		17B5CA30B602F0B2DD50EECB /* RAIIBenchmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C5E96D915AC29ED553D1 /* RAIIBenchmark.m */; };
-		17B5CAAF922A43B4724B5EAB /* EscortSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CB1A930BE857806581E6 /* EscortSpec.m */; };
+		17B5CAAF922A43B4724B5EAB /* EscortClassSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CB1A930BE857806581E6 /* EscortClassSpec.m */; };
 		17B5CB631D05A67B48F173F9 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C834FD0E39402F12D7CD /* BenchMakeFormReferenceDate.m */; };
 		3BA2CCDB330F47E2959E7239 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3494C9A75938487488EFFF86 /* libPods-Tests.a */; };
 		7342338B176498610036715A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355ABE117638E9600DD1EC2 /* SenTestingKit.framework */; };
@@ -29,14 +31,16 @@
 		17B5C1558BFBB28DAF36B493 /* AZNSDateKiwiMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNSDateKiwiMatcher.m; sourceTree = "<group>"; };
 		17B5C17B7ABA9D423614CD83 /* FakeDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeDateUtil.h; sourceTree = "<group>"; };
 		17B5C2FFCAB36B1E0C17E2BF /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = file.md; path = readme.md; sourceTree = "<group>"; };
+		17B5C358741E805CAD131495 /* EscortDecomposingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortDecomposingSpec.m; sourceTree = "<group>"; };
 		17B5C5CD74BE7F1C57C3F0DB /* NSDate+Escort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Escort.m"; sourceTree = "<group>"; };
 		17B5C5E96D915AC29ED553D1 /* RAIIBenchmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RAIIBenchmark.m; sourceTree = "<group>"; };
 		17B5C78DF55EC4160403C9A1 /* AZNSDateKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNSDateKiwiMatcher.h; sourceTree = "<group>"; };
 		17B5C8039CF17DE12A52A9B3 /* NSDate+Escort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Escort.h"; sourceTree = "<group>"; };
 		17B5C834FD0E39402F12D7CD /* BenchMakeFormReferenceDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchMakeFormReferenceDate.m; sourceTree = "<group>"; };
 		17B5C8C3AE299454E73DB434 /* NSDate+AZDateBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+AZDateBuilder.m"; sourceTree = "<group>"; };
+		17B5C9E3EFBD46D3F0045EE5 /* EscortComparingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortComparingSpec.m; sourceTree = "<group>"; };
 		17B5CA242B0688402101768B /* NSDate+AZDateBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+AZDateBuilder.h"; sourceTree = "<group>"; };
-		17B5CB1A930BE857806581E6 /* EscortSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortSpec.m; sourceTree = "<group>"; };
+		17B5CB1A930BE857806581E6 /* EscortClassSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortClassSpec.m; sourceTree = "<group>"; };
 		17B5CC93C309A75B3ABE30BE /* RAIIBenchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RAIIBenchmark.h; sourceTree = "<group>"; };
 		17B5CF3D87C938FC4272C45F /* FakeDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeDateUtil.m; sourceTree = "<group>"; };
 		3494C9A75938487488EFFF86 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,9 +194,11 @@
 			isa = PBXGroup;
 			children = (
 				7355ABE817638E9600DD1EC2 /* Supporting Files */,
-				17B5CB1A930BE857806581E6 /* EscortSpec.m */,
+				17B5CB1A930BE857806581E6 /* EscortClassSpec.m */,
 				17B5CA1240AD7DA16DB1B23F /* Machter */,
 				17B5CDA5332A14E3043B3BC7 /* Lib */,
+				17B5C9E3EFBD46D3F0045EE5 /* EscortComparingSpec.m */,
+				17B5C358741E805CAD131495 /* EscortDecomposingSpec.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -365,10 +371,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				17B5C207E321906DAEE5F66F /* NSDate+Escort.m in Sources */,
-				17B5CAAF922A43B4724B5EAB /* EscortSpec.m in Sources */,
+				17B5CAAF922A43B4724B5EAB /* EscortClassSpec.m in Sources */,
 				17B5C52491D36B38DD2456AF /* AZNSDateKiwiMatcher.m in Sources */,
 				17B5C891FCC6AC0AFD120152 /* NSDate+AZDateBuilder.m in Sources */,
 				17B5C54FF010D3CC0BBB7BAE /* FakeDateUtil.m in Sources */,
+				17B5C3A7955A50ED6CC3901D /* EscortComparingSpec.m in Sources */,
+				17B5C2FFE3FEEB75E50CA314 /* EscortDecomposingSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
