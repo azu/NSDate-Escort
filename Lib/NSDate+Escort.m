@@ -1,175 +1,49 @@
 #import "NSDate+Escort.h"
 
 @implementation NSDate (Escort)
+
+#pragma mark - Relative dates from the current date
 + (NSDate *)dateTomorrow {
-    return [[NSDate date] dateByAddingTimeInterval:SECONDS_IN_DAY];
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] + (SECONDS_IN_DAY * 1);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 + (NSDate *)dateYesterday {
-    return [[NSDate date] dateByAddingTimeInterval:-SECONDS_IN_DAY];
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] - (SECONDS_IN_DAY * 1);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 + (NSDate *)dateWithDaysFromNow:(NSInteger) days {
-
-    return [[NSDate date] dateByAddingTimeInterval:SECONDS_IN_DAY * days];
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] + (SECONDS_IN_DAY * days);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 + (NSDate *)dateWithDaysBeforeNow:(NSInteger) days {
-    [[NSDate date] timeIntervalSinceReferenceDate];
-    return nil;
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] - (SECONDS_IN_DAY * days);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 + (NSDate *)dateWithHoursFromNow:(NSInteger) dHours {
-    [NSDate timeIntervalSinceReferenceDate]
-    return nil;
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] + (SECONDS_IN_HOUR * dHours);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 + (NSDate *)dateWithHoursBeforeNow:(NSInteger) dHours {
-    return nil;
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] - (SECONDS_IN_HOUR * dHours);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 + (NSDate *)dateWithMinutesFromNow:(NSInteger) dMinutes {
-    return nil;
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] + (SECONDS_IN_MINUTE * dMinutes);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 + (NSDate *)dateWithMinutesBeforeNow:(NSInteger) dMinutes {
-    return nil;
+    NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] - (SECONDS_IN_MINUTE * dMinutes);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
-- (BOOL)isEqualToDateIgnoringTime:(NSDate *) other {
-    return NO;
-}
+#pragma mark - Comparing dates
 
-- (BOOL)isToday {
-    return NO;
-}
-
-- (BOOL)isTomorrow {
-    return NO;
-}
-
-- (BOOL)isYesterday {
-    return NO;
-}
-
-- (BOOL)isSameWeekAsDate:(NSDate *) aDate {
-    return NO;
-}
-
-- (BOOL)isThisWeek {
-    return NO;
-}
-
-- (BOOL)isNextWeek {
-    return NO;
-}
-
-- (BOOL)isLastWeek {
-    return NO;
-}
-
-- (BOOL)isSameMonthAsDate:(NSDate *) aDate {
-    return NO;
-}
-
-- (BOOL)isThisMonth {
-    return NO;
-}
-
-- (BOOL)isSameYearAsDate:(NSDate *) aDate {
-    return NO;
-}
-
-- (BOOL)isThisYear {
-    return NO;
-}
-
-- (BOOL)isNextYear {
-    return NO;
-}
-
-- (BOOL)isLastYear {
-    return NO;
-}
-
-- (BOOL)isEarlierThanDate:(NSDate *) aDate {
-    return NO;
-}
-
-- (BOOL)isLaterThanDate:(NSDate *) aDate {
-    return NO;
-}
-
-- (BOOL)isInFuture {
-    return NO;
-}
-
-- (BOOL)isInPast {
-    return NO;
-}
-
-- (BOOL)isTypicallyWorkday {
-    return NO;
-}
-
-- (BOOL)isTypicallyWeekend {
-    return NO;
-}
-
-- (NSDate *)dateByAddingDays:(NSInteger) dDays {
-    return nil;
-}
-
-- (NSDate *)dateBySubtractingDays:(NSInteger) dDays {
-    return nil;
-}
-
-- (NSDate *)dateByAddingHours:(NSInteger) dHours {
-    return nil;
-}
-
-- (NSDate *)dateBySubtractingHours:(NSInteger) dHours {
-    return nil;
-}
-
-- (NSDate *)dateByAddingMinutes:(NSInteger) dMinutes {
-    return nil;
-}
-
-- (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes {
-    return nil;
-}
-
-- (NSDate *)dateAtStartOfDay {
-    return nil;
-}
-
-- (NSInteger)minutesAfterDate:(NSDate *) aDate {
-    return 0;
-}
-
-- (NSInteger)minutesBeforeDate:(NSDate *) aDate {
-    return 0;
-}
-
-- (NSInteger)hoursAfterDate:(NSDate *) aDate {
-    return 0;
-}
-
-- (NSInteger)hoursBeforeDate:(NSDate *) aDate {
-    return 0;
-}
-
-- (NSInteger)daysAfterDate:(NSDate *) aDate {
-    return 0;
-}
-
-- (NSInteger)daysBeforeDate:(NSDate *) aDate {
-    return 0;
-}
-
-- (NSInteger)distanceInDaysToDate:(NSDate *) anotherDate {
-    return 0;
-}
 
 @end
