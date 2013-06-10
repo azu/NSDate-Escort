@@ -85,15 +85,17 @@
 }
 
 - (BOOL)isThisWeek {
-    return NO;
+    return [self isSameWeekAsDate:[NSDate date]];
 }
 
 - (BOOL)isNextWeek {
-    return NO;
+    NSDate *nextWeek = [NSDate dateWithDaysFromNow:DAYS_IN_WEEK];
+    return [self isSameWeekAsDate:nextWeek];
 }
 
 - (BOOL)isLastWeek {
-    return NO;
+    NSDate *lastWeek = [NSDate dateWithDaysBeforeNow:DAYS_IN_WEEK];
+    return [self isSameWeekAsDate:lastWeek];
 }
 
 - (BOOL)isSameMonthAsDate:(NSDate *) aDate {

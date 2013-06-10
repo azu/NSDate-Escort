@@ -185,7 +185,7 @@ SPEC_BEGIN(EscortComparingSpec)
                     [[theValue(match) should] beYes];
                 });
             });
-            context(@"within the week", ^{
+            context(@"withink this week", ^{
                 context(@"firstOfWeek", ^{
                     it(@"should be true", ^{
                         // weekday 1...7
@@ -196,7 +196,7 @@ SPEC_BEGIN(EscortComparingSpec)
                         [[theValue(match_first) should] beYes];
                     });
                 });
-                context(@"lastOfWeek", ^{
+                context(@"endOfWeek", ^{
                     it(@"should be true", ^{
                         NSDate *lastOfWeek = [currentDate dateByUnit:@{
                             AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
@@ -225,13 +225,161 @@ SPEC_BEGIN(EscortComparingSpec)
                     [[theValue(match) should] beNo];
                 });
             });
-            context(@"previous week", ^{
+            context(@"last week", ^{
                 __block NSDate *prevWeekDate;
                 beforeEach(^{
                     prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK];
                 });
                 it(@"should be false", ^{
                     BOOL match = [prevWeekDate isSameWeekAsDate:currentDate];
+                    [[theValue(match) should] beNo];
+                });
+            });
+        });
+    });
+    describe(@"-isThisWeek", ^{
+        context(@"when suject is 2010-10-10(Sun)", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @9,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"same week", ^{
+                it(@"should be true", ^{
+                    BOOL match = [currentDate isThisWeek];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"within this week", ^{
+                context(@"firstOfWeek", ^{
+                    it(@"should be true", ^{
+                        // weekday 1...7
+                        NSDate *firstOfWeek = [currentDate dateByUnit:@{
+                            AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
+                        }];
+                        BOOL match_first = [firstOfWeek isThisWeek];
+                        [[theValue(match_first) should] beYes];
+                    });
+                });
+                context(@"endOfWeek", ^{
+                    it(@"should be true", ^{
+                        NSDate *lastOfWeek = [currentDate dateByUnit:@{
+                            AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
+                        }];
+                        BOOL match_last = [lastOfWeek isThisWeek];
+                        [[theValue(match_last) should] beYes];
+                    });
+                });
+            });
+            context(@"next week", ^{
+                __block NSDate *nextWeekDate;
+                beforeEach(^{
+                    nextWeekDate = [currentDate dateByAddingDays:DAYS_IN_WEEK];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [nextWeekDate isThisWeek];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"last week", ^{
+                __block NSDate *prevWeekDate;
+                beforeEach(^{
+                    prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [prevWeekDate isThisWeek];
+                    [[theValue(match) should] beNo];
+                });
+            });
+        });
+    });
+    describe(@"-isNextWeek", ^{
+        context(@"when suject is 2010-10-10(Sun)", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @9,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"within this week", ^{
+                context(@"at endOfWeek", ^{
+                    it(@"should be false", ^{
+                        NSDate *endOfWeek = [currentDate dateByUnit:@{
+                            AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
+                        }];
+                        BOOL match = [endOfWeek isNextWeek];
+                        [[theValue(match) should] beNo];
+                    });
+                });
+            });
+            context(@"next week", ^{
+                __block NSDate *nextWeekDate;
+                beforeEach(^{
+                    nextWeekDate = [currentDate dateByAddingDays:DAYS_IN_WEEK];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [nextWeekDate isNextWeek];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"two weeks later", ^{
+                __block NSDate *nextWeekDate;
+                beforeEach(^{
+                    nextWeekDate = [currentDate dateByAddingDays:DAYS_IN_WEEK * 2];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [nextWeekDate isNextWeek];
+                    [[theValue(match) should] beNo];
+                });
+            });
+        });
+    });
+    describe(@"-isLastWeek", ^{
+        context(@"when suject is 2010-10-10(Sun)", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @9,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"within this week", ^{
+                context(@"at startOfWeek", ^{
+                    it(@"should be false", ^{
+                        NSDate *lastOfWeek = [currentDate dateByUnit:@{
+                            AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
+                        }];
+                        BOOL match = [lastOfWeek isLastWeek];
+                        [[theValue(match) should] beNo];
+                    });
+                });
+            });
+            context(@"last week", ^{
+                __block NSDate *prevWeekDate;
+                beforeEach(^{
+                    prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [prevWeekDate isLastWeek];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"two weeks ago", ^{
+                __block NSDate *prevWeekDate;
+                beforeEach(^{
+                    prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK * 2];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [prevWeekDate isLastWeek];
                     [[theValue(match) should] beNo];
                 });
             });
