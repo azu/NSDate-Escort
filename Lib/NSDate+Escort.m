@@ -109,7 +109,7 @@
 }
 
 - (BOOL)isThisMonth {
-    return NO;
+    return [self isSameMonthAsDate:[NSDate date]];
 }
 
 - (BOOL)isSameYearAsDate:(NSDate *) aDate {

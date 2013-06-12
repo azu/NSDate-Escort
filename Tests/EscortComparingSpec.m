@@ -445,6 +445,20 @@ SPEC_BEGIN(EscortComparingSpec)
         });
     });
     describe(@"-isThisMonth", ^{
-
+        __block NSDate *currentDate;
+        beforeEach(^{
+            currentDate = [NSDate dateByUnit:@{
+                AZ_DateUnit.year : @2010,
+                AZ_DateUnit.month : @10,
+                AZ_DateUnit.day : @10,
+            }];
+            [FakeDateUtil stubCurrentDate:currentDate];
+        });
+        context(@"when sameMonth as Date", ^{
+            it(@"should be true", ^{
+                BOOL match = [currentDate isThisMonth];
+                [[theValue(match) should] beYes];
+            });
+        });
     });
     SPEC_END
