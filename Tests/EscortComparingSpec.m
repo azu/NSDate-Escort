@@ -430,12 +430,12 @@ SPEC_BEGIN(EscortComparingSpec)
                 [[theValue(match) should] beNo];
             });
         });
-        context(@"next month", ^{
+        context(@"next year", ^{
             __block NSDate *nextYear;
             beforeEach(^{
                 NSCalendar *calendar = [NSCalendar currentCalendar];
                 NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
-                oneMonthComponents.month = 1;
+                oneMonthComponents.year = 1;
                 nextYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
             });
             it(@"should be false", ^{

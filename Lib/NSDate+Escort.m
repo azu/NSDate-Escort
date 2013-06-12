@@ -102,7 +102,7 @@
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSDateComponents *components1 = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:self];
     NSDateComponents *components2 = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:aDate];
-    if (components1.month != components2.month) {
+    if (components1.year != components2.year || components1.month != components2.month) {
         return NO;
     }
     return YES;
