@@ -47,10 +47,10 @@ main()
 # generate + copy
  	generateGcov
 	copyGcovToProjectDir
-# post 
+# post
 	coveralls ${@+"$@"}
 # clean up
 	removeGcov	
 }
 
-main
+main ${@+"$@"}
