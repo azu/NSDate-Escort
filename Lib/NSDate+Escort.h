@@ -86,6 +86,10 @@
 - (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes;
 
 - (NSDate *)dateAtStartOfDay;
+// addtional
+- (NSDate *)dateAtStartOfMonth;
+
+- (NSDate *)dateAtEndOfMonth;
 
 #pragma mark - Retrieving intervals
 - (NSInteger)minutesAfterDate:(NSDate *) aDate;

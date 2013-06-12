@@ -38,4 +38,13 @@
         [[NSDate date] dateByAddingTimeInterval:1000];
     })
 }
+
+- (void)test_dateByAddingComponents {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *oneDayComponents = [[NSDateComponents alloc] init];
+    oneDayComponents.day = 1000;
+    beginBenchLoop(@"test_dateByAddingComponents", 10000, {
+        [calendar dateByAddingComponents:oneDayComponents toDate:[NSDate date] options:0];
+    })
+}
 @end

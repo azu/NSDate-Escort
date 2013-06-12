@@ -99,7 +99,13 @@
 }
 
 - (BOOL)isSameMonthAsDate:(NSDate *) aDate {
-    return NO;
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components1 = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:self];
+    NSDateComponents *components2 = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit fromDate:aDate];
+    if (components1.month != components2.month) {
+        return NO;
+    }
+    return YES;
 }
 
 - (BOOL)isThisMonth {
@@ -178,6 +184,23 @@
     return nil;
 }
 
+- (NSDate *)dateAtStartOfMonth {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+    NSRange range = [calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:self];
+    components.day = range.location;
+    return [calendar dateFromComponents:components];
+}
+
+- (NSDate *)dateAtEndOfMonth {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+    NSRange range = [calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:self];
+    components.day = range.length;
+    return [calendar dateFromComponents:components];
+}
+
+
 #pragma mark - Retrieving intervals
 - (NSInteger)minutesAfterDate:(NSDate *) aDate {
     return 0;
@@ -241,14 +264,15 @@
     NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSWeekdayCalendarUnit fromDate:self];
     return [components weekday];
 }
-
+// http://stackoverflow.com/questions/11681815/current-week-start-and-end-date
 - (NSInteger)firstDayOfWeekday {
-    CFCalendarRef currentCalendar = CFCalendarCopyCurrent();
-    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate:self];
-    [components setDay:([components day] -
-        ([components weekday] - CFCalendarGetFirstWeekday(currentCalendar)))];
-    CFRelease(currentCalendar);
-    return [components day];
+    NSDate *startOfTheWeek;
+    NSTimeInterval interval;
+    [[NSDate AZ_currentCalendar] rangeOfUnit:NSWeekCalendarUnit
+                                 startDate:&startOfTheWeek
+                                 interval:&interval
+                                 forDate:self];
+    return [startOfTheWeek day];
 }
 
 - (NSInteger)lastDayOfWeekday {
