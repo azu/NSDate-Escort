@@ -41,13 +41,16 @@ removeGcov(){
 	rm -r gcov
 }
 
-postToCoveralls()
+main()
 {
-	coveralls -r ./ -e Pods -e Tests
+
+# generate + copy
+ 	generateGcov
+	copyGcovToProjectDir
+# post 
+	coveralls ${@+"$@"}
+# clean up
+	removeGcov	
 }
 
-generateGcov
-copyGcovToProjectDir
-postToCoveralls
-# clean up
-removeGcov
+main

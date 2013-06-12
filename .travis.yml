@@ -8,4 +8,4 @@ before_install:
 script:
   - xctool test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 after_success:
-  - ./script/coveralls.sh
+  - ./script/coveralls.sh -r ./ -e LogicTests -e Pods
