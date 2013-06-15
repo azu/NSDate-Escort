@@ -92,6 +92,10 @@
 - (NSDate *)dateAtEndOfMonth;
 
 #pragma mark - Retrieving intervals
+- (NSDate *)dateAtStartOfYear;
+
+- (NSDate *)dateAtEndOfYear;
+
 - (NSInteger)minutesAfterDate:(NSDate *) aDate;
 
 - (NSInteger)minutesBeforeDate:(NSDate *) aDate;

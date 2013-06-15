@@ -2,7 +2,7 @@ language: objective-c
 before_install:
   - sudo easy_install cpp-coveralls
   - brew update
-  - brew uninstall xctool # xctoo; 0.1.4 broken
+  - brew uninstall xctool # xctool 0.1.4 broken
   - brew install https://raw.github.com/mxcl/homebrew/308395c2fc03399acbc24d226b8558f18e509e5b/Library/Formula/xctool.rb
   - gem update cocoapods
 script:
