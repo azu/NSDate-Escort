@@ -149,20 +149,21 @@
 }
 
 - (BOOL)isEarlierThanDate:(NSDate *) aDate {
-    return NO;
+    return ([self compare:aDate] == NSOrderedAscending);
 }
 
 - (BOOL)isLaterThanDate:(NSDate *) aDate {
-    return NO;
-}
-
-- (BOOL)isInFuture {
-    return NO;
+    return ([self compare:aDate] == NSOrderedDescending);
 }
 
 - (BOOL)isInPast {
-    return NO;
+    return [self isEarlierThanDate:[NSDate date]];
 }
+
+- (BOOL)isInFuture {
+    return [self isLaterThanDate:[NSDate date]];
+}
+
 
 #pragma mark - Date roles
 - (BOOL)isTypicallyWorkday {

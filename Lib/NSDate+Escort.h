@@ -86,6 +86,7 @@
 - (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes;
 
 - (NSDate *)dateAtStartOfDay;
+
 // addtional
 - (NSDate *)dateAtStartOfMonth;
 

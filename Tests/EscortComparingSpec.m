@@ -636,4 +636,146 @@ SPEC_BEGIN(EscortComparingSpec)
             });
         });
     });
+    describe(@"-isEarlierThanDate", ^{
+        __block NSDate *currentDate;
+        beforeEach(^{
+            currentDate = [NSDate dateByUnit:@{
+                AZ_DateUnit.year : @2010,
+                AZ_DateUnit.month : @10,
+                AZ_DateUnit.day : @10,
+                AZ_DateUnit.hour : @10,
+                AZ_DateUnit.minute : @10,
+                AZ_DateUnit.second : @10,
+            }];
+            [FakeDateUtil stubCurrentDate:currentDate];
+        });
+        context(@"when same time", ^{
+            it(@"should be false", ^{
+                BOOL match = [currentDate isEarlierThanDate:currentDate];
+                [[theValue(match) should] beNo];
+            });
+        });
+        context(@"when earlier date", ^{
+            __block NSDate *earlierDate;
+            beforeEach(^{
+                earlierDate = [currentDate dateByAddingTimeInterval:-1];
+            });
+            it(@"should be true", ^{
+                BOOL match = [earlierDate isEarlierThanDate:currentDate];
+                [[theValue(match) should] beYes];
+            });
+        });
+        context(@"when later date", ^{
+            __block NSDate *laterDate;
+            beforeEach(^{
+                laterDate = [currentDate dateByAddingTimeInterval:1];
+            });
+            it(@"should be false", ^{
+                BOOL match = [laterDate isEarlierThanDate:currentDate];
+                [[theValue(match) should] beNo];
+            });
+        });
+    });
+    describe(@"-isLaterThanDate", ^{
+        __block NSDate *currentDate;
+        beforeEach(^{
+            currentDate = [NSDate dateByUnit:@{
+                AZ_DateUnit.year : @2010,
+                AZ_DateUnit.month : @10,
+                AZ_DateUnit.day : @10,
+                AZ_DateUnit.hour : @10,
+                AZ_DateUnit.minute : @10,
+                AZ_DateUnit.second : @10,
+            }];
+            [FakeDateUtil stubCurrentDate:currentDate];
+        });
+        context(@"when same time", ^{
+            it(@"should be false", ^{
+                BOOL match = [currentDate isEarlierThanDate:currentDate];
+                [[theValue(match) should] beNo];
+            });
+        });
+        context(@"when earlier date", ^{
+            __block NSDate *earlierDate;
+            beforeEach(^{
+                earlierDate = [currentDate dateByAddingTimeInterval:-1];
+            });
+            it(@"should be false", ^{
+                BOOL match = [earlierDate isLaterThanDate:currentDate];
+                [[theValue(match) should] beNo];
+            });
+        });
+        context(@"when later date", ^{
+            __block NSDate *laterDate;
+            beforeEach(^{
+                laterDate = [currentDate dateByAddingTimeInterval:1];
+            });
+            it(@"should be true", ^{
+                BOOL match = [laterDate isLaterThanDate:currentDate];
+                [[theValue(match) should] beYes];
+            });
+        });
+    });
+    describe(@"-isInPast", ^{
+        __block NSDate *currentDate;
+        beforeEach(^{
+            currentDate = [NSDate dateByUnit:@{
+                AZ_DateUnit.year : @2010,
+                AZ_DateUnit.month : @10,
+                AZ_DateUnit.day : @10,
+                AZ_DateUnit.hour : @10,
+                AZ_DateUnit.minute : @10,
+                AZ_DateUnit.second : @10,
+            }];
+            [FakeDateUtil stubCurrentDate:currentDate];
+        });
+        context(@"when same time", ^{
+            it(@"should be false", ^{
+                BOOL match = [currentDate isInPast];
+                [[theValue(match) should] beNo];
+            });
+        });
+        context(@"when earlier date", ^{
+            __block NSDate *earlierDate;
+            beforeEach(^{
+                earlierDate = [currentDate dateByAddingTimeInterval:-1];
+            });
+            it(@"should be true", ^{
+                BOOL match = [earlierDate isInPast];
+                [[theValue(match) should] beYes];
+            });
+        });
+    });
+
+
+    describe(@"-isInFuture", ^{
+        __block NSDate *currentDate;
+        beforeEach(^{
+            currentDate = [NSDate dateByUnit:@{
+                AZ_DateUnit.year : @2010,
+                AZ_DateUnit.month : @10,
+                AZ_DateUnit.day : @10,
+                AZ_DateUnit.hour : @10,
+                AZ_DateUnit.minute : @10,
+                AZ_DateUnit.second : @10,
+            }];
+            [FakeDateUtil stubCurrentDate:currentDate];
+        });
+        context(@"when same time", ^{
+            it(@"should be false", ^{
+                BOOL match = [currentDate isInFuture];
+                [[theValue(match) should] beNo];
+            });
+        });
+        context(@"when later date", ^{
+            __block NSDate *laterDate;
+            beforeEach(^{
+                laterDate = [currentDate dateByAddingTimeInterval:1];
+            });
+            it(@"should be true", ^{
+                BOOL match = [laterDate isInFuture];
+                [[theValue(match) should] beYes];
+            });
+        });
+    });
     SPEC_END
