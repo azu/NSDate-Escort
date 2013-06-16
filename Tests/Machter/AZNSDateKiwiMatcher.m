@@ -60,6 +60,8 @@
     switch (self.dateInequalityType) {
         case KWDateInequalityTypeEqualToDateIgnoringTime:
             return @"≒";
+        default:
+            break;
     }
 
     assert(0 && "should never reach here");

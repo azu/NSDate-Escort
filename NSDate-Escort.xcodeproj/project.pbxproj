@@ -13,6 +13,7 @@
 		17B5C52491D36B38DD2456AF /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C1558BFBB28DAF36B493 /* AZNSDateKiwiMatcher.m */; };
 		17B5C54FF010D3CC0BBB7BAE /* FakeDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CF3D87C938FC4272C45F /* FakeDateUtil.m */; };
 		17B5C891FCC6AC0AFD120152 /* NSDate+AZDateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C8C3AE299454E73DB434 /* NSDate+AZDateBuilder.m */; };
+		17B5C979898BD752ACB830FE /* EscortDateRoles.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C83185684C243E496002 /* EscortDateRoles.m */; };
 		17B5CA30B602F0B2DD50EECB /* RAIIBenchmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C5E96D915AC29ED553D1 /* RAIIBenchmark.m */; };
 		17B5CAAF922A43B4724B5EAB /* EscortClassSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CB1A930BE857806581E6 /* EscortClassSpec.m */; };
 		17B5CB631D05A67B48F173F9 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C834FD0E39402F12D7CD /* BenchMakeFormReferenceDate.m */; };
@@ -36,6 +37,7 @@
 		17B5C5E96D915AC29ED553D1 /* RAIIBenchmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RAIIBenchmark.m; sourceTree = "<group>"; };
 		17B5C78DF55EC4160403C9A1 /* AZNSDateKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNSDateKiwiMatcher.h; sourceTree = "<group>"; };
 		17B5C8039CF17DE12A52A9B3 /* NSDate+Escort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Escort.h"; sourceTree = "<group>"; };
+		17B5C83185684C243E496002 /* EscortDateRoles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortDateRoles.m; sourceTree = "<group>"; };
 		17B5C834FD0E39402F12D7CD /* BenchMakeFormReferenceDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchMakeFormReferenceDate.m; sourceTree = "<group>"; };
 		17B5C8C3AE299454E73DB434 /* NSDate+AZDateBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+AZDateBuilder.m"; sourceTree = "<group>"; };
 		17B5C9E3EFBD46D3F0045EE5 /* EscortComparingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortComparingSpec.m; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				17B5CDA5332A14E3043B3BC7 /* Lib */,
 				17B5C9E3EFBD46D3F0045EE5 /* EscortComparingSpec.m */,
 				17B5C358741E805CAD131495 /* EscortDecomposingSpec.m */,
+				17B5C83185684C243E496002 /* EscortDateRoles.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				17B5C54FF010D3CC0BBB7BAE /* FakeDateUtil.m in Sources */,
 				17B5C3A7955A50ED6CC3901D /* EscortComparingSpec.m in Sources */,
 				17B5C2FFE3FEEB75E50CA314 /* EscortDecomposingSpec.m in Sources */,
+				17B5C979898BD752ACB830FE /* EscortDateRoles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +522,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
@@ -552,6 +556,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
@@ -570,6 +575,7 @@
 				73423399176498610036715A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7355ABD617638E8900DD1EC2 /* Build configuration list for PBXProject "NSDate-Escort" */ = {
 			isa = XCConfigurationList;

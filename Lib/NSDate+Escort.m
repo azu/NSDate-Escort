@@ -4,7 +4,7 @@
 #pragma mark - private
 + (NSCalendar *)AZ_currentCalendar {
     NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
-    NSCalendar *currentCalendar = [dictionary objectForKey:@"SCDateReader"];
+    NSCalendar *currentCalendar = [dictionary objectForKey:@"AZ_currentCalendar"];
     if (currentCalendar == nil) {
         currentCalendar = [NSCalendar currentCalendar];
     }
@@ -167,10 +167,17 @@
 
 #pragma mark - Date roles
 - (BOOL)isTypicallyWorkday {
-    return NO;
+    return ([self isTypicallyWeekend] == NO);
 }
 
 - (BOOL)isTypicallyWeekend {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSRange weekdayRange = [calendar maximumRangeOfUnit:NSWeekdayCalendarUnit];
+    NSDateComponents *components = [calendar components:NSWeekdayCalendarUnit fromDate:self];
+    NSInteger weekdayOfDate = [components weekday];
+    if (weekdayOfDate == weekdayRange.location || weekdayOfDate == weekdayRange.length) {
+        return YES;
+    }
     return NO;
 }
 

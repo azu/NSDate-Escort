@@ -747,7 +747,6 @@ SPEC_BEGIN(EscortComparingSpec)
         });
     });
 
-
     describe(@"-isInFuture", ^{
         __block NSDate *currentDate;
         beforeEach(^{
