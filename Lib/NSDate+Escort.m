@@ -213,7 +213,21 @@
 }
 
 - (NSDate *)dateAtStartOfDay {
-    return nil;
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+    components.hour = 0;
+    components.minute = 0;
+    components.second = 0;
+    return [calendar dateFromComponents:components];
+}
+
+- (NSDate *)dateAtEndOfDay {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+    components.hour = 23;
+    components.minute = 59;
+    components.second = 59;
+    return [calendar dateFromComponents:components];
 }
 
 - (NSDate *)dateAtStartOfMonth {

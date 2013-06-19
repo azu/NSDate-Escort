@@ -88,7 +88,10 @@
 
 - (NSDate *)dateAtStartOfDay;
 
-// addtional
+// add
+
+- (NSDate *)dateAtEndOfDay;
+
 - (NSDate *)dateAtStartOfMonth;
 
 - (NSDate *)dateAtEndOfMonth;
