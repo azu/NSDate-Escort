@@ -152,7 +152,7 @@ SPEC_BEGIN(EscortClassSpec)
                 beforeEach(^{
                     dateWithDaysBeforeNow = [NSDate dateWithDaysBeforeNow:5];
                 });
-                it(@"should return 2010-10-20", ^{
+                it(@"should return 2010-10-05", ^{
                     NSDate *expectDate = [NSDate dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
