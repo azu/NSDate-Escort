@@ -22,6 +22,22 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
         });
     });
+    describe(@"-month", ^{
+        context(@"when the date 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return 10", ^{
+                NSInteger month = [currentDate month];
+                [[theValue(month) should] equal:theValue(10)];
+            });
+        });
+    });
     describe(@"-week", ^{
         context(@"when the date 2010-01-01", ^{
             __block NSDate *currentDate;

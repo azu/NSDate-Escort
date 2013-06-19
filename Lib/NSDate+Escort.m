@@ -320,7 +320,8 @@
 }
 
 - (NSInteger)month {
-    return 0;
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSMonthCalendarUnit fromDate:self];
+    return [components month];
 }
 
 - (NSInteger)week {
