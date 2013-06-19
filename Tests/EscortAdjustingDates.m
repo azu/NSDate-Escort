@@ -444,7 +444,7 @@ SPEC_BEGIN(EscortAdjustingDates)
     });
 
     describe(@"-dateAtStartOfDay", ^{
-        context(@"when today is 2010-10-10 00:00:00", ^{
+        context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *subject;
             __block NSDate *currentDate;
             beforeEach(^{
@@ -463,7 +463,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                 [[subject should] equal:currentDate];
             });
         });
-        context(@"when today is 2010-10-10 23:59:59", ^{
+        context(@"when the date is 2010-10-10 23:59:59", ^{
             __block NSDate *subject;
             beforeEach(^{
                 NSDate *currentDate;
@@ -492,7 +492,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         });
     });
     describe(@"-dateAtEndOfDay", ^{
-        context(@"when today is 2010-10-10 00:00:00", ^{
+        context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *subject;
             __block NSDate *currentDate;
             beforeEach(^{
@@ -519,7 +519,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                 [[subject should] equal:expectDate];
             });
         });
-        context(@"when today is 2010-10-10 23:59:59", ^{
+        context(@"when the date is 2010-10-10 23:59:59", ^{
             __block NSDate *subject;
             __block NSDate *currentDate;
             beforeEach(^{
@@ -541,7 +541,7 @@ SPEC_BEGIN(EscortAdjustingDates)
     });
 
     describe(@"-dateAtStartOfMonth", ^{
-        context(@"when today is 2010-10-10 00:00:00", ^{
+        context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate dateByUnit:@{
@@ -564,7 +564,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         });
     });
     describe(@"-dateAtEndOfMonth", ^{
-        context(@"when today is 2010-10-10 00:00:00", ^{
+        context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate dateByUnit:@{
@@ -627,4 +627,52 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
         });
     });
+
+    describe(@"-dateAtStartOfYear", ^{
+        context(@"when the date is 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return start of year date object", ^{
+                // 2010-01-01
+                NSDate *subject = [currentDate dateAtStartOfYear];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @1,
+                }];
+                [[subject should] isKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+    });
+    describe(@"-dateAtEndOfYear", ^{
+        context(@"when the date is 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return end of year date object", ^{
+                // 2010-12-31
+                NSDate *subject = [currentDate dateAtEndOfYear];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @12,
+                    AZ_DateUnit.day : @31,
+                }];
+                [[subject should] isKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+    });
+
     SPEC_END
