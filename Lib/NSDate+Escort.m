@@ -193,19 +193,23 @@
 }
 
 - (NSDate *)dateByAddingHours:(NSInteger) dHours {
-    return nil;
+    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] + (SECONDS_IN_HOUR * dHours);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 - (NSDate *)dateBySubtractingHours:(NSInteger) dHours {
-    return nil;
+    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] - (SECONDS_IN_HOUR * dHours);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 - (NSDate *)dateByAddingMinutes:(NSInteger) dMinutes {
-    return nil;
+    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] + (SECONDS_IN_MINUTE * dMinutes);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 - (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes {
-    return nil;
+    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] - (SECONDS_IN_MINUTE * dMinutes);
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
 }
 
 - (NSDate *)dateAtStartOfDay {
