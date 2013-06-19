@@ -539,4 +539,92 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
         });
     });
+
+    describe(@"-dateAtStartOfMonth", ^{
+        context(@"when today is 2010-10-10 00:00:00", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return start of month date object", ^{
+                // 2010-10-01
+                NSDate *subject = [currentDate dateAtStartOfMonth];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @1,
+                }];
+                [[subject should] isKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+    });
+    describe(@"-dateAtEndOfMonth", ^{
+        context(@"when today is 2010-10-10 00:00:00", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return end of month date object", ^{
+                // 2010-10-31
+                NSDate *subject = [currentDate dateAtEndOfMonth];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @31,
+                }];
+                [[subject should] isKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+        // http://en.wikipedia.org/wiki/Leap_year
+        context(@"when February @ leap year", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2000,// divisible 400 => leap year
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @1,
+                }];
+            });
+            it(@"should return 02-29", ^{
+                NSDate *subject = [currentDate dateAtEndOfMonth];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2000,
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @29,
+                }];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+        // http://en.wikipedia.org/wiki/Leap_year
+        context(@"when February @ not leap year", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                // not leap year
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2001,
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @1,
+                }];
+            });
+            it(@"should return 02-28", ^{
+                NSDate *subject = [currentDate dateAtEndOfMonth];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2001,
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @28,
+                }];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+    });
     SPEC_END
