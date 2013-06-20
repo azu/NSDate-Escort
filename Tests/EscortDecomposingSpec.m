@@ -58,6 +58,63 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
         });
     });
+    describe(@"-hour", ^{
+        context(@"when the date is 01:02:03", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @1,
+                    AZ_DateUnit.minute : @2,
+                    AZ_DateUnit.second : @3,
+                }];
+            });
+            it(@"should return 1", ^{
+                NSInteger hour = [currentDate hour];
+                [[theValue(hour) should] equal:theValue(1)];
+            });
+        });
+    });
+    describe(@"-minute", ^{
+        context(@"when the date is 01:02:03", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @1,
+                    AZ_DateUnit.minute : @2,
+                    AZ_DateUnit.second : @3,
+                }];
+            });
+            it(@"should return 2", ^{
+                NSInteger minute = [currentDate minute];
+                [[theValue(minute) should] equal:theValue(2)];
+            });
+        });
+    });
+    describe(@"-seconds", ^{
+        context(@"when the date is 01:02:03", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @1,
+                    AZ_DateUnit.minute : @2,
+                    AZ_DateUnit.second : @3,
+                }];
+            });
+            it(@"should return 3", ^{
+                NSInteger seconds = [currentDate seconds];
+                [[theValue(seconds) should] equal:theValue(3)];
+            });
+        });
+    });
     describe(@"-day", ^{
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;

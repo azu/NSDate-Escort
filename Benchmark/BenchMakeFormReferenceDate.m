@@ -34,8 +34,9 @@
 }
 
 - (void)test_dateByAddingTimeInterval {
+    NSDate *date = [NSDate date];
     beginBenchLoop(@"test_dateByAddingTimeInterval", 10000, {
-        [[NSDate date] dateByAddingTimeInterval:1000];
+        [date dateByAddingTimeInterval:1000];
     })
 }
 

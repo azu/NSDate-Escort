@@ -183,33 +183,27 @@
 
 #pragma mark - Adjusting dates
 - (NSDate *)dateByAddingDays:(NSInteger) dDays {
-    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] + (SECONDS_IN_DAY * dDays);
-    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
+    return [self dateByAddingTimeInterval:(SECONDS_IN_DAY * dDays)];
 }
 
 - (NSDate *)dateBySubtractingDays:(NSInteger) dDays {
-    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] - (SECONDS_IN_DAY * dDays);
-    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
+    return [self dateByAddingTimeInterval:-(SECONDS_IN_DAY * dDays)];
 }
 
 - (NSDate *)dateByAddingHours:(NSInteger) dHours {
-    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] + (SECONDS_IN_HOUR * dHours);
-    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
+    return [self dateByAddingTimeInterval:(SECONDS_IN_HOUR * dHours)];
 }
 
 - (NSDate *)dateBySubtractingHours:(NSInteger) dHours {
-    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] - (SECONDS_IN_HOUR * dHours);
-    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
+    return [self dateByAddingTimeInterval:-(SECONDS_IN_HOUR * dHours)];
 }
 
 - (NSDate *)dateByAddingMinutes:(NSInteger) dMinutes {
-    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] + (SECONDS_IN_MINUTE * dMinutes);
-    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
+    return [self dateByAddingTimeInterval:(SECONDS_IN_MINUTE * dMinutes)];
 }
 
 - (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes {
-    NSTimeInterval timeInterval = [self timeIntervalSinceReferenceDate] - (SECONDS_IN_MINUTE * dMinutes);
-    return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
+    return [self dateByAddingTimeInterval:-(SECONDS_IN_MINUTE * dMinutes)];
 }
 
 - (NSDate *)dateAtStartOfDay {
@@ -333,7 +327,8 @@
 }
 
 - (NSInteger)seconds {
-    return 0;
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSSecondCalendarUnit fromDate:self];
+    return [components second];
 }
 
 - (NSInteger)day {
