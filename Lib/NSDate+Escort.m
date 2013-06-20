@@ -307,16 +307,29 @@
     return [dateComponents day];
 }
 #pragma mark - Decomposing dates
+// NSDate-Utilities API is broken?
 - (NSInteger)nearestHour {
-    return 0;
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSRange minuteRange = [calendar rangeOfUnit:NSMinuteCalendarUnit inUnit:NSHourCalendarUnit forDate:self];
+    // always 30...
+    NSInteger halfMinuteInHour = minuteRange.length / 2;
+    NSInteger currentMinute = self.minute;
+    if (currentMinute < halfMinuteInHour) {
+        return self.hour;
+    } else {
+        NSDate *anHourLater = [self dateByAddingHours:1];
+        return [anHourLater hour];
+    }
 }
 
 - (NSInteger)hour {
-    return 0;
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSHourCalendarUnit fromDate:self];
+    return [components hour];
 }
 
 - (NSInteger)minute {
-    return 0;
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSMinuteCalendarUnit fromDate:self];
+    return [components minute];
 }
 
 - (NSInteger)seconds {

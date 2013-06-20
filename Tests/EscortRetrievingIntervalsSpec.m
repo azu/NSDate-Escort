@@ -313,6 +313,16 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                     [[theValue(distanceDays) should] equal:theValue(expectDays)];
                 });
             });
+            context(@"when another date is within 24 hour", ^{
+                NSInteger expectDays = 100;
+                beforeEach(^{
+                    anotherDate = [currentDate dateByAddingDays:expectDays];
+                });
+                it(@"should return 100", ^{
+                    NSInteger distanceDays = [currentDate distanceInDaysToDate:anotherDate];
+                    [[theValue(distanceDays) should] equal:theValue(expectDays)];
+                });
+            });
             // big days
             context(@"when another date is 100 days later", ^{
                 NSInteger expectDays = 100;

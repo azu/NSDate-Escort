@@ -119,6 +119,9 @@
 - (NSInteger)distanceInDaysToDate:(NSDate *) aDate;
 
 #pragma mark - Decomposing dates
+/**
+* return nearest hour
+*/
 @property(readonly) NSInteger nearestHour;
 @property(readonly) NSInteger hour;
 @property(readonly) NSInteger minute;
