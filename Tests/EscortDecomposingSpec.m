@@ -197,6 +197,66 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
         });
     });
+    describe(@"-firstDayOfWeekday", ^{
+        context(@"when the date 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,// weekday is 1
+                }];
+            });
+            it(@"should return 10", ^{
+                NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                [[theValue(firstDayOfWeekday) should] equal:theValue(10)];
+            });
+        });
+        context(@"when the date 2010-10-16", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,// weekday is 1
+                }];
+            });
+            it(@"should return 10", ^{
+                NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                [[theValue(firstDayOfWeekday) should] equal:theValue(10)];
+            });
+        });
+    });
+    describe(@"-lastDayOfWeekday", ^{
+        context(@"when the date 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,// weekday is 1
+                }];
+            });
+            it(@"should return 16", ^{
+                NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                [[theValue(lastDayOfWeekday) should] equal:theValue(16)];
+            });
+        });
+        context(@"when the date 2010-10-16", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,// weekday is 1
+                }];
+            });
+            it(@"should return 16", ^{
+                NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                [[theValue(lastDayOfWeekday) should] equal:theValue(16)];
+            });
+        });
+    });
     describe(@"-year", ^{
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
