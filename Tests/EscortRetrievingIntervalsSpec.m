@@ -294,6 +294,9 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @10,
+                    AZ_DateUnit.minute : @10,
+                    AZ_DateUnit.second : @10,
                 }];
             });
             context(@"when another date is same date", ^{
@@ -309,16 +312,6 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                     anotherDate = [currentDate dateByAddingDays:expectDays];
                 });
                 it(@"should return 10", ^{
-                    NSInteger distanceDays = [currentDate distanceInDaysToDate:anotherDate];
-                    [[theValue(distanceDays) should] equal:theValue(expectDays)];
-                });
-            });
-            context(@"when another date is within 24 hour", ^{
-                NSInteger expectDays = 100;
-                beforeEach(^{
-                    anotherDate = [currentDate dateByAddingDays:expectDays];
-                });
-                it(@"should return 100", ^{
                     NSInteger distanceDays = [currentDate distanceInDaysToDate:anotherDate];
                     [[theValue(distanceDays) should] equal:theValue(expectDays)];
                 });

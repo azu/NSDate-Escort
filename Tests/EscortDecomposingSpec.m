@@ -180,4 +180,38 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
         });
     });
+
+    describe(@"-nthWeekday", ^{
+        context(@"when the date 2010-10-10(2th weekday)", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return 2", ^{
+                NSInteger nthWeekday = [currentDate nthWeekday];
+                [[theValue(nthWeekday) should] equal:theValue(2)];
+            });
+        });
+    });
+    describe(@"-year", ^{
+        context(@"when the date 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return 2010", ^{
+                NSInteger yearValue = [currentDate year];
+                [[theValue(yearValue) should] equal:theValue(2010)];
+            });
+        });
+    });
+
     SPEC_END

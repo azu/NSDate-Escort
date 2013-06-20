@@ -367,7 +367,8 @@
 }
 
 - (NSInteger)nthWeekday {
-    return 0;
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSWeekdayOrdinalCalendarUnit fromDate:self];
+    return [components weekdayOrdinal];
 }
 
 - (NSInteger)year {
