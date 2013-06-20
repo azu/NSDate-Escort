@@ -1,6 +1,6 @@
-# NSDate-escort [![Build Status](https://travis-ci.org/azu/NSDate-Escort.png?branch=master)](https://travis-ci.org/azu/NSDate-Escort) [![Coverage Status](https://coveralls.io/repos/azu/NSDate-Escort/badge.png?branch=master)](https://coveralls.io/r/azu/NSDate-Escort?branch=master)
+# NSDate-Escort [![Build Status](https://travis-ci.org/azu/NSDate-Escort.png?branch=master)](https://travis-ci.org/azu/NSDate-Escort) [![Coverage Status](https://coveralls.io/repos/azu/NSDate-Escort/badge.png?branch=master)](https://coveralls.io/r/azu/NSDate-Escort?branch=master)
 
-NSDate Utility
+NSDate Utility libray
 
 Current Status : **WIP**
 
@@ -16,7 +16,13 @@ Current Status : **WIP**
 
 ## Installation
 
-- [　] Describe the installation process
+### CocoaPods
+
+TODO: Write
+
+### D&D
+
+TODO: Write
 
 ## Usage
 
