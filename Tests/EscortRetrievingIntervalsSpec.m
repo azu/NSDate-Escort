@@ -317,8 +317,8 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                 });
             });
             // big days
-            context(@"when another date is 100 days later", ^{
-                NSInteger expectDays = 100;
+            context(@"when another date is 400 days later", ^{
+                NSInteger expectDays = 400;
                 beforeEach(^{
                     anotherDate = [currentDate dateByAddingDays:expectDays];
                 });
