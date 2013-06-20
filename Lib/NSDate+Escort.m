@@ -300,8 +300,11 @@
     return (NSInteger)(timeIntervalSinceDate / SECONDS_IN_DAY);
 }
 
-- (NSInteger)distanceInDaysToDate:(NSDate *) anotherDate {
-    return 0;
+- (NSInteger)distanceInDaysToDate:(NSDate *) aDate {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *dateComponents = [calendar
+        components:NSDayCalendarUnit fromDate:self toDate:aDate options:0];
+    return [dateComponents day];
 }
 #pragma mark - Decomposing dates
 - (NSInteger)nearestHour {

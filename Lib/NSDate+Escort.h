@@ -113,7 +113,10 @@
 
 - (NSInteger)daysBeforeDate:(NSDate *) aDate;
 
-- (NSInteger)distanceInDaysToDate:(NSDate *) anotherDate;
+/**
+* return distance days
+*/
+- (NSInteger)distanceInDaysToDate:(NSDate *) aDate;
 
 #pragma mark - Decomposing dates
 @property(readonly) NSInteger nearestHour;
