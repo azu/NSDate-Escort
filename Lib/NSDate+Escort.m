@@ -183,15 +183,18 @@
 
 #pragma mark - Adjusting dates
 - (NSDate *)dateByAddingDays:(NSInteger) dDays {
-    NSDateComponents *addingComponents = [[NSDateComponents alloc] init];
-    addingComponents.day = dDays;
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.day = dDays;
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
-    NSDate *date = [calendar dateByAddingComponents:addingComponents toDate:self options:0];
-    return date;
+    return [calendar dateByAddingComponents:components toDate:self options:0];
 }
 
 - (NSDate *)dateBySubtractingDays:(NSInteger) dDays {
-    return [self dateByAddingTimeInterval:-(SECONDS_IN_DAY * dDays)];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.day = -dDays;
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    return [calendar dateByAddingComponents:components toDate:self options:0];
+
 }
 
 - (NSDate *)dateByAddingHours:(NSInteger) dHours {

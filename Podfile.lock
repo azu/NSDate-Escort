@@ -1,10 +1,13 @@
 PODS:
   - Kiwi (2.1)
+  - NLTQuickCheck (0.0.1)
 
 DEPENDENCIES:
   - Kiwi
+  - NLTQuickCheck
 
 SPEC CHECKSUMS:
   Kiwi: 054ef97d0e50c279b21113a0880a906fa153a7fd
+  NLTQuickCheck: ed550f50b697fbd6c142d7862c7f3a51852a82e8
 
 COCOAPODS: 0.20.2

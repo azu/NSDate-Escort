@@ -1,8 +1,11 @@
+#import <NLTQuickCheck/NLTQTestable.h>
+#import <NLTQuickCheck/NSNumber+Arbitrary.h>
 #import "Kiwi.h"
 #import "NSDate+Escort.h"
 #import "NSDate+AZDateBuilder.h"
 #import "FakeDateUtil.h"
 #import "AZNSDateKiwiMatcher.h"
+#import "AZNLTQuickCheckKiwiMatcher.h"
 
 SPEC_BEGIN(EscortAdjustingDates)
     registerMatchers(@"AZ");// NSDate Custom Matcher
@@ -39,20 +42,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                     [[subject should] equalToDateIgnoringTime:expectDate];
                 });
             });
-            context(@"adding 10 Day", ^{
-                __block NSDate *subject;
-                beforeEach(^{
-                    subject = [currentDate dateByAddingDays:10];
-                });
-                it(@"should return 2010-10-20", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
-                        AZ_DateUnit.year : @2010,
-                        AZ_DateUnit.month : @10,
-                        AZ_DateUnit.day : @20,
-                    }];
-                    [[subject should] equalToDateIgnoringTime:expectDate];
-                });
-            });
             context(@"adding -1 Day", ^{
                 __block NSDate *subject;
                 beforeEach(^{
@@ -67,6 +56,19 @@ SPEC_BEGIN(EscortAdjustingDates)
                     [[subject should] equalToDateIgnoringTime:expectDate];
                 });
             });
+            context(@"quickcheck", ^{
+                it(@"should be success", ^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
+                        NSDate *addingDays = [currentDate dateByAddingDays:[argA integerValue]];
+                        NSDateComponents *diffComponents = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:addingDays options:0];
+                        return [diffComponents day] == [argA integerValue];
+                    } arbitrary:[NSNumber intArbitrary]];
+                    [testable check];
+                    [[testable should] beSuccess];
+                });
+            });
+
         });
     });
     describe(@"-dateBySubtractingDays", ^{
@@ -106,20 +108,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                     [[subject should] equalToDateIgnoringTime:expectDate];
                 });
             });
-            context(@"before 5 Day", ^{
-                __block NSDate *subject;
-                beforeEach(^{
-                    subject = [currentDate dateBySubtractingDays:5];
-                });
-                it(@"should return 2010-10-5", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
-                        AZ_DateUnit.year : @2010,
-                        AZ_DateUnit.month : @10,
-                        AZ_DateUnit.day : @5,
-                    }];
-                    [[subject should] equalToDateIgnoringTime:expectDate];
-                });
-            });
             context(@"before -1 Day", ^{
                 __block NSDate *subject;
                 beforeEach(^{
@@ -132,6 +120,18 @@ SPEC_BEGIN(EscortAdjustingDates)
                         AZ_DateUnit.day : @11,
                     }];
                     [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+            context(@"quickcheck", ^{
+                it(@"should be success", ^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
+                        NSDate *resultDate = [currentDate dateBySubtractingDays:[argA integerValue]];
+                        NSDateComponents *diffComponents = [calendar components:NSDayCalendarUnit fromDate:resultDate toDate:currentDate options:0];
+                        return [diffComponents day] == [argA integerValue];
+                    } arbitrary:[NSNumber intArbitrary]];
+                    [testable check];
+                    [[testable should] beSuccess];
                 });
             });
         });
@@ -210,6 +210,18 @@ SPEC_BEGIN(EscortAdjustingDates)
                     [[subject should] equal:expectDate];
                 });
             });
+            context(@"quickcheck", ^{
+                it(@"should be success", ^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
+                        NSDate *subtractingDays = [currentDate dateByAddingHours:[argA integerValue]];
+                        NSDateComponents *diffComponents = [calendar components:NSHourCalendarUnit fromDate:currentDate toDate:subtractingDays options:0];
+                        return [diffComponents hour] == [argA integerValue];
+                    } arbitrary:[NSNumber intArbitrary]];
+                    [testable check];
+                    [[testable should] beSuccess];
+                });
+            });
         });
     });
     describe(@"-dateBySubtractingHours", ^{
@@ -284,6 +296,18 @@ SPEC_BEGIN(EscortAdjustingDates)
                         AZ_DateUnit.second : @10,
                     }];
                     [[subject should] equal:expectDate];
+                });
+            });
+            context(@"quickcheck", ^{
+                it(@"should be success", ^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
+                        NSDate *resultDate = [currentDate dateBySubtractingHours:[argA integerValue]];
+                        NSDateComponents *diffComponents = [calendar components:NSHourCalendarUnit fromDate:resultDate toDate:currentDate options:0];
+                        return [diffComponents hour] == [argA integerValue];
+                    } arbitrary:[NSNumber intArbitrary]];
+                    [testable check];
+                    [[testable should] beSuccess];
                 });
             });
         });
