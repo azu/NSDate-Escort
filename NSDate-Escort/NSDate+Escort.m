@@ -1,5 +1,12 @@
 #import "NSDate+Escort.h"
 
+#define SECONDS_IN_MINUTE 60
+#define MINUTES_IN_HOUR 60
+#define DAYS_IN_WEEK 7
+#define SECONDS_IN_HOUR (SECONDS_IN_MINUTE * MINUTES_IN_HOUR)
+#define HOURS_IN_DAY 24
+#define SECONDS_IN_DAY (HOURS_IN_DAY * SECONDS_IN_HOUR)
+
 @implementation NSDate (Escort)
 #pragma mark - private
 + (NSCalendar *)AZ_currentCalendar {

@@ -124,13 +124,13 @@
 			path = FakeDateUtil;
 			sourceTree = "<group>";
 		};
-		17B5C4F653B336A415A1AD4C /* Lib */ = {
+		17B5C4F653B336A415A1AD4C /* NSDate-Escort */ = {
 			isa = PBXGroup;
 			children = (
 				17B5C8039CF17DE12A52A9B3 /* NSDate+Escort.h */,
 				17B5C5CD74BE7F1C57C3F0DB /* NSDate+Escort.m */,
 			);
-			path = Lib;
+			path = "NSDate-Escort";
 			sourceTree = "<group>";
 		};
 		17B5CA1240AD7DA16DB1B23F /* Machter */ = {
@@ -182,7 +182,7 @@
 				7355ABE017638E9600DD1EC2 /* Frameworks */,
 				7355ABDF17638E9600DD1EC2 /* Products */,
 				D437DC6C9FE346148FE9F98F /* Pods-Tests.xcconfig */,
-				17B5C4F653B336A415A1AD4C /* Lib */,
+				17B5C4F653B336A415A1AD4C /* NSDate-Escort */,
 				17B5C2FFCAB36B1E0C17E2BF /* readme.md */,
 			);
 			sourceTree = "<group>";
