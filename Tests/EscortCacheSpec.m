@@ -12,6 +12,7 @@
 
 @implementation EscortCacheUtil
 + (NSCalendar *)AZ_currentCalendar {
+    // call private method
     return [NSDate performSelector:@selector(AZ_currentCalendar)];
 }
 @end
@@ -36,19 +37,14 @@ SPEC_BEGIN(EscortCache)
                 // call twice
                 [[[NSCalendar currentCalendar] should] receiveWithCount:2];
                 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-                __block NSThread *threadOne;
-                __block NSThread *threadTwo;
+                [queue setMaxConcurrentOperationCount:2];
                 [queue addOperationWithBlock:^{
-                    threadOne = [NSThread currentThread];
                     [EscortCacheUtil AZ_currentCalendar];
                 }];
                 [queue addOperationWithBlock:^{
-                    threadTwo = [NSThread currentThread];
                     [EscortCacheUtil AZ_currentCalendar];
                 }];
                 [queue waitUntilAllOperationsAreFinished];
-
-                [[threadOne shouldNot] equal:threadTwo];
             });
         });
     });
