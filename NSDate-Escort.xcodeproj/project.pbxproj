@@ -12,6 +12,7 @@
 		17B5C2FFE3FEEB75E50CA314 /* EscortDecomposingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C358741E805CAD131495 /* EscortDecomposingSpec.m */; };
 		17B5C373FB4A05E126F7AA9C /* EscortAdjustingDatesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C8FF48A35061AF38B614 /* EscortAdjustingDatesSpec.m */; };
 		17B5C3A7955A50ED6CC3901D /* EscortComparingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C9E3EFBD46D3F0045EE5 /* EscortComparingSpec.m */; };
+		17B5C41663AA0391D02FC906 /* EscortCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C6453E8A7D6E750B1F8B /* EscortCacheSpec.m */; };
 		17B5C52491D36B38DD2456AF /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C1558BFBB28DAF36B493 /* AZNSDateKiwiMatcher.m */; };
 		17B5C54FF010D3CC0BBB7BAE /* FakeDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CF3D87C938FC4272C45F /* FakeDateUtil.m */; };
 		17B5C6ABD685D9C9E8EF1FF2 /* NSDate+AZDateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C8C3AE299454E73DB434 /* NSDate+AZDateBuilder.m */; };
@@ -42,6 +43,7 @@
 		17B5C358741E805CAD131495 /* EscortDecomposingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortDecomposingSpec.m; sourceTree = "<group>"; };
 		17B5C5CD74BE7F1C57C3F0DB /* NSDate+Escort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Escort.m"; sourceTree = "<group>"; };
 		17B5C5E96D915AC29ED553D1 /* RAIIBenchmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RAIIBenchmark.m; sourceTree = "<group>"; };
+		17B5C6453E8A7D6E750B1F8B /* EscortCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortCacheSpec.m; sourceTree = "<group>"; };
 		17B5C78DF55EC4160403C9A1 /* AZNSDateKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNSDateKiwiMatcher.h; sourceTree = "<group>"; };
 		17B5C8039CF17DE12A52A9B3 /* NSDate+Escort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Escort.h"; sourceTree = "<group>"; };
 		17B5C83185684C243E496002 /* EscortDateRoles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortDateRoles.m; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				17B5C83185684C243E496002 /* EscortDateRoles.m */,
 				17B5C8FF48A35061AF38B614 /* EscortAdjustingDatesSpec.m */,
 				17B5CF3CE194569DBA60A7F2 /* EscortRetrievingIntervalsSpec.m */,
+				17B5C6453E8A7D6E750B1F8B /* EscortCacheSpec.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				17B5C373FB4A05E126F7AA9C /* EscortAdjustingDatesSpec.m in Sources */,
 				17B5C0CC23E50D8B22643203 /* EscortRetrievingIntervalsSpec.m in Sources */,
 				17B5CE115E5A85CBF814ED10 /* AZNLTQuickCheckKiwiMatcher.m in Sources */,
+				17B5C41663AA0391D02FC906 /* EscortCacheSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
     NSCalendar *currentCalendar = [dictionary objectForKey:@"AZ_currentCalendar"];
     if (currentCalendar == nil) {
         currentCalendar = [NSCalendar currentCalendar];
+        [dictionary setObject:currentCalendar forKey:@"AZ_currentCalendar"];
     }
     return currentCalendar;
 }
