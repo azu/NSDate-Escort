@@ -35,7 +35,6 @@ SPEC_BEGIN(EscortCache)
             it(@"should return different calendar object", ^{
                 // call twice
                 [[[NSCalendar currentCalendar] should] receiveWithCount:2];
-                [[NSCalendar should] receive:@selector(currentCalendar) withCount:2];
                 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
                 __block NSThread *threadOne;
                 __block NSThread *threadTwo;
