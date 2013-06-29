@@ -6,6 +6,6 @@ before_install:
   - brew install https://raw.github.com/mxcl/homebrew/308395c2fc03399acbc24d226b8558f18e509e5b/Library/Formula/xctool.rb
   - gem update cocoapods
 script:
-  - make test-all
+  - xctool test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 after_success:
   - ./script/coveralls.sh -r ./ -e Pods -e Tests
