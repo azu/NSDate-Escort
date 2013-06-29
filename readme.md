@@ -1,15 +1,14 @@
 # NSDate-Escort [![Build Status](https://travis-ci.org/azu/NSDate-Escort.png?branch=master)](https://travis-ci.org/azu/NSDate-Escort) [![Coverage Status](https://coveralls.io/repos/azu/NSDate-Escort/badge.png?branch=master)](https://coveralls.io/r/azu/NSDate-Escort?branch=master)
 
-NSDate Utility libray
+NSDate Utility library
 
-Current Status : **WIP**
+Current Status : **Pre Release**
 
 ## Proposal
 
 - [✔] [NSDate-Extensions](https://github.com/erica/NSDate-Extensions "NSDate-Extensions") Compatible API
-- [　] Cache & Fast implement
-- [　] Thread safe API
-- [✔] Test Test Test!
+- [✔] Cache & Fast implement
+- [[![Build Status](https://travis-ci.org/azu/NSDate-Escort.png?branch=master)](https://travis-ci.org/azu/NSDate-Escort)] Test Test Test!
 - [　] Test multiple languages
 - [[![Coverage Status](https://coveralls.io/repos/azu/NSDate-Escort/badge.png?branch=master)](https://coveralls.io/r/azu/NSDate-Escort?branch=master)] 100% Code Coverage
 - [✔] MIT License
@@ -22,7 +21,7 @@ TODO: Write
 
 ### D&D
 
-TODO: Write
+1. Drag and drop the `NSDate-Escort` folder into your project.
 
 ## Usage
 
