@@ -1,6 +1,6 @@
 [
   "-workspace", "NSDate-Escort.xcworkspace",
-  "-scheme", "xctool",
+  "-scheme", "ci",
   "-configuration", "Debug",
   "-sdk", "iphonesimulator",
   "-arch", "i386"
