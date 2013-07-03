@@ -4,6 +4,6 @@ before_install:
   - brew update
   - brew install xctool --HEAD  
 script:
-  - xctool test GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+  - ./script/run-test.sh
 after_success:
   - ./script/coveralls.sh -r ./ -e Pods -e Tests
