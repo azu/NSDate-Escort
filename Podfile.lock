@@ -3,7 +3,7 @@ PODS:
   - NLTQuickCheck (0.0.1)
 
 DEPENDENCIES:
-  - Kiwi
+  - Kiwi (= 2.1)
   - NLTQuickCheck
 
 SPEC CHECKSUMS:
