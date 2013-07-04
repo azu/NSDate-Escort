@@ -17,7 +17,7 @@ Current Status : **RELEASE**
 
 ### CocoaPods
 
-1. ``pod 'NSDate-Escort', :git => 'https://github.com/azu/NSDate-Escort.git'``
+1. ``pod 'NSDate-Escort'``
 
 ### D&D
 
