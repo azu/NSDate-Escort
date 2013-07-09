@@ -27,9 +27,8 @@ SPEC_BEGIN(EscortCache)
             it(@"should return same calendar object", ^{
                 // call at once
                 [[[NSCalendar currentCalendar] should] receiveWithCount:1];
-                NSCalendar *callMain = [EscortCacheUtil AZ_currentCalendar];
-                NSCalendar *callOther = [EscortCacheUtil AZ_currentCalendar];
-                [[callMain should] equal:callOther];
+                [EscortCacheUtil AZ_currentCalendar];
+                [EscortCacheUtil AZ_currentCalendar];
             });
         });
         context(@"thead at differet time", ^{

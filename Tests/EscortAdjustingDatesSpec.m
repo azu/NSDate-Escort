@@ -582,7 +582,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @1,
                 }];
-                [[subject should] isKindOfClass:[NSDate class]];
+                [[subject should] beKindOfClass:[NSDate class]];
                 [[subject should] equalToDateIgnoringTime:expectDate];
             });
         });
@@ -605,7 +605,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @31,
                 }];
-                [[subject should] isKindOfClass:[NSDate class]];
+                [[subject should] beKindOfClass:[NSDate class]];
                 [[subject should] equalToDateIgnoringTime:expectDate];
             });
         });
@@ -670,7 +670,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @1,
                 }];
-                [[subject should] isKindOfClass:[NSDate class]];
+                [[subject should] beKindOfClass:[NSDate class]];
                 [[subject should] equalToDateIgnoringTime:expectDate];
             });
         });
@@ -693,7 +693,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.month : @12,
                     AZ_DateUnit.day : @31,
                 }];
-                [[subject should] isKindOfClass:[NSDate class]];
+                [[subject should] beKindOfClass:[NSDate class]];
                 [[subject should] equalToDateIgnoringTime:expectDate];
             });
         });
