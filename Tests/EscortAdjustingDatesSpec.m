@@ -9,6 +9,180 @@
 
 SPEC_BEGIN(EscortAdjustingDates)
     registerMatchers(@"AZ");// NSDate Custom Matcher
+
+    describe(@"-dateByAddingYears", ^{
+        context(@"when the date is 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            context(@"adding 0 year", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingYears:0];
+                });
+                it(@"should return 2010-10-10", ^{
+                    [[subject should] equalToDateIgnoringTime:currentDate];
+                });
+            });
+            context(@"adding 1 year", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingYears:1];
+                });
+                it(@"should return 2011-10-10", ^{
+                    NSDate *expectDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2011,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
+                    }];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+            context(@"adding -1 year", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingYears:-1];
+                });
+                it(@"should return 2009-10-10", ^{
+                    NSDate *expectDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2009,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
+                    }];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+            context(@"quickcheck", ^{
+                it(@"should be success", ^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
+                        NSDate *resultDate = [currentDate dateByAddingYears:[argA integerValue]];
+                        NSDateComponents *diffComponents = [calendar components:NSYearCalendarUnit fromDate:currentDate toDate:resultDate options:0];
+                        return [diffComponents year] == [argA integerValue];
+                    } arbitrary:[NSNumber intArbitrary]];
+                    [testable check];
+                    [[testable should] beSuccess];
+                });
+            });
+        });
+    });
+
+    describe(@"-dateBySubtractingYears", ^{
+        context(@"when the date is 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            context(@"quickcheck", ^{
+                it(@"should be success", ^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
+                        NSDate *resultDate = [currentDate dateBySubtractingYears:[argA integerValue]];
+                        NSDateComponents *diffComponents = [calendar components:NSYearCalendarUnit fromDate:resultDate toDate:currentDate options:0];
+                        return [diffComponents year] == [argA integerValue];
+                    } arbitrary:[NSNumber intArbitrary]];
+                    [testable check];
+                    [[testable should] beSuccess];
+                });
+            });
+        });
+    });
+
+    describe(@"-dateByAddingMonths", ^{
+        context(@"when the date is 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            context(@"adding 0 month", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingMonths:0];
+                });
+                it(@"should return 2010-10-10", ^{
+                    [[subject should] equalToDateIgnoringTime:currentDate];
+                });
+            });
+            context(@"adding 1 month", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingMonths:1];
+                });
+                it(@"should return 2010-11-10", ^{
+                    NSDate *expectDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2010,
+                        AZ_DateUnit.month : @11,
+                        AZ_DateUnit.day : @10,
+                    }];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+            context(@"adding -1 month", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingMonths:-1];
+                });
+                it(@"should return 2010-09-10", ^{
+                    NSDate *expectDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2010,
+                        AZ_DateUnit.month : @9,
+                        AZ_DateUnit.day : @10,
+                    }];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+            context(@"quickcheck", ^{
+                it(@"should be success", ^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
+                        NSDate *resultDate = [currentDate dateByAddingMonths:[argA integerValue]];
+                        NSDateComponents *diffComponents = [calendar components:NSMonthCalendarUnit fromDate:currentDate toDate:resultDate options:0];
+                        return [diffComponents month] == [argA integerValue];
+                    } arbitrary:[NSNumber intArbitrary]];
+                    [testable check];
+                    [[testable should] beSuccess];
+                });
+            });
+        });
+    });
+    describe(@"-dateBySubtractingMonth", ^{
+        context(@"when the date is 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            context(@"quickcheck", ^{
+                it(@"should be success", ^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
+                        NSDate *resultDate = [currentDate dateBySubtractingMonths:[argA integerValue]];
+                        NSDateComponents *diffComponents = [calendar components:NSMonthCalendarUnit fromDate:resultDate toDate:currentDate options:0];
+                        return [diffComponents month] == [argA integerValue];
+                    } arbitrary:[NSNumber intArbitrary]];
+                    [testable check];
+                    [[testable should] beSuccess];
+                });
+            });
+        });
+    });
+
     describe(@"-dateByAddingDays", ^{
         context(@"when the date is 2010-10-10", ^{
             __block NSDate *currentDate;
@@ -68,7 +242,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                     [[testable should] beSuccess];
                 });
             });
-
         });
     });
     describe(@"-dateBySubtractingDays", ^{
