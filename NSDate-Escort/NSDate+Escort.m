@@ -190,6 +190,28 @@
 }
 
 #pragma mark - Adjusting dates
+- (NSDate *)dateByAddingYears:(NSInteger) dYears {
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.year = dYears;
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    return [calendar dateByAddingComponents:components toDate:self options:0];
+}
+
+- (NSDate *)dateBySubtractingYears:(NSInteger) dYears {
+    return [self dateByAddingYears:-dYears];
+}
+
+- (NSDate *)dateByAddingMonths:(NSInteger) dMonths {
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.month = dMonths;
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    return [calendar dateByAddingComponents:components toDate:self options:0];
+}
+
+- (NSDate *)dateBySubtractingMonths:(NSInteger) dMonths {
+    return [self dateByAddingMonths:-dMonths];
+}
+
 - (NSDate *)dateByAddingDays:(NSInteger) dDays {
     NSDateComponents *components = [[NSDateComponents alloc] init];
     components.day = dDays;
