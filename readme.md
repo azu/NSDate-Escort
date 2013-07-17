@@ -164,7 +164,7 @@ Current Status : **RELEASE**
 
 ### What's the difference with [NSDate-Extensions](https://github.com/erica/NSDate-Extensions "NSDate-Extensions")?
 
-This librasy has
+This library has
  
 * many test codes
 * some additional methods.
