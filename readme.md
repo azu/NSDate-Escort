@@ -160,6 +160,33 @@ Current Status : **RELEASE**
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
+## Note
+
+### What's the difference with [NSDate-Extensions](https://github.com/erica/NSDate-Extensions "NSDate-Extensions")?
+
+This librasy has
+ 
+* many test codes
+* some additional methods.
+* safely implements
+* cache system
+
+## Additional methods?
+
+You should see `NSDate-Escort.h` : 
+
+``` objc
+- (NSDate *)dateAtEndOfDay;
+- (NSDate *)dateAtStartOfMonth;
+- (NSDate *)dateAtEndOfMonth; 
+- (NSDate *)dateByAddingYears:(NSInteger) dYears;
+- (NSDate *)dateBySubtractingYears:(NSInteger) dYears;
+- (NSDate *)dateByAddingMonths:(NSInteger) dMonths;
+- (NSDate *)dateBySubtractingMonths:(NSInteger) dMonths; 
+@property(readonly) NSInteger firstDayOfWeekday;
+@property(readonly) NSInteger lastDayOfWeekday;
+```
+
 ## License
 
 MIT
