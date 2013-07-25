@@ -164,6 +164,16 @@
     return ([self compare:aDate] == NSOrderedDescending);
 }
 
+- (BOOL)isEarlierThanOrEqualDate:(NSDate *) aDate {
+    NSComparisonResult comparisonResult = [self compare:aDate];
+    return (comparisonResult == NSOrderedAscending) || (comparisonResult == NSOrderedSame);
+}
+
+- (BOOL)isLaterThanOrEqualDate:(NSDate *) aDate {
+    NSComparisonResult comparisonResult = [self compare:aDate];
+    return (comparisonResult == NSOrderedDescending) || (comparisonResult == NSOrderedSame);
+}
+
 - (BOOL)isInPast {
     return [self isEarlierThanDate:[NSDate date]];
 }

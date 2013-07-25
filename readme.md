@@ -182,7 +182,9 @@ You should see `NSDate-Escort.h` :
 - (NSDate *)dateByAddingYears:(NSInteger) dYears;
 - (NSDate *)dateBySubtractingYears:(NSInteger) dYears;
 - (NSDate *)dateByAddingMonths:(NSInteger) dMonths;
-- (NSDate *)dateBySubtractingMonths:(NSInteger) dMonths; 
+- (NSDate *)dateBySubtractingMonths:(NSInteger) dMonths;
+- (BOOL)isEarlierThanOrEqualDate:(NSDate *) aDate;
+- (BOOL)isLaterThanOrEqualDate:(NSDate *) aDate;
 @property(readonly) NSInteger firstDayOfWeekday;
 @property(readonly) NSInteger lastDayOfWeekday;
 ```

@@ -55,6 +55,10 @@
 
 - (BOOL)isLaterThanDate:(NSDate *) aDate;
 
+- (BOOL)isEarlierThanOrEqualDate:(NSDate *) aDate;
+
+- (BOOL)isLaterThanOrEqualDate:(NSDate *) aDate;
+
 - (BOOL)isInFuture;
 
 - (BOOL)isInPast;

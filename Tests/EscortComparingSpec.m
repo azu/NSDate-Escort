@@ -691,7 +691,7 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when same time", ^{
             it(@"should be false", ^{
-                BOOL match = [currentDate isEarlierThanDate:currentDate];
+                BOOL match = [currentDate isLaterThanDate:currentDate];
                 [[theValue(match) should] beNo];
             });
         });
@@ -712,6 +712,86 @@ SPEC_BEGIN(EscortComparingSpec)
             });
             it(@"should be true", ^{
                 BOOL match = [laterDate isLaterThanDate:currentDate];
+                [[theValue(match) should] beYes];
+            });
+        });
+    });
+    describe(@"-isEarlierThanOrEqualDate", ^{
+        __block NSDate *currentDate;
+        beforeEach(^{
+            currentDate = [NSDate dateByUnit:@{
+                AZ_DateUnit.year : @2010,
+                AZ_DateUnit.month : @10,
+                AZ_DateUnit.day : @10,
+                AZ_DateUnit.hour : @10,
+                AZ_DateUnit.minute : @10,
+                AZ_DateUnit.second : @10,
+            }];
+            [FakeDateUtil stubCurrentDate:currentDate];
+        });
+        context(@"when same time", ^{
+            it(@"should be false", ^{
+                BOOL match = [currentDate isEarlierThanOrEqualDate:currentDate];
+                [[theValue(match) should] beYes];
+            });
+        });
+        context(@"when earlier date", ^{
+            __block NSDate *earlierDate;
+            beforeEach(^{
+                earlierDate = [currentDate dateByAddingTimeInterval:-1];
+            });
+            it(@"should be true", ^{
+                BOOL match = [earlierDate isEarlierThanOrEqualDate:currentDate];
+                [[theValue(match) should] beYes];
+            });
+        });
+        context(@"when later date", ^{
+            __block NSDate *laterDate;
+            beforeEach(^{
+                laterDate = [currentDate dateByAddingTimeInterval:1];
+            });
+            it(@"should be false", ^{
+                BOOL match = [laterDate isEarlierThanOrEqualDate:currentDate];
+                [[theValue(match) should] beNo];
+            });
+        });
+    });
+    describe(@"-isLaterThanOrEqualDate", ^{
+        __block NSDate *currentDate;
+        beforeEach(^{
+            currentDate = [NSDate dateByUnit:@{
+                AZ_DateUnit.year : @2010,
+                AZ_DateUnit.month : @10,
+                AZ_DateUnit.day : @10,
+                AZ_DateUnit.hour : @10,
+                AZ_DateUnit.minute : @10,
+                AZ_DateUnit.second : @10,
+            }];
+            [FakeDateUtil stubCurrentDate:currentDate];
+        });
+        context(@"when same time", ^{
+            it(@"should be true", ^{
+                BOOL match = [currentDate isLaterThanOrEqualDate:currentDate];
+                [[theValue(match) should] beYes];
+            });
+        });
+        context(@"when earlier date", ^{
+            __block NSDate *earlierDate;
+            beforeEach(^{
+                earlierDate = [currentDate dateByAddingTimeInterval:-1];
+            });
+            it(@"should be false", ^{
+                BOOL match = [earlierDate isLaterThanOrEqualDate:currentDate];
+                [[theValue(match) should] beNo];
+            });
+        });
+        context(@"when later date", ^{
+            __block NSDate *laterDate;
+            beforeEach(^{
+                laterDate = [currentDate dateByAddingTimeInterval:1];
+            });
+            it(@"should be true", ^{
+                BOOL match = [laterDate isLaterThanOrEqualDate:currentDate];
                 [[theValue(match) should] beYes];
             });
         });
