@@ -64,7 +64,6 @@
 - (BOOL)isInPast;
 
 #pragma mark - Date roles
-// https://github.com/erica/NSDate-Extensions/issues/12
 - (BOOL)isTypicallyWorkday;
 
 - (BOOL)isTypicallyWeekend;
@@ -91,8 +90,6 @@
 - (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes;
 
 - (NSDate *)dateAtStartOfDay;
-
-// add
 
 - (NSDate *)dateAtEndOfDay;
 
@@ -137,6 +134,7 @@
 @property(readonly) NSInteger weekday;
 @property(readonly) NSInteger firstDayOfWeekday;
 @property(readonly) NSInteger lastDayOfWeekday;
-@property(readonly) NSInteger nthWeekday; // e.g. 2nd Tuesday of the month == 2
+// e.g. 2nd Tuesday of the month == 2
+@property(readonly) NSInteger nthWeekday;
 @property(readonly) NSInteger year;
 @end

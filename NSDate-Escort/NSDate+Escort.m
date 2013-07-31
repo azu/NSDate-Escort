@@ -184,6 +184,7 @@
 
 
 #pragma mark - Date roles
+// https://github.com/erica/NSDate-Extensions/issues/12
 - (BOOL)isTypicallyWorkday {
     return ([self isTypicallyWeekend] == NO);
 }

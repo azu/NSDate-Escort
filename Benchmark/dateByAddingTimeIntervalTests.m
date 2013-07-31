@@ -43,5 +43,4 @@
     STAssertEquals([diffComponents day], kAddingDays, @"diff is %ddays", kAddingDays);
 }
 
-
 @end
