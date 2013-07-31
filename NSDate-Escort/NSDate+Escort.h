@@ -64,6 +64,7 @@
 - (BOOL)isInPast;
 
 #pragma mark - Date roles
+
 - (BOOL)isTypicallyWorkday;
 
 - (BOOL)isTypicallyWeekend;
@@ -97,10 +98,11 @@
 
 - (NSDate *)dateAtEndOfMonth;
 
-#pragma mark - Retrieving intervals
 - (NSDate *)dateAtStartOfYear;
 
 - (NSDate *)dateAtEndOfYear;
+
+#pragma mark - Retrieving intervals
 
 - (NSInteger)minutesAfterDate:(NSDate *) aDate;
 
