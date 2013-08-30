@@ -116,6 +116,10 @@
 
 - (NSInteger)daysBeforeDate:(NSDate *) aDate;
 
+- (NSInteger)monthsAfterDate:(NSDate *)date;
+
+- (NSInteger)monthsBeforeDate:(NSDate *)date;
+
 /**
 * return distance days
 */

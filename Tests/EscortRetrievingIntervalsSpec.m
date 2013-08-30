@@ -285,6 +285,154 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         });
     });
 
+    describe(@"-monthsBeforeDate", ^{
+        context(@"the date is 2010-10-10 10:10:10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @10,
+                    AZ_DateUnit.minute : @10,
+                    AZ_DateUnit.second : @10,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"same date", ^{
+                it(@"should return 0", ^{
+                    NSInteger day = [currentDate monthsAfterDate:currentDate];
+                    [[theValue(day) should] equal:theValue(0)];
+                });
+            });
+            context(@"when 1 months ago", ^{
+                int oneMonth = 1;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [currentDate dateBySubtractingMonths:oneMonth];
+                });
+                it(@"should return 1", ^{
+                    NSInteger day = [currentDate monthsAfterDate:anotherDate];
+                    [[theValue(day) should] equal:theValue(oneMonth)];
+                });
+            });
+            context(@"when 1 months ago and 1 second later", ^{
+                int oneMonth = 1;
+                int oneSecond = 1;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [[currentDate dateBySubtractingMonths:oneMonth] dateByAddingTimeInterval:oneSecond];
+                });
+                it(@"should return 0", ^{
+                    NSInteger day = [currentDate monthsAfterDate:anotherDate];
+                    [[theValue(day) should] equal:theValue(0)];
+                });
+            });
+            context(@"when 1 month later", ^{
+                int oneMonth = 1;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [currentDate dateByAddingMonths:oneMonth];
+                });
+                it(@"should return -1", ^{
+                    NSInteger day = [currentDate monthsAfterDate:anotherDate];
+                    [[theValue(day) should] equal:theValue(-oneMonth)];
+                });
+            });
+            context(@"when 1 month later and 1second ago", ^{
+                int oneMonth = 1;
+                int oneSecond = 1;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [[currentDate dateByAddingMonths:oneMonth] dateByAddingTimeInterval:-oneSecond];
+                });
+                it(@"should return 0", ^{
+                    NSInteger day = [currentDate monthsAfterDate:anotherDate];
+                    [[theValue(day) should] equal:theValue(0)];
+                });
+            });
+        });
+    });
+    describe(@"-monthsBeforeDate", ^{
+        context(@"the date is 2010-10-10 10:10:10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                               AZ_DateUnit.year : @2010,
+                               AZ_DateUnit.month : @10,
+                               AZ_DateUnit.day : @10,
+                               AZ_DateUnit.hour : @10,
+                               AZ_DateUnit.minute : @10,
+                               AZ_DateUnit.second : @10,
+                               }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"same date", ^{
+                it(@"should return 0", ^{
+                    NSInteger day = [currentDate monthsBeforeDate:currentDate];
+                    [[theValue(day) should] equal:theValue(0)];
+                });
+            });
+            context(@"when 1 months ago", ^{
+                int oneMonth = 1;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [currentDate dateBySubtractingMonths:oneMonth];
+                });
+                it(@"should return -1", ^{
+                    NSInteger day = [currentDate monthsBeforeDate:anotherDate];
+                    [[theValue(day) should] equal:theValue(-oneMonth)];
+                });
+            });
+            context(@"when 1 months ago and 1 second later", ^{
+                int oneMonth = 1;
+                int oneSecond = 1;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [[currentDate dateBySubtractingMonths:oneMonth] dateByAddingTimeInterval:oneSecond];
+                });
+                it(@"should return 0", ^{
+                    NSInteger day = [currentDate monthsBeforeDate:anotherDate];
+                    [[theValue(day) should] equal:theValue(0)];
+                });
+            });
+            context(@"when 1 month later", ^{
+                int oneMonth = 1;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [currentDate dateByAddingMonths:oneMonth];
+                });
+                it(@"should return 1", ^{
+                    NSInteger day = [currentDate monthsBeforeDate:anotherDate];
+                    [[theValue(day) should] equal:theValue(oneMonth)];
+                });
+            });
+            context(@"when 1 month later and 1second ago", ^{
+                int oneMonth = 1;
+                int oneSecond = 1;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [[currentDate dateByAddingMonths:oneMonth] dateByAddingTimeInterval:-oneSecond];
+                });
+                it(@"should return 0", ^{
+                    NSInteger day = [currentDate monthsBeforeDate:anotherDate];
+                    [[theValue(day) should] equal:theValue(0)];
+                });
+            });
+            context(@"when 365 days later", ^{
+                int day365 = 365;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [currentDate dateByAddingDays:day365];
+                });
+                it(@"should return 12", ^{
+                    NSInteger day = [currentDate monthsBeforeDate:anotherDate];
+                    [[theValue(day) should] equal:theValue(12)];
+                });
+            });
+        });
+    });
+
     describe(@"-distanceInDaysToDate", ^{
         context(@"the date 2010-10-10, ", ^{
             __block NSDate *currentDate;
