@@ -342,6 +342,35 @@
     return (NSInteger)(timeIntervalSinceDate / SECONDS_IN_DAY);
 }
 
+- (NSInteger)monthsAfterDate:(NSDate *)date {
+    NSInteger result = (self.year - date.year) * 12 + (self.month - date.month);
+    
+    if (result == 0) {
+        return 0;
+    } else if (0 < result) {
+        if (date.day < self.day || (date.day == self.day && [self timeIntervalIgnoringDay:date] <= 0)) {
+            return result;
+        } else {
+            return result - 1;
+        }
+    } else {
+        if (self.day < date.day || (self.day == date.day && 0 <= [self timeIntervalIgnoringDay:date])) {
+            return result;
+        } else {
+            return result + 1;
+        }
+    }
+}
+- (NSInteger)monthsBeforeDate:(NSDate *)date {
+    return -[self monthsAfterDate:date];
+}
+
+- (NSTimeInterval)timeIntervalIgnoringDay:(NSDate *)date {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:date];
+    NSDateComponents *components1 = [calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+    return [[calendar dateFromComponents:components] timeIntervalSinceDate:[calendar dateFromComponents:components1]];
+}
 - (NSInteger)distanceInDaysToDate:(NSDate *) aDate {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSDateComponents *dateComponents = [calendar
