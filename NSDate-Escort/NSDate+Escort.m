@@ -342,35 +342,38 @@
     return (NSInteger)(timeIntervalSinceDate / SECONDS_IN_DAY);
 }
 
-- (NSInteger)monthsAfterDate:(NSDate *)date {
-    NSInteger result = (self.year - date.year) * 12 + (self.month - date.month);
-    
+- (NSInteger)monthsAfterDate:(NSDate *) aDate {
+    NSInteger result = (self.year - aDate.year) * 12 + (self.month - aDate.month);
+
     if (result == 0) {
         return 0;
     } else if (0 < result) {
-        if (date.day < self.day || (date.day == self.day && [self timeIntervalIgnoringDay:date] <= 0)) {
+        if (aDate.day < self.day || (aDate.day == self.day && [self timeIntervalIgnoringDay:aDate] <= 0)) {
             return result;
         } else {
             return result - 1;
         }
     } else {
-        if (self.day < date.day || (self.day == date.day && 0 <= [self timeIntervalIgnoringDay:date])) {
+        if (self.day < aDate.day || (self.day == aDate.day && 0 <= [self timeIntervalIgnoringDay:aDate])) {
             return result;
         } else {
             return result + 1;
         }
     }
 }
-- (NSInteger)monthsBeforeDate:(NSDate *)date {
-    return -[self monthsAfterDate:date];
+
+- (NSInteger)monthsBeforeDate:(NSDate *) aDate {
+    return -[self monthsAfterDate:aDate];
 }
 
-- (NSTimeInterval)timeIntervalIgnoringDay:(NSDate *)date {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:date];
-    NSDateComponents *components1 = [calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+- (NSTimeInterval)timeIntervalIgnoringDay:(NSDate *) aDate {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    enum NSCalendarUnit unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents *components = [calendar components:unitFlags fromDate:aDate];
+    NSDateComponents *components1 = [calendar components:unitFlags fromDate:self];
     return [[calendar dateFromComponents:components] timeIntervalSinceDate:[calendar dateFromComponents:components1]];
 }
+
 - (NSInteger)distanceInDaysToDate:(NSDate *) aDate {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSDateComponents *dateComponents = [calendar
