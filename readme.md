@@ -135,6 +135,10 @@ You should see `NSDate-Escort.h` :
 @property(readonly) NSInteger lastDayOfWeekday;
 ```
 
+## Changelog
+
+See [Releases · azu/NSDate-Escort](https://github.com/azu/NSDate-Escort/releases "Releases · azu/NSDate-Escort")
+
 ## License
 
 MIT
