@@ -310,7 +310,13 @@
     return endOfYear;
 }
 
+-(NSDate *) dateAtStartOfWeek{
+  return [self dateBySubtractingDays: [self weekday] - 1];
+}
 
+-(NSDate *) dateAtEndOfWeek{
+  return [self dateByAddingDays:[self weekday] + 1];
+}
 #pragma mark - Retrieving intervals
 - (NSInteger)minutesAfterDate:(NSDate *) aDate {
     NSTimeInterval timeIntervalSinceDate = [self timeIntervalSinceDate:aDate];
