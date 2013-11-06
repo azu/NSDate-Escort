@@ -272,6 +272,81 @@ SPEC_BEGIN(EscortDecomposingSpec)
                 [[theValue(yearValue) should] equal:theValue(2010)];
             });
         });
+        context(@"when the date'calendar is not Gregorian", ^{
+            __block NSDate *currentDate;
+            __block NSDate *expectedDate;
+            beforeEach(^{
+                expectedDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+                dateComponents.year = 1;
+                dateComponents.month = 10;
+                dateComponents.day = 10;
+                currentDate = [jaCalendar dateFromComponents:dateComponents];
+                // +currentCalendar overwrite NSJapaneseCalendar.
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            it(@"should **not** return 2010", ^{
+                NSInteger yearValue = [currentDate year];
+                [[theValue(yearValue) shouldNot] equal:theValue(2010)];
+            });
+            it(@"should return 1", ^{
+                NSInteger yearValue = [currentDate year];
+                [[theValue(yearValue) should] equal:theValue(1)];
+            });
+            it(@"the date equal to 2010-10-10", ^{
+                [[theValue(currentDate) shouldNot] equal:expectedDate];
+            });
+        });
+    });
+
+    describe(@"-gregorianYear", ^{
+        context(@"when the date 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return 2010", ^{
+                NSInteger yearValue = [currentDate year];
+                [[theValue(yearValue) should] equal:theValue(2010)];
+            });
+        });
+        context(@"when the date'calendar is not Gregorian", ^{
+            __block NSDate *currentDate;
+            __block NSDate *expectedDate;
+            beforeEach(^{
+                expectedDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+                dateComponents.year = 1;
+                dateComponents.month = 10;
+                dateComponents.day = 10;
+                currentDate = [jaCalendar dateFromComponents:dateComponents];
+                // +currentCalendar overwrite NSJapaneseCalendar.
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            it(@"should return 2010", ^{
+                NSInteger yearValue = [currentDate gregorianYear];
+                [[theValue(yearValue) shouldNot] equal:theValue(2010)];
+            });
+            it(@"the date equal to 2010-10-10", ^{
+                [[theValue(currentDate) shouldNot] equal:expectedDate];
+            });
+        });
     });
 
     SPEC_END
