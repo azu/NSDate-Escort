@@ -143,4 +143,5 @@
 // e.g. 2nd Tuesday of the month == 2
 @property(readonly) NSInteger nthWeekday;
 @property(readonly) NSInteger year;
+@property(readonly) NSInteger gregorianYear;
 @end

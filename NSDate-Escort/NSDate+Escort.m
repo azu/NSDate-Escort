@@ -343,7 +343,7 @@
 }
 
 - (NSInteger)monthsAfterDate:(NSDate *) aDate {
-    NSInteger result = (self.year - aDate.year) * 12 + (self.month - aDate.month);
+    NSInteger result = (self.gregorianYear - aDate.gregorianYear) * 12 + (self.month - aDate.month);
 
     if (result == 0) {
         return 0;
@@ -454,6 +454,13 @@
 - (NSInteger)year {
     NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSYearCalendarUnit fromDate:self];
     return [components year];
+}
+- (NSInteger)gregorianYear {
+    NSCalendar *currentCalendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components = [currentCalendar components:NSEraCalendarUnit | NSYearCalendarUnit fromDate:self];
+    components.era = 0;
+    NSDate *date = [currentCalendar dateFromComponents:components];
+    return [date year];
 }
 
 @end
