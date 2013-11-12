@@ -456,11 +456,9 @@
     return [components year];
 }
 - (NSInteger)gregorianYear {
-    NSCalendar *currentCalendar = [NSDate AZ_currentCalendar];
+    NSCalendar *currentCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [currentCalendar components:NSEraCalendarUnit | NSYearCalendarUnit fromDate:self];
-    components.era = 0;
-    NSDate *date = [currentCalendar dateFromComponents:components];
-    return [date year];
+    return [components year];
 }
 
 @end
