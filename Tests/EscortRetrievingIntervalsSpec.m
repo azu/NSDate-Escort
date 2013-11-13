@@ -431,6 +431,41 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                 });
             });
         });
+        context(@"when the date'calendar is not Gregorian", ^{
+            __block NSCalendar *jaCalendar;
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @1988,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+                // +currentCalendar overwrite NSJapaneseCalendar.
+                jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            context(@"difference between Shouwa 64 and Heisei 1 is 1", ^{
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @1989,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
+                    }];
+                });
+                it(@"currentDate year is 63", ^{
+                    [[theValue(currentDate.year) should] equal:theValue(63)];
+                });
+                it(@"anotherDate year is 1", ^{
+                    [[theValue(anotherDate.year) should] equal:theValue(1)];
+                });
+                it(@"monthsBeforeaDate is 12", ^() {
+                    NSInteger months = [currentDate monthsBeforeDate:anotherDate];
+                    [[theValue(months) should] equal:theValue(12)];
+                });
+                
+            });
+        });
     });
 
     describe(@"-distanceInDaysToDate", ^{
