@@ -60,6 +60,8 @@ Current Status : **RELEASE**
 - (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes;
 - (NSDate *)dateAtStartOfDay;
 - (NSDate *)dateAtEndOfDay;
+- (NSDate *)dateAtStartOfWeek;
+- (NSDate *)dateAtEndOfWeek;
 - (NSDate *)dateAtStartOfMonth;
 - (NSDate *)dateAtEndOfMonth;
 - (NSDate *)dateAtStartOfYear;
