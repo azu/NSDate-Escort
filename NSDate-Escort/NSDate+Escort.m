@@ -274,10 +274,9 @@
 
 - (NSDate *)dateAtStartOfWeek
 {
-    NSCalendar *calendar = [NSDate AZ_currentCalendar];
-    NSDateComponents *components = [calendar components:NSYearForWeekOfYearCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSWeekCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
-    components.weekday = 1;
-    return [calendar dateFromComponents:components];
+    NSDate *startOfWeek = nil;
+    [[NSDate AZ_currentCalendar] rangeOfUnit:NSWeekCalendarUnit startDate:&startOfWeek interval:NULL forDate:self];
+    return startOfWeek;
 }
 
 - (NSDate *)dateAtEndOfWeek
