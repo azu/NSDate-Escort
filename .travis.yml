@@ -1,7 +1,9 @@
 language: objective-c
 before_install:
-  - sudo easy_install cpp-coveralls
+  - sudo pip install cpp-coveralls --use-mirrors
+  - gem install cocoapods
+  - gem install xcpretty
 script:
   - ./script/run-test.sh
 after_success:
-  - ./script/coveralls.sh -r ./ -e Pods -e Tests
+  - coveralls -e Pods -e Tests
