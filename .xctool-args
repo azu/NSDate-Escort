@@ -1,7 +1,0 @@
-[
-  "-workspace", "NSDate-Escort.xcworkspace",
-  "-scheme", "Test",
-  "-configuration", "Debug",
-  "-sdk", "iphonesimulator",
-  "-arch", "i386"
-]
