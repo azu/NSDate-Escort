@@ -5,4 +5,4 @@ before_install:
 script:
   - ./script/run-test.sh
 after_success:
-  - coveralls -e Pods -Tests
+  - coveralls -e Pods -e Test
