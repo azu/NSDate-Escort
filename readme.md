@@ -6,12 +6,12 @@ Current Status : **RELEASE**
 
 ## Proposal
 
-- [✔] [NSDate-Extensions](https://github.com/erica/NSDate-Extensions "NSDate-Extensions") Compatible API
-- [✔] Cache & Fast implement
+- [NSDate-Extensions](https://github.com/erica/NSDate-Extensions "NSDate-Extensions") Compatible API
+- Cache & Fast implement
 - [[![Build Status](https://travis-ci.org/azu/NSDate-Escort.png?branch=master)](https://travis-ci.org/azu/NSDate-Escort)] Test Test Test!
-- [] Test multiple languages
+- Test multiple languages
 - [[![Coverage Status](https://coveralls.io/repos/azu/NSDate-Escort/badge.png?branch=master)](https://coveralls.io/r/azu/NSDate-Escort?branch=master)] 100% Code Coverage
-- [✔] MIT License
+- MIT License
 
 ## Installation
 
