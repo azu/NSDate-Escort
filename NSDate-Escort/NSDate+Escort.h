@@ -94,6 +94,10 @@
 
 - (NSDate *)dateAtEndOfDay;
 
+- (NSDate *)dateAtStartOfWeek;
+
+- (NSDate *)dateAtEndOfWeek;
+
 - (NSDate *)dateAtStartOfMonth;
 
 - (NSDate *)dateAtEndOfMonth;

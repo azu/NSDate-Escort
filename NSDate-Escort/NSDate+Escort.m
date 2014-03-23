@@ -272,6 +272,21 @@
     return [calendar dateFromComponents:components];
 }
 
+- (NSDate *)dateAtStartOfWeek
+{
+    NSDate *startOfWeek = nil;
+    [[NSDate AZ_currentCalendar] rangeOfUnit:NSWeekCalendarUnit startDate:&startOfWeek interval:NULL forDate:self];
+    return startOfWeek;
+}
+
+- (NSDate *)dateAtEndOfWeek
+{
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearForWeekOfYearCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSWeekCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+    NSRange range = [calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSWeekCalendarUnit forDate:self];
+    components.weekday = range.length;
+    return [calendar dateFromComponents:components];
+}
 - (NSDate *)dateAtStartOfMonth {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
