@@ -6,15 +6,8 @@
 #import "Kiwi.h"
 #import "NSDate+Escort.h"
 
-@interface EscortCacheUtil : NSObject
+@interface NSDate (EscortMock)
 + (NSCalendar *)AZ_currentCalendar;
-@end
-
-@implementation EscortCacheUtil
-+ (NSCalendar *)AZ_currentCalendar {
-    // call private method
-    return [NSDate performSelector:@selector(AZ_currentCalendar)];
-}
 @end
 
 /*
@@ -22,31 +15,6 @@
     typically used by Decomposing dates property methods.
  */
 SPEC_BEGIN(EscortCache)
-    describe(@"+AZ_currentCalendar", ^{
-        context(@"when thread is same", ^{
-            it(@"should return same calendar object", ^{
-                // call at once
-                [[[NSCalendar currentCalendar] should] receiveWithCount:1];
-                [EscortCacheUtil AZ_currentCalendar];
-                [EscortCacheUtil AZ_currentCalendar];
-            });
-        });
-        context(@"thead at differet time", ^{
-            it(@"should return different calendar object", ^{
-                // call twice
-                [[[NSCalendar currentCalendar] should] receiveWithCount:2];
-                NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-                [queue setMaxConcurrentOperationCount:2];
-                [queue addOperationWithBlock:^{
-                    [EscortCacheUtil AZ_currentCalendar];
-                }];
-                [queue addOperationWithBlock:^{
-                    [EscortCacheUtil AZ_currentCalendar];
-                }];
-                [queue waitUntilAllOperationsAreFinished];
-            });
-        });
-    });
     describe(@"Decomposing dates", ^{
         context(@"calling from multithread", ^{
             it(@"should not raise", ^{

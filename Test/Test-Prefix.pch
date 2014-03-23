@@ -1,12 +1,13 @@
 //
-// Prefix header for all source files of the 'Tests' target in the 'Tests' project
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
 //
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
-
 #define SECONDS_IN_MINUTE 60
 #define MINUTES_IN_HOUR 60
 #define DAYS_IN_WEEK 7

@@ -4,7 +4,7 @@
 //
 
 
-#import <NLTQuickCheck/NLTQTestable.h>
+#import "NLTQuickCheck/NLTQTestable.h"
 #import "AZNLTQuickCheckKiwiMatcher.h"
 
 
@@ -42,7 +42,7 @@
 }
 
 - (NSString *)description {
-    if (self.expectedValue == YES) {
+    if (self.expectedValue) {
         return @"be success";
     }
     return @"be failure";

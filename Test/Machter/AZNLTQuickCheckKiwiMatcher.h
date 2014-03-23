@@ -5,7 +5,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import <Kiwi/KWMatcher.h>
+#import "Kiwi/KWMatcher.h"
 
 
 @interface AZNLTQuickCheckKiwiMatcher : KWMatcher

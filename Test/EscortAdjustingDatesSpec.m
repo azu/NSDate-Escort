@@ -1,5 +1,5 @@
-#import <NLTQuickCheck/NLTQTestable.h>
-#import <NLTQuickCheck/NSNumber+Arbitrary.h>
+#import "NLTQuickCheck/NLTQTestable.h"
+#import "NLTQuickCheck/NSNumber+Arbitrary.h"
 #import "Kiwi.h"
 #import "NSDate+Escort.h"
 #import "NSDate+AZDateBuilder.h"

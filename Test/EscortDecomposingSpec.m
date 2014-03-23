@@ -281,7 +281,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
                 }
             });
         });
-        context(@"when the date'calendar is not Gregorian", ^{
+        context(@"when the calendar is not Gregorian", ^{
             __block NSCalendar *jaCalendar;
             beforeEach(^{
                 // +currentCalendar overwrite NSJapaneseCalendar.
@@ -320,9 +320,6 @@ SPEC_BEGIN(EscortDecomposingSpec)
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
                     }];
-                
-                    NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
-                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
                 });
                 it(@"should return 63", ^{
                     NSInteger yearValue = [currentDate year];
