@@ -1,8 +1,10 @@
 language: objective-c
+env: LC_CTYPE=en_US.UTF-8
 before_install:
   - sudo easy_install cpp-coveralls
   - gem install cocoapods
+  - gem install xcpretty
 script:
-  - ./script/run-test.sh
+  - ./script/run-test.sh | xcpretty
 after_success:
   - coveralls -e Pods -e Test
