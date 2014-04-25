@@ -939,6 +939,27 @@ SPEC_BEGIN(EscortAdjustingDates)
                 [[subject should] equalToDateIgnoringTime:expectDate];
             });
         });
+        context(@"when the date is 2010-2-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return end of year date object", ^{
+                // 2010-12-31
+                NSDate *subject = [currentDate dateAtEndOfYear];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @12,
+                    AZ_DateUnit.day : @31,
+                }];
+                [[subject should] beKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
     });
 
     SPEC_END

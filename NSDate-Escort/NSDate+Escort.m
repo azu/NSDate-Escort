@@ -318,9 +318,11 @@
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSDateComponents *components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
     NSRange monthRange = [calendar rangeOfUnit:NSMonthCalendarUnit inUnit:NSYearCalendarUnit forDate:self];
-    NSRange dayRange = [calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:self];
-    components.day = dayRange.length;
     components.month = monthRange.length;
+
+    NSDate *endMonthOfYear = [calendar dateFromComponents:components];
+    NSRange dayRange = [calendar rangeOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:endMonthOfYear];
+    components.day = dayRange.length;
     NSDate *endOfYear = [calendar dateFromComponents:components];
     return endOfYear;
 }
