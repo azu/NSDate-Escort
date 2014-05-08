@@ -1,4 +1,4 @@
-test-all: test test-ja
+test-all: test-en test-ja
 
 test:
 	./script/run-test.sh
