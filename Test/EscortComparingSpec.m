@@ -60,6 +60,29 @@ SPEC_BEGIN(EscortComparingSpec)
                 [[theValue(isMatch) should] beNo];
             });
         });
+        context(@"when target is previous era", ^{
+            __block NSDate *currentDate;
+            __block NSDate *previousEraDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2014,
+                        AZ_DateUnit.month : @5,
+                        AZ_DateUnit.day : @19,
+                }];
+                previousEraDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @1951,
+                        AZ_DateUnit.month : @5,
+                        AZ_DateUnit.day : @19,
+                }];
+
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            it(@"should be false", ^{
+                BOOL isMatch = [previousEraDate isEqualToDateIgnoringTime:currentDate];
+                [[theValue(isMatch) should] beNo];
+            });
+        });
     });
     describe(@"-isToday", ^{
         NSDate *currentDate = [NSDate date];
