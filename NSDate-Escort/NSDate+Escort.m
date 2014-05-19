@@ -62,10 +62,11 @@
 #pragma mark - Comparing dates
 - (BOOL)isEqualToDateIgnoringTime:(NSDate *) otherDate {
     NSCalendar *currentCalendar = [NSDate AZ_currentCalendar];
-    NSCalendarUnit unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSCalendarUnit unitFlags = NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents *components1 = [currentCalendar components:unitFlags fromDate:self];
     NSDateComponents *components2 = [currentCalendar components:unitFlags fromDate:otherDate];
-    return (components1.year == components2.year) &&
+    return (components1.era == components2.era) &&
+        (components1.year == components2.year) &&
         (components1.month == components2.month) &&
         (components1.day == components2.day);
 }
