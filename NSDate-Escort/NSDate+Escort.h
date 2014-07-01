@@ -4,6 +4,18 @@
 
 @interface NSDate (Escort)
 
+#pragma mark - Setting default calendar
+
+/**
+ Sets the calendarIdentifier of calendars that is used by this library for date calculation.
+ You can specify any calendarIdentifiers predefined by NSLocale. If you provide nil, the library uses
+ [NSCalendar currentCalendar]. Default value is nil.
+ 
+ You can't provide individual calendars for individual date objects. If you need to perform such
+ complicated date calculations, you should rather create calendars on your own.
+ */
++ (void)setDefaultCalendarIdentifier:(NSString *)calendarIdentifier;
+
 #pragma mark - Relative dates from the current date
 + (NSDate *)dateTomorrow;
 
