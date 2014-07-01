@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17B5C1FA658B0315B43B407F /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CC36B08F9E46203A7C72 /* AZNSDateKiwiMatcher.m */; };
 		17B5C28A17FECDD022B846E6 /* NSDate+Escort.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C5CD74BE7F1C57C3F0DB /* NSDate+Escort.m */; };
 		17B5C2B8A7A6075B69DA69E2 /* NSDate+AZDateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C8F1C4BE74C402F443AA /* NSDate+AZDateBuilder.m */; };
 		17B5C474F10F4D9620AFFACC /* FakeDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CF001E83A221023FE180 /* FakeDateUtil.m */; };
 		17B5C584E29A91E50FA691ED /* EscortComparingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C809EA2391FF7D79ECD6 /* EscortComparingSpec.m */; };
-		17B5C7FDC8A261E3D908EB5E /* NSDate+AZDateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C8F1C4BE74C402F443AA /* NSDate+AZDateBuilder.m */; };
 		17B5C81B2A6B6A58E9622A62 /* dateByAddingTimeIntervalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C27D1F0600AF19D12738 /* dateByAddingTimeIntervalTests.m */; };
 		17B5C94FD65CD923332ED3EE /* EscortCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CC3FA3B3583B8AC95DD8 /* EscortCacheSpec.m */; };
 		17B5C9F98AC409F47299D54B /* EscortDecomposingSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5CA6E7413A743441E0EF2 /* EscortDecomposingSpec.m */; };
@@ -23,7 +21,6 @@
 		17B5CCF9CEC128B380974AF7 /* EscortAdjustingDatesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C79FDE62EDC8C21A9FFC /* EscortAdjustingDatesSpec.m */; };
 		17B5CD2E9AD0EF4A499B5DC2 /* EscortRetrievingIntervalsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C3CB2F1D7F92A7D5D185 /* EscortRetrievingIntervalsSpec.m */; };
 		17B5CEF22C864A71F222AF9B /* EscortDateRoles.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C01AAD723EBDDDCC62A1 /* EscortDateRoles.m */; };
-		17B5CF198558B988D6315201 /* AZNLTQuickCheckKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C7AB5B3C2330636DEA86 /* AZNLTQuickCheckKiwiMatcher.m */; };
 		34FF22004D0842FBB318A107 /* libPods-Test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99433D664648BDA821D25A /* libPods-Test.a */; };
 		7342338C176498610036715A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355ABE317638E9600DD1EC2 /* UIKit.framework */; };
 		7342338D176498610036715A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355ABE517638E9600DD1EC2 /* Foundation.framework */; };
@@ -33,6 +30,8 @@
 		73FCA17018DE837D009ED4AD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355ABE517638E9600DD1EC2 /* Foundation.framework */; };
 		73FCA17118DE837D009ED4AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355ABE317638E9600DD1EC2 /* UIKit.framework */; };
 		73FCA17718DE837D009ED4AD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 73FCA17518DE837D009ED4AD /* InfoPlist.strings */; };
+		C5BD6A39196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A36196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m */; };
+		C5BD6A3A196287E30053103A /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,18 +45,14 @@
 		17B5C5E96D915AC29ED553D1 /* RAIIBenchmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RAIIBenchmark.m; sourceTree = "<group>"; };
 		17B5C69FBFA4113BF4F99F02 /* FakeDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeDateUtil.h; sourceTree = "<group>"; };
 		17B5C79FDE62EDC8C21A9FFC /* EscortAdjustingDatesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortAdjustingDatesSpec.m; sourceTree = "<group>"; };
-		17B5C7AB5B3C2330636DEA86 /* AZNLTQuickCheckKiwiMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNLTQuickCheckKiwiMatcher.m; sourceTree = "<group>"; };
 		17B5C8039CF17DE12A52A9B3 /* NSDate+Escort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Escort.h"; sourceTree = "<group>"; };
 		17B5C809EA2391FF7D79ECD6 /* EscortComparingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortComparingSpec.m; sourceTree = "<group>"; };
 		17B5C834FD0E39402F12D7CD /* BenchMakeFormReferenceDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchMakeFormReferenceDate.m; sourceTree = "<group>"; };
-		17B5C849E395578D33F92395 /* AZNSDateKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNSDateKiwiMatcher.h; sourceTree = "<group>"; };
 		17B5C8F1C4BE74C402F443AA /* NSDate+AZDateBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+AZDateBuilder.m"; sourceTree = "<group>"; };
 		17B5CA6E7413A743441E0EF2 /* EscortDecomposingSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortDecomposingSpec.m; sourceTree = "<group>"; };
-		17B5CC36B08F9E46203A7C72 /* AZNSDateKiwiMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNSDateKiwiMatcher.m; sourceTree = "<group>"; };
 		17B5CC3FA3B3583B8AC95DD8 /* EscortCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortCacheSpec.m; sourceTree = "<group>"; };
 		17B5CC93C309A75B3ABE30BE /* RAIIBenchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RAIIBenchmark.h; sourceTree = "<group>"; };
 		17B5CF001E83A221023FE180 /* FakeDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeDateUtil.m; sourceTree = "<group>"; };
-		17B5CF491DD1579EF5129C12 /* AZNLTQuickCheckKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNLTQuickCheckKiwiMatcher.h; sourceTree = "<group>"; };
 		17B5CF5E44E63D16B9757F5F /* EscortClassSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortClassSpec.m; sourceTree = "<group>"; };
 		28F7702D4AF8462A9AAA7072 /* Pods-Test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.xcconfig"; path = "Pods/Pods-Test.xcconfig"; sourceTree = "<group>"; };
 		7342338A176498610036715A /* Benchmark.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Benchmark.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +66,10 @@
 		73FCA17418DE837D009ED4AD /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
 		73FCA17618DE837D009ED4AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		73FCA17A18DE837D009ED4AD /* Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Prefix.pch"; sourceTree = "<group>"; };
-		C8E429CB748C4D5590374489 /* Pods-Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.xcconfig"; path = "Pods/Pods-Tests.xcconfig"; sourceTree = "<group>"; };
+		C5BD6A35196287E30053103A /* AZNLTQuickCheckKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNLTQuickCheckKiwiMatcher.h; sourceTree = "<group>"; };
+		C5BD6A36196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNLTQuickCheckKiwiMatcher.m; sourceTree = "<group>"; };
+		C5BD6A37196287E30053103A /* AZNSDateKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNSDateKiwiMatcher.h; sourceTree = "<group>"; };
+		C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNSDateKiwiMatcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,17 +115,6 @@
 			path = Lib;
 			sourceTree = "<group>";
 		};
-		17B5C331CFB8CCE49C5F1281 /* Machter */ = {
-			isa = PBXGroup;
-			children = (
-				17B5CC36B08F9E46203A7C72 /* AZNSDateKiwiMatcher.m */,
-				17B5C849E395578D33F92395 /* AZNSDateKiwiMatcher.h */,
-				17B5C7AB5B3C2330636DEA86 /* AZNLTQuickCheckKiwiMatcher.m */,
-				17B5CF491DD1579EF5129C12 /* AZNLTQuickCheckKiwiMatcher.h */,
-			);
-			path = Machter;
-			sourceTree = "<group>";
-		};
 		17B5C4F653B336A415A1AD4C /* NSDate-Escort */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,9 +145,9 @@
 		7342338E176498610036715A /* Benchmark */ = {
 			isa = PBXGroup;
 			children = (
+				17B5C29A2D906A76B2C3FC33 /* Lib */,
 				7342338F176498610036715A /* Supporting Files */,
 				17B5C834FD0E39402F12D7CD /* BenchMakeFormReferenceDate.m */,
-				17B5C29A2D906A76B2C3FC33 /* Lib */,
 				17B5C27D1F0600AF19D12738 /* dateByAddingTimeIntervalTests.m */,
 			);
 			path = Benchmark;
@@ -185,7 +172,6 @@
 				7355ABDF17638E9600DD1EC2 /* Products */,
 				17B5C4F653B336A415A1AD4C /* NSDate-Escort */,
 				17B5C2FFCAB36B1E0C17E2BF /* readme.md */,
-				C8E429CB748C4D5590374489 /* Pods-Tests.xcconfig */,
 				28F7702D4AF8462A9AAA7072 /* Pods-Test.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -213,13 +199,13 @@
 		73FCA17218DE837D009ED4AD /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				17B5CC2CE306C225BB3E62CC /* Lib */,
+				C5BD6A34196287E30053103A /* Matcher */,
 				73FCA17318DE837D009ED4AD /* Supporting Files */,
 				17B5CA6E7413A743441E0EF2 /* EscortDecomposingSpec.m */,
-				17B5CC2CE306C225BB3E62CC /* Lib */,
 				17B5CC3FA3B3583B8AC95DD8 /* EscortCacheSpec.m */,
 				17B5C01AAD723EBDDDCC62A1 /* EscortDateRoles.m */,
 				17B5C809EA2391FF7D79ECD6 /* EscortComparingSpec.m */,
-				17B5C331CFB8CCE49C5F1281 /* Machter */,
 				17B5CF5E44E63D16B9757F5F /* EscortClassSpec.m */,
 				17B5C79FDE62EDC8C21A9FFC /* EscortAdjustingDatesSpec.m */,
 				17B5C3CB2F1D7F92A7D5D185 /* EscortRetrievingIntervalsSpec.m */,
@@ -235,6 +221,17 @@
 				73FCA17A18DE837D009ED4AD /* Test-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C5BD6A34196287E30053103A /* Matcher */ = {
+			isa = PBXGroup;
+			children = (
+				C5BD6A35196287E30053103A /* AZNLTQuickCheckKiwiMatcher.h */,
+				C5BD6A36196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m */,
+				C5BD6A37196287E30053103A /* AZNSDateKiwiMatcher.h */,
+				C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */,
+			);
+			path = Matcher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,7 +379,6 @@
 				17B5CA30B602F0B2DD50EECB /* RAIIBenchmark.m in Sources */,
 				17B5C81B2A6B6A58E9622A62 /* dateByAddingTimeIntervalTests.m in Sources */,
 				17B5CB5A276931A8EFE0F82B /* NSDate+Escort.m in Sources */,
-				17B5C7FDC8A261E3D908EB5E /* NSDate+AZDateBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,12 +389,12 @@
 				17B5C28A17FECDD022B846E6 /* NSDate+Escort.m in Sources */,
 				17B5C9F98AC409F47299D54B /* EscortDecomposingSpec.m in Sources */,
 				17B5C2B8A7A6075B69DA69E2 /* NSDate+AZDateBuilder.m in Sources */,
+				C5BD6A39196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m in Sources */,
 				17B5C474F10F4D9620AFFACC /* FakeDateUtil.m in Sources */,
 				17B5C94FD65CD923332ED3EE /* EscortCacheSpec.m in Sources */,
+				C5BD6A3A196287E30053103A /* AZNSDateKiwiMatcher.m in Sources */,
 				17B5CEF22C864A71F222AF9B /* EscortDateRoles.m in Sources */,
 				17B5C584E29A91E50FA691ED /* EscortComparingSpec.m in Sources */,
-				17B5C1FA658B0315B43B407F /* AZNSDateKiwiMatcher.m in Sources */,
-				17B5CF198558B988D6315201 /* AZNLTQuickCheckKiwiMatcher.m in Sources */,
 				17B5CB0E0DEEAA0B86DB6754 /* EscortClassSpec.m in Sources */,
 				17B5CCF9CEC128B380974AF7 /* EscortAdjustingDatesSpec.m in Sources */,
 				17B5CD2E9AD0EF4A499B5DC2 /* EscortRetrievingIntervalsSpec.m in Sources */,
