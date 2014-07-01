@@ -20,7 +20,7 @@ SPEC_BEGIN(EscortCache)
             it(@"should not raise", ^{
                 [[theBlock(^{
                     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-                    [queue setMaxConcurrentOperationCount:4];
+                    [queue setMaxConcurrentOperationCount:8];
                     NSDate *date = [NSDate date];
                     for (int i = 0; i < 100; i++) {
                         [queue addOperationWithBlock:^{
