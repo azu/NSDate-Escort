@@ -7,7 +7,9 @@
 //       Strategy:
 //       - If the current calendar is NSGregorianCalendar (which is 99% of case), all units are
 //         guaranteed to be fixed (except for leap seconds) so we can immediately return fixed values.
-//       - If not, those units might be dynamic by day because of its lunar calendar.
+//       - Some of calendars other than NSGregorianCalendar, such as NSJapaneseCalendar, uses
+//         same soloar calendar as NSGregorianCalendar. Those known calendars can also use fixed values.
+//       - For the lest of calendars, those units might be dynamic by day because of its lunar calendar.
 //         We must calculate units for each days/calendars thus no caches are available.
 //
 #define SECONDS_IN_MINUTE 60
@@ -20,20 +22,23 @@
 @implementation NSDate (Escort)
 
 static NSString * AZ_DefaultCalendarIdentifier = nil;
+static NSLock * AZ_DefaultCalendarIdentifierLock = nil;
+static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 
 #pragma mark - private
 + (NSCalendar *)AZ_currentCalendar {
     NSString *key = @"AZ_currentCalendar_";
-    if (AZ_DefaultCalendarIdentifier) {
-        key = [key stringByAppendingString:AZ_DefaultCalendarIdentifier];
+    NSString *calendarIdentifier = [NSDate defaultCalendarIdentifier];
+    if (calendarIdentifier) {
+        key = [key stringByAppendingString:calendarIdentifier];
     }
     NSMutableDictionary *dictionary = [[NSThread currentThread] threadDictionary];
     NSCalendar *currentCalendar = [dictionary objectForKey:key];
     if (currentCalendar == nil) {
-        if (AZ_DefaultCalendarIdentifier == nil) {
+        if (calendarIdentifier == nil) {
             currentCalendar = [NSCalendar currentCalendar];
         } else {
-            currentCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:AZ_DefaultCalendarIdentifier];
+            currentCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:calendarIdentifier];
             NSAssert(currentCalendar != nil, @"NSDate-Escort failed to create a calendar since the provided calendarIdentifier is invalid.");
         }
         [dictionary setObject:currentCalendar forKey:key];
@@ -41,8 +46,23 @@ static NSString * AZ_DefaultCalendarIdentifier = nil;
     return currentCalendar;
 }
 #pragma mark - Setting default calendar
++ (NSString *)defaultCalendarIdentifier {
+    dispatch_once(&AZ_DefaultCalendarIdentifierLock_onceToken, ^{
+        AZ_DefaultCalendarIdentifierLock = [[NSLock alloc] init];
+    });
+    NSString *string;
+    [AZ_DefaultCalendarIdentifierLock lock];
+    string = AZ_DefaultCalendarIdentifier;
+    [AZ_DefaultCalendarIdentifierLock unlock];
+    return string;
+}
 + (void)setDefaultCalendarIdentifier:(NSString *)calendarIdentifier {
+    dispatch_once(&AZ_DefaultCalendarIdentifierLock_onceToken, ^{
+        AZ_DefaultCalendarIdentifierLock = [[NSLock alloc] init];
+    });
+    [AZ_DefaultCalendarIdentifierLock lock];
     AZ_DefaultCalendarIdentifier = calendarIdentifier;
+    [AZ_DefaultCalendarIdentifierLock unlock];
 }
 #pragma mark - Relative dates from the current date
 + (NSDate *)dateTomorrow {
