@@ -25,7 +25,7 @@ SPEC_BEGIN(EscortCache)
                     for (int i = 0; i < 100; i++) {
                         [queue addOperationWithBlock:^{
                             NSString *calendarIdentifier = (i%2) ? nil : NSGregorianCalendar;
-                            [NSDate setDefaultCalendarIdentifier:calendarIdentifier];
+                            [NSDate AZ_setDefaultCalendarIdentifier:calendarIdentifier];
                             NSInteger year = date.year;
                             NSInteger month = date.month;
                             NSInteger day = date.day;

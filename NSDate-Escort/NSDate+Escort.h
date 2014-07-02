@@ -8,9 +8,9 @@
 
 /**
  Returns the calendarIdentifier of calendars that is used by this library for date calculation.
- @see setDefaultCalendarIdentifier: for more details.
+ @see AZ_setDefaultCalendarIdentifier: for more details.
  */
-+ (NSString *)defaultCalendarIdentifier;
++ (NSString *)AZ_defaultCalendarIdentifier;
 /**
  Sets the calendarIdentifier of calendars that is used by this library for date calculation.
  You can specify any calendarIdentifiers predefined by NSLocale. If you provide nil, the library uses
@@ -19,7 +19,7 @@
  You can't provide individual calendars for individual date objects. If you need to perform such
  complicated date calculations, you should rather create calendars on your own.
  */
-+ (void)setDefaultCalendarIdentifier:(NSString *)calendarIdentifier;
++ (void)AZ_setDefaultCalendarIdentifier:(NSString *)calendarIdentifier;
 
 #pragma mark - Relative dates from the current date
 + (NSDate *)dateTomorrow;

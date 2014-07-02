@@ -28,7 +28,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 #pragma mark - private
 + (NSCalendar *)AZ_currentCalendar {
     NSString *key = @"AZ_currentCalendar_";
-    NSString *calendarIdentifier = [NSDate defaultCalendarIdentifier];
+    NSString *calendarIdentifier = [NSDate AZ_defaultCalendarIdentifier];
     if (calendarIdentifier) {
         key = [key stringByAppendingString:calendarIdentifier];
     }
@@ -46,7 +46,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     return currentCalendar;
 }
 #pragma mark - Setting default calendar
-+ (NSString *)defaultCalendarIdentifier {
++ (NSString *)AZ_defaultCalendarIdentifier {
     dispatch_once(&AZ_DefaultCalendarIdentifierLock_onceToken, ^{
         AZ_DefaultCalendarIdentifierLock = [[NSLock alloc] init];
     });
@@ -56,7 +56,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     [AZ_DefaultCalendarIdentifierLock unlock];
     return string;
 }
-+ (void)setDefaultCalendarIdentifier:(NSString *)calendarIdentifier {
++ (void)AZ_setDefaultCalendarIdentifier:(NSString *)calendarIdentifier {
     dispatch_once(&AZ_DefaultCalendarIdentifierLock_onceToken, ^{
         AZ_DefaultCalendarIdentifierLock = [[NSLock alloc] init];
     });
