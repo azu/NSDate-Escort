@@ -25,7 +25,8 @@ static NSString * AZ_DefaultCalendarIdentifier = nil;
 static NSLock * AZ_DefaultCalendarIdentifierLock = nil;
 static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 
-#pragma mark - private
+#pragma mark - Managing default calendar
+
 + (NSCalendar *)AZ_currentCalendar {
     NSString *key = @"AZ_currentCalendar_";
     NSString *calendarIdentifier = [NSDate AZ_defaultCalendarIdentifier];
@@ -45,7 +46,6 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     }
     return currentCalendar;
 }
-#pragma mark - Setting default calendar
 + (NSString *)AZ_defaultCalendarIdentifier {
     dispatch_once(&AZ_DefaultCalendarIdentifierLock_onceToken, ^{
         AZ_DefaultCalendarIdentifierLock = [[NSLock alloc] init];
@@ -64,7 +64,9 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     AZ_DefaultCalendarIdentifier = calendarIdentifier;
     [AZ_DefaultCalendarIdentifierLock unlock];
 }
+
 #pragma mark - Relative dates from the current date
+
 + (NSDate *)dateTomorrow {
     NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] + (SECONDS_IN_DAY * 1);
     return [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];

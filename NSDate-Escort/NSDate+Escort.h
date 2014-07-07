@@ -4,8 +4,15 @@
 
 @interface NSDate (Escort)
 
-#pragma mark - Setting default calendar
+#pragma mark - Managing default calendar
 
+/**
+ Returns the current calendar object which is used by this library for date calculation.
+ The returned calendar object is thread-safe since they are instantiated for each different threads.
+ You can specify a type of calendar by providing a calendar identifier to AZ_setDefaultCalendarIdentifier: method. 
+ @see AZ_setDefaultCalendarIdentifier: for more details.
+ */
++ (NSCalendar *)AZ_currentCalendar;
 /**
  Returns the calendarIdentifier of calendars that is used by this library for date calculation.
  @see AZ_setDefaultCalendarIdentifier: for more details.
