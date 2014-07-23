@@ -592,7 +592,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"next year", ^{
             __block NSDate *nextYear;
             beforeEach(^{
-                NSInteger currentYear = [currentDate year];
+                NSInteger currentYear = [currentDate gregorianYear];
                 nextYear = [currentDate dateByUnit:@{
                     AZ_DateUnit.year : @(currentYear + 1)
                 }];
@@ -605,7 +605,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"two years later", ^{
             __block NSDate *twoYearsLater;
             beforeEach(^{
-                NSInteger currentYear = [currentDate year];
+                NSInteger currentYear = [currentDate gregorianYear];
                 twoYearsLater = [currentDate dateByUnit:@{
                     AZ_DateUnit.year : @(currentYear + 2)
                 }];
@@ -635,7 +635,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"last year", ^{
             __block NSDate *lastYear;
             beforeEach(^{
-                NSInteger currentYear = [currentDate year];
+                NSInteger currentYear = [currentDate gregorianYear];
                 lastYear = [currentDate dateByUnit:@{
                     AZ_DateUnit.year : @(currentYear - 1)
                 }];
@@ -648,7 +648,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"two years ago", ^{
             __block NSDate *twoYearsAgo;
             beforeEach(^{
-                NSInteger currentYear = [currentDate year];
+                NSInteger currentYear = [currentDate gregorianYear];
                 twoYearsAgo = [currentDate dateByUnit:@{
                     AZ_DateUnit.year : @(currentYear - 2)
                 }];
