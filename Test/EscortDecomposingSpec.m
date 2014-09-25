@@ -157,7 +157,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
                     AZ_DateUnit.day : @1,
                 }];
             });
-            it(@"should return 1", ^{
+            it(@"should return 1", ^{               
                 NSInteger weekValue = [currentDate week];
                 [[theValue(weekValue) should] equal:theValue(1)];
             });

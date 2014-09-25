@@ -46,7 +46,7 @@
 
 - (BOOL)compareDateIgnoringTime {
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
-    enum NSCalendarUnit unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    enum NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
     NSDateComponents *components1 = [currentCalendar components:unitFlags fromDate:self.subject];
     NSDateComponents *components2 = [currentCalendar components:unitFlags fromDate:self.otherDate];
     return ((components1.year == components2.year) &&

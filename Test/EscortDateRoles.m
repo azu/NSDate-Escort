@@ -43,11 +43,11 @@ SPEC_BEGIN(EscortDateRoles)
             __block NSRange weekdayRange;
             beforeEach(^{
                 NSCalendar *calendar = [NSCalendar currentCalendar];
-                weekdayRange = [calendar maximumRangeOfUnit:NSWeekdayCalendarUnit];
+                weekdayRange = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
             });
             it(@"should be true", ^{
                 NSDate *checkDate;
-                for (int weekday = weekdayRange.location; weekday++ < weekdayRange.length; weekday++) {
+                for (NSUInteger weekday = weekdayRange.location; weekday++ < weekdayRange.length; weekday++) {
                     checkDate = [currentDate dateByUnit:@{
                         AZ_DateUnit.day : @([currentDate lastDayOfWeekday] + weekday)
                     }];
@@ -95,11 +95,11 @@ SPEC_BEGIN(EscortDateRoles)
             __block NSRange weekdayRange;
             beforeEach(^{
                 NSCalendar *calendar = [NSCalendar currentCalendar];
-                weekdayRange = [calendar maximumRangeOfUnit:NSWeekdayCalendarUnit];
+                weekdayRange = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
             });
             it(@"should be false", ^{
                 NSDate *checkDate;
-                for (int weekday = weekdayRange.location; weekday++ < weekdayRange.length; weekday++) {
+                for (NSUInteger weekday = weekdayRange.location; weekday++ < weekdayRange.length; weekday++) {
                     checkDate = [currentDate dateByUnit:@{
                         AZ_DateUnit.day : @([currentDate lastDayOfWeekday] + weekday)
                     }];
