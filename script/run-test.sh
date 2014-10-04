@@ -1,11 +1,4 @@
 #!/bin/sh
 
-xcodebuild clean test\
-    -sdk iphonesimulator \
-	-workspace NSDate-Escort.xcworkspace \
-	-scheme Test \
-	-configuration Debug \
-    OBJROOT=build \
-	ONLY_ACTIVE_ARCH=NO \
-	GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES \
-	GCC_GENERATE_TEST_COVERAGE_FILES=YES
+xcodebuild test -workspace NSDate-Escort.xcworkspace -scheme 'Test'\
+ -destination 'platform=iOS Simulator,name=iPhone Retina (4-inch)' | xcpretty -c
