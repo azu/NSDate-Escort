@@ -62,7 +62,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     NSCalendar *calendar = [NSCalendar currentCalendar];
                     NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
                         NSDate *resultDate = [currentDate dateByAddingYears:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSYearCalendarUnit fromDate:currentDate toDate:resultDate options:0];
+                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitYear fromDate:currentDate toDate:resultDate options:0];
                         return [diffComponents year] == [argA integerValue];
                     } arbitrary:[NSNumber intArbitrary]];
                     [testable check];
@@ -87,7 +87,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     NSCalendar *calendar = [NSCalendar currentCalendar];
                     NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
                         NSDate *resultDate = [currentDate dateBySubtractingYears:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSYearCalendarUnit fromDate:resultDate toDate:currentDate options:0];
+                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitYear fromDate:resultDate toDate:currentDate options:0];
                         return [diffComponents year] == [argA integerValue];
                     } arbitrary:[NSNumber intArbitrary]];
                     [testable check];
@@ -149,7 +149,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     NSCalendar *calendar = [NSCalendar currentCalendar];
                     NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
                         NSDate *resultDate = [currentDate dateByAddingMonths:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSMonthCalendarUnit fromDate:currentDate toDate:resultDate options:0];
+                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitMonth fromDate:currentDate toDate:resultDate options:0];
                         return [diffComponents month] == [argA integerValue];
                     } arbitrary:[NSNumber intArbitrary]];
                     [testable check];
@@ -173,7 +173,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     NSCalendar *calendar = [NSCalendar currentCalendar];
                     NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
                         NSDate *resultDate = [currentDate dateBySubtractingMonths:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSMonthCalendarUnit fromDate:resultDate toDate:currentDate options:0];
+                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitMonth fromDate:resultDate toDate:currentDate options:0];
                         return [diffComponents month] == [argA integerValue];
                     } arbitrary:[NSNumber intArbitrary]];
                     [testable check];
@@ -235,7 +235,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     NSCalendar *calendar = [NSCalendar currentCalendar];
                     NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
                         NSDate *addingDays = [currentDate dateByAddingDays:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:addingDays options:0];
+                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitDay fromDate:currentDate toDate:addingDays options:0];
                         return [diffComponents day] == [argA integerValue];
                     } arbitrary:[NSNumber intArbitrary]];
                     [testable check];
@@ -300,7 +300,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     NSCalendar *calendar = [NSCalendar currentCalendar];
                     NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
                         NSDate *resultDate = [currentDate dateBySubtractingDays:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSDayCalendarUnit fromDate:resultDate toDate:currentDate options:0];
+                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitDay fromDate:resultDate toDate:currentDate options:0];
                         return [diffComponents day] == [argA integerValue];
                     } arbitrary:[NSNumber intArbitrary]];
                     [testable check];
@@ -388,7 +388,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     NSCalendar *calendar = [NSCalendar currentCalendar];
                     NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
                         NSDate *subtractingDays = [currentDate dateByAddingHours:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSHourCalendarUnit fromDate:currentDate toDate:subtractingDays options:0];
+                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitHour fromDate:currentDate toDate:subtractingDays options:0];
                         return [diffComponents hour] == [argA integerValue];
                     } arbitrary:[NSNumber intArbitrary]];
                     [testable check];
@@ -476,7 +476,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     NSCalendar *calendar = [NSCalendar currentCalendar];
                     NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
                         NSDate *resultDate = [currentDate dateBySubtractingHours:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSHourCalendarUnit fromDate:resultDate toDate:currentDate options:0];
+                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitHour fromDate:resultDate toDate:currentDate options:0];
                         return [diffComponents hour] == [argA integerValue];
                     } arbitrary:[NSNumber intArbitrary]];
                     [testable check];

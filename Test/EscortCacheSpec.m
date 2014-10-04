@@ -32,7 +32,7 @@ SPEC_BEGIN(EscortCache)
                             NSInteger hour = date.hour;
                             NSInteger minute = date.minute;
                             NSInteger seconds = date.seconds;
-                            [NSString stringWithFormat:@"%i-%i-%i %i:%i:%i", year, month, day, hour, minute, seconds];
+                            [NSString stringWithFormat:@"%li-%li-%li %li:%li:%li", (long)year, (long)month, (long)day, (long)hour, (long)minute, (long)seconds];
                         }];
                     }
                     [queue waitUntilAllOperationsAreFinished];

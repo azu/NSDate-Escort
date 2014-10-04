@@ -29,7 +29,7 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSTimeInterval addingTimeInterval = SECONDS_IN_DAY * kAddingDays;
     NSDate *aHundredDays = [currentDate dateByAddingTimeInterval:addingTimeInterval];
-    NSDateComponents *diffComponents = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:aHundredDays options:0];
+    NSDateComponents *diffComponents = [calendar components:NSCalendarUnitDay fromDate:currentDate toDate:aHundredDays options:0];
     STAssertEquals([diffComponents day], kAddingDays, @"diff is %ddays", kAddingDays);
 }
 
@@ -39,7 +39,7 @@
     NSDateComponents *aHundredDaysComponents = [[NSDateComponents alloc] init];
     aHundredDaysComponents.day = kAddingDays;
     NSDate *aHundredDays = [calendar dateByAddingComponents:aHundredDaysComponents toDate:currentDate options:0];
-    NSDateComponents *diffComponents = [calendar components:NSDayCalendarUnit fromDate:currentDate toDate:aHundredDays options:0];
+    NSDateComponents *diffComponents = [calendar components:NSCalendarUnitDay fromDate:currentDate toDate:aHundredDays options:0];
     STAssertEquals([diffComponents day], kAddingDays, @"diff is %ddays", kAddingDays);
 }
 
