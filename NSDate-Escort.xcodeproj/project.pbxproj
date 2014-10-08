@@ -54,7 +54,8 @@
 		17B5CC93C309A75B3ABE30BE /* RAIIBenchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RAIIBenchmark.h; sourceTree = "<group>"; };
 		17B5CF001E83A221023FE180 /* FakeDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeDateUtil.m; sourceTree = "<group>"; };
 		17B5CF5E44E63D16B9757F5F /* EscortClassSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortClassSpec.m; sourceTree = "<group>"; };
-		28F7702D4AF8462A9AAA7072 /* Pods-Test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.xcconfig"; path = "Pods/Pods-Test.xcconfig"; sourceTree = "<group>"; };
+		5DBBC214A3239FD7DB605EF7 /* Pods-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.release.xcconfig"; path = "Pods/Target Support Files/Pods-Test/Pods-Test.release.xcconfig"; sourceTree = "<group>"; };
+		6DD8C2208BC805D0B99E5503 /* Pods-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Test/Pods-Test.debug.xcconfig"; sourceTree = "<group>"; };
 		7342338A176498610036715A /* Benchmark.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Benchmark.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73423390176498610036715A /* Benchmark-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Benchmark-Info.plist"; sourceTree = "<group>"; };
 		73423392176498610036715A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -172,7 +173,7 @@
 				7355ABDF17638E9600DD1EC2 /* Products */,
 				17B5C4F653B336A415A1AD4C /* NSDate-Escort */,
 				17B5C2FFCAB36B1E0C17E2BF /* readme.md */,
-				28F7702D4AF8462A9AAA7072 /* Pods-Test.xcconfig */,
+				E3F719C54382129B7C172924 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,6 +233,15 @@
 				C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */,
 			);
 			path = Matcher;
+			sourceTree = "<group>";
+		};
+		E3F719C54382129B7C172924 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6DD8C2208BC805D0B99E5503 /* Pods-Test.debug.xcconfig */,
+				5DBBC214A3239FD7DB605EF7 /* Pods-Test.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,7 +375,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Test-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Test/Pods-Test-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -517,7 +527,7 @@
 		};
 		73FCA17E18DE837D009ED4AD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28F7702D4AF8462A9AAA7072 /* Pods-Test.xcconfig */;
+			baseConfigurationReference = 6DD8C2208BC805D0B99E5503 /* Pods-Test.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -564,7 +574,7 @@
 		};
 		73FCA17F18DE837D009ED4AD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28F7702D4AF8462A9AAA7072 /* Pods-Test.xcconfig */;
+			baseConfigurationReference = 5DBBC214A3239FD7DB605EF7 /* Pods-Test.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
