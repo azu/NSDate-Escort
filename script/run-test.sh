@@ -3,4 +3,6 @@
 xcodebuild test -workspace NSDate-Escort.xcworkspace \
 -scheme 'Test' \
 -sdk iphonesimulator \
--destination 'platform=iOS Simulator,OS=8.0,name=iPhone 6' | xcpretty -c && exit ${PIPESTATUS[0]}
+-destination 'platform=iOS Simulator,OS=8.0,name=iPhone 6' \
+GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES \
+GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c && exit ${PIPESTATUS[0]}
