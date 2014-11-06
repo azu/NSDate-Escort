@@ -5,6 +5,6 @@ before_install:
   - gem install cocoapods
   - gem install xcpretty
 script:
-  - ./script/run-test.sh | xcpretty
+  - ./script/run-test.sh
 after_success:
   - coveralls -e Pods -e Test
