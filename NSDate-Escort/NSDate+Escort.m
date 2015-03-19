@@ -397,13 +397,13 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 - (NSInteger)daysAfterDate:(NSDate *) aDate {
-    NSTimeInterval timeIntervalSinceDate = [self timeIntervalSinceDate:aDate];
-    return (NSInteger)(timeIntervalSinceDate / SECONDS_IN_DAY);
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSDayCalendarUnit fromDate:aDate toDate:self options:0];
+    return [components day];
 }
 
 - (NSInteger)daysBeforeDate:(NSDate *) aDate {
-    NSTimeInterval timeIntervalSinceDate = [aDate timeIntervalSinceDate:self];
-    return (NSInteger)(timeIntervalSinceDate / SECONDS_IN_DAY);
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSDayCalendarUnit fromDate:self toDate:aDate options:0];
+    return [components day];
 }
 
 - (NSInteger)monthsAfterDate:(NSDate *) aDate {

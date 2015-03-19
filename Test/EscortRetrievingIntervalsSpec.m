@@ -222,26 +222,58 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                 [FakeDateUtil stubCurrentDate:currentDate];
             });
             context(@"when 1 day ago", ^{
-                int oneHour = 1;
+                int oneDay = 1;
                 __block NSDate *anotherDate;
                 beforeEach(^{
-                    anotherDate = [currentDate dateBySubtractingDays:oneHour];
+                    anotherDate = [currentDate dateBySubtractingDays:oneDay];
                 });
                 it(@"should return 1", ^{
                     NSInteger day = [currentDate daysAfterDate:anotherDate];
-                    [[theValue(day) should] equal:theValue(oneHour)];
+                    [[theValue(day) should] equal:theValue(oneDay)];
                 });
             });
             context(@"when 1 day later", ^{
-                int oneHour = 1;
+                int oneDay = 1;
                 __block NSDate *anotherDate;
                 beforeEach(^{
-                    anotherDate = [currentDate dateByAddingDays:oneHour];
+                    anotherDate = [currentDate dateByAddingDays:oneDay];
                 });
                 it(@"should return -1", ^{
                     NSInteger day = [currentDate daysAfterDate:anotherDate];
-                    [[theValue(day) should] equal:theValue(-oneHour)];
+                    [[theValue(day) should] equal:theValue(-oneDay)];
                 });
+            });
+        });
+        
+        // Set the date to 29th March 2015 01:00 (the day daylight savings ends)
+        context(@"the date is 2015-03-29 00:00:00 in ", ^{
+            __block NSDate *currentDate;
+            __block NSDate *anotherDate;
+            beforeEach(^{
+                [[[NSThread currentThread] threadDictionary] removeAllObjects];
+                NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
+                [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                [NSCalendar stub:@selector(currentCalendar) andReturn:calendar];
+                
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2015,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @29,
+                }];
+                anotherDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2015,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @30,
+                }];
+            });
+            it(@"should return 82800 seconds", ^{
+                NSInteger diff = [currentDate timeIntervalSinceDate:anotherDate];
+                [[theValue(diff) should] equal:theValue(-82800)];
+            });
+            it(@"should return 1", ^{
+                NSInteger diff = [currentDate daysBeforeDate:anotherDate];
+                [[theValue(diff) should] equal:theValue(1)];
             });
         });
     });
@@ -261,25 +293,52 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                 [FakeDateUtil stubCurrentDate:currentDate];
             });
             context(@"when 1 day ago", ^{
-                int oneHour = 1;
+                int oneDay = 1;
                 __block NSDate *anotherDate;
                 beforeEach(^{
-                    anotherDate = [currentDate dateBySubtractingDays:oneHour];
+                    anotherDate = [currentDate dateBySubtractingDays:oneDay];
                 });
                 it(@"should return -1", ^{
                     NSInteger day = [currentDate daysBeforeDate:anotherDate];
-                    [[theValue(day) should] equal:theValue(-oneHour)];
+                    [[theValue(day) should] equal:theValue(-oneDay)];
                 });
             });
             context(@"when 1 day later", ^{
-                int oneHour = 1;
+                int oneDay = 1;
                 __block NSDate *anotherDate;
                 beforeEach(^{
-                    anotherDate = [currentDate dateByAddingDays:oneHour];
+                    anotherDate = [currentDate dateByAddingDays:oneDay];
                 });
                 it(@"should return 1", ^{
                     NSInteger day = [currentDate daysBeforeDate:anotherDate];
-                    [[theValue(day) should] equal:theValue(oneHour)];
+                    [[theValue(day) should] equal:theValue(oneDay)];
+                });
+            });
+        });
+        context(@"the date is 2015-03-29 00:00:00", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                [[[NSThread currentThread] threadDictionary] removeAllObjects];
+                NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
+                [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                [NSCalendar stub:@selector(currentCalendar) andReturn:calendar];
+                
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2015,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @29,
+                }];
+            });
+            context(@"when day ago", ^{
+                int oneDay = 1;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                           anotherDate = [currentDate dateByAddingDays:oneDay];
+                });
+                it(@"should return 1", ^{
+                    NSInteger diff = [currentDate daysAfterDate:anotherDate];
+                    [[theValue(diff) should] equal:theValue(-oneDay)];
                 });
             });
         });
