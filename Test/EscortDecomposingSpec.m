@@ -2,6 +2,10 @@
 #import "NSDate+Escort.h"
 #import "NSDate+AZDateBuilder.h"
 
+@interface NSDate ()
++ (NSCalendar *)AZ_currentCalendar;
+@end
+
 SPEC_BEGIN(EscortDecomposingSpec)
 
     registerMatchers(@"AZ");// NSDate Custom Matcher

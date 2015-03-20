@@ -3,6 +3,10 @@
 #import "FakeDateUtil.h"
 #import "NSDate+AZDateBuilder.h"
 
+@interface NSDate ()
++ (NSCalendar *)AZ_currentCalendar;
+@end
+
 SPEC_BEGIN(EscortComparingSpec)
 
     registerMatchers(@"AZ");// NSDate Custom Matcher

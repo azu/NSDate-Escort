@@ -3,6 +3,10 @@
 #import "NSDate+AZDateBuilder.h"
 #import "NSDate+Escort.h"
 
+@interface NSDate ()
++ (NSCalendar *)AZ_currentCalendar;
+@end
+
 SPEC_BEGIN(EscortRetrievingIntervals)
     registerMatchers(@"AZ");// NSDate Custom Matcher
 
