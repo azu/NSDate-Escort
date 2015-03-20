@@ -26,6 +26,22 @@ Current Status : **RELEASE**
 ## Usage
 
 ``` objc
+/**
+ Returns the calendarIdentifier of calendars that is used by this library for date calculation.
+ @see AZ_setDefaultCalendarIdentifier: for more details.
+ */
++ (NSString *)AZ_defaultCalendarIdentifier;
+/**
+ Sets the calendarIdentifier of calendars that is used by this library for date calculation.
+ You can specify any calendarIdentifiers predefined by NSLocale. If you provide nil, the library uses
+ [NSCalendar currentCalendar]. Default value is nil.
+
+ You can't provide individual calendars for individual date objects. If you need to perform such
+ complicated date calculations, you should rather create calendars on your own.
+ */
++ (void)AZ_setDefaultCalendarIdentifier:(NSString *)calendarIdentifier;
+
+#pragma mark - Relative dates from the current date
 
 - (BOOL)isYesterday;
 - (BOOL)isSameWeekAsDate:(NSDate *) aDate;
@@ -122,6 +138,9 @@ This library has
 You should see `NSDate-Escort.h` : 
 
 ``` objc
++ (NSString *)AZ_defaultCalendarIdentifier;
++ (void)AZ_setDefaultCalendarIdentifier:(NSString *)calendarIdentifier;
+
 - (NSDate *)dateAtEndOfDay;
 - (NSDate *)dateAtStartOfMonth;
 - (NSDate *)dateAtEndOfMonth; 
