@@ -381,27 +381,13 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 - (NSInteger)monthsAfterDate:(NSDate *) aDate {
-    NSInteger result = (self.gregorianYear - aDate.gregorianYear) * 12 + (self.month - aDate.month);
-
-    if (result == 0) {
-        return 0;
-    } else if (0 < result) {
-        if (aDate.day < self.day || (aDate.day == self.day && [self timeIntervalIgnoringDay:aDate] <= 0)) {
-            return result;
-        } else {
-            return result - 1;
-        }
-    } else {
-        if (self.day < aDate.day || (self.day == aDate.day && 0 <= [self timeIntervalIgnoringDay:aDate])) {
-            return result;
-        } else {
-            return result + 1;
-        }
-    }
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSMonthCalendarUnit fromDate:aDate toDate:self options:0];
+    return [components month];
 }
 
 - (NSInteger)monthsBeforeDate:(NSDate *) aDate {
-    return -[self monthsAfterDate:aDate];
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSMonthCalendarUnit fromDate:self toDate:aDate options:0];
+    return [components month];
 }
 
 - (NSTimeInterval)timeIntervalIgnoringDay:(NSDate *) aDate {
