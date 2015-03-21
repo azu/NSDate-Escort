@@ -494,68 +494,152 @@ SPEC_BEGIN(EscortComparingSpec)
         });
     });
     describe(@"-isSameMonthAsDate", ^{
-        __block NSDate *currentDate;
-        beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
-                AZ_DateUnit.year : @2010,
-                AZ_DateUnit.month : @10,
-                AZ_DateUnit.day : @10,
-            }];
-            [FakeDateUtil stubCurrentDate:currentDate];
+        context(@"today is 2010-10-10 ", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"within this month", ^{
+                context(@"at start of month", ^{
+                    it(@"should be yes", ^{
+                        NSDate *startOfMonth = [currentDate dateAtStartOfMonth];
+                        BOOL match = [currentDate isSameMonthAsDate:startOfMonth];
+                        [[theValue(match) should] beYes];
+                    });
+                });
+                context(@"at end of month", ^{
+                    it(@"should be yes", ^{
+                        NSDate *endOfMonth = [currentDate dateAtEndOfMonth];
+                        BOOL match = [currentDate isSameMonthAsDate:endOfMonth];
+                        [[theValue(match) should] beYes];
+                    });
+                });
+            });
+            context(@"next month", ^{
+                __block NSDate *nextMonth;
+                beforeEach(^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
+                    oneMonthComponents.month = 1;
+                    nextMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isSameMonthAsDate:nextMonth];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"last month", ^{
+                __block NSDate *lastMonth;
+                beforeEach(^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
+                    oneMonthComponents.month = -1;
+                    lastMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isSameMonthAsDate:lastMonth];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"next year", ^{
+                __block NSDate *nextYear;
+                beforeEach(^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
+                    oneMonthComponents.year = 1;
+                    nextYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isSameMonthAsDate:nextYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
         });
-        context(@"within this month", ^{
-            context(@"at start of month", ^{
-                it(@"should be yes", ^{
-                    NSDate *startOfMonth = [currentDate dateAtStartOfMonth];
-                    BOOL match = [currentDate isSameMonthAsDate:startOfMonth];
+        context(@"today is 1988-12-07 ", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @6,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            context(@"within this month", ^{
+                context(@"at start of month", ^{
+                    it(@"should be yes", ^{
+                        NSDate *startOfMonth = [currentDate dateAtStartOfMonth];
+                        BOOL match = [currentDate isSameMonthAsDate:startOfMonth];
+                        [[theValue(match) should] beYes];
+                    });
+                });
+                context(@"at end of month", ^{
+                    it(@"should be yes", ^{
+                        NSDate *endOfMonth = [currentDate dateAtEndOfMonth];
+                        BOOL match = [currentDate isSameMonthAsDate:endOfMonth];
+                        [[theValue(match) should] beYes];
+                    });
+                });
+            });
+            context(@"2 days ago", ^{
+                __block NSDate *_2daysAgo;
+                beforeEach(^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
+                    oneMonthComponents.day = 2;
+                    _2daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isSameMonthAsDate:_2daysAgo];
                     [[theValue(match) should] beYes];
                 });
             });
-            context(@"at end of month", ^{
-                it(@"should be yes", ^{
-                    NSDate *endOfMonth = [currentDate dateAtEndOfMonth];
-                    BOOL match = [currentDate isSameMonthAsDate:endOfMonth];
-                    [[theValue(match) should] beYes];
+            context(@"next month", ^{
+                __block NSDate *nextMonth;
+                beforeEach(^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
+                    oneMonthComponents.month = 1;
+                    nextMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isSameMonthAsDate:nextMonth];
+                    [[theValue(match) should] beNo];
                 });
             });
-        });
-        context(@"next month", ^{
-            __block NSDate *nextMonth;
-            beforeEach(^{
-                NSCalendar *calendar = [NSCalendar currentCalendar];
-                NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
-                oneMonthComponents.month = 1;
-                nextMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+            context(@"last month", ^{
+                __block NSDate *lastMonth;
+                beforeEach(^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
+                    oneMonthComponents.month = -1;
+                    lastMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isSameMonthAsDate:lastMonth];
+                    [[theValue(match) should] beNo];
+                });
             });
-            it(@"should be false", ^{
-                BOOL match = [currentDate isSameMonthAsDate:nextMonth];
-                [[theValue(match) should] beNo];
-            });
-        });
-        context(@"last month", ^{
-            __block NSDate *lastMonth;
-            beforeEach(^{
-                NSCalendar *calendar = [NSCalendar currentCalendar];
-                NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
-                oneMonthComponents.month = -1;
-                lastMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-            });
-            it(@"should be false", ^{
-                BOOL match = [currentDate isSameMonthAsDate:lastMonth];
-                [[theValue(match) should] beNo];
-            });
-        });
-        context(@"next year", ^{
-            __block NSDate *nextYear;
-            beforeEach(^{
-                NSCalendar *calendar = [NSCalendar currentCalendar];
-                NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
-                oneMonthComponents.year = 1;
-                nextYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-            });
-            it(@"should be false", ^{
-                BOOL match = [currentDate isSameMonthAsDate:nextYear];
-                [[theValue(match) should] beNo];
+            context(@"next year", ^{
+                __block NSDate *nextYear;
+                beforeEach(^{
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
+                    oneMonthComponents.year = 1;
+                    nextYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isSameMonthAsDate:nextYear];
+                    [[theValue(match) should] beNo];
+                });
             });
         });
     });
