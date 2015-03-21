@@ -209,32 +209,41 @@ SPEC_BEGIN(EscortComparingSpec)
                     [[theValue(match) should] beYes];
                 });
             });
-            context(@"withink this week", ^{
+            context(@"within this week", ^{
+                // weekday 1...7
                 context(@"firstOfWeek", ^{
-                    it(@"should be true", ^{
-                        // weekday 1...7
-                        NSDate *firstOfWeek = [currentDate dateByUnit:@{
+                    __block NSDate *firstOfWeek;
+                    beforeEach(^{
+                        firstOfWeek = [currentDate dateByUnit:@{
                             AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
                         }];
+                    });
+                    it(@"should be true", ^{
                         BOOL match_first = [firstOfWeek isSameWeekAsDate:currentDate];
                         [[theValue(match_first) should] beYes];
                     });
                 });
                 context(@"endOfWeek", ^{
-                    it(@"should be true", ^{
-                        NSDate *lastOfWeek = [currentDate dateByUnit:@{
+                    __block NSDate *lastOfWeek;
+                    beforeEach(^{
+                        lastOfWeek = [currentDate dateByUnit:@{
                             AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
                         }];
+                    });
+                    it(@"should be true", ^{
                         BOOL match_last = [lastOfWeek isSameWeekAsDate:currentDate];
                         [[theValue(match_last) should] beYes];
                     });
                 });
             });
             context(@"when same the week, but difference year", ^{
-                it(@"should be false", ^{
-                    NSDate *nextYearDate = [currentDate dateByUnit:@{
+                __block NSDate *nextYearDate;
+                beforeEach(^{
+                    nextYearDate = [currentDate dateByUnit:@{
                         AZ_DateUnit.year : @([currentDate year] + 1),
                     }];
+                });
+                it(@"should be false", ^{
                     BOOL match = [nextYearDate isSameWeekAsDate:currentDate];
                     [[theValue(match) should] beNo];
                 });
@@ -261,7 +270,6 @@ SPEC_BEGIN(EscortComparingSpec)
             });
         });
         context(@"today is 2015-03-30", ^{
-            
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate dateByUnit:@{
@@ -277,33 +285,42 @@ SPEC_BEGIN(EscortComparingSpec)
                     [[theValue(match) should] beYes];
                 });
             });
-            context(@"withink this week", ^{
+            context(@"within this week", ^{
+                // weekday 1...7
                 context(@"firstOfWeek", ^{
-                    it(@"should be true", ^{
-                        // weekday 1...7
-                        NSDate *firstOfWeek = [currentDate dateByUnit:@{
+                    __block NSDate *firstOfWeek;
+                    beforeEach(^{
+                        firstOfWeek = [currentDate dateByUnit:@{
                             AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
                         }];
+                    });
+                    it(@"should be true", ^{
                         BOOL match_first = [firstOfWeek isSameWeekAsDate:currentDate];
                         [[theValue(match_first) should] beYes];
                     });
                 });
                 context(@"endOfWeek", ^{
-                    it(@"should be true", ^{
-                        NSDate *lastOfWeek = [currentDate dateByUnit:@{
+                    __block NSDate *lastOfWeek;
+                    beforeEach(^{
+                        lastOfWeek = [currentDate dateByUnit:@{
                             AZ_DateUnit.month : @4,
                             AZ_DateUnit.day : @4,
                         }];
+                    });
+                    it(@"should be true", ^{
                         BOOL match_last = [lastOfWeek isSameWeekAsDate:currentDate];
                         [[theValue(match_last) should] beYes];
                     });
                 });
             });
             context(@"when same the week, but difference year", ^{
+                __block NSDate *nextYearDate;
+                beforeEach(^{
+                    nextYearDate = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @([currentDate year] + 1),
+                    }];
+                });
                 it(@"should be false", ^{
-                    NSDate *nextYearDate = [currentDate dateByUnit:@{
-                                                                     AZ_DateUnit.year : @([currentDate year] + 1),
-                                                                     }];
                     BOOL match = [nextYearDate isSameWeekAsDate:currentDate];
                     [[theValue(match) should] beNo];
                 });
