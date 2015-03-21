@@ -254,11 +254,11 @@ SPEC_BEGIN(EscortRetrievingIntervals)
             __block NSDate *currentDate;
             __block NSDate *anotherDate;
             beforeEach(^{
-                [[[NSThread currentThread] threadDictionary] removeAllObjects];
                 NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
                 [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
                 NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
-                [NSCalendar stub:@selector(currentCalendar) andReturn:calendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
+
                 
                 currentDate = [NSDate dateByUnit:@{
                     AZ_DateUnit.year : @2015,
@@ -322,11 +322,10 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         context(@"the date is 2015-03-29 00:00:00", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                [[[NSThread currentThread] threadDictionary] removeAllObjects];
                 NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
                 [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
                 NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
-                [NSCalendar stub:@selector(currentCalendar) andReturn:calendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
                 
                 currentDate = [NSDate dateByUnit:@{
                     AZ_DateUnit.year : @2015,

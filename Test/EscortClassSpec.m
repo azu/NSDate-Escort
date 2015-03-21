@@ -4,30 +4,86 @@
 #import "NSDate+AZDateBuilder.h"
 #import "FakeDateUtil.h"
 
+@interface NSDate (EscortMock)
++ (NSCalendar *)AZ_currentCalendar;
+@end
+
 SPEC_BEGIN(EscortClassSpec)
     registerMatchers(@"AZ");// NSDate Custom Matcher
     describe(@"+dateTomorrow", ^{
-        NSDate *currentDate = [NSDate date];
-        beforeEach(^{
-            [FakeDateUtil stubCurrentDate:currentDate];
+        context(@"when today is new time", ^{
+            NSDate *currentDate = [NSDate date];
+            beforeEach(^{
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            it(@"should return tomorrow", ^{
+                NSDate *expectDate = [currentDate dateByAddingTimeInterval:SECONDS_IN_DAY];
+                NSDate *tomorrow = [NSDate dateTomorrow];
+                [[tomorrow should] equalToDateIgnoringTime:expectDate];
+            });
         });
-        it(@"should return tomorrow", ^{
-            NSDate *expectDate = [currentDate dateByAddingTimeInterval:SECONDS_IN_DAY];
-            NSDate *tomorrow = [NSDate dateTomorrow];
-            [[tomorrow should] equalToDateIgnoringTime:expectDate];
-        });
+        context(@"when today is 2015-03-29 00:00:00", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
+                [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
 
+                currentDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2015,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @29,
+                }];
+                [NSDate stub:@selector(date) andReturn:theValue(currentDate)];
+            });
+            it(@"should return tomorrow", ^{
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2015,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @30,
+                }];
+                NSDate *tomorrow = [NSDate dateTomorrow];
+                [[tomorrow should] equal:expectDate];
+            });
+        });
     });
-
     describe(@"+dateYesterday", ^{
-        NSDate *currentDate = [NSDate date];
-        beforeEach(^{
-            [FakeDateUtil stubCurrentDate:currentDate];
+        context(@"when today is new time", ^{
+            NSDate *currentDate = [NSDate date];
+            beforeEach(^{
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            it(@"should return yesterday", ^{
+                NSDate *expectDate = [currentDate dateByAddingTimeInterval:-SECONDS_IN_DAY];
+                NSDate *yesterday = [NSDate dateYesterday];
+                [[yesterday should] equalToDateIgnoringTime:expectDate];
+            });
         });
-        it(@"should return yesterday", ^{
-            NSDate *expectDate = [currentDate dateByAddingTimeInterval:-SECONDS_IN_DAY];
-            NSDate *yesterday = [NSDate dateYesterday];
-            [[yesterday should] equalToDateIgnoringTime:expectDate];
+        context(@"when today is 2015-03-30 00:00:00", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
+                [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
+
+                currentDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2015,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @30,
+                }];
+                [NSDate stub:@selector(date) andReturn:theValue(currentDate)];
+            });
+            it(@"should return yesterday", ^{
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2015,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @29,
+                }];
+                NSDate *yesterday = [NSDate dateYesterday];
+                [[yesterday should] equal:expectDate];
+            });
         });
     });
 
@@ -106,6 +162,36 @@ SPEC_BEGIN(EscortClassSpec)
                 });
             });
         });
+        context(@"when today is 2015-03-29 00:00:00", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
+                [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
+                
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2015,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @29,
+                }];
+                [NSDate stub:@selector(date) andReturn:theValue(currentDate)];
+            });
+            context(@"adding 2 Das", ^{
+                __block NSDate *dateWithDaysFromNow;
+                beforeEach(^{
+                    dateWithDaysFromNow = [NSDate dateWithDaysFromNow:2];
+                });
+                it(@"should return tomorrow", ^{
+                    NSDate *expectDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2015,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @31,
+                    }];
+                    [[dateWithDaysFromNow should] equal:expectDate];
+                });
+            });
+        });
     });
     describe(@"+dateWithDaysBeforeNow", ^{
         context(@"when the date is 2010-10-10 10:10:10", ^{
@@ -179,6 +265,36 @@ SPEC_BEGIN(EscortClassSpec)
                         AZ_DateUnit.second : @10,
                     }];
                     [[dateWithDaysBeforeNow should] equal:expectDate];
+                });
+            });
+        });
+        context(@"when today is 2015-03-30 00:00:00", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
+                [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
+                
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2015,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @30,
+                }];
+                [NSDate stub:@selector(date) andReturn:theValue(currentDate)];
+            });
+            context(@"before 2 Days", ^{
+                __block NSDate *dateWithDaysFromNow;
+                beforeEach(^{
+                    dateWithDaysFromNow = [NSDate dateWithDaysBeforeNow:2];
+                });
+                it(@"should return tomorrow", ^{
+                    NSDate *expectDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2015,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @28,
+                    }];
+                    [[dateWithDaysFromNow should] equal:expectDate];
                 });
             });
         });
