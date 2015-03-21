@@ -137,13 +137,10 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 - (BOOL)isSameYearAsDate:(NSDate *) aDate {
-    NSCalendar *calendar = [NSDate AZ_currentCalendar];
-    NSDateComponents *componentsSelf = [calendar components:NSCalendarUnitYear fromDate:self];
-    NSDateComponents *componentsArgs = [calendar components:NSCalendarUnitYear fromDate:aDate];
-    if (componentsSelf.year != componentsArgs.year) {
-        return NO;
-    }
-    return YES;
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *componentsSelf = [calendar components:NSEraCalendarUnit | NSCalendarUnitYear fromDate:self];
+    NSDateComponents *componentsArgs = [calendar components:NSEraCalendarUnit | NSCalendarUnitYear fromDate:aDate];
+    return (componentsSelf.era == componentsArgs.era && componentsSelf.year == componentsArgs.year);
 }
 
 - (BOOL)isThisYear {
