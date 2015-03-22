@@ -148,25 +148,13 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 - (BOOL)isNextYear {
-    NSCalendar *calendar = [NSDate AZ_currentCalendar];
-    NSDateComponents *componentsSelf = [calendar components:NSCalendarUnitYear fromDate:self];
-    NSDateComponents *componentsNextYear = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];
-    componentsNextYear.year += 1;
-    if (componentsSelf.year != componentsNextYear.year) {
-        return NO;
-    }
-    return YES;
+    NSDate *nextYear = [[NSDate date] dateByAddingYears:1];
+    return [self isSameYearAsDate:nextYear];
 }
 
 - (BOOL)isLastYear {
-    NSCalendar *calendar = [NSDate AZ_currentCalendar];
-    NSDateComponents *componentsSelf = [calendar components:NSCalendarUnitYear fromDate:self];
-    NSDateComponents *componentsLastYear = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];
-    componentsLastYear.year -= 1;
-    if (componentsSelf.year != componentsLastYear.year) {
-        return NO;
-    }
-    return YES;
+    NSDate *lastYear = [[NSDate date] dateBySubtractingYears:1];
+    return [self isSameYearAsDate:lastYear];
 }
 
 - (BOOL)isEarlierThanDate:(NSDate *) aDate {

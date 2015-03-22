@@ -724,88 +724,311 @@ SPEC_BEGIN(EscortComparingSpec)
         });
     });
     describe(@"-isNextYear", ^{
-        __block NSDate *currentDate;
-        beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
-                AZ_DateUnit.year : @2010,
-                AZ_DateUnit.month : @10,
-                AZ_DateUnit.day : @10,
-            }];
-            [FakeDateUtil stubCurrentDate:currentDate];
-        });
-        context(@"this week", ^{
-            it(@"should be false", ^{
-                BOOL match = [currentDate isNextYear];
-                [[theValue(match) should] beNo];
-            });
-        });
-        context(@"next year", ^{
-            __block NSDate *nextYear;
+        context(@"today is 2010-10-10", ^{
+            __block NSDate *currentDate;
             beforeEach(^{
-                NSInteger currentYear = [currentDate gregorianYear];
-                nextYear = [currentDate dateByUnit:@{
-                    AZ_DateUnit.year : @(currentYear + 1)
+                currentDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @2010,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
                 }];
+                [FakeDateUtil stubCurrentDate:currentDate];
             });
-            it(@"should be true", ^{
-                BOOL match = [nextYear isNextYear];
-                [[theValue(match) should] beYes];
+            context(@"this week", ^{
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isNextYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"next year", ^{
+                __block NSDate *nextYear;
+                beforeEach(^{
+                    NSInteger currentYear = [currentDate gregorianYear];
+                    nextYear = [currentDate dateByUnit:@{
+                            AZ_DateUnit.year : @(currentYear + 1)
+                    }];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [nextYear isNextYear];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"one years later", ^{
+                __block NSDate *twoYearsLater;
+                beforeEach(^{
+                    NSInteger currentYear = [currentDate gregorianYear];
+                    twoYearsLater = [currentDate dateByUnit:@{
+                            AZ_DateUnit.year : @(currentYear + 2)
+                    }];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [twoYearsLater isNextYear];
+                    [[theValue(match) should] beNo];
+                });
             });
         });
-        context(@"two years later", ^{
-            __block NSDate *twoYearsLater;
+        context(@"today is BC 10-10-10", ^{
+            __block NSDate *currentDate;
             beforeEach(^{
-                NSInteger currentYear = [currentDate gregorianYear];
-                twoYearsLater = [currentDate dateByUnit:@{
-                    AZ_DateUnit.year : @(currentYear + 2)
+                currentDate = [NSDate dateByUnit:@{
+                        AZ_DateUnit.year : @-10,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
                 }];
+                [FakeDateUtil stubCurrentDate:currentDate];
             });
-            it(@"should be false", ^{
-                BOOL match = [twoYearsLater isNextYear];
-                [[theValue(match) should] beNo];
+            context(@"this week", ^{
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isNextYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"next year", ^{
+                __block NSDate *nextYear;
+                beforeEach(^{
+                    nextYear = [currentDate dateByUnit:@{
+                            AZ_DateUnit.year : @-9
+                    }];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [nextYear isNextYear];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"last year", ^{
+                __block NSDate *lastYear;
+                beforeEach(^{
+                    lastYear = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @-11
+                    }];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [lastYear isNextYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"two years later", ^{
+                __block NSDate *twoYearsLater;
+                beforeEach(^{
+                    NSInteger currentYear = [currentDate gregorianYear];
+                    twoYearsLater = [currentDate dateByUnit:@{
+                            AZ_DateUnit.year : @(currentYear + 2)
+                    }];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [twoYearsLater isNextYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+        });
+        context(@"today is 1989-01-06 and not Gregorian", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @6,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            context(@"this week", ^{
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isNextYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"2 days laster", ^{
+                __block NSDate *_2daysAgo;
+                beforeEach(^{
+                    _2daysAgo = [currentDate dateByAddingDays:2];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [_2daysAgo isNextYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"next year", ^{
+                __block NSDate *nextYear;
+                beforeEach(^{
+                    NSInteger currentYear = [currentDate gregorianYear];
+                    nextYear = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @(currentYear + 1)
+                    }];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [nextYear isNextYear];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"two years later", ^{
+                __block NSDate *twoYearsLater;
+                beforeEach(^{
+                    NSInteger currentYear = [currentDate gregorianYear];
+                    twoYearsLater = [currentDate dateByUnit:@{
+                            AZ_DateUnit.year : @(currentYear + 2)
+                    }];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [twoYearsLater isNextYear];
+                    [[theValue(match) should] beNo];
+                });
             });
         });
     });
     describe(@"-isLastYear", ^{
-        __block NSDate *currentDate;
-        beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
-                AZ_DateUnit.year : @2010,
-                AZ_DateUnit.month : @10,
-                AZ_DateUnit.day : @10,
-            }];
-            [FakeDateUtil stubCurrentDate:currentDate];
-        });
-        context(@"this week", ^{
-            it(@"should be false", ^{
-                BOOL match = [currentDate isLastYear];
-                [[theValue(match) should] beNo];
-            });
-        });
-        context(@"last year", ^{
-            __block NSDate *lastYear;
+        context(@"today is 2010-10-10", ^{
+            __block NSDate *currentDate;
             beforeEach(^{
-                NSInteger currentYear = [currentDate gregorianYear];
-                lastYear = [currentDate dateByUnit:@{
-                    AZ_DateUnit.year : @(currentYear - 1)
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
                 }];
+                [FakeDateUtil stubCurrentDate:currentDate];
             });
-            it(@"should be true", ^{
-                BOOL match = [lastYear isLastYear];
-                [[theValue(match) should] beYes];
+            context(@"this week", ^{
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isLastYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"last year", ^{
+                __block NSDate *lastYear;
+                beforeEach(^{
+                    NSInteger currentYear = [currentDate gregorianYear];
+                    lastYear = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @(currentYear - 1)
+                    }];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [lastYear isLastYear];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"two years ago", ^{
+                __block NSDate *twoYearsAgo;
+                beforeEach(^{
+                    NSInteger currentYear = [currentDate gregorianYear];
+                    twoYearsAgo = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @(currentYear - 2)
+                    }];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [twoYearsAgo isLastYear];
+                    [[theValue(match) should] beNo];
+                });
             });
         });
-        context(@"two years ago", ^{
-            __block NSDate *twoYearsAgo;
+        context(@"today is BC 10-10-10", ^{
+            __block NSDate *currentDate;
             beforeEach(^{
-                NSInteger currentYear = [currentDate gregorianYear];
-                twoYearsAgo = [currentDate dateByUnit:@{
-                    AZ_DateUnit.year : @(currentYear - 2)
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @-10,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
                 }];
+                [FakeDateUtil stubCurrentDate:currentDate];
             });
-            it(@"should be false", ^{
-                BOOL match = [twoYearsAgo isLastYear];
-                [[theValue(match) should] beNo];
+            context(@"this week", ^{
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isLastYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"next year", ^{
+                __block NSDate *nextYear;
+                beforeEach(^{
+                    nextYear = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @-9
+                    }];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [nextYear isLastYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"last year", ^{
+                __block NSDate *lastYear;
+                beforeEach(^{
+                    lastYear = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @-11
+                    }];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [lastYear isLastYear];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"two years ago", ^{
+                __block NSDate *twoYearsAgo;
+                beforeEach(^{
+                    twoYearsAgo = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @-12
+                    }];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [twoYearsAgo isLastYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+        });
+        context(@"today is 1989-01-08 and not Gregorian", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @8,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+                
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            context(@"this week", ^{
+                it(@"should be false", ^{
+                    BOOL match = [currentDate isLastYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"2 days ago", ^{
+                __block NSDate *_2daysAgo;
+                beforeEach(^{
+                    _2daysAgo = [currentDate dateBySubtractingDays:2];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [_2daysAgo isLastYear];
+                    [[theValue(match) should] beNo];
+                });
+            });
+            context(@"last year", ^{
+                __block NSDate *lastYear;
+                beforeEach(^{
+                    NSInteger currentYear = [currentDate gregorianYear];
+                    lastYear = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @(currentYear - 1)
+                    }];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [lastYear isLastYear];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"two years ago", ^{
+                __block NSDate *twoYearsAgo;
+                beforeEach(^{
+                    NSInteger currentYear = [currentDate gregorianYear];
+                    twoYearsAgo = [currentDate dateByUnit:@{
+                        AZ_DateUnit.year : @(currentYear + 2)
+                    }];
+                });
+                it(@"should be false", ^{
+                    BOOL match = [twoYearsAgo isLastYear];
+                    [[theValue(match) should] beNo];
+                });
             });
         });
     });
