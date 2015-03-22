@@ -195,10 +195,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     NSRange weekdayRange = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
     NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:self];
     NSInteger weekdayOfDate = [components weekday];
-    if (weekdayOfDate == weekdayRange.location || weekdayOfDate == weekdayRange.length) {
-        return YES;
-    }
-    return NO;
+    return (weekdayOfDate == weekdayRange.location || weekdayOfDate == weekdayRange.location + weekdayRange.length - 1);
 }
 
 #pragma mark - Adjusting dates
