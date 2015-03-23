@@ -1030,6 +1030,29 @@ SPEC_BEGIN(EscortAdjustingDates)
                 [[subject should] equalToDateIgnoringTime:expectDate];
             });
         });
+        context(@"when the date is 1989-01-06 and not Gregorian", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year:@1989,
+                    AZ_DateUnit.month:@1,
+                    AZ_DateUnit.day:@6
+                }];
+                
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            it(@"should return start of year date object", ^{
+                NSDate *subject = [currentDate dateAtEndOfYear];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @12,
+                    AZ_DateUnit.day : @31,
+                }];
+                [[subject should] beKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
     });
 
     SPEC_END
