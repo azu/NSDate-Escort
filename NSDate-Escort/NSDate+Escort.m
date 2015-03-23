@@ -106,18 +106,9 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 - (BOOL)isSameWeekAsDate:(NSDate *) aDate {
-    NSCalendar *calendar = [NSDate AZ_currentCalendar];
-    NSDateComponents *components1 = [calendar components:NSCalendarUnitWeekOfMonth fromDate:self];
-    NSDateComponents *components2 = [calendar components:NSCalendarUnitWeekOfMonth fromDate:aDate];
-    if (components1.weekOfMonth != components2.weekOfMonth) {
-        return NO;
-    }
-    
-    NSDate *oneWeekBefore = [self dateBySubtractingDays:[self numberOfDaysInWeek]];
-    NSDate *oneWeekAfter = [self dateByAddingDays:[self numberOfDaysInWeek]];
-    
-    return [aDate isLaterThanDate:oneWeekBefore] &&
-           [aDate isEarlierThanDate:oneWeekAfter];
+    NSDate *left = [self dateBySubtractingDays:self.weekday];
+    NSDate *right = [aDate dateBySubtractingDays:aDate.weekday];
+    return [left isEqualToDateIgnoringTime:right];
 }
 
 - (BOOL)isThisWeek {
