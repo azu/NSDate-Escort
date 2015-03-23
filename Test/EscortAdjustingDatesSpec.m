@@ -7,6 +7,10 @@
 #import "AZNSDateKiwiMatcher.h"
 #import "AZNLTQuickCheckKiwiMatcher.h"
 
+@interface NSDate (EscortMock)
++ (NSCalendar *)AZ_currentCalendar;
+@end
+
 SPEC_BEGIN(EscortAdjustingDates)
     registerMatchers(@"AZ");// NSDate Custom Matcher
 
@@ -738,44 +742,44 @@ SPEC_BEGIN(EscortAdjustingDates)
     });
 
     describe(@"-dateAtStartOfWeek", ^{
-       context(@"When the date is 2014-03-04", ^{
+        context(@"When the date is 2014-03-04", ^{
            __block NSDate *currentDate;
            beforeEach(^{
                currentDate = [NSDate dateByUnit:@{
-                                                  AZ_DateUnit.year:@2014,
-                                                  AZ_DateUnit.month:@3,
-                                                  AZ_DateUnit.day:@4
-                                                  }];
+                   AZ_DateUnit.year:@2014,
+                   AZ_DateUnit.month:@3,
+                   AZ_DateUnit.day:@4
+               }];
            });
            it(@"should return start of week date object", ^{
                
                NSDate *subject = [currentDate dateAtStartOfWeek];
                NSDate *expectDate = [NSDate dateByUnit:@{
-                                                         AZ_DateUnit.year:@2014,
-                                                         AZ_DateUnit.month:@3,
-                                                         AZ_DateUnit.day:@2
-                                                         }];
+                   AZ_DateUnit.year:@2014,
+                   AZ_DateUnit.month:@3,
+                   AZ_DateUnit.day:@2
+               }];
                [[subject should] beKindOfClass:[NSDate class]];
                [[subject should] equalToDateIgnoringTime:expectDate];
            });
-       });
+        });
         context(@"When the date is 2014-03-01", ^{
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate dateByUnit:@{
-                                                   AZ_DateUnit.year:@2014,
-                                                   AZ_DateUnit.month:@3,
-                                                   AZ_DateUnit.day:@2
-                                                   }];
+                    AZ_DateUnit.year:@2014,
+                    AZ_DateUnit.month:@3,
+                    AZ_DateUnit.day:@1
+                }];
             });
             it(@"should return start of week date object", ^{
                 
                 NSDate *subject = [currentDate dateAtStartOfWeek];
                 NSDate *expectDate = [NSDate dateByUnit:@{
-                                                          AZ_DateUnit.year:@2014,
-                                                          AZ_DateUnit.month:@3,
-                                                          AZ_DateUnit.day:@2
-                                                          }];
+                    AZ_DateUnit.year:@2014,
+                    AZ_DateUnit.month:@2,
+                    AZ_DateUnit.day:@23
+                }];
                 [[subject should] beKindOfClass:[NSDate class]];
                 [[subject should] equalToDateIgnoringTime:expectDate];
             });
@@ -787,19 +791,62 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate dateByUnit:@{
-                                                   AZ_DateUnit.year:@2014,
-                                                   AZ_DateUnit.month:@3,
-                                                   AZ_DateUnit.day:@4
-                                                   }];
+                    AZ_DateUnit.year:@2014,
+                    AZ_DateUnit.month:@3,
+                    AZ_DateUnit.day:@4
+                }];
             });
             it(@"should return end of week date object", ^{
                 
                 NSDate *subject = [currentDate dateAtEndOfWeek];
                 NSDate *expectDate = [NSDate dateByUnit:@{
-                                                          AZ_DateUnit.year:@2014,
-                                                          AZ_DateUnit.month:@3,
-                                                          AZ_DateUnit.day:@8
-                                                          }];
+                    AZ_DateUnit.year:@2014,
+                    AZ_DateUnit.month:@3,
+                    AZ_DateUnit.day:@8
+                }];
+                [[subject should] beKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+        context(@"When the date is 2014-02-25", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year:@2014,
+                    AZ_DateUnit.month:@2,
+                    AZ_DateUnit.day:@25
+                }];
+            });
+            it(@"should return end of week date object", ^{
+                NSDate *subject = [currentDate dateAtEndOfWeek];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year:@2014,
+                    AZ_DateUnit.month:@3,
+                    AZ_DateUnit.day:@1
+                }];
+                [[subject should] beKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+        context(@"When the date is 1989-01-06 and not Gregorian", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year:@1989,
+                    AZ_DateUnit.month:@1,
+                    AZ_DateUnit.day:@5
+                }];
+                
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            it(@"should return end of week date object", ^{
+                NSDate *subject = [currentDate dateAtEndOfWeek];
+                NSDate *expectDate = [NSDate dateByUnit:@{
+                    AZ_DateUnit.year:@1989,
+                    AZ_DateUnit.month:@1,
+                    AZ_DateUnit.day:@7
+                }];
                 [[subject should] beKindOfClass:[NSDate class]];
                 [[subject should] equalToDateIgnoringTime:expectDate];
             });

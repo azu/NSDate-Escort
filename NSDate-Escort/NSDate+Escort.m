@@ -282,9 +282,8 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 - (NSDate *)dateAtEndOfWeek
 {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
-    NSDateComponents *components = [calendar components:NSCalendarUnitYearForWeekOfYear | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitWeekday | NSCalendarUnitWeekOfMonth | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
-    NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitWeekOfMonth forDate:self];
-    components.weekday = range.length;
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday | NSEraCalendarUnit | NSCalendarUnitYear | NSCalendarUnitMonth | NSDayCalendarUnit | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
+    components.day += [self numberOfDaysInWeek] - components.weekday;
     return [calendar dateFromComponents:components];
 }
 - (NSDate *)dateAtStartOfMonth {
