@@ -3,7 +3,6 @@ env: LC_CTYPE=en_US.UTF-8
 before_install:
   - sudo easy_install cpp-coveralls
   - gem install cocoapods
-  - gem install xcpretty
 script:
   - ./script/run-test.sh
 after_success:
