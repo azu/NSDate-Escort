@@ -291,11 +291,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
-				TargetAttributes = {
-					73FCA16D18DE837D009ED4AD = {
-						TestTargetID = 7355ABDD17638E9600DD1EC2;
-					};
-				};
 			};
 			buildConfigurationList = 7355ABD617638E8900DD1EC2 /* Build configuration list for PBXProject "NSDate-Escort" */;
 			compatibilityVersion = "Xcode 3.2";
