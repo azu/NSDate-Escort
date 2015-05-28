@@ -213,6 +213,30 @@ SPEC_BEGIN(EscortComparingSpec)
                     [[theValue(match) should] beYes];
                 });
             });
+            context(@"next day (monday)", ^{
+                context(@"firstWeekday is sunday", ^{
+                    beforeEach(^{
+                        NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                        beginingOfMondayCalendar.firstWeekday = 1;
+                        [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                    });
+                    it(@"should be true", ^{
+                        BOOL match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
+                        [[theValue(match) should] beYes];
+                    });
+                });
+                context(@"firstWeekday is monday", ^{
+                    beforeEach(^{
+                        NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                        beginingOfMondayCalendar.firstWeekday = 2;
+                        [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                    });
+                    it(@"should be true", ^{
+                        BOOL match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
+                        [[theValue(match) should] beNo];
+                    });
+                });
+            });
             context(@"within this week", ^{
                 // weekday 1...7
                 context(@"firstOfWeek", ^{
@@ -365,6 +389,30 @@ SPEC_BEGIN(EscortComparingSpec)
             it(@"should be true", ^{
                 BOOL match = [currentDate isThisWeek];
                 [[theValue(match) should] beYes];
+            });
+        });
+        context(@"next day (monday)", ^{
+            context(@"firstWeekday is sunday", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"firstWeekday is monday", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
+                    [[theValue(match) should] beNo];
+                });
             });
         });
         context(@"within this week", ^{
