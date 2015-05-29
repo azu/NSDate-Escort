@@ -13,7 +13,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when 10:00:00", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -30,7 +30,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when 10:29:59", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -47,7 +47,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when 10:30:00", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -66,7 +66,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date is 01:02:03", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -85,7 +85,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date is 01:02:03", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -104,7 +104,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date is 01:02:03", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -123,7 +123,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -139,7 +139,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -155,7 +155,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-01-01", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @1,
@@ -172,7 +172,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-01-01(Fri)", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @1,
@@ -189,7 +189,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10(2th weekday)", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -205,7 +205,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,// weekday is 1
@@ -219,7 +219,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-16", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,// weekday is 1
@@ -235,7 +235,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,// weekday is 1
@@ -249,7 +249,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-16", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,// weekday is 1
@@ -265,7 +265,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -296,7 +296,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
                 __block NSDate *currentDate;
                 __block NSDate *expectedDate;
                 beforeEach(^{
-                    expectedDate = [NSDate dateByUnit:@{
+                    expectedDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -319,7 +319,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             context(@"when Shouwa era", ^{
                 __block NSDate *currentDate;
                 beforeEach(^{
-                    currentDate = [NSDate dateByUnit:@{
+                    currentDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @1988,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -337,7 +337,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -361,7 +361,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             __block NSDate *currentDate;
             __block NSDate *expectedDate;
             beforeEach(^{
-                expectedDate = [NSDate dateByUnit:@{
+                expectedDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,

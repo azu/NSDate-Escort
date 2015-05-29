@@ -18,7 +18,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -39,7 +39,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingYears:1];
                 });
                 it(@"should return 2011-10-10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2011,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -53,7 +53,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingYears:-1];
                 });
                 it(@"should return 2009-10-10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2009,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -80,7 +80,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -105,7 +105,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -126,7 +126,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingMonths:1];
                 });
                 it(@"should return 2010-11-10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @11,
                         AZ_DateUnit.day : @10,
@@ -140,7 +140,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingMonths:-1];
                 });
                 it(@"should return 2010-09-10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @9,
                         AZ_DateUnit.day : @10,
@@ -166,7 +166,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -191,7 +191,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -212,7 +212,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingDays:1];
                 });
                 it(@"should return 2010-10-11", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @11,
@@ -226,7 +226,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingDays:-1];
                 });
                 it(@"should return 2010-10-09", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @9,
@@ -252,7 +252,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -277,7 +277,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateBySubtractingDays:1];
                 });
                 it(@"should return 2010-10-09", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @9,
@@ -291,7 +291,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateBySubtractingDays:-1];
                 });
                 it(@"should return 2010-10-11", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @11,
@@ -317,7 +317,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -342,7 +342,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     dateWithDaysBeforeNow = [currentDate dateByAddingHours:1];
                 });
                 it(@"should return 2010-10-10 10:11:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -359,7 +359,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingHours:24];
                 });
                 it(@"should return 2010-10-11 10:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @11,
@@ -376,7 +376,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingHours:-1];
                 });
                 it(@"should return 2010-10-10 09:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -405,7 +405,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -430,7 +430,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateBySubtractingHours:1];
                 });
                 it(@"should return 2010-10-10 10:09:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -447,7 +447,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateBySubtractingHours:24];
                 });
                 it(@"should return 2010-10-09 10:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @9,
@@ -464,7 +464,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateBySubtractingHours:-1];
                 });
                 it(@"should return 2010-10-10 11:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -494,7 +494,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -519,7 +519,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingMinutes:1];
                 });
                 it(@"should return 2010-10-10 10:11:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -536,7 +536,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingMinutes:60];
                 });
                 it(@"should return 2010-10-10 11:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -553,7 +553,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateByAddingMinutes:-1];
                 });
                 it(@"should return 2010-10-10 10:11:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -571,7 +571,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -596,7 +596,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateBySubtractingMinutes:1];
                 });
                 it(@"should return 2010-10-10 10:09:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -613,7 +613,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateBySubtractingMinutes:60];
                 });
                 it(@"should return 2010-10-10 09:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -630,7 +630,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     subject = [currentDate dateBySubtractingMinutes:-1];
                 });
                 it(@"should return 2010-10-10 11:11:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -649,7 +649,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *subject;
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -668,7 +668,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *subject;
             beforeEach(^{
                 NSDate *currentDate;
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -680,7 +680,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                 subject = [currentDate dateAtStartOfDay];
             });
             it(@"should return 2010-10-10 00:00:00", ^{
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -697,7 +697,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *subject;
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -709,7 +709,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                 subject = [currentDate dateAtEndOfDay];
             });
             it(@"should return 2010-10-10 23:59:59", ^{
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -724,7 +724,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *subject;
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -745,7 +745,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"When the date is 2014-03-04", ^{
            __block NSDate *currentDate;
            beforeEach(^{
-               currentDate = [NSDate dateByUnit:@{
+               currentDate = [NSDate AZ_dateByUnit:@{
                    AZ_DateUnit.year:@2014,
                    AZ_DateUnit.month:@3,
                    AZ_DateUnit.day:@4
@@ -754,7 +754,7 @@ SPEC_BEGIN(EscortAdjustingDates)
            it(@"should return start of week date object", ^{
                
                NSDate *subject = [currentDate dateAtStartOfWeek];
-               NSDate *expectDate = [NSDate dateByUnit:@{
+               NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                    AZ_DateUnit.year:@2014,
                    AZ_DateUnit.month:@3,
                    AZ_DateUnit.day:@2
@@ -766,7 +766,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"When the date is 2014-03-01", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@2014,
                     AZ_DateUnit.month:@3,
                     AZ_DateUnit.day:@1
@@ -775,7 +775,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             it(@"should return start of week date object", ^{
                 
                 NSDate *subject = [currentDate dateAtStartOfWeek];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@2014,
                     AZ_DateUnit.month:@2,
                     AZ_DateUnit.day:@23
@@ -790,7 +790,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"When the date is 2014-03-04", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@2014,
                     AZ_DateUnit.month:@3,
                     AZ_DateUnit.day:@4
@@ -799,7 +799,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             it(@"should return end of week date object", ^{
                 
                 NSDate *subject = [currentDate dateAtEndOfWeek];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@2014,
                     AZ_DateUnit.month:@3,
                     AZ_DateUnit.day:@8
@@ -811,7 +811,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"When the date is 2014-02-25", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@2014,
                     AZ_DateUnit.month:@2,
                     AZ_DateUnit.day:@25
@@ -819,7 +819,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
             it(@"should return end of week date object", ^{
                 NSDate *subject = [currentDate dateAtEndOfWeek];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@2014,
                     AZ_DateUnit.month:@3,
                     AZ_DateUnit.day:@1
@@ -831,7 +831,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"When the date is 1989-01-06 and not Gregorian", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@1989,
                     AZ_DateUnit.month:@1,
                     AZ_DateUnit.day:@5
@@ -842,7 +842,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
             it(@"should return end of week date object", ^{
                 NSDate *subject = [currentDate dateAtEndOfWeek];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@1989,
                     AZ_DateUnit.month:@1,
                     AZ_DateUnit.day:@7
@@ -857,7 +857,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -866,7 +866,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             it(@"should return start of month date object", ^{
                 // 2010-10-01
                 NSDate *subject = [currentDate dateAtStartOfMonth];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @1,
@@ -880,7 +880,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -889,7 +889,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             it(@"should return end of month date object", ^{
                 // 2010-10-31
                 NSDate *subject = [currentDate dateAtEndOfMonth];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @31,
@@ -902,7 +902,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when February @ leap year", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2000,// divisible 400 => leap year
                     AZ_DateUnit.month : @2,
                     AZ_DateUnit.day : @1,
@@ -910,7 +910,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
             it(@"should return 02-29", ^{
                 NSDate *subject = [currentDate dateAtEndOfMonth];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2000,
                     AZ_DateUnit.month : @2,
                     AZ_DateUnit.day : @29,
@@ -923,7 +923,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *currentDate;
             beforeEach(^{
                 // not leap year
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2001,
                     AZ_DateUnit.month : @2,
                     AZ_DateUnit.day : @1,
@@ -931,7 +931,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
             it(@"should return 02-28", ^{
                 NSDate *subject = [currentDate dateAtEndOfMonth];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2001,
                     AZ_DateUnit.month : @2,
                     AZ_DateUnit.day : @28,
@@ -945,7 +945,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -954,7 +954,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             it(@"should return start of year date object", ^{
                 // 2010-01-01
                 NSDate *subject = [currentDate dateAtStartOfYear];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @1,
@@ -966,7 +966,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 1989-01-06 and not Gregorian", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@1989,
                     AZ_DateUnit.month:@1,
                     AZ_DateUnit.day:@6
@@ -977,7 +977,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
             it(@"should return start of year date object", ^{
                 NSDate *subject = [currentDate dateAtStartOfYear];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @1989,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @1,
@@ -991,7 +991,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -1000,7 +1000,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             it(@"should return end of year date object", ^{
                 // 2010-12-31
                 NSDate *subject = [currentDate dateAtEndOfYear];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @12,
                     AZ_DateUnit.day : @31,
@@ -1012,7 +1012,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 2010-2-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @2,
                     AZ_DateUnit.day : @10,
@@ -1021,7 +1021,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             it(@"should return end of year date object", ^{
                 // 2010-12-31
                 NSDate *subject = [currentDate dateAtEndOfYear];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @12,
                     AZ_DateUnit.day : @31,
@@ -1033,7 +1033,7 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when the date is 1989-01-06 and not Gregorian", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year:@1989,
                     AZ_DateUnit.month:@1,
                     AZ_DateUnit.day:@6
@@ -1044,7 +1044,7 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
             it(@"should return start of year date object", ^{
                 NSDate *subject = [currentDate dateAtEndOfYear];
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @1989,
                     AZ_DateUnit.month : @12,
                     AZ_DateUnit.day : @31,

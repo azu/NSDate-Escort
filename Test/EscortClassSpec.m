@@ -30,7 +30,7 @@ SPEC_BEGIN(EscortClassSpec)
                 NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
 
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2015,
                         AZ_DateUnit.month : @3,
                         AZ_DateUnit.day : @29,
@@ -38,7 +38,7 @@ SPEC_BEGIN(EscortClassSpec)
                 [NSDate stub:@selector(date) andReturn:theValue(currentDate)];
             });
             it(@"should return tomorrow", ^{
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2015,
                         AZ_DateUnit.month : @3,
                         AZ_DateUnit.day : @30,
@@ -68,7 +68,7 @@ SPEC_BEGIN(EscortClassSpec)
                 NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
 
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2015,
                         AZ_DateUnit.month : @3,
                         AZ_DateUnit.day : @30,
@@ -76,7 +76,7 @@ SPEC_BEGIN(EscortClassSpec)
                 [NSDate stub:@selector(date) andReturn:theValue(currentDate)];
             });
             it(@"should return yesterday", ^{
-                NSDate *expectDate = [NSDate dateByUnit:@{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2015,
                         AZ_DateUnit.month : @3,
                         AZ_DateUnit.day : @29,
@@ -91,7 +91,7 @@ SPEC_BEGIN(EscortClassSpec)
         context(@"when today is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -116,7 +116,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysFromNow = [NSDate dateWithDaysFromNow:1];
                 });
                 it(@"should return 2010-10-11", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @11,
@@ -133,7 +133,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysFromNow = [NSDate dateWithDaysFromNow:10];
                 });
                 it(@"should return 2010-10-20", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @20,
@@ -150,7 +150,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysFromNow = [NSDate dateWithDaysFromNow:-1];
                 });
                 it(@"should return 2010-10-09", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @9,
@@ -170,7 +170,7 @@ SPEC_BEGIN(EscortClassSpec)
                 NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
                 
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2015,
                     AZ_DateUnit.month : @3,
                     AZ_DateUnit.day : @29,
@@ -183,7 +183,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysFromNow = [NSDate dateWithDaysFromNow:2];
                 });
                 it(@"should return tomorrow", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2015,
                         AZ_DateUnit.month : @3,
                         AZ_DateUnit.day : @31,
@@ -197,7 +197,7 @@ SPEC_BEGIN(EscortClassSpec)
         context(@"when the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -222,7 +222,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithDaysBeforeNow:1];
                 });
                 it(@"should return 2010-10-09", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @9,
@@ -239,7 +239,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithDaysBeforeNow:5];
                 });
                 it(@"should return 2010-10-05", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @5,
@@ -256,7 +256,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithDaysBeforeNow:-1];
                 });
                 it(@"should return 2010-10-11", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @11,
@@ -276,7 +276,7 @@ SPEC_BEGIN(EscortClassSpec)
                 NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
                 
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2015,
                     AZ_DateUnit.month : @3,
                     AZ_DateUnit.day : @30,
@@ -289,7 +289,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysFromNow = [NSDate dateWithDaysBeforeNow:2];
                 });
                 it(@"should return tomorrow", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2015,
                         AZ_DateUnit.month : @3,
                         AZ_DateUnit.day : @28,
@@ -303,7 +303,7 @@ SPEC_BEGIN(EscortClassSpec)
         context(@"when the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -328,7 +328,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithHoursFromNow:1];
                 });
                 it(@"should return 2010-10-10 10:11:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -345,7 +345,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithHoursFromNow:24];
                 });
                 it(@"should return 2010-10-11 10:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @11,
@@ -362,7 +362,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithHoursFromNow:-1];
                 });
                 it(@"should return 2010-10-10 09:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -379,7 +379,7 @@ SPEC_BEGIN(EscortClassSpec)
         context(@"when the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -404,7 +404,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithHoursBeforeNow:1];
                 });
                 it(@"should return 2010-10-10 10:09:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -421,7 +421,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithHoursBeforeNow:24];
                 });
                 it(@"should return 2010-10-09 10:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @9,
@@ -438,7 +438,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithHoursBeforeNow:-1];
                 });
                 it(@"should return 2010-10-10 11:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -456,7 +456,7 @@ SPEC_BEGIN(EscortClassSpec)
         context(@"when the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -481,7 +481,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithMinutesFromNow:1];
                 });
                 it(@"should return 2010-10-10 10:11:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -498,7 +498,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithMinutesFromNow:60];
                 });
                 it(@"should return 2010-10-10 11:10:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -515,7 +515,7 @@ SPEC_BEGIN(EscortClassSpec)
                     dateWithDaysBeforeNow = [NSDate dateWithMinutesFromNow:-1];
                 });
                 it(@"should return 2010-10-10 10:11:10", ^{
-                    NSDate *expectDate = [NSDate dateByUnit:@{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -532,7 +532,7 @@ SPEC_BEGIN(EscortClassSpec)
             context(@"when the date is 2010-10-10 10:10:10", ^{
                 __block NSDate *currentDate;
                 beforeEach(^{
-                    currentDate = [NSDate dateByUnit:@{
+                    currentDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -557,7 +557,7 @@ SPEC_BEGIN(EscortClassSpec)
                         dateWithDaysBeforeNow = [NSDate dateWithMinutesBeforeNow:1];
                     });
                     it(@"should return 2010-10-10 10:09:10", ^{
-                        NSDate *expectDate = [NSDate dateByUnit:@{
+                        NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                             AZ_DateUnit.year : @2010,
                             AZ_DateUnit.month : @10,
                             AZ_DateUnit.day : @10,
@@ -574,7 +574,7 @@ SPEC_BEGIN(EscortClassSpec)
                         dateWithDaysBeforeNow = [NSDate dateWithMinutesBeforeNow:60];
                     });
                     it(@"should return 2010-10-10 09:10:10", ^{
-                        NSDate *expectDate = [NSDate dateByUnit:@{
+                        NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                             AZ_DateUnit.year : @2010,
                             AZ_DateUnit.month : @10,
                             AZ_DateUnit.day : @10,
@@ -591,7 +591,7 @@ SPEC_BEGIN(EscortClassSpec)
                         dateWithDaysBeforeNow = [NSDate dateWithMinutesBeforeNow:-1];
                     });
                     it(@"should return 2010-10-10 11:11:10", ^{
-                        NSDate *expectDate = [NSDate dateByUnit:@{
+                        NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                             AZ_DateUnit.year : @2010,
                             AZ_DateUnit.month : @10,
                             AZ_DateUnit.day : @10,

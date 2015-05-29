@@ -8,7 +8,7 @@ SPEC_BEGIN(EscortDateRoles)
     describe(@"-isTypicallyWorkday", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -18,7 +18,7 @@ SPEC_BEGIN(EscortDateRoles)
         context(@"when Weekday is first", ^{
             __block NSDate *firstDayOfWeek;
             beforeEach(^{
-                firstDayOfWeek = [currentDate dateByUnit:@{
+                firstDayOfWeek = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
                 }];
             });
@@ -30,7 +30,7 @@ SPEC_BEGIN(EscortDateRoles)
         context(@"when Weekday is last", ^{
             __block NSDate *lastDayOfWeek;
             beforeEach(^{
-                lastDayOfWeek = [currentDate dateByUnit:@{
+                lastDayOfWeek = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
                 }];
             });
@@ -48,7 +48,7 @@ SPEC_BEGIN(EscortDateRoles)
             it(@"should be true", ^{
                 NSDate *checkDate;
                 for (NSUInteger weekday = weekdayRange.location; weekday++ < weekdayRange.length; weekday++) {
-                    checkDate = [currentDate dateByUnit:@{
+                    checkDate = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.day : @([currentDate lastDayOfWeekday] + weekday)
                     }];
                     BOOL match = [checkDate isTypicallyWorkday];
@@ -60,7 +60,7 @@ SPEC_BEGIN(EscortDateRoles)
     describe(@"-isTypicallyWorkday", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -70,7 +70,7 @@ SPEC_BEGIN(EscortDateRoles)
         context(@"when Weekday is first", ^{
             __block NSDate *firstDayOfWeek;
             beforeEach(^{
-                firstDayOfWeek = [currentDate dateByUnit:@{
+                firstDayOfWeek = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
                 }];
             });
@@ -82,7 +82,7 @@ SPEC_BEGIN(EscortDateRoles)
         context(@"when Weekday is last", ^{
             __block NSDate *lastDayOfWeek;
             beforeEach(^{
-                lastDayOfWeek = [currentDate dateByUnit:@{
+                lastDayOfWeek = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
                 }];
             });
@@ -100,7 +100,7 @@ SPEC_BEGIN(EscortDateRoles)
             it(@"should be false", ^{
                 NSDate *checkDate;
                 for (NSUInteger weekday = weekdayRange.location; weekday++ < weekdayRange.length; weekday++) {
-                    checkDate = [currentDate dateByUnit:@{
+                    checkDate = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.day : @([currentDate lastDayOfWeekday] + weekday)
                     }];
                     BOOL match = [checkDate isTypicallyWeekend];
