@@ -3,6 +3,10 @@
 #import "NSDate+AZDateBuilder.h"
 #import "FakeDateUtil.h"
 
+@interface NSDate (EscortMock)
++ (NSCalendar *)AZ_currentCalendar;
+@end
+
 SPEC_BEGIN(EscortDateRoles)
     registerMatchers(@"AZ");// NSDate Custom Matcher
     describe(@"-isTypicallyWorkday", ^{
@@ -15,11 +19,11 @@ SPEC_BEGIN(EscortDateRoles)
             }];
             [FakeDateUtil stubCurrentDate:currentDate];
         });
-        context(@"when Weekday is first", ^{
+        context(@"when Workday is first", ^{
             __block NSDate *firstDayOfWeek;
             beforeEach(^{
                 firstDayOfWeek = [currentDate AZ_dateByUnit:@{
-                    AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
+                    AZ_DateUnit.weekday : @1,
                 }];
             });
             it(@"should be false", ^{
@@ -27,11 +31,11 @@ SPEC_BEGIN(EscortDateRoles)
                 [[theValue(match) should] beNo];
             });
         });
-        context(@"when Weekday is last", ^{
+        context(@"when Workday is last", ^{
             __block NSDate *lastDayOfWeek;
             beforeEach(^{
                 lastDayOfWeek = [currentDate AZ_dateByUnit:@{
-                    AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
+                    AZ_DateUnit.weekday : @7,
                 }];
             });
             it(@"should be false", ^{
@@ -39,7 +43,7 @@ SPEC_BEGIN(EscortDateRoles)
                 [[theValue(match) should] beNo];
             });
         });
-        context(@"when Weekday is typically workday", ^{
+        context(@"when Workday is typically workday", ^{
             __block NSRange weekdayRange;
             beforeEach(^{
                 NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -47,17 +51,18 @@ SPEC_BEGIN(EscortDateRoles)
             });
             it(@"should be true", ^{
                 NSDate *checkDate;
-                for (NSUInteger weekday = weekdayRange.location; weekday++ < weekdayRange.length; weekday++) {
-                    checkDate = [currentDate AZ_dateByUnit:@{
-                        AZ_DateUnit.day : @([currentDate lastDayOfWeekday] + weekday)
-                    }];
+                NSUInteger length = weekdayRange.location + weekdayRange.length - 1;
+                for (NSUInteger weekday = weekdayRange.location + 1; weekday < length; weekday++) {
+                    checkDate = [[currentDate AZ_dateByUnit:@{
+                        AZ_DateUnit.weekday : @1,
+                    }] dateByAddingDays:weekday - 1];
                     BOOL match = [checkDate isTypicallyWorkday];
                     [[theValue(match) should] beTrue];
                 }
             });
         });
     });
-    describe(@"-isTypicallyWorkday", ^{
+    describe(@"-isTypicallyWeekend", ^{
         __block NSDate *currentDate;
         beforeEach(^{
             currentDate = [NSDate AZ_dateByUnit:@{
@@ -71,7 +76,7 @@ SPEC_BEGIN(EscortDateRoles)
             __block NSDate *firstDayOfWeek;
             beforeEach(^{
                 firstDayOfWeek = [currentDate AZ_dateByUnit:@{
-                    AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
+                    AZ_DateUnit.weekday : @1
                 }];
             });
             it(@"should be true", ^{
@@ -83,7 +88,7 @@ SPEC_BEGIN(EscortDateRoles)
             __block NSDate *lastDayOfWeek;
             beforeEach(^{
                 lastDayOfWeek = [currentDate AZ_dateByUnit:@{
-                    AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
+                    AZ_DateUnit.weekday : @7
                 }];
             });
             it(@"should be true", ^{
@@ -91,18 +96,19 @@ SPEC_BEGIN(EscortDateRoles)
                 [[theValue(match) should] beYes];
             });
         });
-        context(@"when Weekday is other", ^{
+        context(@"when Weekday is typically workday", ^{
             __block NSRange weekdayRange;
             beforeEach(^{
                 NSCalendar *calendar = [NSCalendar currentCalendar];
                 weekdayRange = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
             });
-            it(@"should be false", ^{
+            it(@"should be true", ^{
                 NSDate *checkDate;
-                for (NSUInteger weekday = weekdayRange.location; weekday++ < weekdayRange.length; weekday++) {
-                    checkDate = [currentDate AZ_dateByUnit:@{
-                        AZ_DateUnit.day : @([currentDate lastDayOfWeekday] + weekday)
-                    }];
+                NSUInteger length = weekdayRange.location + weekdayRange.length - 1;
+                for (NSUInteger weekday = weekdayRange.location + 1; weekday < length; weekday++) {
+                    checkDate = [[currentDate AZ_dateByUnit:@{
+                            AZ_DateUnit.weekday : @1,
+                    }] dateByAddingDays:weekday - 1];
                     BOOL match = [checkDate isTypicallyWeekend];
                     [[theValue(match) should] beNo];
                 }
