@@ -106,8 +106,11 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 - (BOOL)isSameWeekAsDate:(NSDate *) aDate {
-    NSDate *left = [self dateBySubtractingDays:self.weekday];
-    NSDate *right = [aDate dateBySubtractingDays:aDate.weekday];
+    NSCalendar *currentCalendar = [NSDate AZ_currentCalendar];
+    NSInteger leftWeekday = self.weekday + ((self.weekday < currentCalendar.firstWeekday) ? 7 : 0);
+    NSDate *left = [self dateBySubtractingDays:leftWeekday];
+    NSInteger rightWeekday = aDate.weekday + ((aDate.weekday < currentCalendar.firstWeekday) ? 7 : 0);
+    NSDate *right = [aDate dateBySubtractingDays:rightWeekday];
     return [left isEqualToDateIgnoringTime:right];
 }
 

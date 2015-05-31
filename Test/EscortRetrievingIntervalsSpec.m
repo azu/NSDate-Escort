@@ -14,7 +14,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         context(@"the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -64,7 +64,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         context(@"the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -114,7 +114,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         context(@"the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -164,7 +164,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         context(@"the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -215,7 +215,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         context(@"the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -260,12 +260,12 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
 
                 
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2015,
                     AZ_DateUnit.month : @3,
                     AZ_DateUnit.day : @29,
                 }];
-                anotherDate = [NSDate dateByUnit:@{
+                anotherDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2015,
                     AZ_DateUnit.month : @3,
                     AZ_DateUnit.day : @30,
@@ -286,7 +286,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         context(@"the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -327,7 +327,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                 NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
                 
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2015,
                     AZ_DateUnit.month : @3,
                     AZ_DateUnit.day : @29,
@@ -351,7 +351,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         context(@"the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -419,7 +419,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
         context(@"the date is 2010-10-10 10:10:10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                                AZ_DateUnit.year : @2010,
                                AZ_DateUnit.month : @10,
                                AZ_DateUnit.day : @10,
@@ -497,7 +497,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
             __block NSCalendar *jaCalendar;
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @1988,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -509,7 +509,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
             context(@"difference between Shouwa 64 and Heisei 1 is 1", ^{
                 __block NSDate *anotherDate;
                 beforeEach(^{
-                    anotherDate = [NSDate dateByUnit:@{
+                    anotherDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @1989,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -535,7 +535,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
             __block NSDate *currentDate;
             __block NSDate *anotherDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,

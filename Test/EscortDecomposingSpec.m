@@ -7,13 +7,12 @@
 @end
 
 SPEC_BEGIN(EscortDecomposingSpec)
-
     registerMatchers(@"AZ");// NSDate Custom Matcher
     describe(@"-nearestHour", ^{
         context(@"when 10:00:00", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -30,7 +29,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when 10:29:59", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -47,7 +46,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when 10:30:00", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -66,7 +65,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date is 01:02:03", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -85,7 +84,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date is 01:02:03", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -104,7 +103,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date is 01:02:03", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -123,7 +122,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -139,7 +138,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -155,13 +154,13 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-01-01", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @1,
                 }];
             });
-            it(@"should return 1", ^{               
+            it(@"should return 1", ^{
                 NSInteger weekValue = [currentDate week];
                 [[theValue(weekValue) should] equal:theValue(1)];
             });
@@ -172,7 +171,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-01-01(Fri)", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @1,
@@ -189,7 +188,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10(2th weekday)", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -205,29 +204,129 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,// weekday is 1
                 }];
             });
-            it(@"should return 10", ^{
-                NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
-                [[theValue(firstDayOfWeekday) should] equal:theValue(10)];
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                    [[theValue(firstDayOfWeekday) should] equal:theValue(10)];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 4", ^{
+                    NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                    [[theValue(firstDayOfWeekday) should] equal:theValue(4)];
+                });
+            });
+        });
+        context(@"when the date 2010-10-11", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @11,// weekday is 1
+                }];
+            });
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                    [[theValue(firstDayOfWeekday) should] equal:theValue(10)];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 11", ^{
+                    NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                    [[theValue(firstDayOfWeekday) should] equal:theValue(11)];
+                });
+            });
+        });
+        context(@"when the date 2010-10-15", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @15,// weekday is 1
+                }];
+            });
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                    [[theValue(firstDayOfWeekday) should] equal:theValue(10)];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 11", ^{
+                    NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                    [[theValue(firstDayOfWeekday) should] equal:theValue(11)];
+                });
             });
         });
         context(@"when the date 2010-10-16", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
-                    AZ_DateUnit.day : @10,// weekday is 1
+                    AZ_DateUnit.day : @16,// weekday is 1
                 }];
             });
-            it(@"should return 10", ^{
-                NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
-                [[theValue(firstDayOfWeekday) should] equal:theValue(10)];
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                    [[theValue(firstDayOfWeekday) should] equal:theValue(10)];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger firstDayOfWeekday = [currentDate firstDayOfWeekday];
+                    [[theValue(firstDayOfWeekday) should] equal:theValue(11)];
+                });
             });
         });
     });
@@ -235,29 +334,129 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,// weekday is 1
                 }];
             });
-            it(@"should return 16", ^{
-                NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
-                [[theValue(lastDayOfWeekday) should] equal:theValue(16)];
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                    [[theValue(lastDayOfWeekday) should] equal:theValue(16)];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 4", ^{
+                    NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                    [[theValue(lastDayOfWeekday) should] equal:theValue(10)];
+                });
+            });
+        });
+        context(@"when the date 2010-10-11", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @11,// weekday is 1
+                }];
+            });
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                    [[theValue(lastDayOfWeekday) should] equal:theValue(16)];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 11", ^{
+                    NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                    [[theValue(lastDayOfWeekday) should] equal:theValue(17)];
+                });
+            });
+        });
+        context(@"when the date 2010-10-15", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @15,// weekday is 1
+                }];
+            });
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                    [[theValue(lastDayOfWeekday) should] equal:theValue(16)];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 11", ^{
+                    NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                    [[theValue(lastDayOfWeekday) should] equal:theValue(17)];
+                });
             });
         });
         context(@"when the date 2010-10-16", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
-                    AZ_DateUnit.day : @10,// weekday is 1
+                    AZ_DateUnit.day : @16,// weekday is 1
                 }];
             });
-            it(@"should return 16", ^{
-                NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
-                [[theValue(lastDayOfWeekday) should] equal:theValue(16)];
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                    [[theValue(lastDayOfWeekday) should] equal:theValue(16)];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return 10", ^{
+                    NSInteger lastDayOfWeekday = [currentDate lastDayOfWeekday];
+                    [[theValue(lastDayOfWeekday) should] equal:theValue(17)];
+                });
             });
         });
     });
@@ -265,7 +464,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -273,7 +472,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             it(@"should return 2010", ^{
                 NSInteger yearValue = [currentDate year];
-                
+
                 NSCalendar *c = [NSCalendar currentCalendar];
                 if ([c.calendarIdentifier isEqualToString:NSGregorianCalendar]) {
                     [[theValue(yearValue) should] equal:theValue(2010)];
@@ -296,7 +495,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
                 __block NSDate *currentDate;
                 __block NSDate *expectedDate;
                 beforeEach(^{
-                    expectedDate = [NSDate dateByUnit:@{
+                    expectedDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -319,7 +518,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             context(@"when Shouwa era", ^{
                 __block NSDate *currentDate;
                 beforeEach(^{
-                    currentDate = [NSDate dateByUnit:@{
+                    currentDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @1988,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -337,7 +536,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the date 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -345,7 +544,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             it(@"should return 2010", ^{
                 NSInteger yearValue = [currentDate year];
-                
+
                 NSCalendar *c = [NSCalendar currentCalendar];
                 if ([c.calendarIdentifier isEqualToString:NSGregorianCalendar]) {
                     [[theValue(yearValue) should] equal:theValue(2010)];
@@ -361,7 +560,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             __block NSDate *currentDate;
             __block NSDate *expectedDate;
             beforeEach(^{
-                expectedDate = [NSDate dateByUnit:@{
+                expectedDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -386,4 +585,4 @@ SPEC_BEGIN(EscortDecomposingSpec)
         });
     });
 
-    SPEC_END
+SPEC_END

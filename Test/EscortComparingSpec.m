@@ -24,12 +24,12 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when target is today", ^{
             it(@"should be true", ^{
-                NSDate *beginOfDate = [currentDate dateByUnit:@{
+                NSDate *beginOfDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.hour : @0,
                     AZ_DateUnit.minute : @0,
                     AZ_DateUnit.second : @0,
                 }];
-                NSDate *endOfDate = [currentDate dateByUnit:@{
+                NSDate *endOfDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.hour : @23,
                     AZ_DateUnit.minute : @59,
                     AZ_DateUnit.second : @59,
@@ -42,7 +42,7 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when target is a later day", ^{
             it(@"should be false", ^{
-                NSDate *laterDate = [currentDate dateByUnit:@{
+                NSDate *laterDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate day] + 1),
                     AZ_DateUnit.hour : @0,
                     AZ_DateUnit.minute : @0,
@@ -54,7 +54,7 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when target is a earler day", ^{
             it(@"should be false", ^{
-                NSDate *laterDate = [currentDate dateByUnit:@{
+                NSDate *laterDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate day] - 1),
                     AZ_DateUnit.hour : @23,
                     AZ_DateUnit.minute : @59,
@@ -68,12 +68,12 @@ SPEC_BEGIN(EscortComparingSpec)
             __block NSDate *currentDate;
             __block NSDate *previousEraDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2014,
                         AZ_DateUnit.month : @5,
                         AZ_DateUnit.day : @19,
                 }];
-                previousEraDate = [NSDate dateByUnit:@{
+                previousEraDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @1951,
                         AZ_DateUnit.month : @5,
                         AZ_DateUnit.day : @19,
@@ -101,7 +101,7 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when subject is a later day", ^{
             it(@"should be false", ^{
-                NSDate *laterDate = [currentDate dateByUnit:@{
+                NSDate *laterDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate day] + 1),
                     AZ_DateUnit.hour : @0,
                     AZ_DateUnit.minute : @0,
@@ -113,7 +113,7 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when subject is a earler day", ^{
             it(@"should be false", ^{
-                NSDate *laterDate = [currentDate dateByUnit:@{
+                NSDate *laterDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate day] - 1),
                     AZ_DateUnit.hour : @23,
                     AZ_DateUnit.minute : @59,
@@ -137,7 +137,7 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when subject is a tomorrow", ^{
             it(@"should be true", ^{
-                NSDate *laterDate = [currentDate dateByUnit:@{
+                NSDate *laterDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate day] + 1),
                     AZ_DateUnit.hour : @0,
                     AZ_DateUnit.minute : @0,
@@ -149,7 +149,7 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when subject is 2day later", ^{
             it(@"should be false", ^{
-                NSDate *laterDate = [currentDate dateByUnit:@{
+                NSDate *laterDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate day] + 2),
                     AZ_DateUnit.hour : @0,
                     AZ_DateUnit.minute : @0,
@@ -173,7 +173,7 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when subject is a yesterday", ^{
             it(@"should be true", ^{
-                NSDate *laterDate = [currentDate dateByUnit:@{
+                NSDate *laterDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate day] - 1),
                     AZ_DateUnit.hour : @0,
                     AZ_DateUnit.minute : @0,
@@ -185,7 +185,7 @@ SPEC_BEGIN(EscortComparingSpec)
         });
         context(@"when subject is 2day ago", ^{
             it(@"should be false", ^{
-                NSDate *laterDate = [currentDate dateByUnit:@{
+                NSDate *laterDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.day : @([currentDate day] - 2),
                     AZ_DateUnit.hour : @0,
                     AZ_DateUnit.minute : @0,
@@ -200,7 +200,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -213,12 +213,41 @@ SPEC_BEGIN(EscortComparingSpec)
                     [[theValue(match) should] beYes];
                 });
             });
+            context(@"next day (monday)", ^{
+                context(@"firstWeekday is sunday", ^{
+                    beforeEach(^{
+                        NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                        beginingOfMondayCalendar.firstWeekday = 1;
+                        [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                    });
+                    it(@"should be true", ^{
+                        BOOL match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
+                        [[theValue(match) should] beYes];
+                    });
+                });
+                context(@"firstWeekday is monday", ^{
+                    beforeEach(^{
+                        NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                        beginingOfMondayCalendar.firstWeekday = 2;
+                        [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                    });
+                    it(@"should be true", ^{
+                        BOOL match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
+                        [[theValue(match) should] beNo];
+                    });
+                });
+            });
             context(@"within this week", ^{
                 // weekday 1...7
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
                 context(@"firstOfWeek", ^{
                     __block NSDate *firstOfWeek;
                     beforeEach(^{
-                        firstOfWeek = [currentDate dateByUnit:@{
+                        firstOfWeek = [currentDate AZ_dateByUnit:@{
                             AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
                         }];
                     });
@@ -230,7 +259,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 context(@"endOfWeek", ^{
                     __block NSDate *lastOfWeek;
                     beforeEach(^{
-                        lastOfWeek = [currentDate dateByUnit:@{
+                        lastOfWeek = [currentDate AZ_dateByUnit:@{
                             AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
                         }];
                     });
@@ -243,7 +272,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"when same the week, but difference year", ^{
                 __block NSDate *nextYearDate;
                 beforeEach(^{
-                    nextYearDate = [currentDate dateByUnit:@{
+                    nextYearDate = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @([currentDate year] + 1),
                     }];
                 });
@@ -276,7 +305,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is 2015-03-30", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2015,
                     AZ_DateUnit.month : @3,
                     AZ_DateUnit.day : @30,
@@ -294,7 +323,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 context(@"firstOfWeek", ^{
                     __block NSDate *firstOfWeek;
                     beforeEach(^{
-                        firstOfWeek = [currentDate dateByUnit:@{
+                        firstOfWeek = [currentDate AZ_dateByUnit:@{
                             AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
                         }];
                     });
@@ -306,7 +335,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 context(@"endOfWeek", ^{
                     __block NSDate *lastOfWeek;
                     beforeEach(^{
-                        lastOfWeek = [currentDate dateByUnit:@{
+                        lastOfWeek = [currentDate AZ_dateByUnit:@{
                             AZ_DateUnit.month : @4,
                             AZ_DateUnit.day : @4,
                         }];
@@ -320,7 +349,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"when same the week, but difference year", ^{
                 __block NSDate *nextYearDate;
                 beforeEach(^{
-                    nextYearDate = [currentDate dateByUnit:@{
+                    nextYearDate = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @([currentDate year] + 1),
                     }];
                 });
@@ -354,7 +383,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isThisWeek", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -367,11 +396,35 @@ SPEC_BEGIN(EscortComparingSpec)
                 [[theValue(match) should] beYes];
             });
         });
+        context(@"next day (monday)", ^{
+            context(@"firstWeekday is sunday", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
+                    [[theValue(match) should] beYes];
+                });
+            });
+            context(@"firstWeekday is monday", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
+                    [[theValue(match) should] beNo];
+                });
+            });
+        });
         context(@"within this week", ^{
             context(@"firstOfWeek", ^{
                 it(@"should be true", ^{
                     // weekday 1...7
-                    NSDate *firstOfWeek = [currentDate dateByUnit:@{
+                    NSDate *firstOfWeek = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
                     }];
                     BOOL match_first = [firstOfWeek isThisWeek];
@@ -380,7 +433,7 @@ SPEC_BEGIN(EscortComparingSpec)
             });
             context(@"endOfWeek", ^{
                 it(@"should be true", ^{
-                    NSDate *lastOfWeek = [currentDate dateByUnit:@{
+                    NSDate *lastOfWeek = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
                     }];
                     BOOL match_last = [lastOfWeek isThisWeek];
@@ -412,7 +465,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isNextWeek", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -422,7 +475,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"within this week", ^{
             context(@"at endOfWeek", ^{
                 it(@"should be false", ^{
-                    NSDate *endOfWeek = [currentDate dateByUnit:@{
+                    NSDate *endOfWeek = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.day : @([currentDate lastDayOfWeekday])
                     }];
                     BOOL match = [endOfWeek isNextWeek];
@@ -454,7 +507,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isLastWeek", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @9,
@@ -464,7 +517,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"within this week", ^{
             context(@"at startOfWeek", ^{
                 it(@"should be false", ^{
-                    NSDate *lastOfWeek = [currentDate dateByUnit:@{
+                    NSDate *lastOfWeek = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.day : @([currentDate firstDayOfWeekday])
                     }];
                     BOOL match = [lastOfWeek isLastWeek];
@@ -497,7 +550,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is 2010-10-10 ", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -563,7 +616,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is 1988-12-07 ", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @1989,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @6,
@@ -591,7 +644,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isThisMonth", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -608,7 +661,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isSameYearAsDate", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -641,7 +694,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"today is 1988-12-07 ", ^{
                 __block NSDate *currentDate;
                 beforeEach(^{
-                    currentDate = [NSDate dateByUnit:@{
+                    currentDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @1989,
                         AZ_DateUnit.month : @1,
                         AZ_DateUnit.day : @6,
@@ -696,7 +749,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isThisYear", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -713,7 +766,7 @@ SPEC_BEGIN(EscortComparingSpec)
             __block NSDate *otherYearDate;
             beforeEach(^{
                 NSInteger currentYear = [currentDate year];
-                otherYearDate = [currentDate dateByUnit:@{
+                otherYearDate = [currentDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @(currentYear + 10)
                 }];
             });
@@ -727,7 +780,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -744,7 +797,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 __block NSDate *nextYear;
                 beforeEach(^{
                     NSInteger currentYear = [currentDate gregorianYear];
-                    nextYear = [currentDate dateByUnit:@{
+                    nextYear = [currentDate AZ_dateByUnit:@{
                             AZ_DateUnit.year : @(currentYear + 1)
                     }];
                 });
@@ -757,7 +810,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 __block NSDate *twoYearsLater;
                 beforeEach(^{
                     NSInteger currentYear = [currentDate gregorianYear];
-                    twoYearsLater = [currentDate dateByUnit:@{
+                    twoYearsLater = [currentDate AZ_dateByUnit:@{
                             AZ_DateUnit.year : @(currentYear + 2)
                     }];
                 });
@@ -770,7 +823,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is BC 10-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @-10,
                         AZ_DateUnit.month : @10,
                         AZ_DateUnit.day : @10,
@@ -786,7 +839,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"next year", ^{
                 __block NSDate *nextYear;
                 beforeEach(^{
-                    nextYear = [currentDate dateByUnit:@{
+                    nextYear = [currentDate AZ_dateByUnit:@{
                             AZ_DateUnit.year : @-9
                     }];
                 });
@@ -798,7 +851,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"last year", ^{
                 __block NSDate *lastYear;
                 beforeEach(^{
-                    lastYear = [currentDate dateByUnit:@{
+                    lastYear = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @-11
                     }];
                 });
@@ -811,7 +864,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 __block NSDate *twoYearsLater;
                 beforeEach(^{
                     NSInteger currentYear = [currentDate gregorianYear];
-                    twoYearsLater = [currentDate dateByUnit:@{
+                    twoYearsLater = [currentDate AZ_dateByUnit:@{
                             AZ_DateUnit.year : @(currentYear + 2)
                     }];
                 });
@@ -824,7 +877,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is 1989-01-06 and not Gregorian", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @1989,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @6,
@@ -854,7 +907,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 __block NSDate *nextYear;
                 beforeEach(^{
                     NSInteger currentYear = [currentDate gregorianYear];
-                    nextYear = [currentDate dateByUnit:@{
+                    nextYear = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @(currentYear + 1)
                     }];
                 });
@@ -867,7 +920,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 __block NSDate *twoYearsLater;
                 beforeEach(^{
                     NSInteger currentYear = [currentDate gregorianYear];
-                    twoYearsLater = [currentDate dateByUnit:@{
+                    twoYearsLater = [currentDate AZ_dateByUnit:@{
                             AZ_DateUnit.year : @(currentYear + 2)
                     }];
                 });
@@ -882,7 +935,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is 2010-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -899,7 +952,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 __block NSDate *lastYear;
                 beforeEach(^{
                     NSInteger currentYear = [currentDate gregorianYear];
-                    lastYear = [currentDate dateByUnit:@{
+                    lastYear = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @(currentYear - 1)
                     }];
                 });
@@ -912,7 +965,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 __block NSDate *twoYearsAgo;
                 beforeEach(^{
                     NSInteger currentYear = [currentDate gregorianYear];
-                    twoYearsAgo = [currentDate dateByUnit:@{
+                    twoYearsAgo = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @(currentYear - 2)
                     }];
                 });
@@ -925,7 +978,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is BC 10-10-10", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @-10,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
@@ -941,7 +994,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"next year", ^{
                 __block NSDate *nextYear;
                 beforeEach(^{
-                    nextYear = [currentDate dateByUnit:@{
+                    nextYear = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @-9
                     }];
                 });
@@ -953,7 +1006,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"last year", ^{
                 __block NSDate *lastYear;
                 beforeEach(^{
-                    lastYear = [currentDate dateByUnit:@{
+                    lastYear = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @-11
                     }];
                 });
@@ -965,7 +1018,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"two years ago", ^{
                 __block NSDate *twoYearsAgo;
                 beforeEach(^{
-                    twoYearsAgo = [currentDate dateByUnit:@{
+                    twoYearsAgo = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @-12
                     }];
                 });
@@ -978,7 +1031,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"today is 1989-01-08 and not Gregorian", ^{
             __block NSDate *currentDate;
             beforeEach(^{
-                currentDate = [NSDate dateByUnit:@{
+                currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @1989,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @8,
@@ -1008,7 +1061,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 __block NSDate *lastYear;
                 beforeEach(^{
                     NSInteger currentYear = [currentDate gregorianYear];
-                    lastYear = [currentDate dateByUnit:@{
+                    lastYear = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @(currentYear - 1)
                     }];
                 });
@@ -1021,7 +1074,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 __block NSDate *twoYearsAgo;
                 beforeEach(^{
                     NSInteger currentYear = [currentDate gregorianYear];
-                    twoYearsAgo = [currentDate dateByUnit:@{
+                    twoYearsAgo = [currentDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @(currentYear + 2)
                     }];
                 });
@@ -1035,7 +1088,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isEarlierThanDate", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -1075,7 +1128,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isLaterThanDate", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -1115,7 +1168,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isEarlierThanOrEqualDate", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -1155,7 +1208,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isLaterThanOrEqualDate", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -1195,7 +1248,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isInPast", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -1226,7 +1279,7 @@ SPEC_BEGIN(EscortComparingSpec)
     describe(@"-isInFuture", ^{
         __block NSDate *currentDate;
         beforeEach(^{
-            currentDate = [NSDate dateByUnit:@{
+            currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
