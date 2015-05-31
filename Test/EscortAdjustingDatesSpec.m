@@ -743,45 +743,96 @@ SPEC_BEGIN(EscortAdjustingDates)
 
     describe(@"-dateAtStartOfWeek", ^{
         context(@"When the date is 2014-03-04", ^{
-           __block NSDate *currentDate;
-           beforeEach(^{
-               currentDate = [NSDate AZ_dateByUnit:@{
-                   AZ_DateUnit.year:@2014,
-                   AZ_DateUnit.month:@3,
-                   AZ_DateUnit.day:@4
-               }];
-           });
-           it(@"should return start of week date object", ^{
-               
-               NSDate *subject = [currentDate dateAtStartOfWeek];
-               NSDate *expectDate = [NSDate AZ_dateByUnit:@{
-                   AZ_DateUnit.year:@2014,
-                   AZ_DateUnit.month:@3,
-                   AZ_DateUnit.day:@2
-               }];
-               [[subject should] beKindOfClass:[NSDate class]];
-               [[subject should] equalToDateIgnoringTime:expectDate];
-           });
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2014,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @4
+                }];
+            });
+
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return start of week date object", ^{
+                    NSDate *subject = [currentDate dateAtStartOfWeek];
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2014,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @2
+                    }];
+                    [[subject should] beKindOfClass:[NSDate class]];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return start of week date object", ^{
+                    NSDate *subject = [currentDate dateAtStartOfWeek];
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2014,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @3
+                    }];
+                    [[subject should] beKindOfClass:[NSDate class]];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
         });
         context(@"When the date is 2014-03-01", ^{
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@2014,
-                    AZ_DateUnit.month:@3,
-                    AZ_DateUnit.day:@1
+                    AZ_DateUnit.year : @2014,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @1
                 }];
             });
-            it(@"should return start of week date object", ^{
-                
-                NSDate *subject = [currentDate dateAtStartOfWeek];
-                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@2014,
-                    AZ_DateUnit.month:@2,
-                    AZ_DateUnit.day:@23
-                }];
-                [[subject should] beKindOfClass:[NSDate class]];
-                [[subject should] equalToDateIgnoringTime:expectDate];
+
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return start of week date object", ^{
+
+                    NSDate *subject = [currentDate dateAtStartOfWeek];
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2014,
+                        AZ_DateUnit.month : @2,
+                        AZ_DateUnit.day : @23
+                    }];
+                    [[subject should] beKindOfClass:[NSDate class]];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return start of week date object", ^{
+
+                    NSDate *subject = [currentDate dateAtStartOfWeek];
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2014,
+                        AZ_DateUnit.month : @2,
+                        AZ_DateUnit.day : @24
+                    }];
+                    [[subject should] beKindOfClass:[NSDate class]];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
             });
         });
     });
@@ -791,18 +842,18 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@2014,
-                    AZ_DateUnit.month:@3,
-                    AZ_DateUnit.day:@4
+                    AZ_DateUnit.year : @2014,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @4
                 }];
             });
             it(@"should return end of week date object", ^{
-                
+
                 NSDate *subject = [currentDate dateAtEndOfWeek];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@2014,
-                    AZ_DateUnit.month:@3,
-                    AZ_DateUnit.day:@8
+                    AZ_DateUnit.year : @2014,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @8
                 }];
                 [[subject should] beKindOfClass:[NSDate class]];
                 [[subject should] equalToDateIgnoringTime:expectDate];
@@ -812,17 +863,17 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@2014,
-                    AZ_DateUnit.month:@2,
-                    AZ_DateUnit.day:@25
+                    AZ_DateUnit.year : @2014,
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @25
                 }];
             });
             it(@"should return end of week date object", ^{
                 NSDate *subject = [currentDate dateAtEndOfWeek];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@2014,
-                    AZ_DateUnit.month:@3,
-                    AZ_DateUnit.day:@1
+                    AZ_DateUnit.year : @2014,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @1
                 }];
                 [[subject should] beKindOfClass:[NSDate class]];
                 [[subject should] equalToDateIgnoringTime:expectDate];
@@ -832,20 +883,20 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@1989,
-                    AZ_DateUnit.month:@1,
-                    AZ_DateUnit.day:@5
+                    AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @5
                 }];
-                
+
                 NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
             it(@"should return end of week date object", ^{
                 NSDate *subject = [currentDate dateAtEndOfWeek];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@1989,
-                    AZ_DateUnit.month:@1,
-                    AZ_DateUnit.day:@7
+                    AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @7
                 }];
                 [[subject should] beKindOfClass:[NSDate class]];
                 [[subject should] equalToDateIgnoringTime:expectDate];
@@ -967,11 +1018,11 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@1989,
-                    AZ_DateUnit.month:@1,
-                    AZ_DateUnit.day:@6
+                    AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @6
                 }];
-                
+
                 NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
@@ -1034,11 +1085,11 @@ SPEC_BEGIN(EscortAdjustingDates)
             __block NSDate *currentDate;
             beforeEach(^{
                 currentDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year:@1989,
-                    AZ_DateUnit.month:@1,
-                    AZ_DateUnit.day:@6
+                    AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @6
                 }];
-                
+
                 NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
@@ -1055,4 +1106,4 @@ SPEC_BEGIN(EscortAdjustingDates)
         });
     });
 
-    SPEC_END
+SPEC_END
