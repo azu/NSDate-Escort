@@ -4,48 +4,119 @@
 //
 
 
-#import <SenTestingKit/SenTestingKit.h>
-#import "RAIIBenchmark.h"
+#import <XCTest/XCTest.h>
 
-@interface BenchMakeFormReferenceDate : SenTestCase
+@interface BenchMakeFormReferenceDate : XCTestCase
 @end
 
 @implementation BenchMakeFormReferenceDate {
 }
 
 - (void)test_timeIntervalSinceReferenceDate {
-    beginBenchLoop(@"test_timeIntervalSinceReferenceDate", 10000, {
+    [self measureBlock:^{
         NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceReferenceDate] + 1000;
         [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
-    })
+    }];
 }
 
 - (void)test_class_timeIntervalSinceReferenceDate {
-    beginBenchLoop(@"test_class_timeIntervalSinceReferenceDate", 10000, {
+    [self measureBlock:^{
         NSTimeInterval timeInterval = [NSDate timeIntervalSinceReferenceDate] + 1000;
         [NSDate dateWithTimeIntervalSinceReferenceDate:timeInterval];
-    })
+    }];
 }
 
 - (void)test_dateWithTimeIntervalSinceNow {
-    beginBenchLoop(@"test_dateWithTimeIntervalSinceNow", 10000, {
+    [self measureBlock:^{
         [NSDate dateWithTimeIntervalSinceNow:1000];
-    })
+    }];
 }
 
 - (void)test_dateByAddingTimeInterval {
     NSDate *date = [NSDate date];
-    beginBenchLoop(@"test_dateByAddingTimeInterval", 10000, {
+    [self measureBlock:^{
         [date dateByAddingTimeInterval:1000];
-    })
+    }];
 }
 
 - (void)test_dateByAddingComponents {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *oneDayComponents = [[NSDateComponents alloc] init];
     oneDayComponents.day = 1000;
-    beginBenchLoop(@"test_dateByAddingComponents", 10000, {
+    [self measureBlock:^{
         [calendar dateByAddingComponents:oneDayComponents toDate:[NSDate date] options:0];
-    })
+    }];
+}
+
+- (void)test_calendar {
+    NSDateComponents *oneDayComponents = [[NSDateComponents alloc] init];
+    oneDayComponents.day = 1000;
+    [self measureBlock:^{
+        for (int i = 0; i < 1000 * 1000; i++ ) {
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            [calendar dateByAddingComponents:oneDayComponents toDate:[NSDate date] options:0];
+        }
+    }];
+}
+
+- (void)test_calendar_timezone {
+    NSDateComponents *oneDayComponents = [[NSDateComponents alloc] init];
+    oneDayComponents.day = 1000;
+    [self measureBlock:^{
+        for (int i = 0; i < 1000 * 1000; i++ ) {
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+//            calendar.timeZone = [NSTimeZone systemTimeZone];
+            [calendar dateByAddingComponents:oneDayComponents toDate:[NSDate date] options:0];
+        }
+    }];
+}
+
+- (void)test_cache_calendar_timezone {
+    NSDateComponents *oneDayComponents = [[NSDateComponents alloc] init];
+    oneDayComponents.day = 1000;
+    [self measureBlock:^{
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        for (int i = 0; i < 1000 * 1000; i++ ) {
+            calendar.timeZone = [NSTimeZone systemTimeZone];
+            [calendar dateByAddingComponents:oneDayComponents toDate:[NSDate date] options:0];
+        }
+    }];
+}
+
+- (void)test_cache_calendar_reset_timezone {
+    NSDateComponents *oneDayComponents = [[NSDateComponents alloc] init];
+    oneDayComponents.day = 1000;
+    [self measureBlock:^{
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        for (int i = 0; i < 1000 * 1000; i++ ) {
+            [NSTimeZone resetSystemTimeZone];
+            calendar.timeZone = [NSTimeZone systemTimeZone];
+            [calendar dateByAddingComponents:oneDayComponents toDate:[NSDate date] options:0];
+        }
+    }];
+}
+
+- (void)test_cache_calendar_local_timezone {
+    NSDateComponents *oneDayComponents = [[NSDateComponents alloc] init];
+    oneDayComponents.day = 1000;
+    [self measureBlock:^{
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        for (int i = 0; i < 1000 * 1000; i++ ) {
+            calendar.timeZone = [NSTimeZone localTimeZone];
+            [calendar dateByAddingComponents:oneDayComponents toDate:[NSDate date] options:0];
+        }
+    }];
+}
+
+- (void)test_cache_calendar_cache_timezone {
+    NSDateComponents *oneDayComponents = [[NSDateComponents alloc] init];
+    oneDayComponents.day = 1000;
+    [self measureBlock:^{
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        calendar.timeZone = [NSTimeZone systemTimeZone];
+        for (int i = 0; i < 1000 * 1000; i++ ) {
+            [calendar dateByAddingComponents:oneDayComponents toDate:[NSDate date] options:0];
+        }
+    }];
 }
 @end
