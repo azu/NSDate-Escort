@@ -691,6 +691,37 @@ SPEC_BEGIN(EscortAdjustingDates)
                 [[subject should] equal:expectDate];
             });
         });
+        context(@"when default time zone is changed", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @23,
+                    AZ_DateUnit.minute : @59,
+                    AZ_DateUnit.second : @59,
+                }];
+            });
+            it(@"should return start of day in new time zone", ^{
+                NSTimeZone *initialTimeZone = [NSTimeZone defaultTimeZone];
+                NSTimeZone *GMT = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                assert(initialTimeZone.secondsFromGMT != GMT.secondsFromGMT);
+                
+                [NSTimeZone setDefaultTimeZone:GMT];
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @0,
+                    AZ_DateUnit.minute : @0,
+                    AZ_DateUnit.second : @0,
+                }];
+                [[[currentDate dateAtStartOfDay] should] equal:expectDate];
+                
+                [NSTimeZone setDefaultTimeZone:initialTimeZone];
+            });
+        });
     });
     describe(@"-dateAtEndOfDay", ^{
         context(@"when the date is 2010-10-10 00:00:00", ^{
@@ -737,6 +768,37 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
             it(@"should return same date", ^{
                 [[subject should] equal:currentDate];
+            });
+        });
+        context(@"when default time zone is changed", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @0,
+                    AZ_DateUnit.minute : @0,
+                    AZ_DateUnit.second : @0,
+                }];
+            });
+            it(@"should return end of day in new time zone", ^{
+                NSTimeZone *initialTimeZone = [NSTimeZone defaultTimeZone];
+                NSTimeZone *GMTPlus2 = [NSTimeZone timeZoneForSecondsFromGMT:2*3600];
+                assert(initialTimeZone.secondsFromGMT != GMTPlus2.secondsFromGMT);
+                
+                [NSTimeZone setDefaultTimeZone:GMTPlus2];
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @23,
+                    AZ_DateUnit.minute : @59,
+                    AZ_DateUnit.second : @59,
+                }];
+                [[[currentDate dateAtEndOfDay] should] equal:expectDate];
+                
+                [NSTimeZone setDefaultTimeZone:initialTimeZone];
             });
         });
     });
