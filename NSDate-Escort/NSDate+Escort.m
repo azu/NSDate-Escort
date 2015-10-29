@@ -24,7 +24,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
         }
         [dictionary setObject:currentCalendar forKey:key];
     }
-    currentCalendar.timeZone = [NSTimeZone systemTimeZone];
+    currentCalendar.timeZone = [NSTimeZone localTimeZone];
     return currentCalendar;
 }
 
@@ -265,6 +265,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     components.hour = 0;
     components.minute = 0;
     components.second = 0;
+    components.timeZone = calendar.timeZone;
     return [calendar dateFromComponents:components];
 }
 
@@ -274,6 +275,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     components.hour = 23;
     components.minute = 59;
     components.second = 59;
+    components.timeZone = calendar.timeZone;
     return [calendar dateFromComponents:components];
 }
 
