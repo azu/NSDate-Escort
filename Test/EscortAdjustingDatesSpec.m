@@ -705,10 +705,17 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
             it(@"should return start of day in new time zone", ^{
                 NSTimeZone *initialTimeZone = [NSTimeZone defaultTimeZone];
-                NSTimeZone *GMT = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-                assert(initialTimeZone.secondsFromGMT != GMT.secondsFromGMT);
+                NSTimeZone *newTimeZone = nil;
                 
-                [NSTimeZone setDefaultTimeZone:GMT];
+                BOOL isInitialTimeZoneGMT = ([initialTimeZone.abbreviation isEqualToString:@"GMT"]);
+                if (!isInitialTimeZoneGMT) {
+                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                } else {
+                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
+                }
+                assert(initialTimeZone.secondsFromGMT != newTimeZone.secondsFromGMT);
+                
+                [NSTimeZone setDefaultTimeZone:newTimeZone];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
