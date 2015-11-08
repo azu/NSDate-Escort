@@ -714,7 +714,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
                 }
                 assert(initialTimeZone.secondsFromGMT != newTimeZone.secondsFromGMT);
-                
+                NSDate *date = [currentDate dateByAddingTimeInterval:[initialTimeZone secondsFromGMT] - [newTimeZone secondsFromGMT]];
                 [NSTimeZone setDefaultTimeZone:newTimeZone];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
@@ -724,7 +724,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.minute : @0,
                     AZ_DateUnit.second : @0,
                 }];
-                [[[currentDate dateAtStartOfDay] should] equal:expectDate];
+                [[[date dateAtStartOfDay] should] equal:expectDate];
                 
                 [NSTimeZone setDefaultTimeZone:initialTimeZone];
             });
@@ -791,10 +791,19 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
             it(@"should return end of day in new time zone", ^{
                 NSTimeZone *initialTimeZone = [NSTimeZone defaultTimeZone];
-                NSTimeZone *GMTPlus2 = [NSTimeZone timeZoneForSecondsFromGMT:2*3600];
-                assert(initialTimeZone.secondsFromGMT != GMTPlus2.secondsFromGMT);
+                NSTimeZone *newTimeZone = nil;
                 
-                [NSTimeZone setDefaultTimeZone:GMTPlus2];
+                BOOL isInitialTimeZoneGMT = ([initialTimeZone.abbreviation isEqualToString:@"GMT"]);
+                if (!isInitialTimeZoneGMT) {
+                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                } else {
+                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
+                }
+                
+                assert(initialTimeZone.secondsFromGMT != newTimeZone.secondsFromGMT);
+                
+                [NSTimeZone setDefaultTimeZone:newTimeZone];
+                NSDate *date = [currentDate dateByAddingTimeInterval:[initialTimeZone secondsFromGMT] - [newTimeZone secondsFromGMT]];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
@@ -803,7 +812,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.minute : @59,
                     AZ_DateUnit.second : @59,
                 }];
-                [[[currentDate dateAtEndOfDay] should] equal:expectDate];
+                [[[date dateAtEndOfDay] should] equal:expectDate];
                 
                 [NSTimeZone setDefaultTimeZone:initialTimeZone];
             });
