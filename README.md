@@ -73,6 +73,8 @@ Current Status : **RELEASE**
 - (NSDate *)dateBySubtractingHours:(NSInteger) dHours;
 - (NSDate *)dateByAddingMinutes:(NSInteger) dMinutes;
 - (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes;
+- (NSDate *)dateByAddingSeconds:(NSInteger) dSeconds;
+- (NSDate *)dateBySubtractingSeconds:(NSInteger) dSeconds;
 - (NSDate *)dateAtStartOfDay;
 - (NSDate *)dateAtEndOfDay;
 - (NSDate *)dateAtStartOfWeek;
@@ -126,7 +128,7 @@ Current Status : **RELEASE**
 ### What's the difference with [NSDate-Extensions](https://github.com/erica/NSDate-Extensions "NSDate-Extensions")?
 
 This library has
- 
+
 * many test codes
 * some additional methods.
 * safely implements
@@ -134,7 +136,7 @@ This library has
 
 ## Additional methods?
 
-You should see `NSDate-Escort.h` : 
+You should see `NSDate-Escort.h` :
 
 ``` objc
 + (NSString *)AZ_defaultCalendarIdentifier;
@@ -142,7 +144,7 @@ You should see `NSDate-Escort.h` :
 
 - (NSDate *)dateAtEndOfDay;
 - (NSDate *)dateAtStartOfMonth;
-- (NSDate *)dateAtEndOfMonth; 
+- (NSDate *)dateAtEndOfMonth;
 - (NSDate *)dateByAddingYears:(NSInteger) dYears;
 - (NSDate *)dateBySubtractingYears:(NSInteger) dYears;
 - (NSDate *)dateByAddingMonths:(NSInteger) dMonths;
