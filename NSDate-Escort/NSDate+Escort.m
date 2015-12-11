@@ -267,7 +267,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 - (NSDate *)dateBySubtractingSeconds:(NSInteger) dSeconds {
-    return [self dateBySubtractingSeconds:-dSeconds];
+    return [self dateByAddingSeconds:-dSeconds];
 }
 
 - (NSDate *)dateAtStartOfDay {
