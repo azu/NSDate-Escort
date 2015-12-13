@@ -259,6 +259,17 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     return [self dateByAddingMinutes:-dMinutes];
 }
 
+- (NSDate *)dateByAddingSeconds:(NSInteger) dSeconds {
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.second = dSeconds;
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    return [calendar dateByAddingComponents:components toDate:self options:0];
+}
+
+- (NSDate *)dateBySubtractingSeconds:(NSInteger) dSeconds {
+    return [self dateByAddingSeconds:-dSeconds];
+}
+
 - (NSDate *)dateAtStartOfDay {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
