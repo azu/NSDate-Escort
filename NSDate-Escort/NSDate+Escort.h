@@ -10,7 +10,7 @@
  Returns the calendarIdentifier of calendars that is used by this library for date calculation.
  @see AZ_setDefaultCalendarIdentifier: for more details.
  */
-+ (NSString *)AZ_defaultCalendarIdentifier;
++ (NSString * _Nullable)AZ_defaultCalendarIdentifier;
 /**
  Sets the calendarIdentifier of calendars that is used by this library for date calculation.
  You can specify any calendarIdentifiers predefined by NSLocale. If you provide nil, the library uses
@@ -19,28 +19,28 @@
  You can't provide individual calendars for individual date objects. If you need to perform such
  complicated date calculations, you should rather create calendars on your own.
  */
-+ (void)AZ_setDefaultCalendarIdentifier:(NSString *)calendarIdentifier;
++ (void)AZ_setDefaultCalendarIdentifier:(NSString * _Nullable)calendarIdentifier;
 
 #pragma mark - Relative dates from the current date
-+ (NSDate *)dateTomorrow;
++ (NSDate * _Nonnull)dateTomorrow;
 
-+ (NSDate *)dateYesterday;
++ (NSDate * _Nonnull)dateYesterday;
 
-+ (NSDate *)dateWithDaysFromNow:(NSInteger) dDays;
++ (NSDate * _Nonnull)dateWithDaysFromNow:(NSInteger) dDays;
 
-+ (NSDate *)dateWithDaysBeforeNow:(NSInteger) dDays;
++ (NSDate * _Nonnull)dateWithDaysBeforeNow:(NSInteger) dDays;
 
-+ (NSDate *)dateWithHoursFromNow:(NSInteger) dHours;
++ (NSDate * _Nonnull)dateWithHoursFromNow:(NSInteger) dHours;
 
-+ (NSDate *)dateWithHoursBeforeNow:(NSInteger) dHours;
++ (NSDate * _Nonnull)dateWithHoursBeforeNow:(NSInteger) dHours;
 
-+ (NSDate *)dateWithMinutesFromNow:(NSInteger) dMinutes;
++ (NSDate * _Nonnull)dateWithMinutesFromNow:(NSInteger) dMinutes;
 
-+ (NSDate *)dateWithMinutesBeforeNow:(NSInteger) dMinutes;
++ (NSDate * _Nonnull)dateWithMinutesBeforeNow:(NSInteger) dMinutes;
 
 #pragma mark - Comparing dates
 
-- (BOOL)isEqualToDateIgnoringTime:(NSDate *) otherDate;
+- (BOOL)isEqualToDateIgnoringTime:(NSDate * _Nonnull) otherDate;
 
 - (BOOL)isToday;
 
@@ -48,7 +48,7 @@
 
 - (BOOL)isYesterday;
 
-- (BOOL)isSameWeekAsDate:(NSDate *) aDate;
+- (BOOL)isSameWeekAsDate:(NSDate * _Nonnull) aDate;
 
 - (BOOL)isThisWeek;
 
@@ -56,11 +56,11 @@
 
 - (BOOL)isLastWeek;
 
-- (BOOL)isSameMonthAsDate:(NSDate *) aDate;
+- (BOOL)isSameMonthAsDate:(NSDate * _Nonnull) aDate;
 
 - (BOOL)isThisMonth;
 
-- (BOOL)isSameYearAsDate:(NSDate *) aDate;
+- (BOOL)isSameYearAsDate:(NSDate * _Nonnull) aDate;
 
 - (BOOL)isThisYear;
 
@@ -68,13 +68,13 @@
 
 - (BOOL)isLastYear;
 
-- (BOOL)isEarlierThanDate:(NSDate *) aDate;
+- (BOOL)isEarlierThanDate:(NSDate * _Nonnull) aDate;
 
-- (BOOL)isLaterThanDate:(NSDate *) aDate;
+- (BOOL)isLaterThanDate:(NSDate * _Nonnull) aDate;
 
-- (BOOL)isEarlierThanOrEqualDate:(NSDate *) aDate;
+- (BOOL)isEarlierThanOrEqualDate:(NSDate * _Nonnull) aDate;
 
-- (BOOL)isLaterThanOrEqualDate:(NSDate *) aDate;
+- (BOOL)isLaterThanOrEqualDate:(NSDate * _Nonnull) aDate;
 
 - (BOOL)isInFuture;
 
@@ -87,71 +87,71 @@
 - (BOOL)isTypicallyWeekend;
 
 #pragma mark - Adjusting dates
-- (NSDate *)dateByAddingYears:(NSInteger) dYears;
+- (NSDate * _Nonnull)dateByAddingYears:(NSInteger) dYears;
 
-- (NSDate *)dateBySubtractingYears:(NSInteger) dYears;
+- (NSDate * _Nonnull)dateBySubtractingYears:(NSInteger) dYears;
 
-- (NSDate *)dateByAddingMonths:(NSInteger) dMonths;
+- (NSDate * _Nonnull)dateByAddingMonths:(NSInteger) dMonths;
 
-- (NSDate *)dateBySubtractingMonths:(NSInteger) dMonths;
+- (NSDate * _Nonnull)dateBySubtractingMonths:(NSInteger) dMonths;
 
-- (NSDate *)dateByAddingDays:(NSInteger) dDays;
+- (NSDate * _Nonnull)dateByAddingDays:(NSInteger) dDays;
 
-- (NSDate *)dateBySubtractingDays:(NSInteger) dDays;
+- (NSDate * _Nonnull)dateBySubtractingDays:(NSInteger) dDays;
 
-- (NSDate *)dateByAddingHours:(NSInteger) dHours;
+- (NSDate * _Nonnull)dateByAddingHours:(NSInteger) dHours;
 
-- (NSDate *)dateBySubtractingHours:(NSInteger) dHours;
+- (NSDate * _Nonnull)dateBySubtractingHours:(NSInteger) dHours;
 
-- (NSDate *)dateByAddingMinutes:(NSInteger) dMinutes;
+- (NSDate * _Nonnull)dateByAddingMinutes:(NSInteger) dMinutes;
 
-- (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes;
+- (NSDate * _Nonnull)dateBySubtractingMinutes:(NSInteger) dMinutes;
 
-- (NSDate *)dateByAddingSeconds:(NSInteger) dSeconds;
+- (NSDate * _Nonnull)dateByAddingSeconds:(NSInteger) dSeconds;
 
-- (NSDate *)dateBySubtractingSeconds:(NSInteger) dSeconds;
+- (NSDate * _Nonnull)dateBySubtractingSeconds:(NSInteger) dSeconds;
 
-- (NSDate *)dateAtStartOfDay;
+- (NSDate * _Nonnull)dateAtStartOfDay;
 
-- (NSDate *)dateAtEndOfDay;
+- (NSDate * _Nonnull)dateAtEndOfDay;
 
-- (NSDate *)dateAtStartOfWeek;
+- (NSDate * _Nonnull)dateAtStartOfWeek;
 
-- (NSDate *)dateAtEndOfWeek;
+- (NSDate * _Nonnull)dateAtEndOfWeek;
 
-- (NSDate *)dateAtStartOfMonth;
+- (NSDate * _Nonnull)dateAtStartOfMonth;
 
-- (NSDate *)dateAtEndOfMonth;
+- (NSDate * _Nonnull)dateAtEndOfMonth;
 
-- (NSDate *)dateAtStartOfYear;
+- (NSDate * _Nonnull)dateAtStartOfYear;
 
-- (NSDate *)dateAtEndOfYear;
+- (NSDate * _Nonnull)dateAtEndOfYear;
 
 #pragma mark - Retrieving intervals
-- (NSInteger)secondsAfterDate:(NSDate *) aDate;
+- (NSInteger)secondsAfterDate:(NSDate * _Nonnull) aDate;
 
-- (NSInteger)secondsBeforeDate:(NSDate *) aDate;
+- (NSInteger)secondsBeforeDate:(NSDate * _Nonnull) aDate;
 
-- (NSInteger)minutesAfterDate:(NSDate *) aDate;
+- (NSInteger)minutesAfterDate:(NSDate * _Nonnull) aDate;
 
-- (NSInteger)minutesBeforeDate:(NSDate *) aDate;
+- (NSInteger)minutesBeforeDate:(NSDate * _Nonnull) aDate;
 
-- (NSInteger)hoursAfterDate:(NSDate *) aDate;
+- (NSInteger)hoursAfterDate:(NSDate * _Nonnull) aDate;
 
-- (NSInteger)hoursBeforeDate:(NSDate *) aDate;
+- (NSInteger)hoursBeforeDate:(NSDate * _Nonnull) aDate;
 
-- (NSInteger)daysAfterDate:(NSDate *) aDate;
+- (NSInteger)daysAfterDate:(NSDate * _Nonnull) aDate;
 
-- (NSInteger)daysBeforeDate:(NSDate *) aDate;
+- (NSInteger)daysBeforeDate:(NSDate * _Nonnull) aDate;
 
-- (NSInteger)monthsAfterDate:(NSDate *) aDate;
+- (NSInteger)monthsAfterDate:(NSDate * _Nonnull) aDate;
 
-- (NSInteger)monthsBeforeDate:(NSDate *) aDate;
+- (NSInteger)monthsBeforeDate:(NSDate * _Nonnull) aDate;
 
 /**
 * return distance days
 */
-- (NSInteger)distanceInDaysToDate:(NSDate *) aDate;
+- (NSInteger)distanceInDaysToDate:(NSDate * _Nonnull) aDate;
 
 #pragma mark - Decomposing dates
 /**
