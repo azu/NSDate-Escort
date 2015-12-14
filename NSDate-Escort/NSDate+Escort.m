@@ -346,6 +346,16 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 
 
 #pragma mark - Retrieving intervals
+- (NSInteger)secondsAfterDate:(NSDate *) aDate {
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSCalendarUnitSecond fromDate:aDate toDate:self options:0];
+    return [components second];
+}
+
+- (NSInteger)secondsBeforeDate:(NSDate *) aDate {
+    NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSCalendarUnitSecond fromDate:self toDate:aDate options:0];
+    return [components second];
+}
+
 - (NSInteger)minutesAfterDate:(NSDate *) aDate {
     NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSCalendarUnitMinute fromDate:aDate toDate:self options:0];
     return [components minute];

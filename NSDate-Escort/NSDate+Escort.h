@@ -128,6 +128,9 @@
 - (NSDate *)dateAtEndOfYear;
 
 #pragma mark - Retrieving intervals
+- (NSInteger)secondsAfterDate:(NSDate *) aDate;
+
+- (NSInteger)secondsBeforeDate:(NSDate *) aDate;
 
 - (NSInteger)minutesAfterDate:(NSDate *) aDate;
 

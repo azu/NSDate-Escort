@@ -24,6 +24,17 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                 }];
                 [FakeDateUtil stubCurrentDate:currentDate];
             });
+            context(@"when 5 seconds ago", ^{
+                int fiveSeconds = 5;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [currentDate dateBySubtractingSeconds:fiveSeconds];
+                });
+                it(@"should return 5", ^{
+                    NSInteger seconds = [currentDate secondsAfterDate:anotherDate];
+                    [[theValue(seconds) should] equal:theValue(fiveSeconds)];
+                });
+            });
             context(@"when 10 minutes ago", ^{
                 int tenMinutes = 10;
                 __block NSDate *anotherDate;
@@ -57,6 +68,17 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                     [[theValue(minutes) should] equal:theValue(-tenMinutes)];
                 });
             });
+            context(@"when 5 seconds later", ^{
+                int fiveSeconds = 5;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [currentDate dateByAddingSeconds:fiveSeconds];
+                });
+                it(@"should return -5", ^{
+                    NSInteger seconds = [currentDate secondsAfterDate:anotherDate];
+                    [[theValue(seconds) should] equal:theValue(-fiveSeconds)];
+                });
+            });
         });
     });
 
@@ -73,6 +95,17 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                     AZ_DateUnit.second : @10,
                 }];
                 [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"when 5 second later", ^{
+                int fiveSecond = 5;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [currentDate dateByAddingSeconds:fiveSecond];
+                });
+                it(@"should return 5", ^{
+                    NSInteger seconds = [currentDate secondsBeforeDate:anotherDate];
+                    [[theValue(seconds) should] equal:theValue(fiveSecond)];
+                });
             });
             context(@"when 10 minutes later", ^{
                 int tenMinutes = 10;
@@ -105,6 +138,17 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                 it(@"should return -10", ^{
                     NSInteger minutes = [currentDate minutesBeforeDate:anotherDate];
                     [[theValue(minutes) should] equal:theValue(-tenMinutes)];
+                });
+            });
+            context(@"when 5 seconds ago", ^{
+                int fiveSeconds = 5;
+                __block NSDate *anotherDate;
+                beforeEach(^{
+                    anotherDate = [currentDate dateBySubtractingSeconds:fiveSeconds];
+                });
+                it(@"should return -5", ^{
+                    NSInteger seconds = [currentDate secondsBeforeDate:anotherDate];
+                    [[theValue(seconds) should] equal:theValue(-fiveSeconds)];
                 });
             });
         });

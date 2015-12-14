@@ -552,7 +552,7 @@ SPEC_BEGIN(EscortAdjustingDates)
                 beforeEach(^{
                     subject = [currentDate dateByAddingMinutes:-1];
                 });
-                it(@"should return 2010-10-10 10:11:10", ^{
+                it(@"should return 2010-10-10 10:09:10", ^{
                     NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                         AZ_DateUnit.year : @2010,
                         AZ_DateUnit.month : @10,
@@ -637,6 +637,159 @@ SPEC_BEGIN(EscortAdjustingDates)
                         AZ_DateUnit.hour : @10,
                         AZ_DateUnit.minute : @11,
                         AZ_DateUnit.second : @10,
+                    }];
+                    [[subject should] equal:expectDate];
+                });
+            });
+        });
+    });
+
+    describe(@"-dateByAddingSounds", ^{
+        context(@"when the date is 2010-10-10 10:10:10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @10,
+                    AZ_DateUnit.minute : @10,
+                    AZ_DateUnit.second : @10,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"adding 0 second", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingSeconds:0];
+                });
+                it(@"should return same date", ^{
+                    [[subject should] equal:currentDate];
+                });
+            });
+            context(@"adding 1 second", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingSeconds:1];
+                });
+                it(@"should return 2010-10-10 10:10:11", ^{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2010,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
+                        AZ_DateUnit.hour : @10,
+                        AZ_DateUnit.minute : @10,
+                        AZ_DateUnit.second : @11,
+                    }];
+                    [[subject should] equal:expectDate];
+                });
+            });
+            context(@"adding 60 seconds", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingSeconds:60];
+                });
+                it(@"should return 2010-10-10 10:11:10", ^{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2010,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
+                        AZ_DateUnit.hour : @10,
+                        AZ_DateUnit.minute : @11,
+                        AZ_DateUnit.second : @10,
+                    }];
+                    [[subject should] equal:expectDate];
+                });
+            });
+            context(@"adding -1 second", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateByAddingSeconds:-1];
+                });
+                it(@"should return 2010-10-10 10:11:10", ^{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2010,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
+                        AZ_DateUnit.hour : @10,
+                        AZ_DateUnit.minute : @10,
+                        AZ_DateUnit.second : @9,
+                    }];
+                    [[subject should] equal:expectDate];
+                });
+            });
+        });
+    });
+    describe(@"-dateBySubtractingSeconds", ^{
+        context(@"when the date is 2010-10-10 10:10:10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @10,
+                    AZ_DateUnit.minute : @10,
+                    AZ_DateUnit.second : @10,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+            });
+            context(@"subtract 0 second", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateBySubtractingSeconds:0];
+                });
+                it(@"should return same date", ^{
+                    [[subject should] equal:currentDate];
+                });
+            });
+            context(@"subtract 1 second", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateBySubtractingSeconds:1];
+                });
+                it(@"should return 2010-10-10 10:10:09", ^{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2010,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
+                        AZ_DateUnit.hour : @10,
+                        AZ_DateUnit.minute : @10,
+                        AZ_DateUnit.second : @9,
+                    }];
+                    [[subject should] equal:expectDate];
+                });
+            });
+            context(@"subtract 60 seconds", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateBySubtractingSeconds:60];
+                });
+                it(@"should return 2010-10-10 10:09:10", ^{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2010,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
+                        AZ_DateUnit.hour : @10,
+                        AZ_DateUnit.minute : @9,
+                        AZ_DateUnit.second : @10,
+                    }];
+                    [[subject should] equal:expectDate];
+                });
+            });
+            context(@"subtract -1 second", ^{
+                __block NSDate *subject;
+                beforeEach(^{
+                    subject = [currentDate dateBySubtractingSeconds:-1];
+                });
+                it(@"should return 2010-10-10 11:11:10", ^{
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2010,
+                        AZ_DateUnit.month : @10,
+                        AZ_DateUnit.day : @10,
+                        AZ_DateUnit.hour : @10,
+                        AZ_DateUnit.minute : @10,
+                        AZ_DateUnit.second : @11,
                     }];
                     [[subject should] equal:expectDate];
                 });
