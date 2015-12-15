@@ -131,10 +131,9 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 - (BOOL)isSameMonthAsDate:(NSDate * _Nonnull) aDate {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *componentsSelf = [calendar components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth fromDate:self];
-    NSDateComponents *componentsArgs = [calendar components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth fromDate:aDate];
-    return (componentsSelf.era == componentsArgs.era && componentsSelf.year == componentsArgs.year && componentsSelf.month == componentsArgs.month);
+    NSDate *dateAtStartSelf = [[self dateAtStartOfMonth] dateAtStartOfDay];
+    NSDate *dateAtStartArgs = [[aDate dateAtStartOfMonth] dateAtStartOfDay];
+    return [dateAtStartSelf isEqualToDate:dateAtStartArgs];
 }
 
 - (BOOL)isThisMonth {
@@ -142,10 +141,9 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 - (BOOL)isSameYearAsDate:(NSDate * _Nonnull) aDate {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *componentsSelf = [calendar components:NSCalendarUnitEra | NSCalendarUnitYear fromDate:self];
-    NSDateComponents *componentsArgs = [calendar components:NSCalendarUnitEra | NSCalendarUnitYear fromDate:aDate];
-    return (componentsSelf.era == componentsArgs.era && componentsSelf.year == componentsArgs.year);
+    NSDate *dateAtStartSelf = [[self dateAtStartOfYear] dateAtStartOfDay];
+    NSDate *dateAtStartArgs = [[aDate dateAtStartOfYear] dateAtStartOfDay];
+    return [dateAtStartSelf isEqualToDate:dateAtStartArgs];
 }
 
 - (BOOL)isThisYear {

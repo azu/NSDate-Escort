@@ -640,6 +640,35 @@ SPEC_BEGIN(EscortComparingSpec)
                 });
             });
         });
+        context(@"today is 2010-02-13", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                // date at end of year in Chinese
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @13,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+                
+                NSCalendar *chineseCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierChinese];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:chineseCalendar];
+            });
+            context(@"1 days ago", ^{
+                __block NSDate *_1daysAgo;
+                beforeEach(^{
+                    // date at start of year in Chinese
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
+                    oneMonthComponents.day = 1;
+                    _1daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [currentDate isSameYearAsDate:_1daysAgo];
+                    [[theValue(match) should] beNo];
+                });
+            });
+        });
     });
     describe(@"-isThisMonth", ^{
         __block NSDate *currentDate;
@@ -743,6 +772,36 @@ SPEC_BEGIN(EscortComparingSpec)
             it(@"should be false", ^{
                 BOOL match = [currentDate isSameYearAsDate:nextYear];
                 [[theValue(match) should] beNo];
+            });
+        });
+        
+        context(@"today is 2010-02-13", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                // date at end of year in Chinese
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @13,
+                }];
+                [FakeDateUtil stubCurrentDate:currentDate];
+                
+                NSCalendar *chineseCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierChinese];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:chineseCalendar];
+            });
+            context(@"1 days ago", ^{
+                __block NSDate *_1daysAgo;
+                beforeEach(^{
+                    // date at start of year in Chinese
+                    NSCalendar *calendar = [NSCalendar currentCalendar];
+                    NSDateComponents *oneMonthComponents = [[NSDateComponents alloc] init];
+                    oneMonthComponents.day = 1;
+                    _1daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
+                });
+                it(@"should be true", ^{
+                    BOOL match = [currentDate isSameMonthAsDate:_1daysAgo];
+                    [[theValue(match) should] beNo];
+                });
             });
         });
     });
