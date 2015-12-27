@@ -79,7 +79,7 @@ SPEC_BEGIN(EscortComparingSpec)
                         AZ_DateUnit.day : @19,
                 }];
 
-                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
             it(@"should be false", ^{
@@ -216,7 +216,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"next day (monday)", ^{
                 context(@"firstWeekday is sunday", ^{
                     beforeEach(^{
-                        NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                        NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                         beginingOfMondayCalendar.firstWeekday = 1;
                         [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                     });
@@ -227,7 +227,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 });
                 context(@"firstWeekday is monday", ^{
                     beforeEach(^{
-                        NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                        NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                         beginingOfMondayCalendar.firstWeekday = 2;
                         [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                     });
@@ -240,7 +240,7 @@ SPEC_BEGIN(EscortComparingSpec)
             context(@"within this week", ^{
                 // weekday 1...7
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -399,7 +399,7 @@ SPEC_BEGIN(EscortComparingSpec)
         context(@"next day (monday)", ^{
             context(@"firstWeekday is sunday", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 1;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -410,7 +410,7 @@ SPEC_BEGIN(EscortComparingSpec)
             });
             context(@"firstWeekday is monday", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -623,7 +623,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 }];
                 [FakeDateUtil stubCurrentDate:currentDate];
 
-                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
             context(@"2 days ago", ^{
@@ -730,7 +730,7 @@ SPEC_BEGIN(EscortComparingSpec)
                     }];
                     [FakeDateUtil stubCurrentDate:currentDate];
                     
-                    NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                    NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
                 });
                 context(@"2 days ago", ^{
@@ -943,7 +943,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 }];
                 [FakeDateUtil stubCurrentDate:currentDate];
 
-                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
             context(@"this week", ^{
@@ -1097,7 +1097,7 @@ SPEC_BEGIN(EscortComparingSpec)
                 }];
                 [FakeDateUtil stubCurrentDate:currentDate];
                 
-                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
             context(@"this week", ^{

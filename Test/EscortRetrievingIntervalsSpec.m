@@ -300,7 +300,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
             beforeEach(^{
                 NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
                 [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
-                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
 
                 
@@ -368,7 +368,7 @@ SPEC_BEGIN(EscortRetrievingIntervals)
             beforeEach(^{
                 NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
                 [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
-                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
                 
                 currentDate = [NSDate AZ_dateByUnit:@{
@@ -546,8 +546,8 @@ SPEC_BEGIN(EscortRetrievingIntervals)
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
                 }];
-                // +currentCalendar overwrite NSJapaneseCalendar.
-                jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                // +currentCalendar overwrite NSCalendarIdentifierJapanese.
+                jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
             context(@"difference between Shouwa 64 and Heisei 1 is 1", ^{

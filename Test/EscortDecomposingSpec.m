@@ -212,7 +212,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of sunday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 1;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -223,7 +223,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of monday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -244,7 +244,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of sunday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 1;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -255,7 +255,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of monday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -276,7 +276,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of sunday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 1;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -287,7 +287,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of monday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -308,7 +308,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of sunday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 1;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -319,7 +319,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of monday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -342,7 +342,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of sunday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 1;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -353,7 +353,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of monday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -374,7 +374,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of sunday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 1;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -385,7 +385,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of monday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -406,7 +406,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of sunday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 1;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -417,7 +417,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of monday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -438,7 +438,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of sunday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 1;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -449,7 +449,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             });
             context(@"begining of monday for weekady", ^{
                 beforeEach(^{
-                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
                     beginingOfMondayCalendar.firstWeekday = 2;
                     [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                 });
@@ -474,9 +474,9 @@ SPEC_BEGIN(EscortDecomposingSpec)
                 NSInteger yearValue = [currentDate year];
 
                 NSCalendar *c = [NSCalendar currentCalendar];
-                if ([c.calendarIdentifier isEqualToString:NSGregorianCalendar]) {
+                if ([c.calendarIdentifier isEqualToString:NSCalendarIdentifierGregorian]) {
                     [[theValue(yearValue) should] equal:theValue(2010)];
-                } else if ([c.calendarIdentifier isEqualToString:NSJapaneseCalendar]) {
+                } else if ([c.calendarIdentifier isEqualToString:NSCalendarIdentifierJapanese]) {
                     [[theValue(yearValue) should] equal:theValue(22)];
                 } else {
                     [[theValue(yearValue) shouldNot] equal:theValue(2010)];
@@ -487,8 +487,8 @@ SPEC_BEGIN(EscortDecomposingSpec)
         context(@"when the calendar is not Gregorian", ^{
             __block NSCalendar *jaCalendar;
             beforeEach(^{
-                // +currentCalendar overwrite NSJapaneseCalendar.
-                jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                // +currentCalendar overwrite NSCalendarIdentifierJapanese.
+                jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
             context(@"simple compere", ^{
@@ -546,9 +546,9 @@ SPEC_BEGIN(EscortDecomposingSpec)
                 NSInteger yearValue = [currentDate year];
 
                 NSCalendar *c = [NSCalendar currentCalendar];
-                if ([c.calendarIdentifier isEqualToString:NSGregorianCalendar]) {
+                if ([c.calendarIdentifier isEqualToString:NSCalendarIdentifierGregorian]) {
                     [[theValue(yearValue) should] equal:theValue(2010)];
-                } else if ([c.calendarIdentifier isEqualToString:NSJapaneseCalendar]) {
+                } else if ([c.calendarIdentifier isEqualToString:NSCalendarIdentifierJapanese]) {
                     [[theValue(yearValue) should] equal:theValue(22)];
                 } else {
                     [[theValue(yearValue) shouldNot] equal:theValue(2010)];
@@ -566,13 +566,13 @@ SPEC_BEGIN(EscortDecomposingSpec)
                     AZ_DateUnit.day : @10,
                 }];
 
-                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSJapaneseCalendar];
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
                 NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
                 dateComponents.year = 1;
                 dateComponents.month = 10;
                 dateComponents.day = 10;
                 currentDate = [jaCalendar dateFromComponents:dateComponents];
-                // +currentCalendar overwrite NSJapaneseCalendar.
+                // +currentCalendar overwrite NSCalendarIdentifierJapanese.
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
             });
             it(@"should return 1989", ^{

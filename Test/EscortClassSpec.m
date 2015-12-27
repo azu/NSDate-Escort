@@ -27,7 +27,7 @@ SPEC_BEGIN(EscortClassSpec)
             beforeEach(^{
                 NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
                 [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
-                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
 
                 currentDate = [NSDate AZ_dateByUnit:@{
@@ -65,7 +65,7 @@ SPEC_BEGIN(EscortClassSpec)
             beforeEach(^{
                 NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
                 [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
-                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
 
                 currentDate = [NSDate AZ_dateByUnit:@{
@@ -167,7 +167,7 @@ SPEC_BEGIN(EscortClassSpec)
             beforeEach(^{
                 NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
                 [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
-                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
                 
                 currentDate = [NSDate AZ_dateByUnit:@{
@@ -273,7 +273,7 @@ SPEC_BEGIN(EscortClassSpec)
             beforeEach(^{
                 NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Europe/London"];
                 [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
-                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+                NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
                 [NSDate stub:@selector(AZ_currentCalendar) andReturn:calendar];
                 
                 currentDate = [NSDate AZ_dateByUnit:@{
