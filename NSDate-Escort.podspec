@@ -10,6 +10,11 @@ Pod::Spec.new do |s|
     :git => "https://github.com/azu/NSDate-Escort.git",
     :tag => s.version.to_s
   }
-  s.source_files = 'NSDate-Escort/**/*.{h,m}'
-  s.requires_arc = true
+
+  s.default_subspec = 'ObjC'
+
+  s.subspec 'ObjC' do |ss|
+    ss.source_files = 'NSDate-Escort/**/*.{h,m}'
+    ss.requires_arc = true
+  end
 end
