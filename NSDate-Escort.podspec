@@ -17,4 +17,8 @@ Pod::Spec.new do |s|
     ss.source_files = 'NSDate-Escort/**/*.{h,m}'
     ss.requires_arc = true
   end
+  s.subspec 'Swift' do |ss|
+    ss.source_files = 'NSDate-Escort/**/*.{swift}'
+    ss.requires_arc = true
+  end
 end
