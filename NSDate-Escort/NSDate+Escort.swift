@@ -17,7 +17,7 @@ extension Date {
         weekOfYear: Int? = nil,
         yearForWeekOfYear: Int? = nil,
         nanosecond: Int? = nil
-    ) -> Date {
+        ) -> Date {
         return self.build(unit: [
             .era: era,
             .year: year,
@@ -33,19 +33,85 @@ extension Date {
             .weekOfYear: weekOfYear,
             .yearForWeekOfYear: yearForWeekOfYear,
             .nanosecond: nanosecond,
-        ])
+            ])
     }
     public static func build(unit: [Calendar.Component: Int?]) -> Date {
         let calendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
         dateComponents.calendar = calendar
         for key in unit.keys {
-            let number = unit[key];
+            let number = unit[key]!;
             if let number = number {
                 dateComponents.setValue(number, for: key)
             }
         }
         return calendar.date(from: dateComponents)!
+    }
+    public func build(
+        era: Int? = nil,
+        year: Int? = nil,
+        month: Int? = nil,
+        day: Int? = nil,
+        hour: Int? = nil,
+        minute: Int? = nil,
+        second: Int? = nil,
+        nanosecond: Int? = nil
+        ) -> Date {
+        return self.build(unit: [
+            .era: era,
+            .year: year,
+            .month: month,
+            .day: day,
+            .hour: hour,
+            .minute: minute,
+            .second: second,
+            .nanosecond: nanosecond,
+            ])
+    }
+    public func build(unit: [Calendar.Component: Int?]) -> Date {
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponents = calendar.dateComponents([.era, .year, .month, .day, .hour, .minute, .second, .nanosecond,], from: self)
+        dateComponents.calendar = calendar
+        for key in unit.keys {
+            let number = unit[key]!;
+            if let number = number {
+                dateComponents.setValue(number, for: key)
+            }
+        }
+        return calendar.date(from: dateComponents)!;
+    }
+    public func add(
+        era: Int? = nil,
+        year: Int? = nil,
+        month: Int? = nil,
+        day: Int? = nil,
+        hour: Int? = nil,
+        minute: Int? = nil,
+        second: Int? = nil,
+        nanosecond: Int? = nil
+        ) -> Date {
+        return self.add(unit: [
+            .era: era,
+            .year: year,
+            .month: month,
+            .day: day,
+            .hour: hour,
+            .minute: minute,
+            .second: second,
+            .nanosecond: nanosecond,
+            ])
+    }
+    public func add(unit: [Calendar.Component: Int?]) -> Date {
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponents = calendar.dateComponents([.era, .year, .month, .day, .hour, .minute, .second, .nanosecond,], from: self)
+        dateComponents.calendar = calendar
+        for key in unit.keys {
+            let number = unit[key]!;
+            if let number = number {
+                dateComponents.setValue(dateComponents.value(for: key)! + number, for: key)
+            }
+        }
+        return calendar.date(from: dateComponents)!;
     }
 }
 
@@ -55,7 +121,7 @@ extension Date {
 //#pragma mark - Setting default calendar
 //
 ///**
-// Returns the calendarIdentifier of calendars that is used by this library for date calculation.
+// Returns the calendarIdentifier of calendars that is used by this library for date calculation.
 // @see AZ_setDefaultCalendarIdentifier: for more details.
 // */
 //+ (NSString * _Nullable)AZ_defaultCalendarIdentifier;
