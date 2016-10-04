@@ -113,6 +113,14 @@ extension Date {
         }
         return calendar.date(from: dateComponents)!;
     }
+    
+    public static func tomorrow() -> Date {
+        return Date().add(day: 1)
+    }
+    public static func yesterday() -> Date {
+        return Date().add(day: -1)
+    }
+    
 }
 
 //
@@ -134,23 +142,6 @@ extension Date {
 // complicated date calculations, you should rather create calendars on your own.
 // */
 //+ (void)AZ_setDefaultCalendarIdentifier:(NSString * _Nullable)calendarIdentifier;
-//
-//#pragma mark - Relative dates from the current date
-//+ (NSDate * _Nonnull)dateTomorrow;
-//
-//+ (NSDate * _Nonnull)dateYesterday;
-//
-//+ (NSDate * _Nonnull)dateWithDaysFromNow:(NSInteger) dDays;
-//
-//+ (NSDate * _Nonnull)dateWithDaysBeforeNow:(NSInteger) dDays;
-//
-//+ (NSDate * _Nonnull)dateWithHoursFromNow:(NSInteger) dHours;
-//
-//+ (NSDate * _Nonnull)dateWithHoursBeforeNow:(NSInteger) dHours;
-//
-//+ (NSDate * _Nonnull)dateWithMinutesFromNow:(NSInteger) dMinutes;
-//
-//+ (NSDate * _Nonnull)dateWithMinutesBeforeNow:(NSInteger) dMinutes;
 //
 //#pragma mark - Comparing dates
 //
