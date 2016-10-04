@@ -22,6 +22,8 @@
 		73FCA17718DE837D009ED4AD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 73FCA17518DE837D009ED4AD /* InfoPlist.strings */; };
 		7947BC5703D2C7CEEBE12565 /* libPods-Benchmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D8F9800A0013565B2F570 /* libPods-Benchmark.a */; };
 		BE318BC41DA351E1009A09CD /* EscortComparingSpec..swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */; };
+		BE318BC71DA38717009A09CD /* ApproximatelyEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC61DA38717009A09CD /* ApproximatelyEqual.swift */; };
+		BE318BC91DA38804009A09CD /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC81DA38804009A09CD /* Constant.swift */; };
 		BE5B7B151BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */; };
 		BE953ADD1D9CFC13006AA21C /* BuildSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE953ADC1D9CFC13006AA21C /* BuildSpec.swift */; };
 		C5BD6A39196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A36196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m */; };
@@ -57,6 +59,8 @@
 		96A8327000FCCEA910AA4798 /* Pods-Benchmark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Benchmark.release.xcconfig"; path = "Pods/Target Support Files/Pods-Benchmark/Pods-Benchmark.release.xcconfig"; sourceTree = "<group>"; };
 		B47990179E21B2DCAF99C4FC /* Pods-SwiftTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftTest/Pods-SwiftTest.release.xcconfig"; sourceTree = "<group>"; };
 		BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscortComparingSpec..swift; sourceTree = "<group>"; };
+		BE318BC61DA38717009A09CD /* ApproximatelyEqual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproximatelyEqual.swift; sourceTree = "<group>"; };
+		BE318BC81DA38804009A09CD /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BE5B7B0B1BBFB048005732C2 /* Benchmark.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Benchmark.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5B7B0F1BBFB048005732C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchMakeFormReferenceDate.m; sourceTree = "<group>"; };
@@ -194,6 +198,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BE318BC51DA386D8009A09CD /* Matcher */ = {
+			isa = PBXGroup;
+			children = (
+				BE318BC61DA38717009A09CD /* ApproximatelyEqual.swift */,
+			);
+			path = Matcher;
+			sourceTree = "<group>";
+		};
 		BE5B7B0C1BBFB048005732C2 /* Benchmark */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,10 +218,12 @@
 		BE953ADB1D9CFC13006AA21C /* SwiftTest */ = {
 			isa = PBXGroup;
 			children = (
+				BE318BC51DA386D8009A09CD /* Matcher */,
 				BE953ADC1D9CFC13006AA21C /* BuildSpec.swift */,
 				BE953ADE1D9CFC13006AA21C /* Info.plist */,
 				BE953AE21D9D020A006AA21C /* SwiftTest-Briding-Header.h */,
 				BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */,
+				BE318BC81DA38804009A09CD /* Constant.swift */,
 			);
 			path = SwiftTest;
 			sourceTree = "<group>";
@@ -518,8 +532,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE318BC71DA38717009A09CD /* ApproximatelyEqual.swift in Sources */,
 				BE318BC41DA351E1009A09CD /* EscortComparingSpec..swift in Sources */,
 				BE953ADD1D9CFC13006AA21C /* BuildSpec.swift in Sources */,
+				BE318BC91DA38804009A09CD /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
