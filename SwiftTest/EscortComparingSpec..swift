@@ -148,45 +148,42 @@ class EscortComparingSpec: QuickSpec {
                     }
                 }
             }
+            describe("-isYesterday") {
+                let currentDate = Date()
+                context("when suject is same date") {
+                    it("should be false") {
+                        let match = currentDate.isYesterday()
+                        expect(match).to(beFalse())
+                    }
+                }
+                context("when subject is a yesterday") {
+                    it("should be true") {
+                        let laterDate = currentDate.build(
+                            day : (currentDate.day() - 1),
+                            hour: 0,
+                            minute: 0,
+                            second: 0
+                        )
+                        let isMatch = laterDate.isYesterday()
+                        expect(isMatch).to(beTrue())
+                    }
+                }
+                context("when subject is 2day ago") {
+                    it("should be false") {
+                        let laterDate = currentDate.build(
+                            day : (currentDate.day() - 2),
+                            hour: 0,
+                            minute: 0,
+                            second: 0
+                        )
+                        let isMatch = laterDate.isYesterday()
+                        expect(isMatch).to(beFalse())
+                    }
+                }
+            }
         }
     }
 }
-//describe("-isYesterday") {
-//    let currentDate = Date()
-//    beforeEach(^{
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("when suject is same date") {
-//        it("should be false") {
-//            let match = currentDate.isYesterday()
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    context("when subject is a yesterday") {
-//        it("should be true") {
-//            let laterDate = currentDate.build(
-//                day : (currentDate.day() - 1),
-//                hour: 0,
-//                minute: 0,
-//                second: 0,
-//            )
-//            let isMatch = laterDate.isYesterday()
-//            expect(isMatch).to(beTrue())
-//            }
-//        }
-//    context("when subject is 2day ago") {
-//        it("should be false") {
-//            let laterDate = currentDate.build(
-//                day : (currentDate.day() - 2),
-//                hour: 0,
-//                minute: 0,
-//                second: 0,
-//            )
-//            let isMatch = laterDate.isYesterday()
-//            expect(isMatch).to(beFalse())
-//            }
-//        }
-//    }
 //describe("-isSameWeekAsDate") {
 //    context("today is 2010-10-10") {
 //        __block let currentDate;

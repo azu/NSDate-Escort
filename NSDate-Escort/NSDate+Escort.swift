@@ -132,6 +132,9 @@ extension Date {
     public func isTomorrow() -> Bool {
         return self.ignoreingTime() == Date.tomorrow().ignoreingTime()
     }
+    public func isYesterday() -> Bool {
+        return self.ignoreingTime() == Date.yesterday().ignoreingTime()
+    }
     
     public func year() -> Int {
         let calendar = Calendar(identifier: .gregorian)
