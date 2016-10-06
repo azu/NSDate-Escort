@@ -1,6 +1,6 @@
 //
 //  EscortComparingSpec..swift
-//  NSDate-Escort
+//  Date-Escort
 //
 //  Created by akuraru on 2016/10/04.
 //
@@ -9,7 +9,7 @@
 import Foundation
 import Quick
 import Nimble
-import NSDate_Escort
+//import Date_Escort
 
 class EscortComparingSpec: QuickSpec {
     override func spec() {
@@ -115,122 +115,102 @@ class EscortComparingSpec: QuickSpec {
                     expect(isMatch).to(beFalse())
                 }
             }
-            describe("-isTomorrow") {
-                let currentDate = Date()
-                context("when suject is same date") {
-                    it("should be false") {
-                        let match = currentDate.isTomorrow()
-                        expect(match).to(beFalse())
-                    }
-                }
-                context("when subject is a tomorrow") {
-                    it("should be true") {
-                        let laterDate = currentDate.build(
-                            day: (currentDate.day() + 1),
-                            hour: 0,
-                            minute: 0,
-                            second: 0
-                        )
-                        let isMatch = laterDate.isTomorrow()
-                        expect(isMatch).to(beTrue())
-                    }
-                }
-                context("when subject is 2day later") {
-                    it("should be false") {
-                        let laterDate = currentDate.build(
-                            day : (currentDate.day() + 2),
-                            hour: 0,
-                            minute: 0,
-                            second: 0
-                        )
-                        let isMatch = laterDate.isTomorrow()
-                        expect(isMatch).to(beFalse())
-                    }
+        }
+        describe("-isTomorrow") {
+            let currentDate = Date()
+            context("when suject is same date") {
+                it("should be false") {
+                    let match = currentDate.isTomorrow()
+                    expect(match).to(beFalse())
                 }
             }
-            describe("-isYesterday") {
-                let currentDate = Date()
-                context("when suject is same date") {
-                    it("should be false") {
-                        let match = currentDate.isYesterday()
-                        expect(match).to(beFalse())
-                    }
+            context("when subject is a tomorrow") {
+                it("should be true") {
+                    let laterDate = currentDate.build(
+                        day: (currentDate.day() + 1),
+                        hour: 0,
+                        minute: 0,
+                        second: 0
+                    )
+                    let isMatch = laterDate.isTomorrow()
+                    expect(isMatch).to(beTrue())
                 }
-                context("when subject is a yesterday") {
+            }
+            context("when subject is 2day later") {
+                it("should be false") {
+                    let laterDate = currentDate.build(
+                        day : (currentDate.day() + 2),
+                        hour: 0,
+                        minute: 0,
+                        second: 0
+                    )
+                    let isMatch = laterDate.isTomorrow()
+                    expect(isMatch).to(beFalse())
+                }
+            }
+        }
+        describe("-isYesterday") {
+            let currentDate = Date()
+            context("when suject is same date") {
+                it("should be false") {
+                    let match = currentDate.isYesterday()
+                    expect(match).to(beFalse())
+                }
+            }
+            context("when subject is a yesterday") {
+                it("should be true") {
+                    let laterDate = currentDate.build(
+                        day : (currentDate.day() - 1),
+                        hour: 0,
+                        minute: 0,
+                        second: 0
+                    )
+                    let isMatch = laterDate.isYesterday()
+                    expect(isMatch).to(beTrue())
+                }
+            }
+            context("when subject is 2day ago") {
+                it("should be false") {
+                    let laterDate = currentDate.build(
+                        day : (currentDate.day() - 2),
+                        hour: 0,
+                        minute: 0,
+                        second: 0
+                    )
+                    let isMatch = laterDate.isYesterday()
+                    expect(isMatch).to(beFalse())
+                }
+            }
+        }
+        describe("-isSameWeekAsDate") {
+            context("today is 2010-10-10") {
+                let currentDate = Date.build(
+                    year: 2010,
+                    month: 10,
+                    day: 10
+                )
+                context("same week") {
                     it("should be true") {
-                        let laterDate = currentDate.build(
-                            day : (currentDate.day() - 1),
-                            hour: 0,
-                            minute: 0,
-                            second: 0
-                        )
-                        let isMatch = laterDate.isYesterday()
-                        expect(isMatch).to(beTrue())
+                        let match = currentDate.isSameWeek(as: currentDate)
+                        expect(match).to(beTrue())
                     }
                 }
-                context("when subject is 2day ago") {
-                    it("should be false") {
-                        let laterDate = currentDate.build(
-                            day : (currentDate.day() - 2),
-                            hour: 0,
-                            minute: 0,
-                            second: 0
-                        )
-                        let isMatch = laterDate.isYesterday()
-                        expect(isMatch).to(beFalse())
+                context("next day (monday)") {
+                    it("should be true") {
+                        let match = currentDate.isSameWeek(as: currentDate.add(day: 1))
+                        expect(match).to(beTrue())
                     }
                 }
             }
         }
     }
 }
-//describe("-isSameWeekAsDate") {
-//    context("today is 2010-10-10") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = NSDate.build(
-//                year: 2010,
-//                month: 10,
-//                day: 10,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            }
-//        context("same week") {
-//            it("should be true") {
-//                let match = currentDate.isSameWeekAsDate(currentDate)
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        context("next day (monday)") {
-//            context("firstWeekday is sunday") {
-//                beforeEach(^{
-//                    NSCalendar *beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//                    beginingOfMondayCalendar.firstWeekday = 1;
-//                    [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
-//                    }
-//                it("should be true") {
-//                    let match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
-//                    expect(match).to(beTrue())
-//                    }
-//                }
-//            context("firstWeekday is monday") {
-//                beforeEach(^{
-//                    NSCalendar *beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//                    beginingOfMondayCalendar.firstWeekday = 2;
-//                    [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
-//                    }
-//                it("should be true") {
-//                    let match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
-//                    expect(match).to(beFalse())
-//                    }
-//                }
-//            }
 //        context("within this week") {
 //            // weekday 1...7
 //            beforeEach(^{
-//                NSCalendar *beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//                let beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 //                beginingOfMondayCalendar.firstWeekday = 2;
-//                [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+//                [Date stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
 //                }
 //            context("firstOfWeek") {
 //                __block let firstOfWeek;
@@ -293,7 +273,7 @@ class EscortComparingSpec: QuickSpec {
 //    context("today is 2015-03-30") {
 //        __block let currentDate;
 //        beforeEach(^{
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year: 2015,
 //                month: 3,
 //                day: 30,
@@ -371,7 +351,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isThisWeek") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -387,9 +367,9 @@ class EscortComparingSpec: QuickSpec {
 //    context("next day (monday)") {
 //        context("firstWeekday is sunday") {
 //            beforeEach(^{
-//                NSCalendar *beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//                let beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 //                beginingOfMondayCalendar.firstWeekday = 1;
-//                [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+//                [Date stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
 //                }
 //            it("should be true") {
 //                let match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
@@ -398,9 +378,9 @@ class EscortComparingSpec: QuickSpec {
 //            }
 //        context("firstWeekday is monday") {
 //            beforeEach(^{
-//                NSCalendar *beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//                let beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 //                beginingOfMondayCalendar.firstWeekday = 2;
-//                [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+//                [Date stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
 //                }
 //            it("should be true") {
 //                let match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
@@ -453,7 +433,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isNextWeek") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -495,7 +475,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isLastWeek") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 9,
@@ -538,7 +518,7 @@ class EscortComparingSpec: QuickSpec {
 //    context("today is 2010-10-10 ") {
 //        __block let currentDate;
 //        beforeEach(^{
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year: 2010,
 //                month: 10,
 //                day: 10,
@@ -564,8 +544,8 @@ class EscortComparingSpec: QuickSpec {
 //        context("next month") {
 //            __block let nextMonth;
 //            beforeEach(^{
-//                NSCalendar *calendar = NSCalendar.currentCalendar()
-//                NSDateComponents *oneMonthComponents = [NSDateComponents.alloc() init];
+//                let calendar = NSCalendar.currentCalendar()
+//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
 //                oneMonthComponents.month = 1;
 //                nextMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
 //                }
@@ -577,8 +557,8 @@ class EscortComparingSpec: QuickSpec {
 //        context("last month") {
 //            __block let lastMonth;
 //            beforeEach(^{
-//                NSCalendar *calendar = NSCalendar.currentCalendar()
-//                NSDateComponents *oneMonthComponents = [NSDateComponents.alloc() init];
+//                let calendar = NSCalendar.currentCalendar()
+//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
 //                oneMonthComponents.month = -1;
 //                lastMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
 //                }
@@ -590,8 +570,8 @@ class EscortComparingSpec: QuickSpec {
 //        context("next year") {
 //            __block let nextYear;
 //            beforeEach(^{
-//                NSCalendar *calendar = NSCalendar.currentCalendar()
-//                NSDateComponents *oneMonthComponents = [NSDateComponents.alloc() init];
+//                let calendar = NSCalendar.currentCalendar()
+//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
 //                oneMonthComponents.year = 1;
 //                nextYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
 //                }
@@ -604,21 +584,21 @@ class EscortComparingSpec: QuickSpec {
 //    context("today is 1988-12-07 ") {
 //        __block let currentDate;
 //        beforeEach(^{
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year: 1989,
 //                month: 1,
 //                day: 6,
 //            )
 //            [FakeDateUtil stubCurrentDate:currentDate];
 //            
-//            NSCalendar *jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-//            [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
+//            let jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
+//            [Date stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
 //            }
 //        context("2 days ago") {
 //            __block let _2daysAgo;
 //            beforeEach(^{
-//                NSCalendar *calendar = NSCalendar.currentCalendar()
-//                NSDateComponents *oneMonthComponents = [NSDateComponents.alloc() init];
+//                let calendar = NSCalendar.currentCalendar()
+//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
 //                oneMonthComponents.day = 2;
 //                _2daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
 //                }
@@ -632,22 +612,22 @@ class EscortComparingSpec: QuickSpec {
 //        __block let currentDate;
 //        beforeEach(^{
 //            // date at end of year in Chinese
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year: 2010,
 //                month: 2,
 //                day: 13,
 //            )
 //            [FakeDateUtil stubCurrentDate:currentDate];
 //            
-//            NSCalendar *chineseCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierChinese];
-//            [NSDate stub:selector(AZ_currentCalendar) andReturn:chineseCalendar];
+//            let chineseCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierChinese];
+//            [Date stub:selector(AZ_currentCalendar) andReturn:chineseCalendar];
 //            }
 //        context("1 days ago") {
 //            __block let _1daysAgo;
 //            beforeEach(^{
 //                // date at start of year in Chinese
-//                NSCalendar *calendar = NSCalendar.currentCalendar()
-//                NSDateComponents *oneMonthComponents = [NSDateComponents.alloc() init];
+//                let calendar = NSCalendar.currentCalendar()
+//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
 //                oneMonthComponents.day = 1;
 //                _1daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
 //                }
@@ -661,7 +641,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isThisMonth") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -678,7 +658,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isSameYearAsDate") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -711,21 +691,21 @@ class EscortComparingSpec: QuickSpec {
 //        context("today is 1988-12-07 ") {
 //            __block let currentDate;
 //            beforeEach(^{
-//                currentDate = NSDate.build(
+//                currentDate = Date.build(
 //                    year: 1989,
 //                    month: 1,
 //                    day: 6,
 //                )
 //                [FakeDateUtil stubCurrentDate:currentDate];
 //                
-//                NSCalendar *jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-//                [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
+//                let jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
+//                [Date stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
 //                }
 //            context("2 days ago") {
 //                __block let _2daysAgo;
 //                beforeEach(^{
-//                    NSCalendar *calendar = NSCalendar.currentCalendar()
-//                    NSDateComponents *oneMonthComponents = [NSDateComponents.alloc() init];
+//                    let calendar = NSCalendar.currentCalendar()
+//                    DateComponents *oneMonthComponents = [DateComponents.alloc() init];
 //                    oneMonthComponents.day = 2;
 //                    _2daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
 //                    }
@@ -739,8 +719,8 @@ class EscortComparingSpec: QuickSpec {
 //    context("last year") {
 //        __block let lastYear;
 //        beforeEach(^{
-//            NSCalendar *calendar = NSCalendar.currentCalendar()
-//            NSDateComponents *oneMonthComponents = [NSDateComponents.alloc() init];
+//            let calendar = NSCalendar.currentCalendar()
+//            DateComponents *oneMonthComponents = [DateComponents.alloc() init];
 //            oneMonthComponents.year = -1;
 //            lastYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
 //            }
@@ -752,8 +732,8 @@ class EscortComparingSpec: QuickSpec {
 //    context("next year") {
 //        __block let nextYear;
 //        beforeEach(^{
-//            NSCalendar *calendar = NSCalendar.currentCalendar()
-//            NSDateComponents *oneMonthComponents = [NSDateComponents.alloc() init];
+//            let calendar = NSCalendar.currentCalendar()
+//            DateComponents *oneMonthComponents = [DateComponents.alloc() init];
 //            oneMonthComponents.year = 1;
 //            nextYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
 //            }
@@ -767,22 +747,22 @@ class EscortComparingSpec: QuickSpec {
 //        __block let currentDate;
 //        beforeEach(^{
 //            // date at end of year in Chinese
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year: 2010,
 //                month: 2,
 //                day: 13,
 //            )
 //            [FakeDateUtil stubCurrentDate:currentDate];
 //            
-//            NSCalendar *chineseCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierChinese];
-//            [NSDate stub:selector(AZ_currentCalendar) andReturn:chineseCalendar];
+//            let chineseCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierChinese];
+//            [Date stub:selector(AZ_currentCalendar) andReturn:chineseCalendar];
 //            }
 //        context("1 days ago") {
 //            __block let _1daysAgo;
 //            beforeEach(^{
 //                // date at start of year in Chinese
-//                NSCalendar *calendar = NSCalendar.currentCalendar()
-//                NSDateComponents *oneMonthComponents = [NSDateComponents.alloc() init];
+//                let calendar = NSCalendar.currentCalendar()
+//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
 //                oneMonthComponents.day = 1;
 //                _1daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
 //                }
@@ -796,7 +776,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isThisYear") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -827,7 +807,7 @@ class EscortComparingSpec: QuickSpec {
 //    context("today is 2010-10-10") {
 //        __block let currentDate;
 //        beforeEach(^{
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year: 2010,
 //                month: 10,
 //                day: 10,
@@ -870,7 +850,7 @@ class EscortComparingSpec: QuickSpec {
 //    context("today is BC 10-10-10") {
 //        __block let currentDate;
 //        beforeEach(^{
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year : -10,
 //                month: 10,
 //                day: 10,
@@ -924,15 +904,15 @@ class EscortComparingSpec: QuickSpec {
 //    context("today is 1989-01-06 and not Gregorian") {
 //        __block let currentDate;
 //        beforeEach(^{
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year: 1989,
 //                month: 1,
 //                day: 6,
 //            )
 //            [FakeDateUtil stubCurrentDate:currentDate];
 //            
-//            NSCalendar *jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-//            [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
+//            let jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
+//            [Date stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
 //            }
 //        context("this week") {
 //            it("should be false") {
@@ -982,7 +962,7 @@ class EscortComparingSpec: QuickSpec {
 //    context("today is 2010-10-10") {
 //        __block let currentDate;
 //        beforeEach(^{
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year: 2010,
 //                month: 10,
 //                day: 10,
@@ -1025,7 +1005,7 @@ class EscortComparingSpec: QuickSpec {
 //    context("today is BC 10-10-10") {
 //        __block let currentDate;
 //        beforeEach(^{
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year : -10,
 //                month: 10,
 //                day: 10,
@@ -1078,15 +1058,15 @@ class EscortComparingSpec: QuickSpec {
 //    context("today is 1989-01-08 and not Gregorian") {
 //        __block let currentDate;
 //        beforeEach(^{
-//            currentDate = NSDate.build(
+//            currentDate = Date.build(
 //                year: 1989,
 //                month: 1,
 //                day: 8,
 //            )
 //            [FakeDateUtil stubCurrentDate:currentDate];
 //            
-//            NSCalendar *jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-//            [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
+//            let jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
+//            [Date stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
 //            }
 //        context("this week") {
 //            it("should be false") {
@@ -1135,7 +1115,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isEarlierThanDate") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -1175,7 +1155,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isLaterThanDate") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -1215,7 +1195,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isEarlierThanOrEqualDate") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -1255,7 +1235,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isLaterThanOrEqualDate") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -1295,7 +1275,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isInPast") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,
@@ -1326,7 +1306,7 @@ class EscortComparingSpec: QuickSpec {
 //describe("-isInFuture") {
 //    __block let currentDate;
 //    beforeEach(^{
-//        currentDate = NSDate.build(
+//        currentDate = Date.build(
 //            year: 2010,
 //            month: 10,
 //            day: 10,

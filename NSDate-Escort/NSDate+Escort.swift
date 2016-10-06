@@ -1,7 +1,11 @@
 //// LICENSE : MIT
 
+import Foundation
+
 extension Date {
-    
+    public static func AZ_currentCalendar() -> NSCalendar {
+        return NSCalendar(identifier: .gregorian)!
+    }
     public static func build(
         era: Int? = nil,
         year: Int? = nil,
@@ -135,6 +139,14 @@ extension Date {
     public func isYesterday() -> Bool {
         return self.ignoreingTime() == Date.yesterday().ignoreingTime()
     }
+    public func isSameWeek(as aDate: Date) -> Bool {
+        let currentCalendar = Date.AZ_currentCalendar()
+        let leftWeekday = self.weekday() + ((self.weekday() < currentCalendar.firstWeekday) ? 7 : 0);
+        let left = self.add(day: -leftWeekday)
+        let rightWeekday = aDate.weekday() + ((aDate.weekday() < currentCalendar.firstWeekday) ? 7 : 0);
+        let right = aDate.add(day: -rightWeekday)
+        return left.isEqualToDateIgnoringTime(right)
+    }
     
     public func year() -> Int {
         let calendar = Calendar(identifier: .gregorian)
@@ -145,6 +157,12 @@ extension Date {
         let calendar = Calendar(identifier: .gregorian)
         var dateComponents = calendar.dateComponents([.day], from: self)
         return dateComponents.day!
+    }
+    public func weekday() -> Int {
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponents = calendar.dateComponents([.weekday], from: self)
+        return dateComponents.weekday!
+        
     }
 }
 
