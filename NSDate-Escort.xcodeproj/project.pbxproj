@@ -24,6 +24,7 @@
 		BE318BC41DA351E1009A09CD /* EscortComparingSpec..swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */; };
 		BE318BC71DA38717009A09CD /* ApproximatelyEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC61DA38717009A09CD /* ApproximatelyEqual.swift */; };
 		BE318BC91DA38804009A09CD /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC81DA38804009A09CD /* Constant.swift */; };
+		BE318BCB1DA38BC0009A09CD /* EscortClassSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BCA1DA38BC0009A09CD /* EscortClassSpec.swift */; };
 		BE5B7B151BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */; };
 		BE953ADD1D9CFC13006AA21C /* BuildSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE953ADC1D9CFC13006AA21C /* BuildSpec.swift */; };
 		C5BD6A39196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A36196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m */; };
@@ -61,6 +62,7 @@
 		BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscortComparingSpec..swift; sourceTree = "<group>"; };
 		BE318BC61DA38717009A09CD /* ApproximatelyEqual.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApproximatelyEqual.swift; sourceTree = "<group>"; };
 		BE318BC81DA38804009A09CD /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		BE318BCA1DA38BC0009A09CD /* EscortClassSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscortClassSpec.swift; sourceTree = "<group>"; };
 		BE5B7B0B1BBFB048005732C2 /* Benchmark.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Benchmark.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5B7B0F1BBFB048005732C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchMakeFormReferenceDate.m; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				BE953AE21D9D020A006AA21C /* SwiftTest-Briding-Header.h */,
 				BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */,
 				BE318BC81DA38804009A09CD /* Constant.swift */,
+				BE318BCA1DA38BC0009A09CD /* EscortClassSpec.swift */,
 			);
 			path = SwiftTest;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 			files = (
 				BE318BC71DA38717009A09CD /* ApproximatelyEqual.swift in Sources */,
 				BE318BC41DA351E1009A09CD /* EscortComparingSpec..swift in Sources */,
+				BE318BCB1DA38BC0009A09CD /* EscortClassSpec.swift in Sources */,
 				BE953ADD1D9CFC13006AA21C /* BuildSpec.swift in Sources */,
 				BE318BC91DA38804009A09CD /* Constant.swift in Sources */,
 			);

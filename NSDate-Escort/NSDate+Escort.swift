@@ -120,7 +120,29 @@ extension Date {
     public static func yesterday() -> Date {
         return Date().add(day: -1)
     }
+    public func isEqualToDateIgnoringTime(_ date: Date) -> Bool {
+        return self.ignoreingTime() == date.ignoreingTime()
+    }
+    public func ignoreingTime() -> Date {
+        return self.build(hour: 0, minute: 0, second: 0, nanosecond: 0)
+    }
+    public func isToday() -> Bool {
+        return self.ignoreingTime() == Date().ignoreingTime()
+    }
+    public func isTomorrow() -> Bool {
+        return self.ignoreingTime() == Date.tomorrow().ignoreingTime()
+    }
     
+    public func year() -> Int {
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponents = calendar.dateComponents([.year], from: self)
+        return dateComponents.year!
+    }
+    public func day() -> Int {
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponents = calendar.dateComponents([.day], from: self)
+        return dateComponents.day!
+    }
 }
 
 //
