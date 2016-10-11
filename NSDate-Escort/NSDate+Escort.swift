@@ -147,6 +147,24 @@ extension Date {
         let right = aDate.add(day: -rightWeekday)
         return left.isEqualToDateIgnoringTime(right)
     }
+    public func isThisWeek() -> Bool {
+        return self.isSameWeek(as: Date())
+    }
+    public func isNextWeek() -> Bool {
+        return self.isSameWeek(as: Date().add(day: self.numberOfDaysInWeek()))
+    }
+    public func isLastWeek() -> Bool {
+        return self.isSameWeek(as: Date().add(day: -self.numberOfDaysInWeek()))
+    }
+    public func isSameMonth(as date: Date) -> Bool {
+        return self.startOfMonth().isEqualToDateIgnoringTime(date.startOfMonth())
+    }
+    public func isThisMonth() -> Bool {
+        return self.isSameMonth(as: Date())
+    }
+    public func isSameYear(as date: Date) -> Bool {
+        return self.startOfYear().isSameMonth(as: date.startOfYear())
+    }
     
     public func year() -> Int {
         let calendar = Calendar(identifier: .gregorian)
@@ -162,7 +180,50 @@ extension Date {
         let calendar = Calendar(identifier: .gregorian)
         var dateComponents = calendar.dateComponents([.weekday], from: self)
         return dateComponents.weekday!
-        
+    }
+    public func firstDayOfWeekday() -> Int {
+        var startOfTheWeek: NSDate?
+        var interval: TimeInterval = 0
+        Date.AZ_currentCalendar().range(of: NSCalendar.Unit.weekOfMonth, start: &startOfTheWeek, interval: &interval, for: self)
+        return (startOfTheWeek! as Date).day()
+    }
+    public func lastDayOfWeekday() -> Int {
+        return self.firstDayOfWeekday() + (self.numberOfDaysInWeek() - 1);
+    }
+    public func numberOfDaysInWeek() -> Int {
+        return Date.AZ_currentCalendar().maximumRange(of: .weekday).length
+    }
+    public func startOfMonth() -> Date {
+        let calendar = Date.AZ_currentCalendar()
+        var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)
+        let range = calendar.range(of: .day, in: .month, for: self)
+        components.day = range.location;
+        return calendar.date(from: components)!
+    }
+    public func endOfMonth() -> Date {
+        let calendar = Date.AZ_currentCalendar()
+        var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)
+        let range = calendar.range(of: .day, in: .month, for: self)
+        components.day = range.length;
+        return calendar.date(from: components)!
+    }
+    public func startOfYear() -> Date {
+        let calendar = Date.AZ_currentCalendar()
+        var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)
+        let monthRange = calendar.range(of: .month, in: .year, for: self)
+        let dayRange = calendar.range(of: .day, in: .month, for: self)
+        components.day = dayRange.location;
+        components.month = monthRange.location;
+        return calendar.date(from: components)!
+    }
+    public func endOfYear() -> Date {
+        let calendar = Date.AZ_currentCalendar()
+        var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)
+        let monthRange = calendar.range(of: .month, in: .year, for: self)
+        let dayRange = calendar.range(of: .day, in: .month, for: self)
+        components.day = dayRange.length;
+        components.month = monthRange.length;
+        return calendar.date(from: components)!
     }
 }
 

@@ -201,578 +201,263 @@ class EscortComparingSpec: QuickSpec {
                         expect(match).to(beTrue())
                     }
                 }
+                context("when same the week, but difference year") {
+                    let nextYearDate = currentDate.build(
+                        year : (currentDate.year() + 1)
+                    )
+                    it("should be false") {
+                        let match = nextYearDate.isSameWeek(as: currentDate)
+                        expect(match).to(beFalse())
+                    }
+                }
+                context("next week") {
+                    let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                    it("should be false") {
+                        let match = nextWeekDate.isSameWeek(as: currentDate)
+                        expect(match).to(beFalse())
+                    }
+                }
+                context("last week") {
+                    let prevWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                    it("should be false") {
+                        let match = prevWeekDate.isSameWeek(as: currentDate)
+                        expect(match).to(beFalse())
+                    }
+                }
+            }
+            context("today is 2015-03-30") {
+                let currentDate = Date.build(
+                    year: 2015,
+                    month: 3,
+                    day: 30
+                )
+                context("same week") {
+                    it("should be true") {
+                        let match = currentDate.isSameWeek(as: currentDate)
+                        expect(match).to(beTrue())
+                    }
+                }
+                context("within this week") {
+                    // weekday 1...7
+                    context("firstOfWeek") {
+                        let firstOfWeek = currentDate.build(
+                            day: (currentDate.firstDayOfWeekday())
+                        )
+                        it("should be true") {
+                            let match_first = firstOfWeek.isSameWeek(as: currentDate)
+                            expect(match_first).to(beTrue())
+                        }
+                    }
+                    context("endOfWeek") {
+                        let lastOfWeek = currentDate.build(
+                            month: 4,
+                            day: 4
+                        )
+                        it("should be true") {
+                            let match_last = lastOfWeek.isSameWeek(as: currentDate)
+                            expect(match_last).to(beTrue())
+                        }
+                    }
+                }
+                context("when same the week, but difference year") {
+                    let nextYearDate = currentDate.build(
+                        year : (currentDate.year() + 1)
+                    )
+                    it("should be false") {
+                        let match = nextYearDate.isSameWeek(as: currentDate)
+                        expect(match).to(beFalse())
+                    }
+                }
+                context("next week") {
+                    let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                    it("should be false") {
+                        let match = nextWeekDate.isSameWeek(as: currentDate)
+                        expect(match).to(beFalse())
+                    }
+                }
+                context("last week") {
+                    let prevWeekDate = currentDate.add(day: -(DAYS_IN_WEEK))
+                    it("should be false") {
+                        let match = prevWeekDate.isSameWeek(as: currentDate)
+                        expect(match).to(beFalse())
+                    }
+                }
+            }
+        }
+        describe("-isThisWeek") {
+            let currentDate = Date()
+            context("same week") {
+                it("should be true") {
+                    let match = currentDate.isThisWeek()
+                    expect(match).to(beTrue())
+                }
+            }
+            context("within this week") {
+                context("firstOfWeek") {
+                    it("should be true") {
+                        // weekday 1...7
+                        let firstOfWeek = currentDate.build(
+                            day : (currentDate.firstDayOfWeekday())
+                        )
+                        let match_first = firstOfWeek.isThisWeek()
+                        expect(match_first).to(beTrue())
+                    }
+                }
+                context("endOfWeek") {
+                    it("should be true") {
+                        let lastOfWeek = currentDate.build(
+                            day : (currentDate.lastDayOfWeekday())
+                        )
+                        let match_last = lastOfWeek.isThisWeek()
+                        expect(match_last).to(beTrue())
+                    }
+                }
+            }
+            context("next week") {
+                let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                it("should be false") {
+                    let match = nextWeekDate.isThisWeek()
+                    expect(match).to(beFalse())
+                }
+            }
+            context("last week") {
+                let prevWeekDate = currentDate.add(day: -DAYS_IN_WEEK)
+                it("should be false") {
+                    let match = prevWeekDate.isThisWeek()
+                    expect(match).to(beFalse())
+                }
+            }
+        }
+        describe("-isNextWeek") {
+            let currentDate = Date()
+            context("within this week") {
+                context("at endOfWeek") {
+                    it("should be false") {
+                        let endOfWeek = currentDate.build(
+                            day : (currentDate.lastDayOfWeekday())
+                        )
+                        let match = endOfWeek.isNextWeek()
+                        expect(match).to(beFalse())
+                    }
+                }
+            }
+            context("next week") {
+                let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                it("should be true") {
+                    let match = nextWeekDate.isNextWeek()
+                    expect(match).to(beTrue())
+                }
+            }
+            context("two weeks later") {
+                let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK * 2)
+                it("should be false") {
+                    let match = nextWeekDate.isNextWeek()
+                    expect(match).to(beFalse())
+                }
+            }
+        }
+        describe("-isLastWeek") {
+            let currentDate = Date()
+            context("within this week") {
+                context("at startOfWeek") {
+                    it("should be false") {
+                        let lastOfWeek = currentDate.build(
+                            day : (currentDate.firstDayOfWeekday())
+                        )
+                        let match = lastOfWeek.isLastWeek()
+                        expect(match).to(beFalse())
+                    }
+                }
+            }
+            context("when last week") {
+                let prevWeekDate = currentDate.add(day: -DAYS_IN_WEEK)
+                it("should be true") {
+                    let match = prevWeekDate.isLastWeek()
+                    expect(match).to(beTrue())
+                }
+            }
+            context("when two weeks ago") {
+                let prevWeekDate = currentDate.add(day: DAYS_IN_WEEK * 2)
+                it("should be false") {
+                    let match = prevWeekDate.isLastWeek()
+                    expect(match).to(beFalse())
+                }
+            }
+        }
+        describe("-isSameMonthAsDate") {
+            context("today is 2010-10-10 ") {
+                let currentDate = Date()
+                context("within this month") {
+                    context("at start of month") {
+                        it("should be yes") {
+                            let startOfMonth = currentDate.startOfMonth()
+                            let match = currentDate.isSameMonth(as: startOfMonth)
+                            expect(match).to(beTrue())
+                        }
+                    }
+                    context("at end of month") {
+                        it("should be yes") {
+                            let endOfMonth = currentDate.endOfMonth()
+                            let match = currentDate.isSameMonth(as: endOfMonth)
+                            expect(match).to(beTrue())
+                        }
+                    }
+                }
+                context("next month") {
+                    let nextMonth = Date().add(month: 1)
+                    it("should be false") {
+                        let match = currentDate.isSameMonth(as: nextMonth)
+                        expect(match).to(beFalse())
+                    }
+                }
+                context("last month") {
+                    let lastMonth = Date().add(month: -1)
+                    it("should be false") {
+                        let match = currentDate.isSameMonth(as: lastMonth)
+                        expect(match).to(beFalse())
+                    }
+                }
+                context("next year") {
+                    let nextYear = Date().add(year: 1)
+                    it("should be false") {
+                        let match = currentDate.isSameMonth(as: nextYear)
+                        expect(match).to(beFalse())
+                    }
+                }
+            }
+        }
+        describe("-isThisMonth") {
+            let currentDate = Date()
+            context("when sameMonth as Date") {
+                it("should be true") {
+                    let match = currentDate.isThisMonth()
+                    expect(match).to(beTrue())
+                }
+            }
+        }
+        describe("-isSameYearAsDate") {
+            let currentDate = Date()
+            context("within this year") {
+                context("today is date") {
+                    context("at start of year") {
+                        let startOfYear = currentDate.startOfYear()
+                        it("should be yes") {
+                            let match = currentDate.isSameYear(as: startOfYear)
+                            expect(match).to(beTrue())
+                        }
+                    }
+                    context("at end of year") {
+                        let endOfYear = currentDate.endOfYear()
+                        it("should be yes") {
+                            let match = currentDate.isSameYear(as: endOfYear)
+                            expect(match).to(beTrue())
+                        }
+                    }
+                }
             }
         }
     }
 }
-//        context("within this week") {
-//            // weekday 1...7
-//            beforeEach(^{
-//                let beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//                beginingOfMondayCalendar.firstWeekday = 2;
-//                [Date stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
-//                }
-//            context("firstOfWeek") {
-//                __block let firstOfWeek;
-//                beforeEach(^{
-//                    firstOfWeek = currentDate.build(
-//                        day : (currentDate.firstDayOfWeekday())
-//                    )
-//                    }
-//                it("should be true") {
-//                    let match_first = firstOfWeek.isSameWeekAsDate(currentDate)
-//                    expect(match_first).to(beTrue())
-//                    }
-//                }
-//            context("endOfWeek") {
-//                __block let lastOfWeek;
-//                beforeEach(^{
-//                    lastOfWeek = currentDate.build(
-//                        day : (currentDate.lastDayOfWeekday())
-//                    )
-//                    }
-//                it("should be true") {
-//                    let match_last = lastOfWeek.isSameWeekAsDate(currentDate)
-//                    expect(match_last).to(beTrue())
-//                    }
-//                }
-//            }
-//        context("when same the week, but difference year") {
-//            __block let nextYearDate;
-//            beforeEach(^{
-//                nextYearDate = currentDate.build(
-//                    year : (currentDate.year() + 1),
-//                )
-//                }
-//            it("should be false") {
-//                let match = nextYearDate.isSameWeekAsDate(currentDate)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("next week") {
-//            __block let nextWeekDate;
-//            beforeEach(^{
-//                nextWeekDate = [currentDate dateByAddingDays:DAYS_IN_WEEK];
-//                }
-//            it("should be false") {
-//                let match = nextWeekDate.isSameWeekAsDate(currentDate)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("last week") {
-//            __block let prevWeekDate;
-//            beforeEach(^{
-//                prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK];
-//                }
-//            it("should be false") {
-//                let match = prevWeekDate.isSameWeekAsDate(currentDate)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    context("today is 2015-03-30") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = Date.build(
-//                year: 2015,
-//                month: 3,
-//                day: 30,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            }
-//        context("same week") {
-//            it("should be true") {
-//                let match = currentDate.isSameWeekAsDate(currentDate)
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        context("within this week") {
-//            // weekday 1...7
-//            context("firstOfWeek") {
-//                __block let firstOfWeek;
-//                beforeEach(^{
-//                    firstOfWeek = currentDate.build(
-//                        day : (currentDate.firstDayOfWeekday())
-//                    )
-//                    }
-//                it("should be true") {
-//                    let match_first = firstOfWeek.isSameWeekAsDate(currentDate)
-//                    expect(match_first).to(beTrue())
-//                    }
-//                }
-//            context("endOfWeek") {
-//                __block let lastOfWeek;
-//                beforeEach(^{
-//                    lastOfWeek = currentDate.build(
-//                        month: 4,
-//                        day: 4,
-//                    )
-//                    }
-//                it("should be true") {
-//                    let match_last = lastOfWeek.isSameWeekAsDate(currentDate)
-//                    expect(match_last).to(beTrue())
-//                    }
-//                }
-//            }
-//        context("when same the week, but difference year") {
-//            __block let nextYearDate;
-//            beforeEach(^{
-//                nextYearDate = currentDate.build(
-//                    year : (currentDate.year() + 1),
-//                )
-//                }
-//            it("should be false") {
-//                let match = nextYearDate.isSameWeekAsDate(currentDate)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("next week") {
-//            __block let nextWeekDate;
-//            beforeEach(^{
-//                nextWeekDate = [currentDate dateByAddingDays:DAYS_IN_WEEK];
-//                }
-//            it("should be false") {
-//                let match = nextWeekDate.isSameWeekAsDate(currentDate)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("last week") {
-//            __block let prevWeekDate;
-//            beforeEach(^{
-//                prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK];
-//                }
-//            it("should be false") {
-//                let match = prevWeekDate.isSameWeekAsDate(currentDate)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    }
-//describe("-isThisWeek") {
-//    __block let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("same week") {
-//        it("should be true") {
-//            let match = currentDate.isThisWeek()
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    context("next day (monday)") {
-//        context("firstWeekday is sunday") {
-//            beforeEach(^{
-//                let beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//                beginingOfMondayCalendar.firstWeekday = 1;
-//                [Date stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
-//                }
-//            it("should be true") {
-//                let match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        context("firstWeekday is monday") {
-//            beforeEach(^{
-//                let beginingOfMondayCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//                beginingOfMondayCalendar.firstWeekday = 2;
-//                [Date stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
-//                }
-//            it("should be true") {
-//                let match = [currentDate isSameWeekAsDate:[currentDate dateByAddingDays:1]];
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    context("within this week") {
-//        context("firstOfWeek") {
-//            it("should be true") {
-//                // weekday 1...7
-//                let firstOfWeek = currentDate.build(
-//                    day : (currentDate.firstDayOfWeekday())
-//                )
-//                let match_first = firstOfWeek.isThisWeek()
-//                expect(match_first).to(beTrue())
-//                }
-//            }
-//        context("endOfWeek") {
-//            it("should be true") {
-//                let lastOfWeek = currentDate.build(
-//                    day : (currentDate.lastDayOfWeekday())
-//                )
-//                let match_last = lastOfWeek.isThisWeek()
-//                expect(match_last).to(beTrue())
-//                }
-//            }
-//        }
-//    context("next week") {
-//        __block let nextWeekDate;
-//        beforeEach(^{
-//            nextWeekDate = [currentDate dateByAddingDays:DAYS_IN_WEEK];
-//            }
-//        it("should be false") {
-//            let match = nextWeekDate.isThisWeek()
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    context("last week") {
-//        __block let prevWeekDate;
-//        beforeEach(^{
-//            prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK];
-//            }
-//        it("should be false") {
-//            let match = prevWeekDate.isThisWeek()
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    }
-//describe("-isNextWeek") {
-//    __block let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("within this week") {
-//        context("at endOfWeek") {
-//            it("should be false") {
-//                let endOfWeek = currentDate.build(
-//                    day : (currentDate.lastDayOfWeekday())
-//                )
-//                let match = endOfWeek.isNextWeek()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    context("next week") {
-//        __block let nextWeekDate;
-//        beforeEach(^{
-//            nextWeekDate = [currentDate dateByAddingDays:DAYS_IN_WEEK];
-//            }
-//        it("should be true") {
-//            let match = nextWeekDate.isNextWeek()
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    context("two weeks later") {
-//        __block let nextWeekDate;
-//        beforeEach(^{
-//            nextWeekDate = [currentDate dateByAddingDays:DAYS_IN_WEEK * 2];
-//            }
-//        it("should be false") {
-//            let match = nextWeekDate.isNextWeek()
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    }
-//describe("-isLastWeek") {
-//    __block let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 9,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("within this week") {
-//        context("at startOfWeek") {
-//            it("should be false") {
-//                let lastOfWeek = currentDate.build(
-//                    day : (currentDate.firstDayOfWeekday())
-//                )
-//                let match = lastOfWeek.isLastWeek()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    context("when last week") {
-//        __block let prevWeekDate;
-//        beforeEach(^{
-//            prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK];
-//            }
-//        it("should be true") {
-//            let match = prevWeekDate.isLastWeek()
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    context("when two weeks ago") {
-//        __block let prevWeekDate;
-//        beforeEach(^{
-//            prevWeekDate = [currentDate dateBySubtractingDays:DAYS_IN_WEEK * 2];
-//            }
-//        it("should be false") {
-//            let match = prevWeekDate.isLastWeek()
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    }
-//describe("-isSameMonthAsDate") {
-//    context("today is 2010-10-10 ") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = Date.build(
-//                year: 2010,
-//                month: 10,
-//                day: 10,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            }
-//        context("within this month") {
-//            context("at start of month") {
-//                it("should be yes") {
-//                    let startOfMonth = currentDate.dateAtStartOfMonth()
-//                    let match = currentDate.isSameMonthAsDate(startOfMonth)
-//                    expect(match).to(beTrue())
-//                    }
-//                }
-//            context("at end of month") {
-//                it("should be yes") {
-//                    let endOfMonth = currentDate.dateAtEndOfMonth()
-//                    let match = currentDate.isSameMonthAsDate(endOfMonth)
-//                    expect(match).to(beTrue())
-//                    }
-//                }
-//            }
-//        context("next month") {
-//            __block let nextMonth;
-//            beforeEach(^{
-//                let calendar = NSCalendar.currentCalendar()
-//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
-//                oneMonthComponents.month = 1;
-//                nextMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-//                }
-//            it("should be false") {
-//                let match = currentDate.isSameMonthAsDate(nextMonth)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("last month") {
-//            __block let lastMonth;
-//            beforeEach(^{
-//                let calendar = NSCalendar.currentCalendar()
-//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
-//                oneMonthComponents.month = -1;
-//                lastMonth = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-//                }
-//            it("should be false") {
-//                let match = currentDate.isSameMonthAsDate(lastMonth)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("next year") {
-//            __block let nextYear;
-//            beforeEach(^{
-//                let calendar = NSCalendar.currentCalendar()
-//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
-//                oneMonthComponents.year = 1;
-//                nextYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-//                }
-//            it("should be false") {
-//                let match = currentDate.isSameMonthAsDate(nextYear)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    context("today is 1988-12-07 ") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = Date.build(
-//                year: 1989,
-//                month: 1,
-//                day: 6,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            
-//            let jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-//            [Date stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
-//            }
-//        context("2 days ago") {
-//            __block let _2daysAgo;
-//            beforeEach(^{
-//                let calendar = NSCalendar.currentCalendar()
-//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
-//                oneMonthComponents.day = 2;
-//                _2daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-//                }
-//            it("should be true") {
-//                let match = currentDate.isSameMonthAsDate(_2daysAgo)
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        }
-//    context("today is 2010-02-13") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            // date at end of year in Chinese
-//            currentDate = Date.build(
-//                year: 2010,
-//                month: 2,
-//                day: 13,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            
-//            let chineseCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierChinese];
-//            [Date stub:selector(AZ_currentCalendar) andReturn:chineseCalendar];
-//            }
-//        context("1 days ago") {
-//            __block let _1daysAgo;
-//            beforeEach(^{
-//                // date at start of year in Chinese
-//                let calendar = NSCalendar.currentCalendar()
-//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
-//                oneMonthComponents.day = 1;
-//                _1daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-//                }
-//            it("should be true") {
-//                let match = currentDate.isSameYearAsDate(_1daysAgo)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    }
-//describe("-isThisMonth") {
-//    __block let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("when sameMonth as Date") {
-//        it("should be true") {
-//            let match = currentDate.isThisMonth()
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    }
-//describe("-isSameYearAsDate") {
-//    __block let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("within this year") {
-//        context("today is date") {
-//            context("at start of year") {
-//                __block let startOfYear;
-//                beforeEach(^{
-//                    startOfYear = currentDate.dateAtStartOfYear()
-//                    }
-//                it("should be yes") {
-//                    let match = currentDate.isSameYearAsDate(startOfYear)
-//                    expect(match).to(beTrue())
-//                    }
-//                }
-//            context("at end of year") {
-//                __block let endOfYear;
-//                beforeEach(^{
-//                    endOfYear = currentDate.dateAtEndOfYear()
-//                    }
-//                it("should be yes") {
-//                    let match = currentDate.isSameYearAsDate(endOfYear)
-//                    expect(match).to(beTrue())
-//                    }
-//                }
-//            }
-//        context("today is 1988-12-07 ") {
-//            __block let currentDate;
-//            beforeEach(^{
-//                currentDate = Date.build(
-//                    year: 1989,
-//                    month: 1,
-//                    day: 6,
-//                )
-//                [FakeDateUtil stubCurrentDate:currentDate];
-//                
-//                let jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-//                [Date stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
-//                }
-//            context("2 days ago") {
-//                __block let _2daysAgo;
-//                beforeEach(^{
-//                    let calendar = NSCalendar.currentCalendar()
-//                    DateComponents *oneMonthComponents = [DateComponents.alloc() init];
-//                    oneMonthComponents.day = 2;
-//                    _2daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-//                    }
-//                it("should be true") {
-//                    let match = currentDate.isSameYearAsDate(_2daysAgo)
-//                    expect(match).to(beTrue())
-//                    }
-//                }
-//            }
-//        }
-//    context("last year") {
-//        __block let lastYear;
-//        beforeEach(^{
-//            let calendar = NSCalendar.currentCalendar()
-//            DateComponents *oneMonthComponents = [DateComponents.alloc() init];
-//            oneMonthComponents.year = -1;
-//            lastYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-//            }
-//        it("should be false") {
-//            let match = currentDate.isSameYearAsDate(lastYear)
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    context("next year") {
-//        __block let nextYear;
-//        beforeEach(^{
-//            let calendar = NSCalendar.currentCalendar()
-//            DateComponents *oneMonthComponents = [DateComponents.alloc() init];
-//            oneMonthComponents.year = 1;
-//            nextYear = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-//            }
-//        it("should be false") {
-//            let match = currentDate.isSameYearAsDate(nextYear)
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    
-//    context("today is 2010-02-13") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            // date at end of year in Chinese
-//            currentDate = Date.build(
-//                year: 2010,
-//                month: 2,
-//                day: 13,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            
-//            let chineseCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierChinese];
-//            [Date stub:selector(AZ_currentCalendar) andReturn:chineseCalendar];
-//            }
-//        context("1 days ago") {
-//            __block let _1daysAgo;
-//            beforeEach(^{
-//                // date at start of year in Chinese
-//                let calendar = NSCalendar.currentCalendar()
-//                DateComponents *oneMonthComponents = [DateComponents.alloc() init];
-//                oneMonthComponents.day = 1;
-//                _1daysAgo = [calendar dateByAddingComponents:oneMonthComponents toDate:currentDate options:0];
-//                }
-//            it("should be true") {
-//                let match = currentDate.isSameMonthAsDate(_1daysAgo)
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    }
 //describe("-isThisYear") {
 //    __block let currentDate;
 //    beforeEach(^{
@@ -923,7 +608,7 @@ class EscortComparingSpec: QuickSpec {
 //        context("2 days laster") {
 //            __block let _2daysAgo;
 //            beforeEach(^{
-//                _2daysAgo = [currentDate dateByAddingDays:2];
+//                _2daysAgo = currentDate.add(day: 2)
 //                }
 //            it("should be true") {
 //                let match = _2daysAgo.isNextYear()
