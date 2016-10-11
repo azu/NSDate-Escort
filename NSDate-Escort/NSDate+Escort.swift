@@ -165,6 +165,10 @@ extension Date {
     public func isSameYear(as date: Date) -> Bool {
         return self.startOfYear().isSameMonth(as: date.startOfYear())
     }
+    public func isThisYear() -> Bool {
+        return self.isSameYear(as: Date())
+    }
+    
     
     public func year() -> Int {
         let calendar = Calendar(identifier: .gregorian)

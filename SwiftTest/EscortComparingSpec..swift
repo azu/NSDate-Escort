@@ -456,38 +456,24 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
         }
+        describe("-isThisYear") {
+            let currentDate = Date()
+            context("within this year") {
+                it("should be true") {
+                    let match = currentDate.isThisYear()
+                    expect(match).to(beTrue())
+                }
+            }
+            context("other year") {
+                let otherYearDate = currentDate.add(year: 10)
+                it("should be false") {
+                    let match = otherYearDate.isThisYear()
+                    expect(match).to(beFalse())
+                }
+            }
+        }
     }
 }
-//describe("-isThisYear") {
-//    __block let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("within this year") {
-//        it("should be true") {
-//            let match = currentDate.isThisYear()
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    context("other year") {
-//        __block let otherYearDate;
-//        beforeEach(^{
-//            NSInteger currentYear = currentDate.year()
-//            otherYearDate = currentDate.build(
-//                year : (currentYear + 10)
-//            )
-//            }
-//        it("should be false") {
-//            let match = otherYearDate.isThisYear()
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    }
 //describe("-isNextYear") {
 //    context("today is 2010-10-10") {
 //        __block let currentDate;
