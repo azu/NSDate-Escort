@@ -168,6 +168,15 @@ extension Date {
     public func isThisYear() -> Bool {
         return self.isSameYear(as: Date())
     }
+    public func isNextYear() -> Bool {
+        return self.isSameYear(as: Date().add(year: 1))
+    }
+    public func isLastYear() -> Bool {
+        return self.isSameYear(as: Date().add(year: -1))
+    }
+    public func isEarlier(than date: Date) -> Bool {
+        return (self.compare(date) == .orderedAscending)
+    }
     
     
     public func year() -> Int {

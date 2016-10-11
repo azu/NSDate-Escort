@@ -472,359 +472,98 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
         }
+        describe("-isNextYear") {
+            context("today is 2010-10-10") {
+                let currentDate = Date()
+                context("this week") {
+                    it("should be false") {
+                        let match = currentDate.isNextYear()
+                        expect(match).to(beFalse())
+                    }
+                }
+                context("next year") {
+                    let nextYear = currentDate.build(
+                        year : (currentDate.year() + 1)
+                    )
+                    it("should be true") {
+                        let match = nextYear.isNextYear()
+                        expect(match).to(beTrue())
+                    }
+                }
+                context("one years later") {
+                    let twoYearsLater = currentDate.build(
+                        year : (currentDate.year() + 2)
+                    )
+                    it("should be false") {
+                        let match = twoYearsLater.isNextYear()
+                        expect(match).to(beFalse())
+                    }
+                }
+            }
+        }
+        describe("-isLastYear") {
+            context("today is 2010-10-10") {
+                let currentDate = Date()
+                context("this week") {
+                    it("should be false") {
+                        let match = currentDate.isLastYear()
+                        expect(match).to(beFalse())
+                    }
+                }
+                context("last year") {
+                    let lastYear = currentDate.build(
+                        year : (currentDate.year() - 1)
+                    )
+                    it("should be true") {
+                        let match = lastYear.isLastYear()
+                        expect(match).to(beTrue())
+                    }
+                }
+                context("two years ago") {
+                    let twoYearsAgo = currentDate.build(
+                        year : (currentDate.year() - 2)
+                    )
+                    it("should be false") {
+                        let match = twoYearsAgo.isLastYear()
+                        expect(match).to(beFalse())
+                    }
+                }
+            }
+        }
+        describe("-isEarlierThanDate") {
+            let currentDate = Date().build(
+                year: 2010,
+                month: 10,
+                day: 10,
+                hour: 10,
+                minute: 10,
+                second: 10
+            )
+            context("when same time") {
+                it("should be false") {
+                    let match = currentDate.isEarlier(than: currentDate)
+                    expect(match).to(beFalse())
+                }
+            }
+            context("when earlier date") {
+                let earlierDate = currentDate.add(second: -1)
+                it("should be true") {
+                    let match = earlierDate.isEarlier(than: currentDate)
+                    expect(match).to(beTrue())
+                }
+            }
+            context("when later date") {
+                let laterDate = currentDate.add(second: 1)
+                it("should be false") {
+                    let match = laterDate.isEarlier(than: currentDate)
+                    expect(match).to(beFalse())
+                }
+            }
+        }
     }
 }
-//describe("-isNextYear") {
-//    context("today is 2010-10-10") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = Date.build(
-//                year: 2010,
-//                month: 10,
-//                day: 10,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            }
-//        context("this week") {
-//            it("should be false") {
-//                let match = currentDate.isNextYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("next year") {
-//            __block let nextYear;
-//            beforeEach(^{
-//                NSInteger currentYear = currentDate.gregorianYear()
-//                nextYear = currentDate.build(
-//                    year : (currentYear + 1)
-//                )
-//                }
-//            it("should be true") {
-//                let match = nextYear.isNextYear()
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        context("one years later") {
-//            __block let twoYearsLater;
-//            beforeEach(^{
-//                NSInteger currentYear = currentDate.gregorianYear()
-//                twoYearsLater = currentDate.build(
-//                    year : (currentYear + 2)
-//                )
-//                }
-//            it("should be false") {
-//                let match = twoYearsLater.isNextYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    context("today is BC 10-10-10") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = Date.build(
-//                year : -10,
-//                month: 10,
-//                day: 10,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            }
-//        context("this week") {
-//            it("should be false") {
-//                let match = currentDate.isNextYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("next year") {
-//            __block let nextYear;
-//            beforeEach(^{
-//                nextYear = currentDate.build(
-//                    year : -9
-//                )
-//                }
-//            it("should be true") {
-//                let match = nextYear.isNextYear()
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        context("last year") {
-//            __block let lastYear;
-//            beforeEach(^{
-//                lastYear = currentDate.build(
-//                    year : -11
-//                )
-//                }
-//            it("should be true") {
-//                let match = lastYear.isNextYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("two years later") {
-//            __block let twoYearsLater;
-//            beforeEach(^{
-//                NSInteger currentYear = currentDate.gregorianYear()
-//                twoYearsLater = currentDate.build(
-//                    year : (currentYear + 2)
-//                )
-//                }
-//            it("should be false") {
-//                let match = twoYearsLater.isNextYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    context("today is 1989-01-06 and not Gregorian") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = Date.build(
-//                year: 1989,
-//                month: 1,
-//                day: 6,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            
-//            let jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-//            [Date stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
-//            }
-//        context("this week") {
-//            it("should be false") {
-//                let match = currentDate.isNextYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("2 days laster") {
-//            __block let _2daysAgo;
-//            beforeEach(^{
-//                _2daysAgo = currentDate.add(day: 2)
-//                }
-//            it("should be true") {
-//                let match = _2daysAgo.isNextYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("next year") {
-//            __block let nextYear;
-//            beforeEach(^{
-//                NSInteger currentYear = currentDate.gregorianYear()
-//                nextYear = currentDate.build(
-//                    year : (currentYear + 1)
-//                )
-//                }
-//            it("should be true") {
-//                let match = nextYear.isNextYear()
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        context("two years later") {
-//            __block let twoYearsLater;
-//            beforeEach(^{
-//                NSInteger currentYear = currentDate.gregorianYear()
-//                twoYearsLater = currentDate.build(
-//                    year : (currentYear + 2)
-//                )
-//                }
-//            it("should be false") {
-//                let match = twoYearsLater.isNextYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    }
-//describe("-isLastYear") {
-//    context("today is 2010-10-10") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = Date.build(
-//                year: 2010,
-//                month: 10,
-//                day: 10,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            }
-//        context("this week") {
-//            it("should be false") {
-//                let match = currentDate.isLastYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("last year") {
-//            __block let lastYear;
-//            beforeEach(^{
-//                NSInteger currentYear = currentDate.gregorianYear()
-//                lastYear = currentDate.build(
-//                    year : (currentYear - 1)
-//                )
-//                }
-//            it("should be true") {
-//                let match = lastYear.isLastYear()
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        context("two years ago") {
-//            __block let twoYearsAgo;
-//            beforeEach(^{
-//                NSInteger currentYear = currentDate.gregorianYear()
-//                twoYearsAgo = currentDate.build(
-//                    year : (currentYear - 2)
-//                )
-//                }
-//            it("should be false") {
-//                let match = twoYearsAgo.isLastYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    context("today is BC 10-10-10") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = Date.build(
-//                year : -10,
-//                month: 10,
-//                day: 10,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            }
-//        context("this week") {
-//            it("should be false") {
-//                let match = currentDate.isLastYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("next year") {
-//            __block let nextYear;
-//            beforeEach(^{
-//                nextYear = currentDate.build(
-//                    year : -9
-//                )
-//                }
-//            it("should be true") {
-//                let match = nextYear.isLastYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("last year") {
-//            __block let lastYear;
-//            beforeEach(^{
-//                lastYear = currentDate.build(
-//                    year : -11
-//                )
-//                }
-//            it("should be true") {
-//                let match = lastYear.isLastYear()
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        context("two years ago") {
-//            __block let twoYearsAgo;
-//            beforeEach(^{
-//                twoYearsAgo = currentDate.build(
-//                    year : -12
-//                )
-//                }
-//            it("should be false") {
-//                let match = twoYearsAgo.isLastYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    context("today is 1989-01-08 and not Gregorian") {
-//        __block let currentDate;
-//        beforeEach(^{
-//            currentDate = Date.build(
-//                year: 1989,
-//                month: 1,
-//                day: 8,
-//            )
-//            [FakeDateUtil stubCurrentDate:currentDate];
-//            
-//            let jaCalendar = [NSCalendar.alloc() initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-//            [Date stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
-//            }
-//        context("this week") {
-//            it("should be false") {
-//                let match = currentDate.isLastYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("2 days ago") {
-//            __block let _2daysAgo;
-//            beforeEach(^{
-//                _2daysAgo = [currentDate dateBySubtractingDays:2];
-//                }
-//            it("should be true") {
-//                let match = _2daysAgo.isLastYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        context("last year") {
-//            __block let lastYear;
-//            beforeEach(^{
-//                NSInteger currentYear = currentDate.gregorianYear()
-//                lastYear = currentDate.build(
-//                    year : (currentYear - 1)
-//                )
-//                }
-//            it("should be true") {
-//                let match = lastYear.isLastYear()
-//                expect(match).to(beTrue())
-//                }
-//            }
-//        context("two years ago") {
-//            __block let twoYearsAgo;
-//            beforeEach(^{
-//                NSInteger currentYear = currentDate.gregorianYear()
-//                twoYearsAgo = currentDate.build(
-//                    year : (currentYear + 2)
-//                )
-//                }
-//            it("should be false") {
-//                let match = twoYearsAgo.isLastYear()
-//                expect(match).to(beFalse())
-//                }
-//            }
-//        }
-//    }
-//describe("-isEarlierThanDate") {
-//    __block let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//            hour: 10,
-//            minute: 10,
-//            second: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("when same time") {
-//        it("should be false") {
-//            let match = currentDate.isEarlierThanDate(currentDate)
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    context("when earlier date") {
-//        __block let earlierDate;
-//        beforeEach(^{
-//            earlierDate = [currentDate dateByAddingTimeInterval:-1];
-//            }
-//        it("should be true") {
-//            let match = earlierDate.isEarlierThanDate(currentDate)
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    context("when later date") {
-//        __block let laterDate;
-//        beforeEach(^{
-//            laterDate = [currentDate dateByAddingTimeInterval:1];
-//            }
-//        it("should be false") {
-//            let match = laterDate.isEarlierThanDate(currentDate)
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    }
 //describe("-isLaterThanDate") {
-//    __block let currentDate;
+//    let currentDate;
 //    beforeEach(^{
 //        currentDate = Date.build(
 //            year: 2010,
@@ -843,7 +582,7 @@ class EscortComparingSpec: QuickSpec {
 //            }
 //        }
 //    context("when earlier date") {
-//        __block let earlierDate;
+//        let earlierDate;
 //        beforeEach(^{
 //            earlierDate = [currentDate dateByAddingTimeInterval:-1];
 //            }
@@ -853,7 +592,7 @@ class EscortComparingSpec: QuickSpec {
 //            }
 //        }
 //    context("when later date") {
-//        __block let laterDate;
+//        let laterDate;
 //        beforeEach(^{
 //            laterDate = [currentDate dateByAddingTimeInterval:1];
 //            }
@@ -864,7 +603,7 @@ class EscortComparingSpec: QuickSpec {
 //        }
 //    }
 //describe("-isEarlierThanOrEqualDate") {
-//    __block let currentDate;
+//    let currentDate;
 //    beforeEach(^{
 //        currentDate = Date.build(
 //            year: 2010,
@@ -883,7 +622,7 @@ class EscortComparingSpec: QuickSpec {
 //            }
 //        }
 //    context("when earlier date") {
-//        __block let earlierDate;
+//        let earlierDate;
 //        beforeEach(^{
 //            earlierDate = [currentDate dateByAddingTimeInterval:-1];
 //            }
@@ -893,7 +632,7 @@ class EscortComparingSpec: QuickSpec {
 //            }
 //        }
 //    context("when later date") {
-//        __block let laterDate;
+//        let laterDate;
 //        beforeEach(^{
 //            laterDate = [currentDate dateByAddingTimeInterval:1];
 //            }
@@ -904,7 +643,7 @@ class EscortComparingSpec: QuickSpec {
 //        }
 //    }
 //describe("-isLaterThanOrEqualDate") {
-//    __block let currentDate;
+//    let currentDate;
 //    beforeEach(^{
 //        currentDate = Date.build(
 //            year: 2010,
@@ -923,7 +662,7 @@ class EscortComparingSpec: QuickSpec {
 //            }
 //        }
 //    context("when earlier date") {
-//        __block let earlierDate;
+//        let earlierDate;
 //        beforeEach(^{
 //            earlierDate = [currentDate dateByAddingTimeInterval:-1];
 //            }
@@ -933,7 +672,7 @@ class EscortComparingSpec: QuickSpec {
 //            }
 //        }
 //    context("when later date") {
-//        __block let laterDate;
+//        let laterDate;
 //        beforeEach(^{
 //            laterDate = [currentDate dateByAddingTimeInterval:1];
 //            }
@@ -944,7 +683,7 @@ class EscortComparingSpec: QuickSpec {
 //        }
 //    }
 //describe("-isInPast") {
-//    __block let currentDate;
+//    let currentDate;
 //    beforeEach(^{
 //        currentDate = Date.build(
 //            year: 2010,
@@ -963,7 +702,7 @@ class EscortComparingSpec: QuickSpec {
 //            }
 //        }
 //    context("when earlier date") {
-//        __block let earlierDate;
+//        let earlierDate;
 //        beforeEach(^{
 //            earlierDate = [currentDate dateByAddingTimeInterval:-1];
 //            }
@@ -975,7 +714,7 @@ class EscortComparingSpec: QuickSpec {
 //    }
 //
 //describe("-isInFuture") {
-//    __block let currentDate;
+//    let currentDate;
 //    beforeEach(^{
 //        currentDate = Date.build(
 //            year: 2010,
@@ -994,7 +733,7 @@ class EscortComparingSpec: QuickSpec {
 //            }
 //        }
 //    context("when later date") {
-//        __block let laterDate;
+//        let laterDate;
 //        beforeEach(^{
 //            laterDate = [currentDate dateByAddingTimeInterval:1];
 //            }
