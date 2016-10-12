@@ -560,88 +560,61 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
         }
+        describe("-isLaterThanDate") {
+            let currentDate = Date.build(
+                year: 2010,
+                month: 10,
+                day: 10,
+                hour: 10,
+                minute: 10,
+                second: 10
+            )
+            context("when same time") {
+                it("should be false") {
+                    let match = currentDate.isLater(than: currentDate)
+                    expect(match).to(beFalse())
+                }
+            }
+            context("when earlier date") {
+                let earlierDate = currentDate.add(second: -1)
+                it("should be false") {
+                    let match = earlierDate.isLater(than: currentDate)
+                    expect(match).to(beFalse())
+                }
+            }
+            context("when later date") {
+                let laterDate = currentDate.add(second: 1)
+                it("should be true") {
+                    let match = laterDate.isLater(than: currentDate)
+                    expect(match).to(beTrue())
+                }
+            }
+        }
+        describe("-isEarlierThanOrEqualDate") {
+            let currentDate = Date()
+            context("when same time") {
+                it("should be false") {
+                    let match = currentDate.isEarlier(thanOrEqualDate: currentDate)
+                    expect(match).to(beTrue())
+                }
+            }
+            context("when earlier date") {
+                let earlierDate = currentDate.add(second: -1)
+                it("should be true") {
+                    let match = earlierDate.isEarlier(thanOrEqualDate: currentDate)
+                    expect(match).to(beTrue())
+                }
+            }
+            context("when later date") {
+                let laterDate = currentDate.add(second: 1)
+                it("should be false") {
+                    let match = laterDate.isEarlier(thanOrEqualDate: currentDate)
+                    expect(match).to(beFalse())
+                }
+            }
+        }
     }
 }
-//describe("-isLaterThanDate") {
-//    let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//            hour: 10,
-//            minute: 10,
-//            second: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("when same time") {
-//        it("should be false") {
-//            let match = currentDate.isLaterThanDate(currentDate)
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    context("when earlier date") {
-//        let earlierDate;
-//        beforeEach(^{
-//            earlierDate = [currentDate dateByAddingTimeInterval:-1];
-//            }
-//        it("should be false") {
-//            let match = earlierDate.isLaterThanDate(currentDate)
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    context("when later date") {
-//        let laterDate;
-//        beforeEach(^{
-//            laterDate = [currentDate dateByAddingTimeInterval:1];
-//            }
-//        it("should be true") {
-//            let match = laterDate.isLaterThanDate(currentDate)
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    }
-//describe("-isEarlierThanOrEqualDate") {
-//    let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//            hour: 10,
-//            minute: 10,
-//            second: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("when same time") {
-//        it("should be false") {
-//            let match = currentDate.isEarlierThanOrEqualDate(currentDate)
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    context("when earlier date") {
-//        let earlierDate;
-//        beforeEach(^{
-//            earlierDate = [currentDate dateByAddingTimeInterval:-1];
-//            }
-//        it("should be true") {
-//            let match = earlierDate.isEarlierThanOrEqualDate(currentDate)
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    context("when later date") {
-//        let laterDate;
-//        beforeEach(^{
-//            laterDate = [currentDate dateByAddingTimeInterval:1];
-//            }
-//        it("should be false") {
-//            let match = laterDate.isEarlierThanOrEqualDate(currentDate)
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    }
 //describe("-isLaterThanOrEqualDate") {
 //    let currentDate;
 //    beforeEach(^{

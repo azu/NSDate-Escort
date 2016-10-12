@@ -177,6 +177,12 @@ extension Date {
     public func isEarlier(than date: Date) -> Bool {
         return (self.compare(date) == .orderedAscending)
     }
+    public func isLater(than date: Date) -> Bool {
+        return (self.compare(date) == .orderedDescending)
+    }
+    public func isEarlier(thanOrEqualDate date: Date) -> Bool {
+        return (self.compare(date) != .orderedDescending)
+    }
     
     
     public func year() -> Int {
