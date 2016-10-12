@@ -180,10 +180,12 @@ extension Date {
     public func isLater(than date: Date) -> Bool {
         return (self.compare(date) == .orderedDescending)
     }
-    public func isEarlier(thanOrEqualDate date: Date) -> Bool {
+    public func isEarlier(thanOrEqual date: Date) -> Bool {
         return (self.compare(date) != .orderedDescending)
     }
-    
+    public func isLater(thanOrEqual date: Date) -> Bool {
+        return (self.compare(date) != .orderedAscending)
+    }
     
     public func year() -> Int {
         let calendar = Calendar(identifier: .gregorian)
