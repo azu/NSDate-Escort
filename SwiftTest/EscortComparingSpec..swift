@@ -652,36 +652,21 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
         }
+        describe("-isInFuture") {
+            let currentDate = Date()
+            context("when same time") {
+                it("should be false") {
+                    let match = currentDate.isInFuture()
+                    expect(match).to(beFalse())
+                }
+            }
+            context("when later date") {
+                let laterDate = currentDate.add(second: 1)
+                it("should be true") {
+                    let match = laterDate.isInFuture()
+                    expect(match).to(beTrue())
+                }
+            }
+        }
     }
 }
-//
-//describe("-isInFuture") {
-//    let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//            hour: 10,
-//            minute: 10,
-//            second: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("when same time") {
-//        it("should be false") {
-//            let match = currentDate.isInFuture()
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    context("when later date") {
-//        let laterDate;
-//        beforeEach(^{
-//            laterDate = currentDate.add(second: 1)
-//            }
-//        it("should be true") {
-//            let match = laterDate.isInFuture()
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    }

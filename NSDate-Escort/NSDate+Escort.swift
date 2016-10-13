@@ -189,6 +189,9 @@ extension Date {
     public func isInPast() -> Bool {
         return self.isEarlier(than: Date())
     }
+    public func isInFuture() -> Bool {
+        return self.isLater(than: Date())
+    }
     
     public func year() -> Int {
         let calendar = Calendar(identifier: .gregorian)
