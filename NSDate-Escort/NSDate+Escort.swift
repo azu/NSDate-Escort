@@ -186,6 +186,9 @@ extension Date {
     public func isLater(thanOrEqual date: Date) -> Bool {
         return (self.compare(date) != .orderedAscending)
     }
+    public func isInPast() -> Bool {
+        return self.isEarlier(than: Date())
+    }
     
     public func year() -> Int {
         let calendar = Calendar(identifier: .gregorian)

@@ -636,38 +636,24 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
         }
+        describe("-isInPast") {
+            let currentDate = Date()
+            context("when same time") {
+                it("should be false") {
+                    let match = currentDate.isInPast()
+                    expect(match).to(beTrue())
+                }
+            }
+            context("when earlier date") {
+                let earlierDate = currentDate.add(second: -1)
+                it("should be true") {
+                    let match = earlierDate.isInPast()
+                    expect(match).to(beTrue())
+                }
+            }
+        }
     }
 }
-//describe("-isInPast") {
-//    let currentDate;
-//    beforeEach(^{
-//        currentDate = Date.build(
-//            year: 2010,
-//            month: 10,
-//            day: 10,
-//            hour: 10,
-//            minute: 10,
-//            second: 10,
-//        )
-//        [FakeDateUtil stubCurrentDate:currentDate];
-//        }
-//    context("when same time") {
-//        it("should be false") {
-//            let match = currentDate.isInPast()
-//            expect(match).to(beFalse())
-//            }
-//        }
-//    context("when earlier date") {
-//        let earlierDate;
-//        beforeEach(^{
-//            earlierDate = [currentDate dateByAddingTimeInterval:-1];
-//            }
-//        it("should be true") {
-//            let match = earlierDate.isInPast()
-//            expect(match).to(beTrue())
-//            }
-//        }
-//    }
 //
 //describe("-isInFuture") {
 //    let currentDate;
@@ -691,7 +677,7 @@ class EscortComparingSpec: QuickSpec {
 //    context("when later date") {
 //        let laterDate;
 //        beforeEach(^{
-//            laterDate = [currentDate dateByAddingTimeInterval:1];
+//            laterDate = currentDate.add(second: 1)
 //            }
 //        it("should be true") {
 //            let match = laterDate.isInFuture()
