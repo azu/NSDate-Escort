@@ -21,17 +21,13 @@
 		73FCA17118DE837D009ED4AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355ABE317638E9600DD1EC2 /* UIKit.framework */; };
 		73FCA17718DE837D009ED4AD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 73FCA17518DE837D009ED4AD /* InfoPlist.strings */; };
 		7947BC5703D2C7CEEBE12565 /* libPods-Benchmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D8F9800A0013565B2F570 /* libPods-Benchmark.a */; };
-		BE318BC41DA351E1009A09CD /* EscortComparingSpec..swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */; };
 		BE318BC71DA38717009A09CD /* ApproximatelyEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC61DA38717009A09CD /* ApproximatelyEqual.swift */; };
 		BE318BC91DA38804009A09CD /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC81DA38804009A09CD /* Constant.swift */; };
-		BE318BCB1DA38BC0009A09CD /* EscortClassSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BCA1DA38BC0009A09CD /* EscortClassSpec.swift */; };
-		BE4F88901DAF433900B7D530 /* EscortDateRoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F888F1DAF433900B7D530 /* EscortDateRoles.swift */; };
-		BE4F88921DAF438000B7D530 /* EscortCacheSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F88911DAF438000B7D530 /* EscortCacheSpec.swift */; };
 		BE4F88941DAF439100B7D530 /* EscortDecomposingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F88931DAF439100B7D530 /* EscortDecomposingSpec.swift */; };
-		BE4F88961DAF439D00B7D530 /* EscortAdjustingDatesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F88951DAF439D00B7D530 /* EscortAdjustingDatesSpec.swift */; };
-		BE4F88981DAF43AB00B7D530 /* EscortRetrievingIntervalsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F88971DAF43AB00B7D530 /* EscortRetrievingIntervalsSpec.swift */; };
 		BE5B7B151BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */; };
 		BE953ADD1D9CFC13006AA21C /* BuildSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE953ADC1D9CFC13006AA21C /* BuildSpec.swift */; };
+		BE9DFE461DB0ADC9006B271F /* EscortComparingSpec..swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */; };
+		BE9DFE471DB0ADCE006B271F /* EscortClassSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BCA1DA38BC0009A09CD /* EscortClassSpec.swift */; };
 		C5BD6A39196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A36196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m */; };
 		C5BD6A3A196287E30053103A /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */; };
 		ECD0F60B66562762633E1F96 /* Pods_SwiftTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FEA0C22CAFBF9561AE001D8 /* Pods_SwiftTest.framework */; };
@@ -69,7 +65,6 @@
 		BE318BC81DA38804009A09CD /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BE318BCA1DA38BC0009A09CD /* EscortClassSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscortClassSpec.swift; sourceTree = "<group>"; };
 		BE4F888F1DAF433900B7D530 /* EscortDateRoles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EscortDateRoles.swift; path = SwiftTest/EscortDateRoles.swift; sourceTree = SOURCE_ROOT; };
-		BE4F88911DAF438000B7D530 /* EscortCacheSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscortCacheSpec.swift; sourceTree = "<group>"; };
 		BE4F88931DAF439100B7D530 /* EscortDecomposingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscortDecomposingSpec.swift; sourceTree = "<group>"; };
 		BE4F88951DAF439D00B7D530 /* EscortAdjustingDatesSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscortAdjustingDatesSpec.swift; sourceTree = "<group>"; };
 		BE4F88971DAF43AB00B7D530 /* EscortRetrievingIntervalsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EscortRetrievingIntervalsSpec.swift; sourceTree = "<group>"; };
@@ -236,7 +231,6 @@
 				BE953AE21D9D020A006AA21C /* SwiftTest-Briding-Header.h */,
 				BE318BC81DA38804009A09CD /* Constant.swift */,
 				BE4F88931DAF439100B7D530 /* EscortDecomposingSpec.swift */,
-				BE4F88911DAF438000B7D530 /* EscortCacheSpec.swift */,
 				BE4F888F1DAF433900B7D530 /* EscortDateRoles.swift */,
 				BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */,
 				BE318BCA1DA38BC0009A09CD /* EscortClassSpec.swift */,
@@ -550,16 +544,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE4F88981DAF43AB00B7D530 /* EscortRetrievingIntervalsSpec.swift in Sources */,
 				BE318BC71DA38717009A09CD /* ApproximatelyEqual.swift in Sources */,
-				BE4F88961DAF439D00B7D530 /* EscortAdjustingDatesSpec.swift in Sources */,
 				BE4F88941DAF439100B7D530 /* EscortDecomposingSpec.swift in Sources */,
-				BE4F88921DAF438000B7D530 /* EscortCacheSpec.swift in Sources */,
-				BE318BC41DA351E1009A09CD /* EscortComparingSpec..swift in Sources */,
-				BE318BCB1DA38BC0009A09CD /* EscortClassSpec.swift in Sources */,
-				BE4F88901DAF433900B7D530 /* EscortDateRoles.swift in Sources */,
 				BE953ADD1D9CFC13006AA21C /* BuildSpec.swift in Sources */,
+				BE9DFE461DB0ADC9006B271F /* EscortComparingSpec..swift in Sources */,
 				BE318BC91DA38804009A09CD /* Constant.swift in Sources */,
+				BE9DFE471DB0ADCE006B271F /* EscortClassSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

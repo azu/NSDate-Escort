@@ -193,21 +193,61 @@ extension Date {
         return self.isLater(than: Date())
     }
     
-    public func year() -> Int {
+    public func gregorianYear() -> Int {
         let calendar = Calendar(identifier: .gregorian)
-        var dateComponents = calendar.dateComponents([.year], from: self)
-        return dateComponents.year!
+        let components = calendar.dateComponents([.year], from: self)
+        return components.year!
+    }
+    public func year() -> Int {
+        let components = Date.AZ_currentCalendar().components([.year], from: self)
+        return components.year!
+    }
+    public func month() -> Int {
+        let components = Date.AZ_currentCalendar().components([.month], from: self)
+        return components.month!
     }
     public func day() -> Int {
-        let calendar = Calendar(identifier: .gregorian)
-        var dateComponents = calendar.dateComponents([.day], from: self)
-        return dateComponents.day!
+        let components = Date.AZ_currentCalendar().components([.day], from: self)
+        return components.day!
+    }
+    public func week() -> Int {
+        let components = Date.AZ_currentCalendar().components([.weekOfMonth], from: self)
+        return components.weekOfMonth!
     }
     public func weekday() -> Int {
-        let calendar = Calendar(identifier: .gregorian)
-        var dateComponents = calendar.dateComponents([.weekday], from: self)
-        return dateComponents.weekday!
+        let components = Date.AZ_currentCalendar().components([.weekday], from: self)
+        return components.weekday!
     }
+    public func nthWeekday() -> Int {
+        let components = Date.AZ_currentCalendar().components([.weekdayOrdinal], from:self)
+        return components.weekdayOrdinal!
+    }
+    public func hour() -> Int {
+        let components = Date.AZ_currentCalendar().components([.hour], from: self)
+        return components.hour!
+    }
+    public func nearestHour() -> Int {
+        let calendar = Date.AZ_currentCalendar()
+        let minuteRange = calendar.range(of: .minute, in: .hour, for: self)
+        // always 30...
+        let halfMinuteInHour = minuteRange.length / 2;
+        let currentMinute = self.minute();
+        if currentMinute < halfMinuteInHour {
+            return self.hour();
+        } else {
+            let anHourLater = self.add(hour: 1)
+            return anHourLater.hour()
+        }
+    }
+    public func minute() -> Int {
+        let components = Date.AZ_currentCalendar().components([.minute], from: self)
+        return components.minute!
+    }
+    public func seconds() -> Int {
+        let components = Date.AZ_currentCalendar().components([.second], from: self)
+        return components.second!
+    }
+    
     public func firstDayOfWeekday() -> Int {
         var startOfTheWeek: NSDate?
         var interval: TimeInterval = 0

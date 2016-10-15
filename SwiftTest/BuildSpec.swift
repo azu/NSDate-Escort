@@ -14,12 +14,12 @@ import NSDate_Escort
 class BuildSpec: QuickSpec {
     override func spec() {
         let date = NSDate.az_date(byUnit: [
-            AZ_DateUnit.year.takeRetainedValue() : 2010,
-            AZ_DateUnit.month.takeRetainedValue() : 10,
-            AZ_DateUnit.day.takeRetainedValue() : 10,
-            AZ_DateUnit.hour.takeRetainedValue() : 11,
-            AZ_DateUnit.minute.takeRetainedValue() : 12,
-            AZ_DateUnit.second.takeRetainedValue() : 13
+            AZ_DateUnit.year.takeRetainedValue(): 2010,
+            AZ_DateUnit.month.takeRetainedValue(): 10,
+            AZ_DateUnit.day.takeRetainedValue(): 10,
+            AZ_DateUnit.hour.takeRetainedValue(): 11,
+            AZ_DateUnit.minute.takeRetainedValue(): 12,
+            AZ_DateUnit.second.takeRetainedValue(): 13
         ])!
         describe("static build") {
             it("2010/10/10 11:12:13") {
