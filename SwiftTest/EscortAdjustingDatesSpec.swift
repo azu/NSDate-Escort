@@ -238,7 +238,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("before 0 Day") {
                     let subject;
@@ -299,7 +299,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("adding 0 hour") {
                     let subject;
@@ -382,7 +382,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("subtract 0 hour") {
                     let subject;
@@ -466,7 +466,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("adding 0 minute") {
                     let subject;
@@ -538,7 +538,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("subtract 0 minute") {
                     let subject;
@@ -610,7 +610,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("adding 0 second") {
                     let subject;
@@ -681,7 +681,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("subtract 0 second") {
                     let subject;

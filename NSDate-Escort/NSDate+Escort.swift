@@ -192,6 +192,16 @@ extension Date {
     public func isInFuture() -> Bool {
         return self.isLater(than: Date())
     }
+    public func isTypicallyWorkday() -> Bool {
+        return isTypicallyWeekend() == false
+    }
+    public func isTypicallyWeekend() -> Bool {
+        let calendar = Date.AZ_currentCalendar()
+        let weekdayRange = calendar.maximumRange(of: .weekday)
+        let components = calendar.components([.weekday], from: self)
+        let weekdayOfDate = components.weekday!
+        return (weekdayOfDate == weekdayRange.location || weekdayOfDate == weekdayRange.location + weekdayRange.length - 1)
+    }
     
     public func gregorianYear() -> Int {
         let calendar = Calendar(identifier: .gregorian)

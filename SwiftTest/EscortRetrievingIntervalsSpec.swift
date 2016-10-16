@@ -23,7 +23,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("when 5 seconds ago") {
                     int fiveSeconds = 5;
@@ -89,7 +89,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("when 5 second later") {
                     int fiveSecond = 5;
@@ -155,7 +155,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("when 1 hour ago") {
                     int oneHour = 1;
@@ -201,7 +201,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("when 1 hour later") {
                     int oneHour = 1;
@@ -248,7 +248,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("when 1 day ago") {
                     int oneDay = 1;
@@ -314,7 +314,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("when 1 day ago") {
                     int oneDay = 1;
@@ -373,7 +373,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("same date") {
                     it("should return 0") {
@@ -436,7 +436,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         minute: 10,
                         second: 10
                     )
-                    FakeDateUtil.stubCurrentDate(currentDate)
+                    
                     }
                 context("same date") {
                     it("should return 0") {

@@ -26,6 +26,7 @@
 		BE4F88941DAF439100B7D530 /* EscortDecomposingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F88931DAF439100B7D530 /* EscortDecomposingSpec.swift */; };
 		BE5B7B151BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */; };
 		BE953ADD1D9CFC13006AA21C /* BuildSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE953ADC1D9CFC13006AA21C /* BuildSpec.swift */; };
+		BE9BBD3D1DB2347500579C22 /* EscortDateRoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F888F1DAF433900B7D530 /* EscortDateRoles.swift */; };
 		BE9DFE461DB0ADC9006B271F /* EscortComparingSpec..swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC31DA351E1009A09CD /* EscortComparingSpec..swift */; };
 		BE9DFE471DB0ADCE006B271F /* EscortClassSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BCA1DA38BC0009A09CD /* EscortClassSpec.swift */; };
 		C5BD6A39196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A36196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m */; };
@@ -544,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE9BBD3D1DB2347500579C22 /* EscortDateRoles.swift in Sources */,
 				BE318BC71DA38717009A09CD /* ApproximatelyEqual.swift in Sources */,
 				BE4F88941DAF439100B7D530 /* EscortDecomposingSpec.swift in Sources */,
 				BE953ADD1D9CFC13006AA21C /* BuildSpec.swift in Sources */,
