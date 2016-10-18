@@ -53,7 +53,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 10 minutes later") {
                     int tenMinutes = 10;
-                    let anotherDate = currentDate.dateByAddingMinutes(tenMinutes)
+                    let anotherDate = currentDate.add(minute:  tenMinutes)
                         }
                     it("should return -10") {
                         let minutes = currentDate.minutesAfterDate(anotherDate)
@@ -62,7 +62,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 5 seconds later") {
                     int fiveSeconds = 5;
-                    let anotherDate = currentDate.dateByAddingSeconds(fiveSeconds)
+                    let anotherDate = currentDate.add(second: fiveSeconds)
                         }
                     it("should return -5") {
                         let seconds = currentDate.secondsAfterDate(anotherDate)
@@ -86,7 +86,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 5 second later") {
                     int fiveSecond = 5;
-                    let anotherDate = currentDate.dateByAddingSeconds(fiveSecond)
+                    let anotherDate = currentDate.add(second: fiveSecond)
                         }
                     it("should return 5") {
                         let seconds = currentDate.secondsBeforeDate(anotherDate)
@@ -95,7 +95,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 10 minutes later") {
                     int tenMinutes = 10;
-                    let anotherDate = currentDate.dateByAddingMinutes(tenMinutes)
+                    let anotherDate = currentDate.add(minute:  tenMinutes)
                         }
                     it("should return 10") {
                         let minutes = currentDate.minutesBeforeDate(anotherDate)

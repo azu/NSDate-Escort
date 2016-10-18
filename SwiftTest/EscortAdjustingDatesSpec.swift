@@ -183,29 +183,24 @@ class EscortAdjustingDatesSpec: QuickSpec {
                 }
             }
         }
-        /*
         describe("-dateByAddingMinutes") {
             context("when the date is 2010-10-10 10:10:10") {
                 let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 10,
-                        minute: 10,
-                        second: 10
-                    )
-                    
-                    }
+                    year: 2010,
+                    month: 10,
+                    day: 10,
+                    hour: 10,
+                    minute: 10,
+                    second: 10
+                )
                 context("adding 0 minute") {
-                    let subject = currentDate.dateByAddingMinutes(0)
-                        }
+                    let subject = currentDate.add(minute:  0)
                     it("should return same date") {
                         expect(subject).to(equal(currentDate))
-                        }
                     }
+                }
                 context("adding 1 minute") {
-                    let subject = currentDate.dateByAddingMinutes(1)
-                        }
+                    let subject = currentDate.add(minute:  1)
                     it("should return 2010-10-10 10:11:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -216,11 +211,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                             second: 10
                         )
                         expect(subject).to(equal(expectDate))
-                        }
                     }
+                }
                 context("adding 60 minute") {
-                    let subject = currentDate.dateByAddingMinutes(60)
-                        }
+                    let subject = currentDate.add(minute:  60)
                     it("should return 2010-10-10 11:10:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -231,11 +225,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                             second: 10
                         )
                         expect(subject).to(equal(expectDate))
-                        }
                     }
+                }
                 context("adding -1 minute") {
-                    let subject = [currentDate dateByAddingMinutes:-1];
-                        }
+                    let subject = currentDate.add(minute: -1)
                     it("should return 2010-10-10 10:09:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -246,32 +239,28 @@ class EscortAdjustingDatesSpec: QuickSpec {
                             second: 10
                         )
                         expect(subject).to(equal(expectDate))
-                        }
                     }
                 }
             }
+        }
         describe("-dateByAddingSounds") {
             context("when the date is 2010-10-10 10:10:10") {
                 let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 10,
-                        minute: 10,
-                        second: 10
-                    )
-                    
-                    }
+                    year: 2010,
+                    month: 10,
+                    day: 10,
+                    hour: 10,
+                    minute: 10,
+                    second: 10
+                )
                 context("adding 0 second") {
-                    let subject = currentDate.dateByAddingSeconds(0)
-                        }
+                    let subject = currentDate.add(second: 0)
                     it("should return same date") {
                         expect(subject).to(equal(currentDate))
-                        }
                     }
+                }
                 context("adding 1 second") {
-                    let subject = currentDate.dateByAddingSeconds(1)
-                        }
+                    let subject = currentDate.add(second: 1)
                     it("should return 2010-10-10 10:10:11") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -282,11 +271,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                             second: 11
                         )
                         expect(subject).to(equal(expectDate))
-                        }
                     }
+                }
                 context("adding 60 seconds") {
-                    let subject = currentDate.dateByAddingSeconds(60)
-                        }
+                    let subject = currentDate.add(second: 60)
                     it("should return 2010-10-10 10:11:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -297,11 +285,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                             second: 10
                         )
                         expect(subject).to(equal(expectDate))
-                        }
                     }
+                }
                 context("adding -1 second") {
-                    let subject = [currentDate dateByAddingSeconds:-1];
-                        }
+                    let subject = currentDate.add(second: -1)
                     it("should return 2010-10-10 10:11:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -312,10 +299,11 @@ class EscortAdjustingDatesSpec: QuickSpec {
                             second: 9
                         )
                         expect(subject).to(equal(expectDate))
-                        }
                     }
                 }
-            }        
+            }
+        }
+         /*
         describe("-dateAtStartOfDay") {
             context("when the date is 2010-10-10 00:00:00") {
                 let subject;
