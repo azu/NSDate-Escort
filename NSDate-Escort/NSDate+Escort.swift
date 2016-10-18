@@ -270,6 +270,25 @@ extension Date {
     public func numberOfDaysInWeek() -> Int {
         return Date.AZ_currentCalendar().maximumRange(of: .weekday).length
     }
+    public func startOfDay() -> Date {
+        let calendar = Date.AZ_currentCalendar()
+        var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)
+        components.hour = 0;
+        components.minute = 0;
+        components.second = 0;
+        components.timeZone = calendar.timeZone;
+        return calendar.date(from: components)!
+    }
+    
+    public func endOfDay() -> Date {
+        let calendar = Date.AZ_currentCalendar()
+        var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)
+        components.hour = 23;
+        components.minute = 59;
+        components.second = 59;
+        components.timeZone = calendar.timeZone;
+        return calendar.date(from: components)!
+    }
     public func startOfMonth() -> Date {
         let calendar = Date.AZ_currentCalendar()
         var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)

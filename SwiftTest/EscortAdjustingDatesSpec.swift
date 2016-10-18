@@ -303,39 +303,32 @@ class EscortAdjustingDatesSpec: QuickSpec {
                 }
             }
         }
-         /*
         describe("-dateAtStartOfDay") {
             context("when the date is 2010-10-10 00:00:00") {
-                let subject;
                 let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 0,
-                        minute: 0,
-                        second: 0
-                    )
-                    
-                    subject = currentDate.dateAtStartOfDay()
-                    }
+                    year: 2010,
+                    month: 10,
+                    day: 10,
+                    hour: 0,
+                    minute: 0,
+                    second: 0
+                )
+                
+                let subject = currentDate.startOfDay()
                 it("should return same date") {
                     expect(subject).to(equal(currentDate))
-                    }
                 }
+            }
             context("when the date is 2010-10-10 23:59:59") {
-                let subject;
-                 currentDate;
-                    currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 23,
-                        minute: 59,
-                        second: 59
-                    )
-                    
-                    subject = currentDate.dateAtStartOfDay()
-                    }
+                let currentDate = Date.build(
+                    year: 2010,
+                    month: 10,
+                    day: 10,
+                    hour: 23,
+                    minute: 59,
+                    second: 59
+                )
+                let subject = currentDate.startOfDay()
                 it("should return 2010-10-10 00:00:00") {
                     let expectDate = Date.build(
                         year: 2010,
@@ -346,58 +339,21 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         second: 0
                     )
                     expect(subject).to(equal(expectDate))
-                    }
-                }
-            context("when default time zone is changed") {
-                let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 23,
-                        minute: 59,
-                        second: 59
-                    )
-                it("should return start of day in new time zone") {
-                    let initialTimeZone = NSTimeZone.defaultTimeZone()
-                    let newTimeZone = nil;
-                    
-                    BOOL isInitialTimeZoneGMT = ([initialTimeZone.abbreviation isEqualToString:"GMT"]);
-                    if (!isInitialTimeZoneGMT) {
-                        newTimeZone = [NSTimeZone timeZoneWithAbbreviation:"GMT"];
-                    } else {
-                        newTimeZone = [NSTimeZone timeZoneWithAbbreviation:"PET"];
-                    }
-                    assert(initialTimeZone.secondsFromGMT != newTimeZone.secondsFromGMT);
-                    let date = [currentDate dateByAddingTimeInterval:[initialTimeZone secondsFromGMT] - [newTimeZone secondsFromGMT]];
-                    NSTimeZone.setDefaultTimeZone(newTimeZone)
-                    let expectDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 0,
-                        minute: 0,
-                        second: 0
-                    )
-                    expect([date dateAtStartOfDay]).to(equal(expectDate))
-                    
-                    NSTimeZone.setDefaultTimeZone(initialTimeZone)
-                    }
                 }
             }
+        }
         describe("-dateAtEndOfDay") {
             context("when the date is 2010-10-10 00:00:00") {
-                let subject;
                 let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 0,
-                        minute: 0,
-                        second: 0
-                    )
-                    
-                    subject = currentDate.dateAtEndOfDay()
-                    }
+                    year: 2010,
+                    month: 10,
+                    day: 10,
+                    hour: 0,
+                    minute: 0,
+                    second: 0
+                )
+                
+                let subject = currentDate.endOfDay()
                 it("should return 2010-10-10 23:59:59") {
                     let expectDate = Date.build(
                         year: 2010,
@@ -408,64 +364,26 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         second: 59
                     )
                     expect(subject).to(equal(expectDate))
-                    }
-                }
-            context("when the date is 2010-10-10 23:59:59") {
-                let subject;
-                let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 23,
-                        minute: 59,
-                        second: 59
-                    )
-                    
-                    subject = currentDate.dateAtEndOfDay()
-                    }
-                it("should return same date") {
-                    expect(subject).to(equal(currentDate))
-                    }
-                }
-            context("when default time zone is changed") {
-                let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 0,
-                        minute: 0,
-                        second: 0
-                    )
-                it("should return end of day in new time zone") {
-                    let initialTimeZone = NSTimeZone.defaultTimeZone()
-                    let newTimeZone = nil;
-                    
-                    BOOL isInitialTimeZoneGMT = ([initialTimeZone.abbreviation isEqualToString:"GMT"]);
-                    if (!isInitialTimeZoneGMT) {
-                        newTimeZone = [NSTimeZone timeZoneWithAbbreviation:"GMT"];
-                    } else {
-                        newTimeZone = [NSTimeZone timeZoneWithAbbreviation:"PET"];
-                    }
-                    
-                    assert(initialTimeZone.secondsFromGMT != newTimeZone.secondsFromGMT);
-                    
-                    NSTimeZone.setDefaultTimeZone(newTimeZone)
-                    let date = [currentDate dateByAddingTimeInterval:[initialTimeZone secondsFromGMT] - [newTimeZone secondsFromGMT]];
-                    let expectDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 23,
-                        minute: 59,
-                        second: 59
-                    )
-                    expect([date dateAtEndOfDay]).to(equal(expectDate))
-                    
-                    NSTimeZone.setDefaultTimeZone(initialTimeZone)
-                    }
                 }
             }
-        
+            context("when the date is 2010-10-10 23:59:59") {
+                let currentDate = Date.build(
+                    year: 2010,
+                    month: 10,
+                    day: 10,
+                    hour: 23,
+                    minute: 59,
+                    second: 59
+                )
+                
+                let subject = currentDate.endOfDay()
+                it("should return same date") {
+                    expect(subject).to(equal(currentDate))
+                }
+            }
+        }
+
+/*
         describe("-dateAtStartOfWeek") {
             context("When the date is 2014-03-04") {
                 let currentDate = Date.build(
@@ -480,7 +398,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                         }
                     it("should return start of week date object") {
-                        let subject = currentDate.dateAtStartOfWeek()
+                        let subject = currentDate.startOfWeek()
                         let expectDate = Date.build(
                             year: 2014,
                             month: 3,
@@ -496,7 +414,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
                         }
                     it("should return start of week date object") {
-                        let subject = currentDate.dateAtStartOfWeek()
+                        let subject = currentDate.startOfWeek()
                         let expectDate = Date.build(
                             year: 2014,
                             month: 3,
@@ -521,7 +439,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         }
                     it("should return start of week date object") {
                         
-                        let subject = currentDate.dateAtStartOfWeek()
+                        let subject = currentDate.startOfWeek()
                         let expectDate = Date.build(
                             year: 2014,
                             month: 2,
@@ -539,7 +457,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         }
                     it("should return start of week date object") {
                         
-                        let subject = currentDate.dateAtStartOfWeek()
+                        let subject = currentDate.startOfWeek()
                         let expectDate = Date.build(
                             year: 2014,
                             month: 2,
@@ -561,7 +479,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     )
                 it("should return end of week date object") {
                     
-                    let subject = currentDate.dateAtEndOfWeek()
+                    let subject = currentDate.endOfWeek()
                     let expectDate = Date.build(
                         year: 2014,
                         month: 3,
@@ -578,7 +496,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         day: 25
                     )
                 it("should return end of week date object") {
-                    let subject = currentDate.dateAtEndOfWeek()
+                    let subject = currentDate.endOfWeek()
                     let expectDate = Date.build(
                         year: 2014,
                         month: 3,
@@ -599,7 +517,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
                     }
                 it("should return end of week date object") {
-                    let subject = currentDate.dateAtEndOfWeek()
+                    let subject = currentDate.endOfWeek()
                     let expectDate = Date.build(
                         year: 1989,
                         month: 1,
@@ -620,7 +538,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     )
                 it("should return start of month date object") {
                     // 2010-10-01
-                    let subject = currentDate.dateAtStartOfMonth()
+                    let subject = currentDate.startOfMonth()
                     let expectDate = Date.build(
                         year: 2010,
                         month: 10,
@@ -640,7 +558,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     )
                 it("should return end of month date object") {
                     // 2010-10-31
-                    let subject = currentDate.dateAtEndOfMonth()
+                    let subject = currentDate.endOfMonth()
                     let expectDate = Date.build(
                         year: 2010,
                         month: 10,
@@ -658,7 +576,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         day: 1
                     )
                 it("should return 02-29") {
-                    let subject = currentDate.dateAtEndOfMonth()
+                    let subject = currentDate.endOfMonth()
                     let expectDate = Date.build(
                         year: 2000,
                         month: 2,
@@ -678,7 +596,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         day: 1
                     )
                 it("should return 02-28") {
-                    let subject = currentDate.dateAtEndOfMonth()
+                    let subject = currentDate.endOfMonth()
                     let expectDate = Date.build(
                         year: 2001,
                         month: 2,
@@ -698,7 +616,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     )
                 it("should return start of year date object") {
                     // 2010-01-01
-                    let subject = currentDate.dateAtStartOfYear()
+                    let subject = currentDate.startOfYear()
                     let expectDate = Date.build(
                         year: 2010,
                         month: 1,
@@ -719,7 +637,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
                     }
                 it("should return start of year date object") {
-                    let subject = currentDate.dateAtStartOfYear()
+                    let subject = currentDate.startOfYear()
                     let expectDate = Date.build(
                         year: 1989,
                         month: 1,
@@ -739,7 +657,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     )
                 it("should return end of year date object") {
                     // 2010-12-31
-                    let subject = currentDate.dateAtEndOfYear()
+                    let subject = currentDate.endOfYear()
                     let expectDate = Date.build(
                         year: 2010,
                         month: 12,
@@ -757,7 +675,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     )
                 it("should return end of year date object") {
                     // 2010-12-31
-                    let subject = currentDate.dateAtEndOfYear()
+                    let subject = currentDate.endOfYear()
                     let expectDate = Date.build(
                         year: 2010,
                         month: 12,
@@ -778,7 +696,7 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
                     }
                 it("should return start of year date object") {
-                    let subject = currentDate.dateAtEndOfYear()
+                    let subject = currentDate.endOfYear()
                     let expectDate = Date.build(
                         year: 1989,
                         month: 12,
