@@ -23,7 +23,7 @@ class EscortDateRoles: QuickSpec {
 //                        weekday: 1
 //                    )
 //                it("should be false") {
-//                    BOOL match = [firstDayOfWeek isTypicallyWorkday];
+//                    BOOL match = .()
 //                    [[match should] beNo];
 //                    }
 //                }
@@ -33,7 +33,7 @@ class EscortDateRoles: QuickSpec {
 //                        weekday: 7
 //                    )
 //                it("should be false") {
-//                    BOOL match = [lastDayOfWeek isTypicallyWorkday];
+//                    BOOL match = .()
 //                    [[match should] beNo];
 //                    }
 //                }
@@ -70,7 +70,7 @@ class EscortDateRoles: QuickSpec {
 //                        weekday: 1
 //                    )
 //                it("should be true") {
-//                    BOOL match = [firstDayOfWeek isTypicallyWeekend];
+//                    BOOL match = .()
 //                    [[match should] beYes];
 //                    }
 //                }
@@ -80,7 +80,7 @@ class EscortDateRoles: QuickSpec {
 //                        weekday: 7
 //                    )
 //                it("should be true") {
-//                    BOOL match = [lastDayOfWeek isTypicallyWeekend];
+//                    BOOL match = .()
 //                    [[match should] beYes];
 //                    }
 //                }

@@ -14,8 +14,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
     override func spec() {
         describe("-minutesAfterDate") {
             context("the date is 2010-10-10 10:10:10") {
-                let currentDate;
-                 = Date.build(
+                let currentDate = Date.build(
                         year: 2010,
                         month: 10,
                         day: 10,
@@ -27,8 +26,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 5 seconds ago") {
                     int fiveSeconds = 5;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingSeconds(fiveSeconds)
+                    let anotherDate = currentDate.dateBySubtractingSeconds(fiveSeconds)
                         }
                     it("should return 5") {
                         let seconds = currentDate.secondsAfterDate(anotherDate)
@@ -37,8 +35,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 10 minutes ago") {
                     int tenMinutes = 10;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingMinutes(tenMinutes)
+                    let anotherDate = currentDate.dateBySubtractingMinutes(tenMinutes)
                         }
                     it("should return 10") {
                         let minutes = currentDate.minutesAfterDate(anotherDate)
@@ -47,8 +44,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 hour ago") {
                     int oneHour = 1;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingHours(oneHour)
+                    let anotherDate = currentDate.dateBySubtractingHours(oneHour)
                         }
                     it("should return 60") {
                         let minutes = currentDate.minutesAfterDate(anotherDate)
@@ -57,8 +53,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 10 minutes later") {
                     int tenMinutes = 10;
-                    let anotherDate;
-                     = currentDate.dateByAddingMinutes(tenMinutes)
+                    let anotherDate = currentDate.dateByAddingMinutes(tenMinutes)
                         }
                     it("should return -10") {
                         let minutes = currentDate.minutesAfterDate(anotherDate)
@@ -67,8 +62,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 5 seconds later") {
                     int fiveSeconds = 5;
-                    let anotherDate;
-                     = currentDate.dateByAddingSeconds(fiveSeconds)
+                    let anotherDate = currentDate.dateByAddingSeconds(fiveSeconds)
                         }
                     it("should return -5") {
                         let seconds = currentDate.secondsAfterDate(anotherDate)
@@ -80,8 +74,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
         
         describe("-minutesBeforeDate") {
             context("the date is 2010-10-10 10:10:10") {
-                let currentDate;
-                 = Date.build(
+                let currentDate = Date.build(
                         year: 2010,
                         month: 10,
                         day: 10,
@@ -93,8 +86,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 5 second later") {
                     int fiveSecond = 5;
-                    let anotherDate;
-                     = currentDate.dateByAddingSeconds(fiveSecond)
+                    let anotherDate = currentDate.dateByAddingSeconds(fiveSecond)
                         }
                     it("should return 5") {
                         let seconds = currentDate.secondsBeforeDate(anotherDate)
@@ -103,8 +95,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 10 minutes later") {
                     int tenMinutes = 10;
-                    let anotherDate;
-                     = currentDate.dateByAddingMinutes(tenMinutes)
+                    let anotherDate = currentDate.dateByAddingMinutes(tenMinutes)
                         }
                     it("should return 10") {
                         let minutes = currentDate.minutesBeforeDate(anotherDate)
@@ -113,8 +104,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 hour later") {
                     int oneHour = 1;
-                    let anotherDate;
-                     = currentDate.dateByAddingHours(oneHour)
+                    let anotherDate = currentDate.dateByAddingHours(oneHour)
                         }
                     it("should return 60") {
                         let minutes = currentDate.minutesBeforeDate(anotherDate)
@@ -123,8 +113,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 10 minutes ago") {
                     int tenMinutes = 10;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingMinutes(tenMinutes)
+                    let anotherDate = currentDate.dateBySubtractingMinutes(tenMinutes)
                         }
                     it("should return -10") {
                         let minutes = currentDate.minutesBeforeDate(anotherDate)
@@ -133,8 +122,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 5 seconds ago") {
                     int fiveSeconds = 5;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingSeconds(fiveSeconds)
+                    let anotherDate = currentDate.dateBySubtractingSeconds(fiveSeconds)
                         }
                     it("should return -5") {
                         let seconds = currentDate.secondsBeforeDate(anotherDate)
@@ -146,8 +134,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
         
         describe("-hoursAfterDate") {
             context("the date is 2010-10-10 10:10:10") {
-                let currentDate;
-                 = Date.build(
+                let currentDate = Date.build(
                         year: 2010,
                         month: 10,
                         day: 10,
@@ -159,8 +146,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 hour ago") {
                     int oneHour = 1;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingHours(oneHour)
+                    let anotherDate = currentDate.dateBySubtractingHours(oneHour)
                         }
                     it("should return 1") {
                         let result = currentDate.hoursAfterDate(anotherDate)
@@ -169,8 +155,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 day ago") {
                     int oneDay = 24;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingHours(oneDay)
+                    let anotherDate = currentDate.dateBySubtractingHours(oneDay)
                         }
                     it("should return 24") {
                         let result = currentDate.hoursAfterDate(anotherDate)
@@ -179,8 +164,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 hour later") {
                     int oneHour = 1;
-                    let anotherDate;
-                     = currentDate.dateByAddingHours(oneHour)
+                    let anotherDate = currentDate.dateByAddingHours(oneHour)
                         }
                     it("should return -1") {
                         let result = currentDate.hoursAfterDate(anotherDate)
@@ -192,8 +176,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
         
         describe("-hoursBeforeDate") {
             context("the date is 2010-10-10 10:10:10") {
-                let currentDate;
-                 = Date.build(
+                let currentDate = Date.build(
                         year: 2010,
                         month: 10,
                         day: 10,
@@ -205,8 +188,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 hour later") {
                     int oneHour = 1;
-                    let anotherDate;
-                     = currentDate.dateByAddingHours(oneHour)
+                    let anotherDate = currentDate.dateByAddingHours(oneHour)
                         }
                     it("should return 1") {
                         let result = currentDate.hoursBeforeDate(anotherDate)
@@ -215,8 +197,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 day later") {
                     int oneDay = 24;
-                    let anotherDate;
-                     = currentDate.dateByAddingHours(oneDay)
+                    let anotherDate = currentDate.dateByAddingHours(oneDay)
                         }
                     it("should return 24") {
                         let result = currentDate.hoursBeforeDate(anotherDate)
@@ -225,8 +206,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 hour ago") {
                     int oneHour = 1;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingHours(oneHour)
+                    let anotherDate = currentDate.dateBySubtractingHours(oneHour)
                         }
                     it("should return -1") {
                         let result = currentDate.hoursBeforeDate(anotherDate)
@@ -239,8 +219,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
         
         describe("-daysAfterDate") {
             context("the date is 2010-10-10 10:10:10") {
-                let currentDate;
-                 = Date.build(
+                let currentDate = Date.build(
                         year: 2010,
                         month: 10,
                         day: 10,
@@ -252,8 +231,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 day ago") {
                     int oneDay = 1;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingDays(oneDay)
+                    let anotherDate = currentDate.dateBySubtractingDays(oneDay)
                         }
                     it("should return 1") {
                         let day = currentDate.daysAfterDate(anotherDate)
@@ -262,8 +240,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 day later") {
                     int oneDay = 1;
-                    let anotherDate;
-                     = currentDate.dateByAddingDays(oneDay)
+                    let anotherDate = currentDate.add(day: oneDay)
                         }
                     it("should return -1") {
                         let day = currentDate.daysAfterDate(anotherDate)
@@ -305,8 +282,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
         
         describe("-daysBeforeDate") {
             context("the date is 2010-10-10 10:10:10") {
-                let currentDate;
-                 = Date.build(
+                let currentDate = Date.build(
                         year: 2010,
                         month: 10,
                         day: 10,
@@ -318,8 +294,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 day ago") {
                     int oneDay = 1;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingDays(oneDay)
+                    let anotherDate = currentDate.dateBySubtractingDays(oneDay)
                         }
                     it("should return -1") {
                         let day = currentDate.daysBeforeDate(anotherDate)
@@ -328,8 +303,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 day later") {
                     int oneDay = 1;
-                    let anotherDate;
-                     = currentDate.dateByAddingDays(oneDay)
+                    let anotherDate = currentDate.add(day: oneDay)
                         }
                     it("should return 1") {
                         let day = currentDate.daysBeforeDate(anotherDate)
@@ -351,8 +325,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     )
                 context("when day ago") {
                     int oneDay = 1;
-                    let anotherDate;
-                     = currentDate.dateByAddingDays(oneDay)
+                    let anotherDate = currentDate.add(day: oneDay)
                         }
                     it("should return 1") {
                         let diff = currentDate.daysAfterDate(anotherDate)
@@ -364,8 +337,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
         
         describe("-monthsBeforeDate") {
             context("the date is 2010-10-10 10:10:10") {
-                let currentDate;
-                 = Date.build(
+                let currentDate = Date.build(
                         year: 2010,
                         month: 10,
                         day: 10,
@@ -383,8 +355,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 months ago") {
                     int oneMonth = 1;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingMonths(oneMonth)
+                    let anotherDate = currentDate.dateBySubtractingMonths(oneMonth)
                         }
                     it("should return 1") {
                         let day = currentDate.monthsAfterDate(anotherDate)
@@ -394,8 +365,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                 context("when 1 months ago and 1 second later") {
                     int oneMonth = 1;
                     int oneSecond = 1;
-                    let anotherDate;
-                     = [[currentDate dateBySubtractingMonths:oneMonth] dateByAddingTimeInterval:oneSecond];
+                    let anotherDate = [[currentDate dateBySubtractingMonths:oneMonth] dateByAddingTimeInterval:oneSecond];
                         }
                     it("should return 0") {
                         let day = currentDate.monthsAfterDate(anotherDate)
@@ -404,8 +374,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 month later") {
                     int oneMonth = 1;
-                    let anotherDate;
-                     = currentDate.dateByAddingMonths(oneMonth)
+                    let anotherDate = currentDate.add(month: oneMonth)
                         }
                     it("should return -1") {
                         let day = currentDate.monthsAfterDate(anotherDate)
@@ -415,8 +384,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                 context("when 1 month later and 1second ago") {
                     int oneMonth = 1;
                     int oneSecond = 1;
-                    let anotherDate;
-                     = [[currentDate dateByAddingMonths:oneMonth] dateByAddingTimeInterval:-oneSecond];
+                    let anotherDate = [[currentDate dateByAddingMonths:oneMonth] dateByAddingTimeInterval:-oneSecond];
                         }
                     it("should return 0") {
                         let day = currentDate.monthsAfterDate(anotherDate)
@@ -427,8 +395,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
             }
         describe("-monthsBeforeDate") {
             context("the date is 2010-10-10 10:10:10") {
-                let currentDate;
-                 = Date.build(
+                let currentDate = Date.build(
                         year: 2010,
                         month: 10,
                         day: 10,
@@ -446,8 +413,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 months ago") {
                     int oneMonth = 1;
-                    let anotherDate;
-                     = currentDate.dateBySubtractingMonths(oneMonth)
+                    let anotherDate = currentDate.dateBySubtractingMonths(oneMonth)
                         }
                     it("should return -1") {
                         let day = currentDate.monthsBeforeDate(anotherDate)
@@ -457,8 +423,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                 context("when 1 months ago and 1 second later") {
                     int oneMonth = 1;
                     int oneSecond = 1;
-                    let anotherDate;
-                     = [[currentDate dateBySubtractingMonths:oneMonth] dateByAddingTimeInterval:oneSecond];
+                    let anotherDate = [[currentDate dateBySubtractingMonths:oneMonth] dateByAddingTimeInterval:oneSecond];
                         }
                     it("should return 0") {
                         let day = currentDate.monthsBeforeDate(anotherDate)
@@ -467,8 +432,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 1 month later") {
                     int oneMonth = 1;
-                    let anotherDate;
-                     = currentDate.dateByAddingMonths(oneMonth)
+                    let anotherDate = currentDate.add(month: oneMonth)
                         }
                     it("should return 1") {
                         let day = currentDate.monthsBeforeDate(anotherDate)
@@ -478,8 +442,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                 context("when 1 month later and 1second ago") {
                     int oneMonth = 1;
                     int oneSecond = 1;
-                    let anotherDate;
-                     = [[currentDate dateByAddingMonths:oneMonth] dateByAddingTimeInterval:-oneSecond];
+                    let anotherDate = [[currentDate dateByAddingMonths:oneMonth] dateByAddingTimeInterval:-oneSecond];
                         }
                     it("should return 0") {
                         let day = currentDate.monthsBeforeDate(anotherDate)
@@ -488,8 +451,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 context("when 365 days later") {
                     int day365 = 365;
-                    let anotherDate;
-                     = currentDate.dateByAddingDays(day365)
+                    let anotherDate = currentDate.add(day: day365)
                         }
                     it("should return 12") {
                         let day = currentDate.monthsBeforeDate(anotherDate)
@@ -499,8 +461,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                 }
             context("when the date'calendar is not Gregorian") {
                 let jaCalendar;
-                let currentDate;
-                 = Date.build(
+                let currentDate = Date.build(
                         year: 1988,
                         month: 10,
                         day: 10
@@ -510,8 +471,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
                     }
                 context("difference between Shouwa 64 and Heisei 1 is 1") {
-                    let anotherDate;
-                     = Date.build(
+                    let anotherDate = Date.build(
                             year: 1989,
                             month: 10,
                             day: 10
@@ -552,8 +512,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         }
                     }
                 context("when another date is 10 days later") {
-                    let expectDays = 10;
-                     = currentDate.dateByAddingDays(expectDays)
+                    let expectDays = 10 = currentDate.add(day: expectDays)
                         }
                     it("should return 10") {
                         let distanceDays = currentDate.distanceInDaysToDate(anotherDate)
@@ -562,8 +521,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     }
                 // big days
                 context("when another date is 400 days later") {
-                    let expectDays = 400;
-                     = currentDate.dateByAddingDays(expectDays)
+                    let expectDays = 400 = currentDate.add(day: expectDays)
                         }
                     it("should return 100") {
                         let distanceDays = currentDate.distanceInDaysToDate(anotherDate)
@@ -571,8 +529,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         }
                     }
                 context("when another date is 10 days ago") {
-                    let expectDays = 10;
-                     = currentDate.dateBySubtractingDays(expectDays)
+                    let expectDays = 10 = currentDate.dateBySubtractingDays(expectDays)
                         }
                     it("should return -10") {
                         let distanceDays = currentDate.distanceInDaysToDate(anotherDate)
