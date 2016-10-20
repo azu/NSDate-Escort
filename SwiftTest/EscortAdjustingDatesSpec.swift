@@ -528,14 +528,13 @@ class EscortAdjustingDatesSpec: QuickSpec {
             }
         }
         
-            /*
         describe("-dateAtStartOfYear") {
             context("when the date is 2010-10-10") {
                 let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10
-                    )
+                    year: 2010,
+                    month: 10,
+                    day: 10
+                )
                 it("should return start of year date object") {
                     // 2010-01-01
                     let subject = currentDate.startOfYear()
@@ -544,39 +543,17 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         month: 1,
                         day: 1
                     )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
-                }
-            context("when the date is 1989-01-06 and not Gregorian") {
-                let currentDate = Date.build(
-                        year: 1989,
-                        month: 1,
-                        day: 6
-                    )
-                    
-                    let jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-                    [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
-                    }
-                it("should return start of year date object") {
-                    let subject = currentDate.startOfYear()
-                    let expectDate = Date.build(
-                        year: 1989,
-                        month: 1,
-                        day: 1
-                    )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
+                    expect(subject).to(approximatelyEqual(expectDate))
                 }
             }
+        }
         describe("-dateAtEndOfYear") {
             context("when the date is 2010-10-10") {
                 let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10
-                    )
+                    year: 2010,
+                    month: 10,
+                    day: 10
+                )
                 it("should return end of year date object") {
                     // 2010-12-31
                     let subject = currentDate.endOfYear()
@@ -585,51 +562,26 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         month: 12,
                         day: 31
                     )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
-                }
-            context("when the date is 2010-2-10") {
-                let currentDate = Date.build(
-                        year: 2010,
-                        month: 2,
-                        day: 10
-                    )
-                it("should return end of year date object") {
-                    // 2010-12-31
-                    let subject = currentDate.endOfYear()
-                    let expectDate = Date.build(
-                        year: 2010,
-                        month: 12,
-                        day: 31
-                    )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
-                }
-            context("when the date is 1989-01-06 and not Gregorian") {
-                let currentDate = Date.build(
-                        year: 1989,
-                        month: 1,
-                        day: 6
-                    )
-                    
-                    let jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-                    [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
-                    }
-                it("should return start of year date object") {
-                    let subject = currentDate.endOfYear()
-                    let expectDate = Date.build(
-                        year: 1989,
-                        month: 12,
-                        day: 31
-                    )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
+                    expect(subject).to(approximatelyEqual(expectDate))
                 }
             }
- */
-
+            context("when the date is 2010-2-10") {
+                let currentDate = Date.build(
+                    year: 2010,
+                    month: 2,
+                    day: 10
+                )
+                it("should return end of year date object") {
+                    // 2010-12-31
+                    let subject = currentDate.endOfYear()
+                    let expectDate = Date.build(
+                        year: 2010,
+                        month: 12,
+                        day: 31
+                    )
+                    expect(subject).to(approximatelyEqual(expectDate))
+                }
+            }
+        }
     }
 }
