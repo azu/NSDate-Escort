@@ -661,7 +661,7 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("when later date") {
-                let laterDate = currentDate.add(second: 1)
+                let laterDate = currentDate.add(second: 10)
                 it("should be true") {
                     let match = laterDate.isInFuture()
                     expect(match).to(beTrue())

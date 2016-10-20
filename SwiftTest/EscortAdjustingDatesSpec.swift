@@ -454,15 +454,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
                 }
             }
         }
-
-/*
+        
         describe("-dateAtStartOfMonth") {
             context("when the date is 2010-10-10 00:00:00") {
                 let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10
-                    )
+                    year: 2010,
+                    month: 10,
+                    day: 10
+                )
                 it("should return start of month date object") {
                     // 2010-10-01
                     let subject = currentDate.startOfMonth()
@@ -471,18 +470,17 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         month: 10,
                         day: 1
                     )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
+                    expect(subject).to(approximatelyEqual(expectDate))
                 }
             }
+        }
         describe("-dateAtEndOfMonth") {
             context("when the date is 2010-10-10 00:00:00") {
                 let currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10
-                    )
+                    year: 2010,
+                    month: 10,
+                    day: 10
+                )
                 it("should return end of month date object") {
                     // 2010-10-31
                     let subject = currentDate.endOfMonth()
@@ -491,17 +489,16 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         month: 10,
                         day: 31
                     )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
+                    expect(subject).to(approximatelyEqual(expectDate))
                 }
+            }
             // http://en.wikipedia.org/wiki/Leap_year
             context("when February  leap year") {
                 let currentDate = Date.build(
-                        year: 2000,// divisible 400 => leap year
-                        month: 2,
-                        day: 1
-                    )
+                    year: 2000,// divisible 400 => leap year
+                    month: 2,
+                    day: 1
+                )
                 it("should return 02-29") {
                     let subject = currentDate.endOfMonth()
                     let expectDate = Date.build(
@@ -509,19 +506,16 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         month: 2,
                         day: 29
                     )
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
+                    expect(subject).to(approximatelyEqual(expectDate))
                 }
+            }
             // http://en.wikipedia.org/wiki/Leap_year
             context("when February  not leap year") {
-                let currentDate;
-                beforeEach(^{
-                    // not leap year
-                    currentDate = Date.build(
-                        year: 2001,
-                        month: 2,
-                        day: 1
-                    )
+                let currentDate = Date.build(
+                    year: 2001,
+                    month: 2,
+                    day: 1
+                )
                 it("should return 02-28") {
                     let subject = currentDate.endOfMonth()
                     let expectDate = Date.build(
@@ -529,11 +523,12 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         month: 2,
                         day: 28
                     )
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
+                    expect(subject).to(approximatelyEqual(expectDate))
                 }
             }
+        }
         
+            /*
         describe("-dateAtStartOfYear") {
             context("when the date is 2010-10-10") {
                 let currentDate = Date.build(
