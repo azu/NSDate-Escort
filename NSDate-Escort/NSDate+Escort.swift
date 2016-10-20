@@ -270,6 +270,7 @@ extension Date {
     public func numberOfDaysInWeek() -> Int {
         return Date.AZ_currentCalendar().maximumRange(of: .weekday).length
     }
+    
     public func startOfDay() -> Date {
         let calendar = Date.AZ_currentCalendar()
         var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)
@@ -279,7 +280,6 @@ extension Date {
         components.timeZone = calendar.timeZone;
         return calendar.date(from: components)!
     }
-    
     public func endOfDay() -> Date {
         let calendar = Date.AZ_currentCalendar()
         var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)
@@ -289,6 +289,20 @@ extension Date {
         components.timeZone = calendar.timeZone;
         return calendar.date(from: components)!
     }
+    public func startOfWeek() -> Date {
+        var startOfWeek: NSDate?
+        Date.AZ_currentCalendar().range(of: .weekOfMonth, start: &startOfWeek, interval: nil, for: self)
+        return startOfWeek as! Date;
+    }
+    
+    public func endOfWeek() -> Date {
+        let calendar = Date.AZ_currentCalendar()
+        var components = calendar.components([.weekday, .era, .year, .month, .day, .hour, .minute, .second], from: self)
+        let diffDay = self.numberOfDaysInWeek() - components.weekday!
+        components.day! += diffDay
+        return calendar.date(from: components)!
+    }
+    
     public func startOfMonth() -> Date {
         let calendar = Date.AZ_currentCalendar()
         var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)

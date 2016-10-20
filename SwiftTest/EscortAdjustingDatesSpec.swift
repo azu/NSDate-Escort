@@ -382,101 +382,50 @@ class EscortAdjustingDatesSpec: QuickSpec {
                 }
             }
         }
-
-/*
         describe("-dateAtStartOfWeek") {
             context("When the date is 2014-03-04") {
                 let currentDate = Date.build(
+                    year: 2014,
+                    month: 3,
+                    day: 4
+                )
+                
+                it("should return start of week date object") {
+                    let subject = currentDate.startOfWeek()
+                    let expectDate = Date.build(
                         year: 2014,
                         month: 3,
-                        day: 4
+                        day: 2
                     )
-                
-                context("begining of sunday for weekady") {
-                     beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-                        beginingOfMondayCalendar.firstWeekday = 1;
-                        [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
-                        }
-                    it("should return start of week date object") {
-                        let subject = currentDate.startOfWeek()
-                        let expectDate = Date.build(
-                            year: 2014,
-                            month: 3,
-                            day: 2
-                        )
-                        [[subject should] beKindOfClass:[NSDate class]];
-                        expect(subject).to(approximatelyEqual(currentDate))
-                        }
-                    }
-                context("begining of monday for weekady") {
-                     beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-                        beginingOfMondayCalendar.firstWeekday = 2;
-                        [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
-                        }
-                    it("should return start of week date object") {
-                        let subject = currentDate.startOfWeek()
-                        let expectDate = Date.build(
-                            year: 2014,
-                            month: 3,
-                            day: 3
-                        )
-                        [[subject should] beKindOfClass:[NSDate class]];
-                        expect(subject).to(approximatelyEqual(currentDate))
-                        }
-                    }
-                }
-            context("When the date is 2014-03-01") {
-                let currentDate = Date.build(
-                        year: 2014,
-                        month: 3,
-                        day: 1
-                    )
-                
-                context("begining of sunday for weekady") {
-                     beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-                        beginingOfMondayCalendar.firstWeekday = 1;
-                        [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
-                        }
-                    it("should return start of week date object") {
-                        
-                        let subject = currentDate.startOfWeek()
-                        let expectDate = Date.build(
-                            year: 2014,
-                            month: 2,
-                            day: 23
-                        )
-                        [[subject should] beKindOfClass:[NSDate class]];
-                        expect(subject).to(approximatelyEqual(currentDate))
-                        }
-                    }
-                
-                context("begining of monday for weekady") {
-                     beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-                        beginingOfMondayCalendar.firstWeekday = 2;
-                        [NSDate stub:selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
-                        }
-                    it("should return start of week date object") {
-                        
-                        let subject = currentDate.startOfWeek()
-                        let expectDate = Date.build(
-                            year: 2014,
-                            month: 2,
-                            day: 24
-                        )
-                        [[subject should] beKindOfClass:[NSDate class]];
-                        expect(subject).to(approximatelyEqual(currentDate))
-                        }
-                    }
+                    expect(subject).to(approximatelyEqual(expectDate))
                 }
             }
+            context("When the date is 2014-03-01") {
+                let currentDate = Date.build(
+                    year: 2014,
+                    month: 3,
+                    day: 1
+                )
+                
+                it("should return start of week date object") {
+                    let subject = currentDate.startOfWeek()
+                    let expectDate = Date.build(
+                        year: 2014,
+                        month: 2,
+                        day: 23
+                    )
+                    expect(subject).to(approximatelyEqual(expectDate))
+                }
+            }
+        }
         
         describe("-dateAtEndOfWeek") {
             context("When the date is 2014-03-04") {
                 let currentDate = Date.build(
-                        year: 2014,
-                        month: 3,
-                        day: 4
-                    )
+                    year: 2014,
+                    month: 3,
+                    day: 4
+                )
                 it("should return end of week date object") {
                     
                     let subject = currentDate.endOfWeek()
@@ -485,16 +434,15 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         month: 3,
                         day: 8
                     )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
+                    expect(subject).to(approximatelyEqual(expectDate))
                 }
+            }
             context("When the date is 2014-02-25") {
                 let currentDate = Date.build(
-                        year: 2014,
-                        month: 2,
-                        day: 25
-                    )
+                    year: 2014,
+                    month: 2,
+                    day: 25
+                )
                 it("should return end of week date object") {
                     let subject = currentDate.endOfWeek()
                     let expectDate = Date.build(
@@ -502,33 +450,12 @@ class EscortAdjustingDatesSpec: QuickSpec {
                         month: 3,
                         day: 1
                     )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
-                }
-            context("When the date is 1989-01-06 and not Gregorian") {
-                let currentDate = Date.build(
-                        year: 1989,
-                        month: 1,
-                        day: 5
-                    )
-                    
-                    let jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
-                    [NSDate stub:selector(AZ_currentCalendar) andReturn:jaCalendar];
-                    }
-                it("should return end of week date object") {
-                    let subject = currentDate.endOfWeek()
-                    let expectDate = Date.build(
-                        year: 1989,
-                        month: 1,
-                        day: 7
-                    )
-                    [[subject should] beKindOfClass:[NSDate class]];
-                    expect(subject).to(approximatelyEqual(currentDate))
-                    }
+                    expect(subject).to(approximatelyEqual(expectDate))
                 }
             }
-        
+        }
+
+/*
         describe("-dateAtStartOfMonth") {
             context("when the date is 2010-10-10 00:00:00") {
                 let currentDate = Date.build(
