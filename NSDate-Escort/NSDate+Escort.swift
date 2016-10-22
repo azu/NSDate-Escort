@@ -330,10 +330,13 @@ extension Date {
         let calendar = Date.AZ_currentCalendar()
         var components = calendar.components([.era, .year, .month, .day, .hour, .minute, .second], from: self)
         let monthRange = calendar.range(of: .month, in: .year, for: self)
-        let dayRange = calendar.range(of: .day, in: .month, for: self)
-        components.day = dayRange.length;
         components.month = monthRange.length;
-        return calendar.date(from: components)!
+        let endMonthOfYear = calendar.date(from: components)!
+        
+        let dayRange = calendar.range(of: .day, in: .month, for: endMonthOfYear)
+        components.day = dayRange.length;
+        let endOfYear = calendar.date(from: components)
+        return endOfYear!
     }
 }
 
