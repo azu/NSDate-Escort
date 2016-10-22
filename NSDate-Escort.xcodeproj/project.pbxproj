@@ -21,6 +21,7 @@
 		73FCA17118DE837D009ED4AD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355ABE317638E9600DD1EC2 /* UIKit.framework */; };
 		73FCA17718DE837D009ED4AD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 73FCA17518DE837D009ED4AD /* InfoPlist.strings */; };
 		7947BC5703D2C7CEEBE12565 /* libPods-Benchmark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 294D8F9800A0013565B2F570 /* libPods-Benchmark.a */; };
+		BE20270D1DBBBF15000ACE12 /* EscortRetrievingIntervalsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F88971DAF43AB00B7D530 /* EscortRetrievingIntervalsSpec.swift */; };
 		BE318BC71DA38717009A09CD /* ApproximatelyEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC61DA38717009A09CD /* ApproximatelyEqual.swift */; };
 		BE318BC91DA38804009A09CD /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE318BC81DA38804009A09CD /* Constant.swift */; };
 		BE4F88941DAF439100B7D530 /* EscortDecomposingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F88931DAF439100B7D530 /* EscortDecomposingSpec.swift */; };
@@ -551,6 +552,7 @@
 				BE4F88941DAF439100B7D530 /* EscortDecomposingSpec.swift in Sources */,
 				BE953ADD1D9CFC13006AA21C /* BuildSpec.swift in Sources */,
 				BE9DFE461DB0ADC9006B271F /* EscortComparingSpec..swift in Sources */,
+				BE20270D1DBBBF15000ACE12 /* EscortRetrievingIntervalsSpec.swift in Sources */,
 				BE318BC91DA38804009A09CD /* Constant.swift in Sources */,
 				BE9BBD3E1DB3B6E500579C22 /* EscortAdjustingDatesSpec.swift in Sources */,
 				BE9DFE471DB0ADCE006B271F /* EscortClassSpec.swift in Sources */,

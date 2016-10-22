@@ -338,6 +338,16 @@ extension Date {
         let endOfYear = calendar.date(from: components)
         return endOfYear!
     }
+    
+    public func seconds(after date: Date) -> Int {
+        let components = Date.AZ_currentCalendar().components(.second, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        return components.second!
+    }
+    
+    public func minutes(after date: Date) -> Int {
+        let components = Date.AZ_currentCalendar().components(.minute, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        return components.minute!
+    }
 }
 
 //
