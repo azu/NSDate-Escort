@@ -264,7 +264,7 @@ extension Date {
         let weekdayRange = calendar.maximumRange(of: .weekday)!
         let components = calendar.dateComponents([.weekday], from: self)
         let weekdayOfDate = components.weekday!
-        return (weekdayOfDate == weekdayRange.lowerBound || weekdayOfDate == weekdayRange.lowerBound + weekdayRange.upperBound - 1)
+        return (weekdayOfDate == weekdayRange.lowerBound || weekdayOfDate == weekdayRange.upperBound - weekdayRange.lowerBound)
     }
 }
 
