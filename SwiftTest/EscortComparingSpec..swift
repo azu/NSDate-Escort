@@ -68,22 +68,51 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("when target is previous era") {
-                let currentDate = Date.build(
-                    year: 2014,
-                    month: 5,
-                    day: 19
-                )
-                let previousEraDate = Date.build(
-                    year: -2013,
-                    month: 5,
-                    day: 19
-                )
-                it("shuold be equal year") {
-                    expect(currentDate.year()).to(equal(previousEraDate.year()))
+                context("in gregorian") {
+                    beforeEach {
+                        let calendarIdentifier = Calendar.Identifier.gregorian
+                        Date.setDefault(calendarIdentifier)
+                    }
+                    let currentDate = Date.build(
+                        year: 2014,
+                        month: 5,
+                        day: 19
+                    )
+                    let previousEraDate = Date.build(
+                        year: -2013,
+                        month: 5,
+                        day: 19
+                    )
+                    it("shuold be equal year") {
+                        expect(currentDate.year()).to(equal(previousEraDate.year()))
+                    }
+                    it("should be false") {
+                        let isMatch = previousEraDate.isEqualToDateIgnoringTime(currentDate)
+                        expect(isMatch).to(beFalse())
+                    }
                 }
-                it("should be false") {
-                    let isMatch = previousEraDate.isEqualToDateIgnoringTime(currentDate)
-                    expect(isMatch).to(beFalse())
+                context("in japanese") {
+                    beforeEach {
+                        let calendarIdentifier = Calendar.Identifier.japanese
+                        Date.setDefault(calendarIdentifier)
+                    }
+                    let currentDate = Date.build(
+                        year: 2014,
+                        month: 5,
+                        day: 19
+                    )
+                    let previousEraDate = Date.build(
+                        year: 1951,
+                        month: 5,
+                        day: 19
+                    )
+                    it("shuold be equal year") {
+                        expect(currentDate.year()).to(equal(previousEraDate.year()))
+                    }
+                    it("should be false") {
+                        let isMatch = previousEraDate.isEqualToDateIgnoringTime(currentDate)
+                        expect(isMatch).to(beFalse())
+                    }
                 }
             }
         }

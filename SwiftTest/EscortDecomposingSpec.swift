@@ -13,7 +13,7 @@ import Nimble
 class EscortDecomposingSpec: QuickSpec {
     override func spec() {
         beforeEach {
-            let calendarIdentifier = Calendar.Identifier.gregorian
+            let calendarIdentifier = Calendar.Identifier.japanese
             Date.setDefault(calendarIdentifier)
         }
         describe("-nearestHour") {
@@ -290,19 +290,24 @@ class EscortDecomposingSpec: QuickSpec {
                     month: 10,
                     day: 10
                 )
-                it("should return 2010") {
-                    let yearValue = currentDate.year()
-                    
-                    let c = Calendar.current
-                    if (c.identifier == .gregorian) {
+                context("in gregorian") {
+                    beforeEach {
+                        let calendarIdentifier = Calendar.Identifier.gregorian
+                        Date.setDefault(calendarIdentifier)
+                    }
+                    it("should return 2010") {
+                        let yearValue = currentDate.year()
                         expect(yearValue).to(equal(2010))
-                    } else if (c.identifier == .japanese) {
+                    }
+                }
+                context("in japanese") {
+                    beforeEach {
+                        let calendarIdentifier = Calendar.Identifier.japanese
+                        Date.setDefault(calendarIdentifier)
+                    }
+                    it("should return 22") {
+                        let yearValue = currentDate.year()
                         expect(yearValue).to(equal(22))
-                    } else {
-                        expect(yearValue).toNot(equal(2010))
-                        expect(yearValue).toNot(equal(22))
-                        expect(yearValue).toNot(equal(2010))
-                        expect(yearValue).toNot(equal(22))
                     }
                 }
             }
@@ -316,17 +321,8 @@ class EscortDecomposingSpec: QuickSpec {
                     day: 10
                 )
                 it("should return 2010") {
-                    let yearValue = currentDate.year()
-                    
-                    let c = Calendar.current
-                    if (c.identifier == .gregorian) {
-                        expect(yearValue).to(equal(2010))
-                    } else if (c.identifier == .japanese) {
-                        expect(yearValue).to(equal(22))
-                    } else {
-                        expect(yearValue).toNot(equal(2010))
-                        expect(yearValue).toNot(equal(22))
-                    }
+                    let yearValue = currentDate.gregorianYear()
+                    expect(yearValue).to(equal(2010))
                 }
             }
             context("when the date'calendar is not Gregorian") {
