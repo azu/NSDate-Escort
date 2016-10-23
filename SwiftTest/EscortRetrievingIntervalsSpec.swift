@@ -127,7 +127,6 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                 }
             }
         
-        /*
         describe("-hoursAfterDate") {
             context("the date is 2010-10-10 10:10:10") {
                 let currentDate = Date.build(
@@ -209,6 +208,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
             }
         
         
+        /*
         describe("-daysAfterDate") {
             context("the date is 2010-10-10 10:10:10") {
                 let currentDate = Date.build(

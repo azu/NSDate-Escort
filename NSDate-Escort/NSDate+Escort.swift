@@ -354,6 +354,14 @@ extension Date {
     public func minutes(before date: Date) -> Int {
         return -minutes(after: date)
     }
+    
+    public func hours(after date: Date) -> Int {
+        let components = Date.AZ_currentCalendar().components(.hour, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        return components.hour!
+    }
+    public func hours(before date: Date) -> Int {
+        return -hours(after: date)
+    }
 }
 
 //
