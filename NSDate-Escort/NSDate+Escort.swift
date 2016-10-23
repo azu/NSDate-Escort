@@ -181,6 +181,10 @@ extension Date {
     public static func yesterday() -> Date {
         return Date().add(day: -1)
     }
+}
+
+// Comparing dates
+extension Date {
     public func isEqualToDateIgnoringTime(_ date: Date) -> Bool {
         return self.ignoreingTime() == date.ignoreingTime()
     }
@@ -249,6 +253,9 @@ extension Date {
     public func isInFuture() -> Bool {
         return self.isLater(than: Date())
     }
+}
+// Date roles
+extension Date {
     public func isTypicallyWorkday() -> Bool {
         return isTypicallyWeekend() == false
     }
@@ -259,7 +266,68 @@ extension Date {
         let weekdayOfDate = components.weekday!
         return (weekdayOfDate == weekdayRange.lowerBound || weekdayOfDate == weekdayRange.lowerBound + weekdayRange.upperBound - 1)
     }
+}
+
+// Adjusting dates
+extension Date {
     
+}
+
+// Retrieving intervals
+extension Date {
+    
+    public func seconds(after date: Date) -> Int {
+        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.second, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        return components.second!
+    }
+    public func seconds(before date: Date) -> Int {
+        return -seconds(after: date)
+    }
+    
+    public func minutes(after date: Date) -> Int {
+        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.minute, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        return components.minute!
+    }
+    public func minutes(before date: Date) -> Int {
+        return -minutes(after: date)
+    }
+    
+    public func hours(after date: Date) -> Int {
+        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.hour, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        return components.hour!
+    }
+    public func hours(before date: Date) -> Int {
+        return -hours(after: date)
+    }
+    
+    public func days(after date: Date) -> Int {
+        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.day, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        return components.day!
+    }
+    public func days(before date: Date) -> Int {
+        return -days(after: date)
+    }
+    
+    public func months(after date: Date) -> Int {
+        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.month, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        return components.month!
+    }
+    public func months(before date: Date) -> Int {
+        return -months(after: date)
+    }
+}
+
+// distance days
+extension Date {
+    public func distanceInDays(to date: Date) -> Int {
+        let calendar = Date.AZ_currentCalendar()
+        let components = (Date.AZ_currentCalendar() as NSCalendar).components([.day], from: self, to: date, options: .init(rawValue: 0))
+        return components.day!
+    }
+}
+
+// Decomposing dates
+extension Date {
     public func gregorianYear() -> Int {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.year], from: self)
@@ -276,6 +344,15 @@ extension Date {
     public func day() -> Int {
         let components = Date.AZ_currentCalendar().dateComponents([.day], from: self)
         return components.day!
+    }
+    public func firstDayOfWeekday() -> Int {
+        var startOfTheWeek: NSDate?
+        var interval: TimeInterval = 0
+        (Date.AZ_currentCalendar() as NSCalendar).range(of: NSCalendar.Unit.weekOfMonth, start: &startOfTheWeek, interval: &interval, for: self)
+        return (startOfTheWeek! as Date).day()
+    }
+    public func lastDayOfWeekday() -> Int {
+        return self.firstDayOfWeekday() + (self.numberOfDaysInWeek() - 1);
     }
     public func week() -> Int {
         let components = Date.AZ_currentCalendar().dateComponents([.weekOfMonth], from: self)
@@ -314,16 +391,9 @@ extension Date {
         let components = Date.AZ_currentCalendar().dateComponents([.second], from: self)
         return components.second!
     }
-    
-    public func firstDayOfWeekday() -> Int {
-        var startOfTheWeek: NSDate?
-        var interval: TimeInterval = 0
-        (Date.AZ_currentCalendar() as NSCalendar).range(of: NSCalendar.Unit.weekOfMonth, start: &startOfTheWeek, interval: &interval, for: self)
-        return (startOfTheWeek! as Date).day()
-    }
-    public func lastDayOfWeekday() -> Int {
-        return self.firstDayOfWeekday() + (self.numberOfDaysInWeek() - 1);
-    }
+}
+
+extension Date {
     public func numberOfDaysInWeek() -> Int {
         let range = Date.AZ_currentCalendar().maximumRange(of: .weekday)!
         return range.upperBound - range.lowerBound
@@ -396,191 +466,4 @@ extension Date {
         let endOfYear = calendar.date(from: components)
         return endOfYear!
     }
-    
-    public func seconds(after date: Date) -> Int {
-        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.second, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
-        return components.second!
-    }
-    public func seconds(before date: Date) -> Int {
-        return -seconds(after: date)
-    }
-    
-    public func minutes(after date: Date) -> Int {
-        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.minute, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
-        return components.minute!
-    }
-    public func minutes(before date: Date) -> Int {
-        return -minutes(after: date)
-    }
-    
-    public func hours(after date: Date) -> Int {
-        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.hour, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
-        return components.hour!
-    }
-    public func hours(before date: Date) -> Int {
-        return -hours(after: date)
-    }
-    
-    public func days(after date: Date) -> Int {
-        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.day, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
-        return components.day!
-    }
-    public func days(before date: Date) -> Int {
-        return -days(after: date)
-    }
-    
-    public func months(after date: Date) -> Int {
-        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.month, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
-        return components.month!
-    }
-    public func months(before date: Date) -> Int {
-        return -months(after: date)
-    }
-    
-    public func distanceInDays(to date: Date) -> Int {
-        let calendar = Date.AZ_currentCalendar()
-        let components = (Date.AZ_currentCalendar() as NSCalendar).components([.day], from: self, to: date, options: .init(rawValue: 0))
-        return components.day!
-    }
 }
-
-//
-//@interface NSDate (Escort)
-//
-//
-//
-//#pragma mark - Comparing dates
-//
-//- (BOOL)isEqualToDateIgnoringTime:(NSDate * _Nonnull) otherDate;
-//
-//- (BOOL)isToday;
-//
-//- (BOOL)isTomorrow;
-//
-//- (BOOL)isYesterday;
-//
-//- (BOOL)isSameWeekAsDate:(NSDate * _Nonnull) aDate;
-//
-//- (BOOL)isThisWeek;
-//
-//- (BOOL)isNextWeek;
-//
-//- (BOOL)isLastWeek;
-//
-//- (BOOL)isSameMonthAsDate:(NSDate * _Nonnull) aDate;
-//
-//- (BOOL)isThisMonth;
-//
-//- (BOOL)isSameYearAsDate:(NSDate * _Nonnull) aDate;
-//
-//- (BOOL)isThisYear;
-//
-//- (BOOL)isNextYear;
-//
-//- (BOOL)isLastYear;
-//
-//- (BOOL)isEarlierThanDate:(NSDate * _Nonnull) aDate;
-//
-//- (BOOL)isLaterThanDate:(NSDate * _Nonnull) aDate;
-//
-//- (BOOL)isEarlierThanOrEqualDate:(NSDate * _Nonnull) aDate;
-//
-//- (BOOL)isLaterThanOrEqualDate:(NSDate * _Nonnull) aDate;
-//
-//- (BOOL)isInFuture;
-//
-//- (BOOL)isInPast;
-//
-//#pragma mark - Date roles
-//
-//- (BOOL)isTypicallyWorkday;
-//
-//- (BOOL)isTypicallyWeekend;
-//
-//#pragma mark - Adjusting dates
-//- (NSDate * _Nonnull)dateByAddingYears:(NSInteger) dYears;
-//
-//- (NSDate * _Nonnull)dateBySubtractingYears:(NSInteger) dYears;
-//
-//- (NSDate * _Nonnull)dateByAddingMonths:(NSInteger) dMonths;
-//
-//- (NSDate * _Nonnull)dateBySubtractingMonths:(NSInteger) dMonths;
-//
-//- (NSDate * _Nonnull)dateByAddingDays:(NSInteger) dDays;
-//
-//- (NSDate * _Nonnull)dateBySubtractingDays:(NSInteger) dDays;
-//
-//- (NSDate * _Nonnull)dateByAddingHours:(NSInteger) dHours;
-//
-//- (NSDate * _Nonnull)dateBySubtractingHours:(NSInteger) dHours;
-//
-//- (NSDate * _Nonnull)dateByAddingMinutes:(NSInteger) dMinutes;
-//
-//- (NSDate * _Nonnull)dateBySubtractingMinutes:(NSInteger) dMinutes;
-//
-//- (NSDate * _Nonnull)dateByAddingSeconds:(NSInteger) dSeconds;
-//
-//- (NSDate * _Nonnull)dateBySubtractingSeconds:(NSInteger) dSeconds;
-//
-//- (NSDate * _Nonnull)dateAtStartOfDay;
-//
-//- (NSDate * _Nonnull)dateAtEndOfDay;
-//
-//- (NSDate * _Nonnull)dateAtStartOfWeek;
-//
-//- (NSDate * _Nonnull)dateAtEndOfWeek;
-//
-//- (NSDate * _Nonnull)dateAtStartOfMonth;
-//
-//- (NSDate * _Nonnull)dateAtEndOfMonth;
-//
-//- (NSDate * _Nonnull)dateAtStartOfYear;
-//
-//- (NSDate * _Nonnull)dateAtEndOfYear;
-//
-//#pragma mark - Retrieving intervals
-//- (NSInteger)secondsAfterDate:(NSDate * _Nonnull) aDate;
-//
-//- (NSInteger)secondsBeforeDate:(NSDate * _Nonnull) aDate;
-//
-//- (NSInteger)minutesAfterDate:(NSDate * _Nonnull) aDate;
-//
-//- (NSInteger)minutesBeforeDate:(NSDate * _Nonnull) aDate;
-//
-//- (NSInteger)hoursAfterDate:(NSDate * _Nonnull) aDate;
-//
-//- (NSInteger)hoursBeforeDate:(NSDate * _Nonnull) aDate;
-//
-//- (NSInteger)daysAfterDate:(NSDate * _Nonnull) aDate;
-//
-//- (NSInteger)daysBeforeDate:(NSDate * _Nonnull) aDate;
-//
-//- (NSInteger)monthsAfterDate:(NSDate * _Nonnull) aDate;
-//
-//- (NSInteger)monthsBeforeDate:(NSDate * _Nonnull) aDate;
-//
-///**
-//* return distance days
-//*/
-//- (NSInteger)distanceInDaysToDate:(NSDate * _Nonnull) aDate;
-//
-//#pragma mark - Decomposing dates
-///**
-//* return nearest hour
-//*/
-//@property(readonly) NSInteger nearestHour;
-//@property(readonly) NSInteger hour;
-//@property(readonly) NSInteger minute;
-//@property(readonly) NSInteger seconds;
-//@property(readonly) NSInteger day;
-//@property(readonly) NSInteger month;
-//@property(readonly) NSInteger week;
-////  in the Gregorian calendar, n is 7 and Sunday is represented by 1.
-//@property(readonly) NSInteger weekday;
-//@property(readonly) NSInteger firstDayOfWeekday;
-//@property(readonly) NSInteger lastDayOfWeekday;
-//// e.g. 2nd Tuesday of the month == 2
-//@property(readonly) NSInteger nthWeekday;
-//@property(readonly) NSInteger year;
-//@property(readonly) NSInteger gregorianYear;
-//@end
