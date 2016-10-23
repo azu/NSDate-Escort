@@ -12,6 +12,10 @@ import Nimble
 
 class EscortRetrievingIntervalsSpec: QuickSpec {
     override func spec() {
+        beforeEach {
+            let calendarIdentifier = Calendar.Identifier.gregorian
+            Date.setDefault(calendarIdentifier)
+        }
         describe("-minutesAfterDate") {
             context("the date is 2010-10-10 10:10:10") {
                 let currentDate = Date.build(

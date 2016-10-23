@@ -13,6 +13,10 @@ import Nimble
 
 class EscortComparingSpec: QuickSpec {
     override func spec() {
+        beforeEach {
+            let calendarIdentifier = Calendar.Identifier.gregorian
+            Date.setDefault(calendarIdentifier)
+        }
         describe("-isEqualToDateIgnoringTime") {
             let currentDate = Date()
             context("when same the date") {

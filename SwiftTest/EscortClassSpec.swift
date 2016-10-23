@@ -13,6 +13,10 @@ import NSDate_Escort
 
 class EscortClassSpec: QuickSpec {
     override func spec() {
+        beforeEach {
+            let calendarIdentifier = Calendar.Identifier.gregorian
+            Date.setDefault(calendarIdentifier)
+        }
         describe("+dateTomorrow") {
             context("when today is new time") {
                 let currentDate = Date()

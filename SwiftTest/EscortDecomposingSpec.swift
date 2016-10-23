@@ -12,6 +12,10 @@ import Nimble
 
 class EscortDecomposingSpec: QuickSpec {
     override func spec() {
+        beforeEach {
+            let calendarIdentifier = Calendar.Identifier.gregorian
+            Date.setDefault(calendarIdentifier)
+        }
         describe("-nearestHour") {
             context("when 10:00:00") {
                 let currentDate = Date.build(
