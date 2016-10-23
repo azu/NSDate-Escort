@@ -370,6 +370,14 @@ extension Date {
     public func days(before date: Date) -> Int {
         return -days(after: date)
     }
+    
+    public func months(after date: Date) -> Int {
+        let components = Date.AZ_currentCalendar().components(.month, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        return components.month!
+    }
+    public func months(before date: Date) -> Int {
+        return -months(after: date)
+    }
 }
 
 //
