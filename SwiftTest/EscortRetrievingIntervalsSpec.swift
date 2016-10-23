@@ -208,7 +208,6 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
             }
         
         
-        /*
         describe("-daysAfterDate") {
             context("the date is 2010-10-10 10:10:10") {
                 let currentDate = Date.build(
@@ -221,7 +220,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     )
                 context("when 1 day ago") {
                     let oneDay = 1;
-                    let anotherDate = currentDate.dateBySubtractingDays(oneDay)
+                    let anotherDate = currentDate.add(day: -oneDay)
 
                     it("should return 1") {
                         let day = currentDate.days(after: anotherDate)
@@ -236,36 +235,6 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         let day = currentDate.days(after: anotherDate)
                         expect(day).to(equal(-oneDay))
                         }
-                    }
-                }
-            
-            // Set the date to 29th March 2015 01:00 (the day daylight savings ends)
-            context("the date is 2015-03-29 00:00:00 in ") {
-                let currentDate;
-                let anotherDate;
-                 timeZone = [NSTimeZone timeZoneWithName:"Europe/London"];
-                    [NSTimeZone stub:selector(defaultTimeZone) andReturn:timeZone];
-                    let calendar = NSCalendar.calendarWithIdentifier(NSCalendarIdentifierGregorian)
-                    [NSDate stub:selector(AZ_currentCalendar) andReturn:calendar];
-                    
-                    
-                    currentDate = Date.build(
-                    year: 2015,
-                    month: 3,
-                    day: 29
-                    )
-                    anotherDate = Date.build(
-                    year: 2015,
-                    month: 3,
-                    day: 30
-                    )
-                it("should return 82800 seconds") {
-                    let diff = currentDate.timeIntervalSinceDate(anotherDate)
-                    expect(diff).to(equal(-82800))
-                    }
-                it("should return 1") {
-                    let diff = currentDate.days(before: anotherDate)
-                    expect(diff).to(equal(1))
                     }
                 }
             }
@@ -282,7 +251,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     )
                 context("when 1 day ago") {
                     let oneDay = 1;
-                    let anotherDate = currentDate.dateBySubtractingDays(oneDay)
+                    let anotherDate = currentDate.add(day: -oneDay)
 
                     it("should return -1") {
                         let day = currentDate.days(before: anotherDate)
@@ -299,30 +268,9 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         }
                     }
                 }
-            context("the date is 2015-03-29 00:00:00") {
-                let currentDate;
-                 timeZone = [NSTimeZone timeZoneWithName:"Europe/London"];
-                    [NSTimeZone stub:selector(defaultTimeZone) andReturn:timeZone];
-                    let calendar = NSCalendar.calendarWithIdentifier(NSCalendarIdentifierGregorian)
-                    [NSDate stub:selector(AZ_currentCalendar) andReturn:calendar];
-                    
-                    currentDate = Date.build(
-                    year: 2015,
-                    month: 3,
-                    day: 29
-                    )
-                context("when day ago") {
-                    let oneDay = 1;
-                    let anotherDate = currentDate.add(day: oneDay)
-
-                    it("should return 1") {
-                        let diff = currentDate.days(after: anotherDate)
-                        expect(diff).to(equal(-oneDay))
-                        }
-                    }
-                }
             }
         
+        /*
         describe("-monthsBeforeDate") {
             context("the date is 2010-10-10 10:10:10") {
                 let currentDate = Date.build(
@@ -513,7 +461,7 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         }
                     }
                 context("when another date is 10 days ago") {
-                    let expectDays = 10 = currentDate.dateBySubtractingDays(expectDays)
+                    let expectDays = 10 = currentDate.add(day: -expectDays)
 
                     it("should return -10") {
                         let distanceDays = currentDate.distanceInDaysToDate(anotherDate)
