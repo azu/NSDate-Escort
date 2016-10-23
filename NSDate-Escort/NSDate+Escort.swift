@@ -2,10 +2,49 @@
 
 import Foundation
 
-extension Date {
-    public static func AZ_currentCalendar() -> NSCalendar {
-        return NSCalendar(identifier: .gregorian)!
+fileprivate struct AZ_DateCalendar {
+    static var AZ_DefaultCalendarIdentifierLock = NSLock()
+    static var AZ_DefaultCalendarIdentifier: String?;
+    
+    static func AZ_defaultCalendarIdentifier() -> String? {
+        var string: String?
+        AZ_DefaultCalendarIdentifierLock.lock()
+        string = AZ_DefaultCalendarIdentifier
+        AZ_DefaultCalendarIdentifierLock.unlock()
+        return string
     }
+    static func AZ_setDefaultCalendarIdentifier(calendarIdentifier: String) {
+        AZ_DefaultCalendarIdentifierLock.lock()
+        AZ_DefaultCalendarIdentifier = calendarIdentifier;
+        AZ_DefaultCalendarIdentifierLock.unlock()
+    }
+}
+
+extension Date {
+    fileprivate static func AZ_currentCalendar() -> NSCalendar {
+        var key = "AZ_currentCalendar_"
+        let calendarIdentifier = AZ_DateCalendar.AZ_defaultCalendarIdentifier()
+        if let calendarIdentifier = calendarIdentifier {
+            key = key + calendarIdentifier
+        }
+        var dictionary = Thread.current.threadDictionary
+        var currentCalendar = dictionary[key] as! Calendar?
+        if currentCalendar == nil {
+            if let calendarIdentifier = calendarIdentifier {
+                currentCalendar = NSCalendar(identifier: NSCalendar.Identifier.init(rawValue: calendarIdentifier)) as Calendar?
+                assert(currentCalendar != nil, "NSDate-Escort failed to create a calendar since the provided calendarIdentifier is invalid.")
+            } else {
+                currentCalendar = Calendar.current
+            }
+            dictionary[key] = currentCalendar
+        }
+        currentCalendar!.timeZone = NSTimeZone.local
+        return currentCalendar! as NSCalendar
+    }
+    public static func setDefaultCalendarIdentifier(calendarIdentifier: String) {
+        AZ_DateCalendar.AZ_setDefaultCalendarIdentifier(calendarIdentifier: calendarIdentifier)
+    }
+    
     public static func build(
         era: Int? = nil,
         year: Int? = nil,
