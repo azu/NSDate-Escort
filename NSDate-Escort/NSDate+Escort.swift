@@ -378,6 +378,12 @@ extension Date {
     public func months(before date: Date) -> Int {
         return -months(after: date)
     }
+    
+    public func distanceInDays(to date: Date) -> Int {
+    let calendar = Date.AZ_currentCalendar()
+    let dateComponents = calendar.components([.day], from: self, to: date, options: .init(rawValue: 0))
+    return dateComponents.day!
+    }
 }
 
 //

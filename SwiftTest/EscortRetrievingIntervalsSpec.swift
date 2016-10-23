@@ -391,55 +391,53 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                 }
             }
         }
-    
-    /*
+        
         describe("-distanceInDaysToDate") {
             context("the date 2010-10-10, ") {
-                NSDate *currentDate;
-                let anotherDate;
-                beforeEach(^{
-                    currentDate = Date.build(
-                        year: 2010,
-                        month: 10,
-                        day: 10,
-                        hour: 10,
-                        minute: 10,
-                        second: 10
-                    )
+                let currentDate = Date.build(
+                    year: 2010,
+                    month: 10,
+                    day: 10,
+                    hour: 10,
+                    minute: 10,
+                    second: 10
+                )
                 context("when another date is same date") {
                     it("should return 0") {
                         let expectDays = 0;
-                        let distanceDays = currentDate.distanceInDaysToDate(currentDate)
+                        let distanceDays = currentDate.distanceInDays(to: currentDate)
                         expect(distanceDays).to(equal(expectDays))
-                        }
                     }
+                }
                 context("when another date is 10 days later") {
-                    let expectDays = 10 = currentDate.add(day: expectDays)
-
+                    let expectDays = 10
+                    let anotherDate = currentDate.add(day: expectDays)
+                    
                     it("should return 10") {
-                        let distanceDays = currentDate.distanceInDaysToDate(anotherDate)
+                        let distanceDays = currentDate.distanceInDays(to: anotherDate)
                         expect(distanceDays).to(equal(expectDays))
-                        }
                     }
+                }
                 // big days
                 context("when another date is 400 days later") {
-                    let expectDays = 400 = currentDate.add(day: expectDays)
-
+                    let expectDays = 400
+                    let anotherDate = currentDate.add(day: expectDays)
+                    
                     it("should return 100") {
-                        let distanceDays = currentDate.distanceInDaysToDate(anotherDate)
+                        let distanceDays = currentDate.distanceInDays(to: anotherDate)
                         expect(distanceDays).to(equal(expectDays))
-                        }
                     }
+                }
                 context("when another date is 10 days ago") {
-                    let expectDays = 10 = currentDate.add(day: -expectDays)
-
+                    let expectDays = 10
+                    let anotherDate = currentDate.add(day: -expectDays)
+                    
                     it("should return -10") {
-                        let distanceDays = currentDate.distanceInDaysToDate(anotherDate)
+                        let distanceDays = currentDate.distanceInDays(to: anotherDate)
                         expect(distanceDays).to(equal(-expectDays))
-                        }
                     }
                 }
             }
-*/
+        }
     }
 }
