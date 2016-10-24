@@ -16,9 +16,13 @@ class EscortComparingSpec: QuickSpec {
         beforeEach {
             let calendarIdentifier = Calendar.Identifier.gregorian
             Date.setDefault(calendarIdentifier)
+            NSTimeZone.default = TimeZone(identifier: "Asia/Tokyo")!
         }
         describe("-isEqualToDateIgnoringTime") {
-            let currentDate = Date()
+            var currentDate = Date()
+            beforeEach {
+                currentDate = Date()
+            }
             context("when same the date") {
                 it("should be true") {
                     let isMatch = currentDate.isEqualToDateIgnoringTime(currentDate)
@@ -73,16 +77,22 @@ class EscortComparingSpec: QuickSpec {
                         let calendarIdentifier = Calendar.Identifier.gregorian
                         Date.setDefault(calendarIdentifier)
                     }
-                    let currentDate = Date.build(
-                        year: 2014,
-                        month: 5,
-                        day: 19
-                    )
-                    let previousEraDate = Date.build(
-                        year: -2013,
-                        month: 5,
-                        day: 19
-                    )
+                    var currentDate = Date()
+                    beforeEach {
+                        currentDate = Date.build(
+                            year: 2014,
+                            month: 5,
+                            day: 19
+                        )
+                    }
+                    var previousEraDate = Date()
+                    beforeEach {
+                        previousEraDate = Date.build(
+                            year: -2013,
+                            month: 5,
+                            day: 19
+                        )
+                    }
                     it("shuold be equal year") {
                         expect(currentDate.year()).to(equal(previousEraDate.year()))
                     }
@@ -96,16 +106,22 @@ class EscortComparingSpec: QuickSpec {
                         let calendarIdentifier = Calendar.Identifier.japanese
                         Date.setDefault(calendarIdentifier)
                     }
-                    let currentDate = Date.build(
-                        year: 2014,
-                        month: 5,
-                        day: 19
-                    )
-                    let previousEraDate = Date.build(
-                        year: 1951,
-                        month: 5,
-                        day: 19
-                    )
+                    var currentDate = Date()
+                    beforeEach {
+                        currentDate = Date.build(
+                            year: 2014,
+                            month: 5,
+                            day: 19
+                        )
+                    }
+                    var previousEraDate = Date()
+                    beforeEach {
+                        previousEraDate = Date.build(
+                            year: 1951,
+                            month: 5,
+                            day: 19
+                        )
+                    }
                     it("shuold be equal year") {
                         expect(currentDate.year()).to(equal(previousEraDate.year()))
                     }
@@ -217,11 +233,14 @@ class EscortComparingSpec: QuickSpec {
         }
         describe("-isSameWeekAsDate") {
             context("today is 2010-10-10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10
+                    )
+                }
                 context("same week") {
                     it("should be true") {
                         let match = currentDate.isSameWeek(as: currentDate)
@@ -235,23 +254,32 @@ class EscortComparingSpec: QuickSpec {
                     }
                 }
                 context("when same the week, but difference year") {
-                    let nextYearDate = currentDate.build(
-                        year: (currentDate.year() + 1)
-                    )
+                    var nextYearDate = Date()
+                    beforeEach {
+                        nextYearDate = currentDate.build(
+                            year: (currentDate.year() + 1)
+                        )
+                    }
                     it("should be false") {
                         let match = nextYearDate.isSameWeek(as: currentDate)
                         expect(match).to(beFalse())
                     }
                 }
                 context("next week") {
-                    let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                    var nextWeekDate = Date()
+                    beforeEach {
+                        nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                    }
                     it("should be false") {
                         let match = nextWeekDate.isSameWeek(as: currentDate)
                         expect(match).to(beFalse())
                     }
                 }
                 context("last week") {
-                    let prevWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                    var prevWeekDate = Date()
+                    beforeEach {
+                        prevWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                    }
                     it("should be false") {
                         let match = prevWeekDate.isSameWeek(as: currentDate)
                         expect(match).to(beFalse())
@@ -259,11 +287,14 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("today is 2015-03-30") {
-                let currentDate = Date.build(
-                    year: 2015,
-                    month: 3,
-                    day: 30
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2015,
+                        month: 3,
+                        day: 30
+                    )
+                }
                 context("same week") {
                     it("should be true") {
                         let match = currentDate.isSameWeek(as: currentDate)
@@ -273,19 +304,25 @@ class EscortComparingSpec: QuickSpec {
                 context("within this week") {
                     // weekday 1...7
                     context("firstOfWeek") {
-                        let firstOfWeek = currentDate.build(
-                            day: (currentDate.firstDayOfWeekday())
-                        )
+                        var firstOfWeek = Date()
+                        beforeEach {
+                            firstOfWeek = currentDate.build(
+                                day: (currentDate.firstDayOfWeekday())
+                            )
+                        }
                         it("should be true") {
                             let match_first = firstOfWeek.isSameWeek(as: currentDate)
                             expect(match_first).to(beTrue())
                         }
                     }
                     context("endOfWeek") {
-                        let lastOfWeek = currentDate.build(
-                            month: 4,
-                            day: 4
-                        )
+                        var lastOfWeek = Date()
+                        beforeEach {
+                            lastOfWeek = currentDate.build(
+                                month: 4,
+                                day: 4
+                            )
+                        }
                         it("should be true") {
                             let match_last = lastOfWeek.isSameWeek(as: currentDate)
                             expect(match_last).to(beTrue())
@@ -293,23 +330,32 @@ class EscortComparingSpec: QuickSpec {
                     }
                 }
                 context("when same the week, but difference year") {
-                    let nextYearDate = currentDate.build(
-                        year: (currentDate.year() + 1)
-                    )
+                    var nextYearDate = Date()
+                    beforeEach {
+                        nextYearDate = currentDate.build(
+                            year: (currentDate.year() + 1)
+                        )
+                    }
                     it("should be false") {
                         let match = nextYearDate.isSameWeek(as: currentDate)
                         expect(match).to(beFalse())
                     }
                 }
                 context("next week") {
-                    let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                    var nextWeekDate = Date()
+                    beforeEach {
+                        nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                    }
                     it("should be false") {
                         let match = nextWeekDate.isSameWeek(as: currentDate)
                         expect(match).to(beFalse())
                     }
                 }
                 context("last week") {
-                    let prevWeekDate = currentDate.add(day: -(DAYS_IN_WEEK))
+                    var prevWeekDate = Date()
+                    beforeEach {
+                        prevWeekDate = currentDate.add(day: -(DAYS_IN_WEEK))
+                    }
                     it("should be false") {
                         let match = prevWeekDate.isSameWeek(as: currentDate)
                         expect(match).to(beFalse())
@@ -347,14 +393,20 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("next week") {
-                let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                var nextWeekDate = Date()
+                beforeEach {
+                    nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                }
                 it("should be false") {
                     let match = nextWeekDate.isThisWeek()
                     expect(match).to(beFalse())
                 }
             }
             context("last week") {
-                let prevWeekDate = currentDate.add(day: -DAYS_IN_WEEK)
+                var prevWeekDate = Date()
+                beforeEach {
+                    prevWeekDate = currentDate.add(day: -DAYS_IN_WEEK)
+                }
                 it("should be false") {
                     let match = prevWeekDate.isThisWeek()
                     expect(match).to(beFalse())
@@ -375,14 +427,20 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("next week") {
-                let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                var nextWeekDate = Date()
+                beforeEach {
+                    nextWeekDate = currentDate.add(day: DAYS_IN_WEEK)
+                }
                 it("should be true") {
                     let match = nextWeekDate.isNextWeek()
                     expect(match).to(beTrue())
                 }
             }
             context("two weeks later") {
-                let nextWeekDate = currentDate.add(day: DAYS_IN_WEEK * 2)
+                var nextWeekDate = Date()
+                beforeEach {
+                    nextWeekDate = currentDate.add(day: DAYS_IN_WEEK * 2)
+                }
                 it("should be false") {
                     let match = nextWeekDate.isNextWeek()
                     expect(match).to(beFalse())
@@ -403,14 +461,20 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("when last week") {
-                let prevWeekDate = currentDate.add(day: -DAYS_IN_WEEK)
+                var prevWeekDate = Date()
+                beforeEach {
+                    prevWeekDate = currentDate.add(day: -DAYS_IN_WEEK)
+                }
                 it("should be true") {
                     let match = prevWeekDate.isLastWeek()
                     expect(match).to(beTrue())
                 }
             }
             context("when two weeks ago") {
-                let prevWeekDate = currentDate.add(day: DAYS_IN_WEEK * 2)
+                var prevWeekDate = Date()
+                beforeEach {
+                    prevWeekDate = currentDate.add(day: DAYS_IN_WEEK * 2)
+                }
                 it("should be false") {
                     let match = prevWeekDate.isLastWeek()
                     expect(match).to(beFalse())
@@ -437,21 +501,30 @@ class EscortComparingSpec: QuickSpec {
                     }
                 }
                 context("next month") {
-                    let nextMonth = Date().add(month: 1)
+                    var nextMonth = Date()
+                    beforeEach {
+                        nextMonth = Date().add(month: 1)
+                    }
                     it("should be false") {
                         let match = currentDate.isSameMonth(as: nextMonth)
                         expect(match).to(beFalse())
                     }
                 }
                 context("last month") {
-                    let lastMonth = Date().add(month: -1)
+                    var lastMonth = Date()
+                    beforeEach {
+                        lastMonth = Date().add(month: -1)
+                    }
                     it("should be false") {
                         let match = currentDate.isSameMonth(as: lastMonth)
                         expect(match).to(beFalse())
                     }
                 }
                 context("next year") {
-                    let nextYear = Date().add(year: 1)
+                    var nextYear = Date()
+                    beforeEach {
+                        nextYear = Date().add(year: 1)
+                    }
                     it("should be false") {
                         let match = currentDate.isSameMonth(as: nextYear)
                         expect(match).to(beFalse())
@@ -473,14 +546,20 @@ class EscortComparingSpec: QuickSpec {
             context("within this year") {
                 context("today is date") {
                     context("at start of year") {
-                        let startOfYear = currentDate.startOfYear()
+                        var startOfYear = Date()
+                        beforeEach {
+                            startOfYear = currentDate.startOfYear()
+                        }
                         it("should be yes") {
                             let match = currentDate.isSameYear(as: startOfYear)
                             expect(match).to(beTrue())
                         }
                     }
                     context("at end of year") {
-                        let endOfYear = currentDate.endOfYear()
+                        var endOfYear = Date()
+                        beforeEach {
+                            endOfYear = currentDate.endOfYear()
+                        }
                         it("should be yes") {
                             let match = currentDate.isSameYear(as: endOfYear)
                             expect(match).to(beTrue())
@@ -498,7 +577,10 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("other year") {
-                let otherYearDate = currentDate.add(year: 10)
+                var otherYearDate = Date()
+                beforeEach {
+                    otherYearDate = currentDate.add(year: 10)
+                }
                 it("should be false") {
                     let match = otherYearDate.isThisYear()
                     expect(match).to(beFalse())
@@ -515,18 +597,24 @@ class EscortComparingSpec: QuickSpec {
                     }
                 }
                 context("next year") {
-                    let nextYear = currentDate.build(
-                        year: (currentDate.year() + 1)
-                    )
+                    var nextYear = Date()
+                    beforeEach {
+                        nextYear = currentDate.build(
+                            year: (currentDate.year() + 1)
+                        )
+                    }
                     it("should be true") {
                         let match = nextYear.isNextYear()
                         expect(match).to(beTrue())
                     }
                 }
                 context("one years later") {
-                    let twoYearsLater = currentDate.build(
-                        year: (currentDate.year() + 2)
-                    )
+                    var twoYearsLater = Date()
+                    beforeEach {
+                        twoYearsLater = currentDate.build(
+                            year: (currentDate.year() + 2)
+                        )
+                    }
                     it("should be false") {
                         let match = twoYearsLater.isNextYear()
                         expect(match).to(beFalse())
@@ -544,18 +632,24 @@ class EscortComparingSpec: QuickSpec {
                     }
                 }
                 context("last year") {
-                    let lastYear = currentDate.build(
-                        year: (currentDate.year() - 1)
-                    )
+                    var lastYear = Date()
+                    beforeEach {
+                        lastYear = currentDate.build(
+                            year: (currentDate.year() - 1)
+                        )
+                    }
                     it("should be true") {
                         let match = lastYear.isLastYear()
                         expect(match).to(beTrue())
                     }
                 }
                 context("two years ago") {
-                    let twoYearsAgo = currentDate.build(
-                        year: (currentDate.year() - 2)
-                    )
+                    var twoYearsAgo = Date()
+                    beforeEach {
+                        twoYearsAgo = currentDate.build(
+                            year: (currentDate.year() - 2)
+                        )
+                    }
                     it("should be false") {
                         let match = twoYearsAgo.isLastYear()
                         expect(match).to(beFalse())
@@ -564,14 +658,17 @@ class EscortComparingSpec: QuickSpec {
             }
         }
         describe("-isEarlierThanDate") {
-            let currentDate = Date().build(
-                year: 2010,
-                month: 10,
-                day: 10,
-                hour: 10,
-                minute: 10,
-                second: 10
-            )
+            var currentDate = Date()
+            beforeEach {
+                currentDate = Date().build(
+                    year: 2010,
+                    month: 10,
+                    day: 10,
+                    hour: 10,
+                    minute: 10,
+                    second: 10
+                )
+            }
             context("when same time") {
                 it("should be false") {
                     let match = currentDate.isEarlier(than: currentDate)
@@ -579,14 +676,20 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("when earlier date") {
-                let earlierDate = currentDate.add(second: -1)
+                var earlierDate = Date()
+                beforeEach {
+                    earlierDate = currentDate.add(second: -1)
+                }
                 it("should be true") {
                     let match = earlierDate.isEarlier(than: currentDate)
                     expect(match).to(beTrue())
                 }
             }
             context("when later date") {
-                let laterDate = currentDate.add(second: 1)
+                var laterDate = Date()
+                beforeEach {
+                    laterDate = currentDate.add(second: 1)
+                }
                 it("should be false") {
                     let match = laterDate.isEarlier(than: currentDate)
                     expect(match).to(beFalse())
@@ -594,14 +697,17 @@ class EscortComparingSpec: QuickSpec {
             }
         }
         describe("-isLaterThanDate") {
-            let currentDate = Date.build(
-                year: 2010,
-                month: 10,
-                day: 10,
-                hour: 10,
-                minute: 10,
-                second: 10
-            )
+            var currentDate = Date()
+            beforeEach {
+                currentDate = Date.build(
+                    year: 2010,
+                    month: 10,
+                    day: 10,
+                    hour: 10,
+                    minute: 10,
+                    second: 10
+                )
+            }
             context("when same time") {
                 it("should be false") {
                     let match = currentDate.isLater(than: currentDate)
@@ -609,14 +715,20 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("when earlier date") {
-                let earlierDate = currentDate.add(second: -1)
+                var earlierDate = Date()
+                beforeEach {
+                    earlierDate = currentDate.add(second: -1)
+                }
                 it("should be false") {
                     let match = earlierDate.isLater(than: currentDate)
                     expect(match).to(beFalse())
                 }
             }
             context("when later date") {
-                let laterDate = currentDate.add(second: 1)
+                var laterDate = Date()
+                beforeEach {
+                    laterDate = currentDate.add(second: 1)
+                }
                 it("should be true") {
                     let match = laterDate.isLater(than: currentDate)
                     expect(match).to(beTrue())
@@ -632,14 +744,20 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("when earlier date") {
-                let earlierDate = currentDate.add(second: -1)
+                var earlierDate = Date()
+                beforeEach {
+                    earlierDate = currentDate.add(second: -1)
+                }
                 it("should be true") {
                     let match = earlierDate.isEarlier(thanOrEqual: currentDate)
                     expect(match).to(beTrue())
                 }
             }
             context("when later date") {
-                let laterDate = currentDate.add(second: 1)
+                var laterDate = Date()
+                beforeEach {
+                    laterDate = currentDate.add(second: 1)
+                }
                 it("should be false") {
                     let match = laterDate.isEarlier(thanOrEqual: currentDate)
                     expect(match).to(beFalse())
@@ -655,14 +773,20 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("when earlier date") {
-                let earlierDate = currentDate.add(second: -1)
+                var earlierDate = Date()
+                beforeEach {
+                    earlierDate = currentDate.add(second: -1)
+                }
                 it("should be false") {
                     let match = earlierDate.isLater(thanOrEqual: currentDate)
                     expect(match).to(beFalse())
                 }
             }
             context("when later date") {
-                let laterDate = currentDate.add(second: 1)
+                var laterDate = Date()
+                beforeEach {
+                    laterDate = currentDate.add(second: 1)
+                }
                 it("should be true") {
                     let match = laterDate.isLater(thanOrEqual: currentDate)
                     expect(match).to(beTrue())
@@ -678,7 +802,10 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("when earlier date") {
-                let earlierDate = currentDate.add(second: -1)
+                var earlierDate = Date()
+                beforeEach {
+                    earlierDate = currentDate.add(second: -1)
+                }
                 it("should be true") {
                     let match = earlierDate.isInPast()
                     expect(match).to(beTrue())
@@ -694,7 +821,10 @@ class EscortComparingSpec: QuickSpec {
                 }
             }
             context("when later date") {
-                let laterDate = currentDate.add(second: 10)
+                var laterDate = Date()
+                beforeEach {
+                    laterDate = currentDate.add(second: 10)
+                }
                 it("should be true") {
                     let match = laterDate.isInFuture()
                     expect(match).to(beTrue())
