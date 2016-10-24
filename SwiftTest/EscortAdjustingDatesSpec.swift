@@ -15,21 +15,31 @@ class EscortAdjustingDatesSpec: QuickSpec {
         beforeEach {
             let calendarIdentifier = Calendar.Identifier.gregorian
             Date.setDefault(calendarIdentifier)
+            NSTimeZone.default = TimeZone(identifier: "Asia/Tokyo")!
         }
         describe("-dateByAddingYears") {
             context("when the date is 2010-10-10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10
+                    )
+                }
                 context("adding 0 year") {
-                    let subject = currentDate.add(year: 0)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(year: 0)
+                    }
                     it("should return 2010-10-10") {
                         expect(subject).to(approximatelyEqual(currentDate))
                     }
                     context("adding 1 year") {
-                        let subject = currentDate.add(year: 1)
+                        var subject = Date()
+                        beforeEach {
+                            subject = currentDate.add(year: 1)
+                        }
                         it("should return 2011-10-10") {
                             let expectDate = Date.build(
                                 year: 2011,
@@ -41,7 +51,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     }
                 }
                 context("adding -1 year") {
-                    let subject = currentDate.add(year: -1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(year: -1)
+                    }
                     it("should return 2009-10-10") {
                         let expectDate = Date.build(
                             year: 2009,
@@ -55,19 +68,28 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateByAddingMonths") {
             context("when the date is 2010-10-10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10
+                    )
+                }
                 context("adding 0 month") {
-                    let subject = currentDate.add(month: 0)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(month: 0)
+                    }
                     it("should return 2010-10-10") {
                         expect(subject).to(approximatelyEqual(currentDate))
                     }
                 }
                 context("adding 1 month") {
-                    let subject = currentDate.add(month: 1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(month: 1)
+                    }
                     it("should return 2010-11-10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -78,7 +100,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     }
                 }
                 context("adding -1 month") {
-                    let subject = currentDate.add(month: -1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(month: -1)
+                    }
                     it("should return 2010-09-10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -92,19 +117,28 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateByAddingDays") {
             context("when the date is 2010-10-10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10
+                    )
+                }
                 context("adding 0 Day") {
-                    let subject = currentDate.add(day: 0)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(day: 0)
+                    }
                     it("should return 2010-10-10") {
                         expect(subject).to(approximatelyEqual(currentDate))
                     }
                 }
                 context("adding 1 Day") {
-                    let subject = currentDate.add(day: 1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(day: 1)
+                    }
                     it("should return 2010-10-11") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -115,7 +149,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     }
                 }
                 context("adding -1 Day") {
-                    let subject = currentDate.add(day: -1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(day: -1)
+                    }
                     it("should return 2010-10-09") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -129,22 +166,31 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateByAddingHours") {
             context("when the date is 2010-10-10 10:10:10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10,
-                    hour: 10,
-                    minute: 10,
-                    second: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10,
+                        hour: 10,
+                        minute: 10,
+                        second: 10
+                    )
+                }
                 context("adding 0 hour") {
-                    let subject = currentDate.add(hour: 0)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(hour: 0)
+                    }
                     it("should return same date") {
                         expect(subject).to(equal(currentDate))
                     }
                 }
                 context("adding 1 hour") {
-                    let dateWithDaysBeforeNow = currentDate.add(hour: 1)
+                    var dateWithDaysBeforeNow = Date()
+                    beforeEach {
+                        dateWithDaysBeforeNow = currentDate.add(hour: 1)
+                    }
                     it("should return 2010-10-10 10:11:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -158,7 +204,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     }
                 }
                 context("adding 24 hour") {
-                    let subject = currentDate.add(hour: 24)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(hour: 24)
+                    }
                     it("should return 2010-10-11 10:10:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -172,7 +221,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     }
                 }
                 context("adding -1 hour") {
-                    let subject = currentDate.add(hour: -1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(hour: -1)
+                    }
                     it("should return 2010-10-10 09:10:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -189,22 +241,31 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateByAddingMinutes") {
             context("when the date is 2010-10-10 10:10:10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10,
-                    hour: 10,
-                    minute: 10,
-                    second: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10,
+                        hour: 10,
+                        minute: 10,
+                        second: 10
+                    )
+                }
                 context("adding 0 minute") {
-                    let subject = currentDate.add(minute:  0)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(minute:  0)
+                    }
                     it("should return same date") {
                         expect(subject).to(equal(currentDate))
                     }
                 }
                 context("adding 1 minute") {
-                    let subject = currentDate.add(minute:  1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(minute:  1)
+                    }
                     it("should return 2010-10-10 10:11:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -218,7 +279,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     }
                 }
                 context("adding 60 minute") {
-                    let subject = currentDate.add(minute:  60)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(minute:  60)
+                    }
                     it("should return 2010-10-10 11:10:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -232,7 +296,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     }
                 }
                 context("adding -1 minute") {
-                    let subject = currentDate.add(minute: -1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(minute: -1)
+                    }
                     it("should return 2010-10-10 10:09:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -249,22 +316,31 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateByAddingSounds") {
             context("when the date is 2010-10-10 10:10:10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10,
-                    hour: 10,
-                    minute: 10,
-                    second: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10,
+                        hour: 10,
+                        minute: 10,
+                        second: 10
+                    )
+                }
                 context("adding 0 second") {
-                    let subject = currentDate.add(second: 0)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(second: 0)
+                    }
                     it("should return same date") {
                         expect(subject).to(equal(currentDate))
                     }
                 }
                 context("adding 1 second") {
-                    let subject = currentDate.add(second: 1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(second: 1)
+                    }
                     it("should return 2010-10-10 10:10:11") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -278,7 +354,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     }
                 }
                 context("adding 60 seconds") {
-                    let subject = currentDate.add(second: 60)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(second: 60)
+                    }
                     it("should return 2010-10-10 10:11:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -292,7 +371,10 @@ class EscortAdjustingDatesSpec: QuickSpec {
                     }
                 }
                 context("adding -1 second") {
-                    let subject = currentDate.add(second: -1)
+                    var subject = Date()
+                    beforeEach {
+                        subject = currentDate.add(second: -1)
+                    }
                     it("should return 2010-10-10 10:11:10") {
                         let expectDate = Date.build(
                             year: 2010,
@@ -309,30 +391,42 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateAtStartOfDay") {
             context("when the date is 2010-10-10 00:00:00") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10,
-                    hour: 0,
-                    minute: 0,
-                    second: 0
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10,
+                        hour: 0,
+                        minute: 0,
+                        second: 0
+                    )
+                }
                 
-                let subject = currentDate.startOfDay()
+                var subject = Date()
+                beforeEach {
+                    subject = currentDate.startOfDay()
+                }
                 it("should return same date") {
                     expect(subject).to(equal(currentDate))
                 }
             }
             context("when the date is 2010-10-10 23:59:59") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10,
-                    hour: 23,
-                    minute: 59,
-                    second: 59
-                )
-                let subject = currentDate.startOfDay()
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10,
+                        hour: 23,
+                        minute: 59,
+                        second: 59
+                    )
+                }
+                var subject = Date()
+                beforeEach {
+                    subject = currentDate.startOfDay()
+                }
                 it("should return 2010-10-10 00:00:00") {
                     let expectDate = Date.build(
                         year: 2010,
@@ -348,16 +442,22 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateAtEndOfDay") {
             context("when the date is 2010-10-10 00:00:00") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10,
-                    hour: 0,
-                    minute: 0,
-                    second: 0
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10,
+                        hour: 0,
+                        minute: 0,
+                        second: 0
+                    )
+                }
                 
-                let subject = currentDate.endOfDay()
+                var subject = Date()
+                beforeEach {
+                    subject = currentDate.endOfDay()
+                }
                 it("should return 2010-10-10 23:59:59") {
                     let expectDate = Date.build(
                         year: 2010,
@@ -371,16 +471,22 @@ class EscortAdjustingDatesSpec: QuickSpec {
                 }
             }
             context("when the date is 2010-10-10 23:59:59") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10,
-                    hour: 23,
-                    minute: 59,
-                    second: 59
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10,
+                        hour: 23,
+                        minute: 59,
+                        second: 59
+                    )
+                }
                 
-                let subject = currentDate.endOfDay()
+                var subject = Date()
+                beforeEach {
+                    subject = currentDate.endOfDay()
+                }
                 it("should return same date") {
                     expect(subject).to(equal(currentDate))
                 }
@@ -388,11 +494,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateAtStartOfWeek") {
             context("When the date is 2014-03-04") {
-                let currentDate = Date.build(
-                    year: 2014,
-                    month: 3,
-                    day: 4
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2014,
+                        month: 3,
+                        day: 4
+                    )
+                }
                 
                 it("should return start of week date object") {
                     let subject = currentDate.startOfWeek()
@@ -405,11 +514,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
                 }
             }
             context("When the date is 2014-03-01") {
-                let currentDate = Date.build(
-                    year: 2014,
-                    month: 3,
-                    day: 1
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2014,
+                        month: 3,
+                        day: 1
+                    )
+                }
                 
                 it("should return start of week date object") {
                     let subject = currentDate.startOfWeek()
@@ -425,11 +537,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
         
         describe("-dateAtEndOfWeek") {
             context("When the date is 2014-03-04") {
-                let currentDate = Date.build(
-                    year: 2014,
-                    month: 3,
-                    day: 4
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2014,
+                        month: 3,
+                        day: 4
+                    )
+                }
                 it("should return end of week date object") {
                     
                     let subject = currentDate.endOfWeek()
@@ -442,11 +557,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
                 }
             }
             context("When the date is 2014-02-25") {
-                let currentDate = Date.build(
-                    year: 2014,
-                    month: 2,
-                    day: 25
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2014,
+                        month: 2,
+                        day: 25
+                    )
+                }
                 it("should return end of week date object") {
                     let subject = currentDate.endOfWeek()
                     let expectDate = Date.build(
@@ -461,11 +579,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
         
         describe("-dateAtStartOfMonth") {
             context("when the date is 2010-10-10 00:00:00") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10
+                    )
+                }
                 it("should return start of month date object") {
                     // 2010-10-01
                     let subject = currentDate.startOfMonth()
@@ -480,11 +601,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateAtEndOfMonth") {
             context("when the date is 2010-10-10 00:00:00") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10
+                    )
+                }
                 it("should return end of month date object") {
                     // 2010-10-31
                     let subject = currentDate.endOfMonth()
@@ -498,11 +622,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
             }
             // http://en.wikipedia.org/wiki/Leap_year
             context("when February  leap year") {
-                let currentDate = Date.build(
-                    year: 2000,// divisible 400 => leap year
-                    month: 2,
-                    day: 1
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2000,// divisible 400 => leap year
+                        month: 2,
+                        day: 1
+                    )
+                }
                 it("should return 02-29") {
                     let subject = currentDate.endOfMonth()
                     let expectDate = Date.build(
@@ -515,11 +642,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
             }
             // http://en.wikipedia.org/wiki/Leap_year
             context("when February  not leap year") {
-                let currentDate = Date.build(
-                    year: 2001,
-                    month: 2,
-                    day: 1
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2001,
+                        month: 2,
+                        day: 1
+                    )
+                }
                 it("should return 02-28") {
                     let subject = currentDate.endOfMonth()
                     let expectDate = Date.build(
@@ -534,11 +664,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
         
         describe("-dateAtStartOfYear") {
             context("when the date is 2010-10-10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10
+                    )
+                }
                 it("should return start of year date object") {
                     // 2010-01-01
                     let subject = currentDate.startOfYear()
@@ -553,11 +686,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
         }
         describe("-dateAtEndOfYear") {
             context("when the date is 2010-10-10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 10,
-                    day: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 10,
+                        day: 10
+                    )
+                }
                 it("should return end of year date object") {
                     // 2010-12-31
                     let subject = currentDate.endOfYear()
@@ -570,11 +706,14 @@ class EscortAdjustingDatesSpec: QuickSpec {
                 }
             }
             context("when the date is 2010-2-10") {
-                let currentDate = Date.build(
-                    year: 2010,
-                    month: 2,
-                    day: 10
-                )
+                var currentDate = Date()
+                beforeEach {
+                    currentDate = Date.build(
+                        year: 2010,
+                        month: 2,
+                        day: 10
+                    )
+                }
                 it("should return end of year date object") {
                     // 2010-12-31
                     let subject = currentDate.endOfYear()
