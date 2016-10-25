@@ -16,6 +16,7 @@ class EscortClassSpec: QuickSpec {
         beforeEach {
             let calendarIdentifier = Calendar.Identifier.gregorian
             Date.setDefault(calendarIdentifier)
+            NSTimeZone.default = TimeZone(identifier: "Asia/Tokyo")!
         }
         describe("+dateTomorrow") {
             context("when today is new time") {

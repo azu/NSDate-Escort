@@ -15,7 +15,7 @@ class EscortDecomposingSpec: QuickSpec {
         beforeEach {
             let calendarIdentifier = Calendar.Identifier.japanese
             Date.setDefault(calendarIdentifier)
-            NSTimeZone.default = TimeZone(identifier: "Europe/London")!
+            NSTimeZone.default = TimeZone(identifier: "Asia/Tokyo")!
         }
         describe("-nearestHour") {
             context("when 10:00:00") {
