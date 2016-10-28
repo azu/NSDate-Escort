@@ -239,10 +239,16 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                     )
                 }
                 context("when 1 day ago") {
+                    let oneDay = 1;
+                    var anotherDate = Date()
+                    beforeEach {
+                        anotherDate = currentDate.add(day: -oneDay)
+                    }
+                    it("should return 86400 seconds") {
+                        let seconds = currentDate.seconds(after: anotherDate)
+                        expect(seconds).to(equal(86400))
+                    }
                     it("should return 1") {
-                        let oneDay = 1;
-                        let anotherDate = currentDate.add(day: -oneDay)
-                        
                         let day = currentDate.days(after: anotherDate)
                         expect(day).to(equal(oneDay))
                     }
@@ -255,6 +261,34 @@ class EscortRetrievingIntervalsSpec: QuickSpec {
                         let day = currentDate.days(after: anotherDate)
                         expect(day).to(equal(-oneDay))
                     }
+                }
+            }
+            
+            // Set the date to 29th March 2015 01:00 (the day daylight savings ends)
+            context("the date is 2015-03-29 00:00:00 in ") {
+                var currentDate = Date()
+                var anotherDate = Date()
+                beforeEach {
+                    NSTimeZone.default = TimeZone(identifier: "Europe/London")!
+                    
+                    currentDate = Date.build(
+                        year: 2015,
+                        month: 3,
+                        day: 29
+                    )
+                    anotherDate = Date.build(
+                        year: 2015,
+                        month: 3,
+                        day: 30
+                    )
+                }
+                it("should return 82800 seconds") {
+                    let diff = currentDate.seconds(after: anotherDate)
+                    expect(diff).to(equal(-82800))
+                }
+                it("should return 1") {
+                    let diff = currentDate.days(after: anotherDate)
+                    expect(diff).to(equal(-1))
                 }
             }
         }
