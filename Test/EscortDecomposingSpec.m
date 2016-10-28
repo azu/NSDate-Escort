@@ -542,18 +542,9 @@ SPEC_BEGIN(EscortDecomposingSpec)
                     AZ_DateUnit.day : @10,
                 }];
             });
-            it(@"should return 2010", ^{
-                NSInteger yearValue = [currentDate year];
-
-                NSCalendar *c = [NSCalendar currentCalendar];
-                if ([c.calendarIdentifier isEqualToString:NSCalendarIdentifierGregorian]) {
-                    [[theValue(yearValue) should] equal:theValue(2010)];
-                } else if ([c.calendarIdentifier isEqualToString:NSCalendarIdentifierJapanese]) {
-                    [[theValue(yearValue) should] equal:theValue(22)];
-                } else {
-                    [[theValue(yearValue) shouldNot] equal:theValue(2010)];
-                    [[theValue(yearValue) shouldNot] equal:theValue(22)];
-                }
+            it(@"should return 2010 in all calendar", ^{
+                NSInteger yearValue = [currentDate gregorianYear];
+                [[theValue(yearValue) should] equal:theValue(2010)];
             });
         });
         context(@"when the date'calendar is not Gregorian", ^{
@@ -561,7 +552,7 @@ SPEC_BEGIN(EscortDecomposingSpec)
             __block NSDate *expectedDate;
             beforeEach(^{
                 expectedDate = [NSDate AZ_dateByUnit:@{
-                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.year : @1989,
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
                 }];
@@ -579,8 +570,8 @@ SPEC_BEGIN(EscortDecomposingSpec)
                 NSInteger yearValue = [currentDate gregorianYear];
                 [[theValue(yearValue) should] equal:theValue(1989)];
             });
-            it(@"the date equal to 2010-10-10", ^{
-                [[theValue(currentDate) shouldNot] equal:expectedDate];
+            it(@"the date equal to 1989-10-10", ^{
+                [[currentDate should] equal:expectedDate];
             });
         });
     });

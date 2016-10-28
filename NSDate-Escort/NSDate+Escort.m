@@ -485,7 +485,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 - (NSInteger)gregorianYear {
     NSCalendar *currentCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *components = [currentCalendar components:NSCalendarUnitEra | NSCalendarUnitYear omDate:self];
+    NSDateComponents *components = [currentCalendar components:NSCalendarUnitEra | NSCalendarUnitYear fromDate:self];
     return [components year];
 }
 
