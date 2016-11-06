@@ -163,16 +163,15 @@ extension Date {
             ])
     }
     public func add(unit: [Calendar.Component: Int?]) -> Date {
-        let calendar = Calendar(identifier: .gregorian)
-        var dateComponents = calendar.dateComponents([.era, .year, .month, .day, .hour, .minute, .second, .nanosecond,], from: self)
-        dateComponents.calendar = calendar
+        var components = DateComponents()
         for key in unit.keys {
             let number = unit[key]!;
             if let number = number {
-                dateComponents.setValue(dateComponents.value(for: key)! + number, for: key)
+                components.setValue(number, for: key)
             }
         }
-        return calendar.date(from: dateComponents)!;
+        let calendar = Date.AZ_currentCalendar()
+        return calendar.date(byAdding: components, to: self)!
     }
     
     public static func tomorrow() -> Date {
@@ -277,7 +276,7 @@ extension Date {
 extension Date {
     
     public func seconds(after date: Date) -> Int {
-        let components = (Date.AZ_currentCalendar() as NSCalendar).components(.second, from: date, to: self, options: NSCalendar.Options.init(rawValue: 0))
+        let components = Date.AZ_currentCalendar().dateComponents([.second], from: date, to: self)
         return components.second!
     }
     public func seconds(before date: Date) -> Int {
@@ -328,6 +327,10 @@ extension Date {
 
 // Decomposing dates
 extension Date {
+    public func era() -> Int {
+        let components = Date.AZ_currentCalendar().dateComponents([.era], from: self)
+        return components.era!
+    }
     public func gregorianYear() -> Int {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.year], from: self)

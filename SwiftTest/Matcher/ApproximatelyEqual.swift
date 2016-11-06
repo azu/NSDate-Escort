@@ -12,8 +12,10 @@ import Nimble
 public func approximatelyEqual(_ expectedValue: Date) -> NonNilMatcherFunc<Date> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         failureMessage.postfixMessage = "approximately equal <\(stringify(expectedValue))>"
-        let actualValue = try actualExpression.evaluate()!
-        return expectedValue.add(second: -5) <= actualValue &&
-            actualValue < expectedValue.add(second: 5)
+        let value = expectedValue.timeIntervalSince1970
+        let actualValue = try actualExpression.evaluate()!.timeIntervalSince1970
+        
+        return value - 5 <= actualValue &&
+            actualValue < value + 5
     }
 }
