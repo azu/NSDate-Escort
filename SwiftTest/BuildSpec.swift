@@ -142,6 +142,29 @@ class BuildSpec: QuickSpec {
                         }
                     }
                 }
+                context("day") {
+                    context("adding 0") {
+                        it("should return 2010-10-10") {
+                            let subject = date.add(day: 0)
+                            let expectDate = Date.build(year: 2010, month: 10, day: 10, hour: 11, minute: 12, second: 13)
+                            expect(subject).to(equal(expectDate))
+                        }
+                    }
+                    context("adding 1") {
+                        it("should return 2010-10-11") {
+                            let subject = date.add(day: 1)
+                            let expectDate = Date.build(year: 2010, month: 10, day: 11, hour: 11, minute: 12, second: 13)
+                            expect(subject).to(equal(expectDate))
+                        }
+                    }
+                    context("adding -1") {
+                        it("should return 2010-10-09") {
+                            let subject = date.add(day: -1)
+                            let expectDate = Date.build(year: 2010, month: 10, day: 9, hour: 11, minute: 12, second: 13)
+                            expect(subject).to(equal(expectDate))
+                        }
+                    }
+                }
             }
         }
         context("in japanese") {
@@ -236,6 +259,32 @@ class BuildSpec: QuickSpec {
                             let subject = date.add(month: -1)
                             let expectDate = Date.build(year: 1988, month: 12, day: 7, hour: 11, minute: 12, second: 13)
                             expect(subject).to(equal(expectDate))
+                        }
+                    }
+                }
+                context("day") {
+                    context("adding 0") {
+                        it("should return 1989-1-7") {
+                            let subject = date.add(day: 0)
+                            let expectDate = Date.build(year: 1989, month: 1, day: 7, hour: 11, minute: 12, second: 13)
+                            expect(subject).to(equal(expectDate))
+                            expect(subject.era()).to(equal(234))
+                        }
+                    }
+                    context("adding 1") {
+                        it("should return 1989-1-8") {
+                            let subject = date.add(day: 0)
+                            let expectDate = Date.build(year: 1989, month: 1, day: 8, hour: 11, minute: 12, second: 13)
+                            expect(subject).to(equal(expectDate))
+                            expect(subject.era()).to(equal(235))
+                        }
+                    }
+                    context("adding -1") {
+                        it("should return 1989-1-6") {
+                            let subject = date.add(day: -1)
+                            let expectDate = Date.build(year: 1989, month: 1, day: 6, hour: 11, minute: 12, second: 13)
+                            expect(subject).to(equal(expectDate))
+                            expect(subject.era()).to(equal(234))
                         }
                     }
                 }
