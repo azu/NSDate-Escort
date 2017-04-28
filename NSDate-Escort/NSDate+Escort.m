@@ -408,6 +408,14 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
         components:NSCalendarUnitDay fromDate:self toDate:aDate options:0];
     return [dateComponents day];
 }
+
+#pragma amount
+- (NSInteger)daysAmountOfMonth {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];
+    return range.length;
+}
+
 #pragma mark - Decomposing dates
 // NSDate-Utilities API is broken?
 - (NSInteger)nearestHour {
