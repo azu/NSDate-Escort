@@ -410,6 +410,13 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 #pragma amount
+
+- (NSInteger)hoursOfDay {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSRange range = [calendar rangeOfUnit:NSCalendarUnitHour inUnit:NSCalendarUnitDay forDate:self];
+    return range.length;
+}
+
 - (NSInteger)daysOfMonth {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];

@@ -155,6 +155,8 @@
 
 #pragma mark amount
 
+- (NSInteger)hoursOfDay;
+
 - (NSInteger)daysOfMonth;
 
 - (NSInteger)daysOfYear;
