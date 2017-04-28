@@ -157,7 +157,10 @@
 
 - (NSInteger)daysAmountOfMonth;
 
-- (NSInteger)monthsAmountOfYesr;
+- (NSInteger)daysAmountOfYear;
+
+- (NSInteger)monthsAmountOfYear;
+
 
 #pragma mark - Decomposing dates
 /**

@@ -416,7 +416,17 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     return range.length;
 }
 
-- (NSInteger)monthsAmountOfYesr {
+- (NSInteger)daysAmountOfYear {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDate *startOfYear;
+    NSTimeInterval lengthOfYear;
+    [calendar rangeOfUnit:NSCalendarUnitYear startDate:&startOfYear interval:&lengthOfYear forDate:self];
+    
+    NSDate *endOfYear = [startOfYear dateByAddingTimeInterval:lengthOfYear];
+    return [startOfYear daysBeforeDate:endOfYear];
+}
+
+- (NSInteger)monthsAmountOfYear {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSRange range = [calendar rangeOfUnit:NSCalendarUnitMonth inUnit:NSCalendarUnitYear forDate:self];
     return range.length;
