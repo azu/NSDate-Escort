@@ -53,9 +53,9 @@
 		73FCA17418DE837D009ED4AD /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
 		73FCA17618DE837D009ED4AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		73FCA17A18DE837D009ED4AD /* Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Prefix.pch"; sourceTree = "<group>"; };
-		BE0BE99C1E9B221000D736C7 /* NSDate_Escort.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NSDate_Escort.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE0BE99E1E9B221000D736C7 /* NSDate-Escort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate-Escort.h"; sourceTree = "<group>"; };
-		BE0BE99F1E9B221000D736C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE0BE99C1E9B221000D736C7 /* NSDate_Escort_Cocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NSDate_Escort_Cocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE0BE99E1E9B221000D736C7 /* NSDate-Escort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSDate-Escort.h"; path = "../NSDate-Escort_Cocoa/NSDate-Escort.h"; sourceTree = "<group>"; };
+		BE0BE99F1E9B221000D736C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../NSDate-Escort_Cocoa/Info.plist"; sourceTree = "<group>"; };
 		BE0BE9AA1E9B238F00D736C7 /* NSDate_Escort_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NSDate_Escort_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0BE9AC1E9B238F00D736C7 /* NSDate_Escort_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDate_Escort_iOS.h; sourceTree = "<group>"; };
 		BE0BE9AD1E9B238F00D736C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 			children = (
 				73FCA17218DE837D009ED4AD /* Test */,
 				BE5B7B0C1BBFB048005732C2 /* Benchmark */,
-				BE0BE99D1E9B221000D736C7 /* NSDate-Escort */,
+				BE0BE99D1E9B221000D736C7 /* NSDate-Escort_Cocoa */,
 				BE0BE9AB1E9B238F00D736C7 /* NSDate_Escort_iOS */,
 				7355ABE017638E9600DD1EC2 /* Frameworks */,
 				7355ABDF17638E9600DD1EC2 /* Products */,
@@ -151,7 +151,7 @@
 			children = (
 				73FCA16E18DE837D009ED4AD /* Test.xctest */,
 				BE5B7B0B1BBFB048005732C2 /* Benchmark.xctest */,
-				BE0BE99C1E9B221000D736C7 /* NSDate_Escort.framework */,
+				BE0BE99C1E9B221000D736C7 /* NSDate_Escort_Cocoa.framework */,
 				BE0BE9AA1E9B238F00D736C7 /* NSDate_Escort_iOS.framework */,
 			);
 			name = Products;
@@ -196,12 +196,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BE0BE99D1E9B221000D736C7 /* NSDate-Escort */ = {
+		BE0BE99D1E9B221000D736C7 /* NSDate-Escort_Cocoa */ = {
 			isa = PBXGroup;
 			children = (
 				BE0BE99E1E9B221000D736C7 /* NSDate-Escort.h */,
 				BE0BE99F1E9B221000D736C7 /* Info.plist */,
 			);
+			name = "NSDate-Escort_Cocoa";
 			path = "NSDate-Escort";
 			sourceTree = "<group>";
 		};
@@ -285,9 +286,9 @@
 			productReference = 73FCA16E18DE837D009ED4AD /* Test.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BE0BE99B1E9B221000D736C7 /* NSDate_Escort */ = {
+		BE0BE99B1E9B221000D736C7 /* NSDate_Escort_Cocoa */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BE0BE9A31E9B221000D736C7 /* Build configuration list for PBXNativeTarget "NSDate_Escort" */;
+			buildConfigurationList = BE0BE9A31E9B221000D736C7 /* Build configuration list for PBXNativeTarget "NSDate_Escort_Cocoa" */;
 			buildPhases = (
 				BE0BE9971E9B221000D736C7 /* Sources */,
 				BE0BE9981E9B221000D736C7 /* Frameworks */,
@@ -298,9 +299,9 @@
 			);
 			dependencies = (
 			);
-			name = NSDate_Escort;
+			name = NSDate_Escort_Cocoa;
 			productName = "NSDate-Escort";
-			productReference = BE0BE99C1E9B221000D736C7 /* NSDate_Escort.framework */;
+			productReference = BE0BE99C1E9B221000D736C7 /* NSDate_Escort_Cocoa.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		BE0BE9A91E9B238F00D736C7 /* NSDate_Escort_iOS */ = {
@@ -373,7 +374,7 @@
 			targets = (
 				73FCA16D18DE837D009ED4AD /* Test */,
 				BE5B7B0A1BBFB048005732C2 /* Benchmark */,
-				BE0BE99B1E9B221000D736C7 /* NSDate_Escort */,
+				BE0BE99B1E9B221000D736C7 /* NSDate_Escort_Cocoa */,
 				BE0BE9A91E9B238F00D736C7 /* NSDate_Escort_iOS */,
 			);
 		};
@@ -960,7 +961,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BE0BE9A31E9B221000D736C7 /* Build configuration list for PBXNativeTarget "NSDate_Escort" */ = {
+		BE0BE9A31E9B221000D736C7 /* Build configuration list for PBXNativeTarget "NSDate_Escort_Cocoa" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BE0BE9A11E9B221000D736C7 /* Debug */,

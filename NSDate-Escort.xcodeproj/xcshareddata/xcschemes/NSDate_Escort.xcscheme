@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BE0BE99B1E9B221000D736C7"
-               BuildableName = "NSDate_Escort.framework"
-               BlueprintName = "NSDate_Escort"
+               BuildableName = "NSDate_Escort_Cocoa.framework"
+               BlueprintName = "NSDate_Escort_Cocoa"
                ReferencedContainer = "container:NSDate-Escort.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BE0BE99B1E9B221000D736C7"
-            BuildableName = "NSDate_Escort.framework"
-            BlueprintName = "NSDate_Escort"
+            BuildableName = "NSDate_Escort_Cocoa.framework"
+            BlueprintName = "NSDate_Escort_Cocoa"
             ReferencedContainer = "container:NSDate-Escort.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BE0BE99B1E9B221000D736C7"
-            BuildableName = "NSDate_Escort.framework"
-            BlueprintName = "NSDate_Escort"
+            BuildableName = "NSDate_Escort_Cocoa.framework"
+            BlueprintName = "NSDate_Escort_Cocoa"
             ReferencedContainer = "container:NSDate-Escort.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
