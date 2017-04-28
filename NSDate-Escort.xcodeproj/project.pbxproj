@@ -25,6 +25,7 @@
 		BE0BE9A41E9B221D00D736C7 /* NSDate+Escort.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C5CD74BE7F1C57C3F0DB /* NSDate+Escort.m */; };
 		BE0BE9AE1E9B238F00D736C7 /* NSDate_Escort_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BE0BE9AC1E9B238F00D736C7 /* NSDate_Escort_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE5B7B151BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */; };
+		BEAD6D3E1EB337AA004A4A3B /* EscortAmountOfSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAD6D3D1EB337AA004A4A3B /* EscortAmountOfSpecs.m */; };
 		C5BD6A39196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A36196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m */; };
 		C5BD6A3A196287E30053103A /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		BE5B7B0B1BBFB048005732C2 /* Benchmark.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Benchmark.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5B7B0F1BBFB048005732C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchMakeFormReferenceDate.m; sourceTree = "<group>"; };
+		BEAD6D3D1EB337AA004A4A3B /* EscortAmountOfSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortAmountOfSpecs.m; sourceTree = "<group>"; };
 		C5BD6A35196287E30053103A /* AZNLTQuickCheckKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNLTQuickCheckKiwiMatcher.h; sourceTree = "<group>"; };
 		C5BD6A36196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNLTQuickCheckKiwiMatcher.m; sourceTree = "<group>"; };
 		C5BD6A37196287E30053103A /* AZNSDateKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNSDateKiwiMatcher.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				17B5CF5E44E63D16B9757F5F /* EscortClassSpec.m */,
 				17B5C79FDE62EDC8C21A9FFC /* EscortAdjustingDatesSpec.m */,
 				17B5C3CB2F1D7F92A7D5D185 /* EscortRetrievingIntervalsSpec.m */,
+				BEAD6D3D1EB337AA004A4A3B /* EscortAmountOfSpecs.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				17B5C9F98AC409F47299D54B /* EscortDecomposingSpec.m in Sources */,
 				C5BD6A39196287E30053103A /* AZNLTQuickCheckKiwiMatcher.m in Sources */,
 				17B5C474F10F4D9620AFFACC /* FakeDateUtil.m in Sources */,
+				BEAD6D3E1EB337AA004A4A3B /* EscortAmountOfSpecs.m in Sources */,
 				17B5C94FD65CD923332ED3EE /* EscortCacheSpec.m in Sources */,
 				C5BD6A3A196287E30053103A /* AZNSDateKiwiMatcher.m in Sources */,
 				17B5CEF22C864A71F222AF9B /* EscortDateRoles.m in Sources */,

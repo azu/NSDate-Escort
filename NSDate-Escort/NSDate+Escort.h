@@ -153,6 +153,17 @@
 */
 - (NSInteger)distanceInDaysToDate:(NSDate * _Nonnull) aDate;
 
+#pragma mark amount
+
+- (NSInteger)hoursOfDay;
+
+- (NSInteger)daysOfMonth;
+
+- (NSInteger)daysOfYear;
+
+- (NSInteger)monthsOfYear;
+
+
 #pragma mark - Decomposing dates
 /**
 * return nearest hour
