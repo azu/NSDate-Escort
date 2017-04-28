@@ -51,4 +51,27 @@ SPEC_BEGIN(EscortAmountOfSpecs)
             [[theValue(days) should] equal:theValue(29)];
         });
     });
+    
+    describe(@"-monthsAmountOfYesr", ^{
+        it(@"2010 is 12 months", ^{
+            NSDate *currentDate = [NSDate AZ_dateByUnit:@{
+                AZ_DateUnit.year: @2010,
+                AZ_DateUnit.month: @10,
+                AZ_DateUnit.day: @10,
+            }];
+            
+            NSInteger days = [currentDate monthsAmountOfYesr];
+            [[theValue(days) should] equal:theValue(12)];
+        });
+        it(@"2011 is 12 months", ^{
+            NSDate *currentDate = [NSDate AZ_dateByUnit:@{
+                AZ_DateUnit.year: @2011,
+                AZ_DateUnit.month: @10,
+                AZ_DateUnit.day: @10,
+            }];
+        
+            NSInteger days = [currentDate monthsAmountOfYesr];
+            [[theValue(days) should] equal:theValue(12)];
+        });
+    });
 SPEC_END

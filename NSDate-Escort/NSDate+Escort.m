@@ -416,6 +416,12 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     return range.length;
 }
 
+- (NSInteger)monthsAmountOfYesr {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSRange range = [calendar rangeOfUnit:NSCalendarUnitMonth inUnit:NSCalendarUnitYear forDate:self];
+    return range.length;
+}
+
 #pragma mark - Decomposing dates
 // NSDate-Utilities API is broken?
 - (NSInteger)nearestHour {

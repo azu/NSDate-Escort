@@ -157,6 +157,8 @@
 
 - (NSInteger)daysAmountOfMonth;
 
+- (NSInteger)monthsAmountOfYesr;
+
 #pragma mark - Decomposing dates
 /**
 * return nearest hour
