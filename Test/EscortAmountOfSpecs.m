@@ -6,10 +6,10 @@
 + (NSCalendar *)AZ_currentCalendar;
 @end
 
-SPEC_BEGIN(EscortAmountOfSpecs)
+SPEC_BEGIN(EscortOfSpecs)
     registerMatchers(@"AZ");// NSDate Custom Matcher
     
-    describe(@"-daysAmountOfMonth", ^{
+    describe(@"-daysOfMonth", ^{
         it(@"2010-10 is 31 days", ^{
             NSDate *currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year: @2010,
@@ -17,7 +17,7 @@ SPEC_BEGIN(EscortAmountOfSpecs)
                 AZ_DateUnit.day: @10,
             }];
             
-            NSInteger days = [currentDate daysAmountOfMonth];
+            NSInteger days = [currentDate daysOfMonth];
             [[theValue(days) should] equal:theValue(31)];
         });
         it(@"2010-11 is 30 days", ^{
@@ -27,7 +27,7 @@ SPEC_BEGIN(EscortAmountOfSpecs)
                 AZ_DateUnit.day: @10,
             }];
             
-            NSInteger days = [currentDate daysAmountOfMonth];
+            NSInteger days = [currentDate daysOfMonth];
             [[theValue(days) should] equal:theValue(30)];
         });
         it(@"2010-02 is 28 days", ^{
@@ -37,7 +37,7 @@ SPEC_BEGIN(EscortAmountOfSpecs)
                 AZ_DateUnit.day: @10,
             }];
             
-            NSInteger days = [currentDate daysAmountOfMonth];
+            NSInteger days = [currentDate daysOfMonth];
             [[theValue(days) should] equal:theValue(28)];
         });
         it(@"2012-02 is 29 days", ^{
@@ -47,12 +47,12 @@ SPEC_BEGIN(EscortAmountOfSpecs)
                 AZ_DateUnit.day: @10,
             }];
             
-            NSInteger days = [currentDate daysAmountOfMonth];
+            NSInteger days = [currentDate daysOfMonth];
             [[theValue(days) should] equal:theValue(29)];
         });
     });
     
-    describe(@"-monthsAmountOfYesr", ^{
+    describe(@"-monthsOfYesr", ^{
         it(@"2010 is 12 months", ^{
             NSDate *currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year: @2010,
@@ -60,7 +60,7 @@ SPEC_BEGIN(EscortAmountOfSpecs)
                 AZ_DateUnit.day: @10,
             }];
             
-            NSInteger days = [currentDate monthsAmountOfYear];
+            NSInteger days = [currentDate monthsOfYear];
             [[theValue(days) should] equal:theValue(12)];
         });
         it(@"2011 is 12 months", ^{
@@ -70,12 +70,12 @@ SPEC_BEGIN(EscortAmountOfSpecs)
                 AZ_DateUnit.day: @10,
             }];
         
-            NSInteger days = [currentDate monthsAmountOfYear];
+            NSInteger days = [currentDate monthsOfYear];
             [[theValue(days) should] equal:theValue(12)];
         });
     });
     
-    describe(@"-daysAmountOfYear", ^{
+    describe(@"-daysOfYear", ^{
         it(@"2010 is 365 days", ^{
             NSDate *currentDate = [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year: @2010,
@@ -83,7 +83,7 @@ SPEC_BEGIN(EscortAmountOfSpecs)
                 AZ_DateUnit.day: @10,
             }];
             
-            NSInteger days = [currentDate daysAmountOfYear];
+            NSInteger days = [currentDate daysOfYear];
             [[theValue(days) should] equal:theValue(365)];
         });
         it(@"2012 is 366 days", ^{
@@ -93,7 +93,7 @@ SPEC_BEGIN(EscortAmountOfSpecs)
                 AZ_DateUnit.day: @10,
             }];
             
-            NSInteger days = [currentDate daysAmountOfYear];
+            NSInteger days = [currentDate daysOfYear];
             [[theValue(days) should] equal:theValue(366)];
         });
     });

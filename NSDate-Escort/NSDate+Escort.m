@@ -410,13 +410,13 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
 }
 
 #pragma amount
-- (NSInteger)daysAmountOfMonth {
+- (NSInteger)daysOfMonth {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];
     return range.length;
 }
 
-- (NSInteger)daysAmountOfYear {
+- (NSInteger)daysOfYear {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSDate *startOfYear;
     NSTimeInterval lengthOfYear;
@@ -426,7 +426,7 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     return [startOfYear daysBeforeDate:endOfYear];
 }
 
-- (NSInteger)monthsAmountOfYear {
+- (NSInteger)monthsOfYear {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSRange range = [calendar rangeOfUnit:NSCalendarUnitMonth inUnit:NSCalendarUnitYear forDate:self];
     return range.length;
