@@ -883,6 +883,99 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
         });
     });
+    describe(@"-dateAtStartOfNextDay", ^{
+        context(@"when the date is 2010-10-10 00:00:00", ^{
+            __block NSDate *subject;
+            beforeEach(^{
+                NSDate *currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @0,
+                    AZ_DateUnit.minute : @0,
+                    AZ_DateUnit.second : @0,
+                }];
+                
+                subject = [currentDate dateAtStartOfNextDay];
+            });
+            it(@"should return 2010-10-11 00:00:00", ^{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @11,
+                    AZ_DateUnit.hour : @0,
+                    AZ_DateUnit.minute : @0,
+                    AZ_DateUnit.second : @0,
+                }];
+                [[subject should] equal:expectDate];
+            });
+        });
+        context(@"when the date is 2010-10-10 23:59:59", ^{
+            __block NSDate *subject;
+            beforeEach(^{
+                NSDate *currentDate;
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @23,
+                    AZ_DateUnit.minute : @59,
+                    AZ_DateUnit.second : @59,
+                }];
+                
+                subject = [currentDate dateAtStartOfNextDay];
+            });
+            it(@"should return 2010-10-11 00:00:00", ^{
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @11,
+                    AZ_DateUnit.hour : @0,
+                    AZ_DateUnit.minute : @0,
+                    AZ_DateUnit.second : @0,
+                }];
+                [[subject should] equal:expectDate];
+            });
+        });
+        context(@"when default time zone is changed", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                    AZ_DateUnit.hour : @23,
+                    AZ_DateUnit.minute : @59,
+                    AZ_DateUnit.second : @59,
+                }];
+            });
+            it(@"should return start of day in new time zone", ^{
+                NSTimeZone *initialTimeZone = [NSTimeZone defaultTimeZone];
+                NSTimeZone *newTimeZone = nil;
+                
+                BOOL isInitialTimeZoneGMT = ([initialTimeZone.abbreviation isEqualToString:@"GMT"]);
+                if (!isInitialTimeZoneGMT) {
+                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                } else {
+                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
+                }
+                assert(initialTimeZone.secondsFromGMT != newTimeZone.secondsFromGMT);
+                NSDate *date = [currentDate dateByAddingTimeInterval:[initialTimeZone secondsFromGMT] - [newTimeZone secondsFromGMT]];
+                [NSTimeZone setDefaultTimeZone:newTimeZone];
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @11,
+                    AZ_DateUnit.hour : @0,
+                    AZ_DateUnit.minute : @0,
+                    AZ_DateUnit.second : @0,
+                }];
+                [[[date dateAtStartOfNextDay] should] equal:expectDate];
+                
+                [NSTimeZone setDefaultTimeZone:initialTimeZone];
+            });
+        });
+    });
     describe(@"-dateAtEndOfDay", ^{
         context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *subject;
@@ -1067,7 +1160,103 @@ SPEC_BEGIN(EscortAdjustingDates)
             });
         });
     });
-
+    
+    describe(@"-dateAtStartOfNextWeek", ^{
+        context(@"When the date is 2014-03-04", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2014,
+                    AZ_DateUnit.month : @3,
+                    AZ_DateUnit.day : @4
+                }];
+            });
+            
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return start of week date object", ^{
+                    NSDate *subject = [currentDate dateAtStartOfNextWeek];
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2014,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @9
+                    }];
+                    [[subject should] beKindOfClass:[NSDate class]];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return start of week date object", ^{
+                    NSDate *subject = [currentDate dateAtStartOfNextWeek];
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2014,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @10
+                    }];
+                    [[subject should] beKindOfClass:[NSDate class]];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+        });
+        context(@"When the date is 2014-02-28", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2014,
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @28
+                }];
+            });
+            
+            context(@"begining of sunday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+                    beginingOfMondayCalendar.firstWeekday = 1;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return start of week date object", ^{
+                    
+                    NSDate *subject = [currentDate dateAtStartOfNextWeek];
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2014,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @2
+                    }];
+                    [[subject should] beKindOfClass:[NSDate class]];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+            
+            context(@"begining of monday for weekady", ^{
+                beforeEach(^{
+                    NSCalendar *beginingOfMondayCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+                    beginingOfMondayCalendar.firstWeekday = 2;
+                    [NSDate stub:@selector(AZ_currentCalendar) andReturn:beginingOfMondayCalendar];
+                });
+                it(@"should return start of week date object", ^{
+                    
+                    NSDate *subject = [currentDate dateAtStartOfNextWeek];
+                    NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                        AZ_DateUnit.year : @2014,
+                        AZ_DateUnit.month : @3,
+                        AZ_DateUnit.day : @3
+                    }];
+                    [[subject should] beKindOfClass:[NSDate class]];
+                    [[subject should] equalToDateIgnoringTime:expectDate];
+                });
+            });
+        });
+    });
+    
     describe(@"-dateAtEndOfWeek", ^{
         context(@"When the date is 2014-03-04", ^{
             __block NSDate *currentDate;
@@ -1151,6 +1340,29 @@ SPEC_BEGIN(EscortAdjustingDates)
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @1,
+                }];
+                [[subject should] beKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+    });
+    describe(@"-dateAtStartOfNextMonth", ^{
+        context(@"when the date is 2010-10-10 00:00:00", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return start of next month date object", ^{
+                // 2010-10-01
+                NSDate *subject = [currentDate dateAtStartOfNextMonth];
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @11,
                     AZ_DateUnit.day : @1,
                 }];
                 [[subject should] beKindOfClass:[NSDate class]];
@@ -1261,6 +1473,73 @@ SPEC_BEGIN(EscortAdjustingDates)
                 NSDate *subject = [currentDate dateAtStartOfYear];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @1,
+                }];
+                [[subject should] beKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+    });
+    describe(@"-dateAtStartOfNextYear", ^{
+        context(@"when the date is 2010-10-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return end of next year date object", ^{
+                // 2010-12-31
+                NSDate *subject = [currentDate dateAtStartOfNextYear];
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2011,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @1,
+                }];
+                [[subject should] beKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+        context(@"when the date is 2010-2-10", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @2,
+                    AZ_DateUnit.day : @10,
+                }];
+            });
+            it(@"should return end of next year date object", ^{
+                // 2010-12-31
+                NSDate *subject = [currentDate dateAtStartOfNextYear];
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2011,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @1,
+                }];
+                [[subject should] beKindOfClass:[NSDate class]];
+                [[subject should] equalToDateIgnoringTime:expectDate];
+            });
+        });
+        context(@"when the date is 1989-01-06 and not Gregorian", ^{
+            __block NSDate *currentDate;
+            beforeEach(^{
+                currentDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @1989,
+                    AZ_DateUnit.month : @1,
+                    AZ_DateUnit.day : @6
+                }];
+                
+                NSCalendar *jaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierJapanese];
+                [NSDate stub:@selector(AZ_currentCalendar) andReturn:jaCalendar];
+            });
+            it(@"should return start of next year date object", ^{
+                NSDate *subject = [currentDate dateAtStartOfNextYear];
+                NSDate *expectDate = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @1990,
                     AZ_DateUnit.month : @1,
                     AZ_DateUnit.day : @1,
                 }];

@@ -115,19 +115,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSDate *)dateAtStartOfDay;
 
-- (NSDate *)dateAtEndOfDay;
+- (NSDate *)dateAtStartOfNextDay;
+
+- (NSDate *)dateAtEndOfDay NS_DEPRECATED(10_0, 10_12, 10_0, 11_0, "Use dateAtStartOfNextDay instead");
 
 - (NSDate *)dateAtStartOfWeek;
 
-- (NSDate *)dateAtEndOfWeek;
+- (NSDate *)dateAtStartOfNextWeek;
+
+- (NSDate *)dateAtEndOfWeek NS_DEPRECATED(10_0, 10_12, 10_0, 11_0, "Use dateAtStartOfNextWeek instead");
 
 - (NSDate *)dateAtStartOfMonth;
 
-- (NSDate *)dateAtEndOfMonth;
+- (NSDate *)dateAtStartOfNextMonth;
+
+- (NSDate *)dateAtEndOfMonth NS_DEPRECATED(10_0, 10_12, 10_0, 11_0, "Use dateAtStartOfNextMonth instead");
 
 - (NSDate *)dateAtStartOfYear;
 
-- (NSDate *)dateAtEndOfYear;
+- (NSDate *)dateAtStartOfNextYear;
+
+- (NSDate *)dateAtEndOfYear NS_DEPRECATED(10_0, 10_12, 10_0, 11_0, "Use dateAtStartOfNextYear instead");
 
 #pragma mark - Retrieving intervals
 - (NSInteger)secondsAfterDate:(NSDate *) aDate;
