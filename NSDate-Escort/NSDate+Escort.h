@@ -2,6 +2,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSDate (Escort)
 
 #pragma mark - Setting default calendar
@@ -22,25 +24,25 @@
 + (void)AZ_setDefaultCalendarIdentifier:(NSString * _Nullable)calendarIdentifier;
 
 #pragma mark - Relative dates from the current date
-+ (NSDate * _Nonnull)dateTomorrow;
++ (NSDate *)dateTomorrow;
 
-+ (NSDate * _Nonnull)dateYesterday;
++ (NSDate *)dateYesterday;
 
-+ (NSDate * _Nonnull)dateWithDaysFromNow:(NSInteger) dDays;
++ (NSDate *)dateWithDaysFromNow:(NSInteger) dDays;
 
-+ (NSDate * _Nonnull)dateWithDaysBeforeNow:(NSInteger) dDays;
++ (NSDate *)dateWithDaysBeforeNow:(NSInteger) dDays;
 
-+ (NSDate * _Nonnull)dateWithHoursFromNow:(NSInteger) dHours;
++ (NSDate *)dateWithHoursFromNow:(NSInteger) dHours;
 
-+ (NSDate * _Nonnull)dateWithHoursBeforeNow:(NSInteger) dHours;
++ (NSDate *)dateWithHoursBeforeNow:(NSInteger) dHours;
 
-+ (NSDate * _Nonnull)dateWithMinutesFromNow:(NSInteger) dMinutes;
++ (NSDate *)dateWithMinutesFromNow:(NSInteger) dMinutes;
 
-+ (NSDate * _Nonnull)dateWithMinutesBeforeNow:(NSInteger) dMinutes;
++ (NSDate *)dateWithMinutesBeforeNow:(NSInteger) dMinutes;
 
 #pragma mark - Comparing dates
 
-- (BOOL)isEqualToDateIgnoringTime:(NSDate * _Nonnull) otherDate;
+- (BOOL)isEqualToDateIgnoringTime:(NSDate *) otherDate;
 
 - (BOOL)isToday;
 
@@ -48,7 +50,7 @@
 
 - (BOOL)isYesterday;
 
-- (BOOL)isSameWeekAsDate:(NSDate * _Nonnull) aDate;
+- (BOOL)isSameWeekAsDate:(NSDate *) aDate;
 
 - (BOOL)isThisWeek;
 
@@ -56,11 +58,11 @@
 
 - (BOOL)isLastWeek;
 
-- (BOOL)isSameMonthAsDate:(NSDate * _Nonnull) aDate;
+- (BOOL)isSameMonthAsDate:(NSDate *) aDate;
 
 - (BOOL)isThisMonth;
 
-- (BOOL)isSameYearAsDate:(NSDate * _Nonnull) aDate;
+- (BOOL)isSameYearAsDate:(NSDate *) aDate;
 
 - (BOOL)isThisYear;
 
@@ -68,13 +70,13 @@
 
 - (BOOL)isLastYear;
 
-- (BOOL)isEarlierThanDate:(NSDate * _Nonnull) aDate;
+- (BOOL)isEarlierThanDate:(NSDate *) aDate;
 
-- (BOOL)isLaterThanDate:(NSDate * _Nonnull) aDate;
+- (BOOL)isLaterThanDate:(NSDate *) aDate;
 
-- (BOOL)isEarlierThanOrEqualDate:(NSDate * _Nonnull) aDate;
+- (BOOL)isEarlierThanOrEqualDate:(NSDate *) aDate;
 
-- (BOOL)isLaterThanOrEqualDate:(NSDate * _Nonnull) aDate;
+- (BOOL)isLaterThanOrEqualDate:(NSDate *) aDate;
 
 - (BOOL)isInFuture;
 
@@ -87,71 +89,71 @@
 - (BOOL)isTypicallyWeekend;
 
 #pragma mark - Adjusting dates
-- (NSDate * _Nonnull)dateByAddingYears:(NSInteger) dYears;
+- (NSDate *)dateByAddingYears:(NSInteger) dYears;
 
-- (NSDate * _Nonnull)dateBySubtractingYears:(NSInteger) dYears;
+- (NSDate *)dateBySubtractingYears:(NSInteger) dYears;
 
-- (NSDate * _Nonnull)dateByAddingMonths:(NSInteger) dMonths;
+- (NSDate *)dateByAddingMonths:(NSInteger) dMonths;
 
-- (NSDate * _Nonnull)dateBySubtractingMonths:(NSInteger) dMonths;
+- (NSDate *)dateBySubtractingMonths:(NSInteger) dMonths;
 
-- (NSDate * _Nonnull)dateByAddingDays:(NSInteger) dDays;
+- (NSDate *)dateByAddingDays:(NSInteger) dDays;
 
-- (NSDate * _Nonnull)dateBySubtractingDays:(NSInteger) dDays;
+- (NSDate *)dateBySubtractingDays:(NSInteger) dDays;
 
-- (NSDate * _Nonnull)dateByAddingHours:(NSInteger) dHours;
+- (NSDate *)dateByAddingHours:(NSInteger) dHours;
 
-- (NSDate * _Nonnull)dateBySubtractingHours:(NSInteger) dHours;
+- (NSDate *)dateBySubtractingHours:(NSInteger) dHours;
 
-- (NSDate * _Nonnull)dateByAddingMinutes:(NSInteger) dMinutes;
+- (NSDate *)dateByAddingMinutes:(NSInteger) dMinutes;
 
-- (NSDate * _Nonnull)dateBySubtractingMinutes:(NSInteger) dMinutes;
+- (NSDate *)dateBySubtractingMinutes:(NSInteger) dMinutes;
 
-- (NSDate * _Nonnull)dateByAddingSeconds:(NSInteger) dSeconds;
+- (NSDate *)dateByAddingSeconds:(NSInteger) dSeconds;
 
-- (NSDate * _Nonnull)dateBySubtractingSeconds:(NSInteger) dSeconds;
+- (NSDate *)dateBySubtractingSeconds:(NSInteger) dSeconds;
 
-- (NSDate * _Nonnull)dateAtStartOfDay;
+- (NSDate *)dateAtStartOfDay;
 
-- (NSDate * _Nonnull)dateAtEndOfDay;
+- (NSDate *)dateAtEndOfDay;
 
-- (NSDate * _Nonnull)dateAtStartOfWeek;
+- (NSDate *)dateAtStartOfWeek;
 
-- (NSDate * _Nonnull)dateAtEndOfWeek;
+- (NSDate *)dateAtEndOfWeek;
 
-- (NSDate * _Nonnull)dateAtStartOfMonth;
+- (NSDate *)dateAtStartOfMonth;
 
-- (NSDate * _Nonnull)dateAtEndOfMonth;
+- (NSDate *)dateAtEndOfMonth;
 
-- (NSDate * _Nonnull)dateAtStartOfYear;
+- (NSDate *)dateAtStartOfYear;
 
-- (NSDate * _Nonnull)dateAtEndOfYear;
+- (NSDate *)dateAtEndOfYear;
 
 #pragma mark - Retrieving intervals
-- (NSInteger)secondsAfterDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)secondsAfterDate:(NSDate *) aDate;
 
-- (NSInteger)secondsBeforeDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)secondsBeforeDate:(NSDate *) aDate;
 
-- (NSInteger)minutesAfterDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)minutesAfterDate:(NSDate *) aDate;
 
-- (NSInteger)minutesBeforeDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)minutesBeforeDate:(NSDate *) aDate;
 
-- (NSInteger)hoursAfterDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)hoursAfterDate:(NSDate *) aDate;
 
-- (NSInteger)hoursBeforeDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)hoursBeforeDate:(NSDate *) aDate;
 
-- (NSInteger)daysAfterDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)daysAfterDate:(NSDate *) aDate;
 
-- (NSInteger)daysBeforeDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)daysBeforeDate:(NSDate *) aDate;
 
-- (NSInteger)monthsAfterDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)monthsAfterDate:(NSDate *) aDate;
 
-- (NSInteger)monthsBeforeDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)monthsBeforeDate:(NSDate *) aDate;
 
 /**
 * return distance days
 */
-- (NSInteger)distanceInDaysToDate:(NSDate * _Nonnull) aDate;
+- (NSInteger)distanceInDaysToDate:(NSDate *) aDate;
 
 #pragma mark amount
 
@@ -184,3 +186,5 @@
 @property(readonly) NSInteger year;
 @property(readonly) NSInteger gregorianYear;
 @end
+
+NS_ASSUME_NONNULL_END
