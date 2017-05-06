@@ -280,6 +280,17 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     return [calendar dateFromComponents:components];
 }
 
+- (NSDate *)dateAtStartOfNextDay {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
+    components.day += 1;
+    components.hour = 0;
+    components.minute = 0;
+    components.second = 0;
+    components.timeZone = calendar.timeZone;
+    return [calendar dateFromComponents:components];
+}
+
 - (NSDate *)dateAtEndOfDay {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
@@ -297,6 +308,13 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     return startOfWeek;
 }
 
+- (NSDate *)dateAtStartOfNextWeek {
+    NSDate *startOfWeek = nil;
+    NSTimeInterval interval = 0;
+    [[NSDate AZ_currentCalendar] rangeOfUnit:NSCalendarUnitWeekOfMonth startDate:&startOfWeek interval:&interval forDate:self];
+    return [startOfWeek dateByAddingTimeInterval:interval];
+}
+
 - (NSDate *)dateAtEndOfWeek
 {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
@@ -304,10 +322,20 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     components.day += [self numberOfDaysInWeek] - components.weekday;
     return [calendar dateFromComponents:components];
 }
+
 - (NSDate *)dateAtStartOfMonth {
     NSCalendar *calendar = [NSDate AZ_currentCalendar];
     NSDateComponents *components = [calendar components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
     NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];
+    components.day = range.location;
+    return [calendar dateFromComponents:components];
+}
+
+- (NSDate *)dateAtStartOfNextMonth {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
+    NSRange range = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];
+    components.month += 1;
     components.day = range.location;
     return [calendar dateFromComponents:components];
 }
@@ -325,6 +353,18 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     NSDateComponents *components = [calendar components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
     NSRange monthRange = [calendar rangeOfUnit:NSCalendarUnitMonth inUnit:NSCalendarUnitYear forDate:self];
     NSRange dayRange = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];
+    components.day = dayRange.location;
+    components.month = monthRange.location;
+    NSDate *startOfYear = [calendar dateFromComponents:components];
+    return startOfYear;
+}
+
+- (NSDate *)dateAtStartOfNextYear {
+    NSCalendar *calendar = [NSDate AZ_currentCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
+    NSRange monthRange = [calendar rangeOfUnit:NSCalendarUnitMonth inUnit:NSCalendarUnitYear forDate:self];
+    NSRange dayRange = [calendar rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];
+    components.year += 1;
     components.day = dayRange.location;
     components.month = monthRange.location;
     NSDate *startOfYear = [calendar dateFromComponents:components];
