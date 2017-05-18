@@ -384,7 +384,13 @@ static dispatch_once_t AZ_DefaultCalendarIdentifierLock_onceToken;
     return endOfYear;
 }
 
+-(NSDate *) dateAtStartOfWeek{
+  return [self dateBySubtractingDays: [self weekday] - 1];
+}
 
+-(NSDate *) dateAtEndOfWeek{
+  return [self dateByAddingDays:[self weekday] + 1];
+}
 #pragma mark - Retrieving intervals
 - (NSInteger)secondsAfterDate:(NSDate *) aDate {
     NSDateComponents *components = [[NSDate AZ_currentCalendar] components:NSCalendarUnitSecond fromDate:aDate toDate:self options:0];

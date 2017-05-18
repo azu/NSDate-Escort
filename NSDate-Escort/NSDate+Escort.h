@@ -137,6 +137,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSDate *)dateAtEndOfYear NS_DEPRECATED(10_0, 10_12, 10_0, 11_0, "Use dateAtStartOfNextYear instead");
 
+- (NSDate *)dateAtStartOfWeek;
+
+- (NSDate *)dateAtEndOfWeek;
 #pragma mark - Retrieving intervals
 - (NSInteger)secondsAfterDate:(NSDate *) aDate;
 
