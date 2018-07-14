@@ -1,11 +1,8 @@
-#import "NLTQuickCheck/NLTQTestable.h"
-#import "NLTQuickCheck/NSNumber+Arbitrary.h"
 #import "Kiwi.h"
 #import "NSDate+Escort.h"
 #import "NSDate+AZDateBuilder.h"
 #import "FakeDateUtil.h"
 #import "AZNSDateKiwiMatcher.h"
-#import "AZNLTQuickCheckKiwiMatcher.h"
 
 @interface NSDate (EscortMock)
 + (NSCalendar *)AZ_currentCalendar;
@@ -61,18 +58,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                     [[subject should] equalToDateIgnoringTime:expectDate];
                 });
             });
-            context(@"quickcheck", ^{
-                it(@"should be success", ^{
-                    NSCalendar *calendar = [NSCalendar currentCalendar];
-                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
-                        NSDate *resultDate = [currentDate dateByAddingYears:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitYear fromDate:currentDate toDate:resultDate options:0];
-                        return [diffComponents year] == [argA integerValue];
-                    } arbitrary:[NSNumber intArbitrary]];
-                    [testable check];
-                    [[testable should] beSuccess];
-                });
-            });
         });
     });
 
@@ -85,18 +70,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
                 }];
-            });
-            context(@"quickcheck", ^{
-                it(@"should be success", ^{
-                    NSCalendar *calendar = [NSCalendar currentCalendar];
-                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
-                        NSDate *resultDate = [currentDate dateBySubtractingYears:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitYear fromDate:resultDate toDate:currentDate options:0];
-                        return [diffComponents year] == [argA integerValue];
-                    } arbitrary:[NSNumber intArbitrary]];
-                    [testable check];
-                    [[testable should] beSuccess];
-                });
             });
         });
     });
@@ -148,18 +121,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                     [[subject should] equalToDateIgnoringTime:expectDate];
                 });
             });
-            context(@"quickcheck", ^{
-                it(@"should be success", ^{
-                    NSCalendar *calendar = [NSCalendar currentCalendar];
-                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
-                        NSDate *resultDate = [currentDate dateByAddingMonths:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitMonth fromDate:currentDate toDate:resultDate options:0];
-                        return [diffComponents month] == [argA integerValue];
-                    } arbitrary:[NSNumber intArbitrary]];
-                    [testable check];
-                    [[testable should] beSuccess];
-                });
-            });
         });
     });
     describe(@"-dateBySubtractingMonth", ^{
@@ -171,18 +132,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.month : @10,
                     AZ_DateUnit.day : @10,
                 }];
-            });
-            context(@"quickcheck", ^{
-                it(@"should be success", ^{
-                    NSCalendar *calendar = [NSCalendar currentCalendar];
-                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
-                        NSDate *resultDate = [currentDate dateBySubtractingMonths:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitMonth fromDate:resultDate toDate:currentDate options:0];
-                        return [diffComponents month] == [argA integerValue];
-                    } arbitrary:[NSNumber intArbitrary]];
-                    [testable check];
-                    [[testable should] beSuccess];
-                });
             });
         });
     });
@@ -232,18 +181,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                         AZ_DateUnit.day : @9,
                     }];
                     [[subject should] equalToDateIgnoringTime:expectDate];
-                });
-            });
-            context(@"quickcheck", ^{
-                it(@"should be success", ^{
-                    NSCalendar *calendar = [NSCalendar currentCalendar];
-                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
-                        NSDate *addingDays = [currentDate dateByAddingDays:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitDay fromDate:currentDate toDate:addingDays options:0];
-                        return [diffComponents day] == [argA integerValue];
-                    } arbitrary:[NSNumber intArbitrary]];
-                    [testable check];
-                    [[testable should] beSuccess];
                 });
             });
         });
@@ -297,18 +234,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                         AZ_DateUnit.day : @11,
                     }];
                     [[subject should] equalToDateIgnoringTime:expectDate];
-                });
-            });
-            context(@"quickcheck", ^{
-                it(@"should be success", ^{
-                    NSCalendar *calendar = [NSCalendar currentCalendar];
-                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
-                        NSDate *resultDate = [currentDate dateBySubtractingDays:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitDay fromDate:resultDate toDate:currentDate options:0];
-                        return [diffComponents day] == [argA integerValue];
-                    } arbitrary:[NSNumber intArbitrary]];
-                    [testable check];
-                    [[testable should] beSuccess];
                 });
             });
         });
@@ -387,18 +312,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                     [[subject should] equal:expectDate];
                 });
             });
-            context(@"quickcheck", ^{
-                it(@"should be success", ^{
-                    NSCalendar *calendar = [NSCalendar currentCalendar];
-                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
-                        NSDate *subtractingDays = [currentDate dateByAddingHours:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitHour fromDate:currentDate toDate:subtractingDays options:0];
-                        return [diffComponents hour] == [argA integerValue];
-                    } arbitrary:[NSNumber intArbitrary]];
-                    [testable check];
-                    [[testable should] beSuccess];
-                });
-            });
         });
     });
     describe(@"-dateBySubtractingHours", ^{
@@ -473,18 +386,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                         AZ_DateUnit.second : @10,
                     }];
                     [[subject should] equal:expectDate];
-                });
-            });
-            context(@"quickcheck", ^{
-                it(@"should be success", ^{
-                    NSCalendar *calendar = [NSCalendar currentCalendar];
-                    NLTQTestable *testable = [NLTQTestable testableWithPropertyBlockArguments1:^BOOL(id argA) {
-                        NSDate *resultDate = [currentDate dateBySubtractingHours:[argA integerValue]];
-                        NSDateComponents *diffComponents = [calendar components:NSCalendarUnitHour fromDate:resultDate toDate:currentDate options:0];
-                        return [diffComponents hour] == [argA integerValue];
-                    } arbitrary:[NSNumber intArbitrary]];
-                    [testable check];
-                    [[testable should] beSuccess];
                 });
             });
         });
@@ -798,6 +699,11 @@ SPEC_BEGIN(EscortAdjustingDates)
     });
 
     describe(@"-dateAtStartOfDay", ^{
+        beforeEach(^{
+            NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+            [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
+            [NSTimeZone stub:@selector(localTimeZone) andReturn:timeZone];
+        });
         context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *subject;
             __block NSDate *currentDate;
@@ -847,6 +753,9 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when default time zone is changed", ^{
             __block NSDate *currentDate;
             beforeEach(^{
+                NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+                [NSTimeZone stub:@selector(localTimeZone) andReturn:timeZone];
+                
                 currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
@@ -857,18 +766,13 @@ SPEC_BEGIN(EscortAdjustingDates)
                 }];
             });
             it(@"should return start of day in new time zone", ^{
-                NSTimeZone *initialTimeZone = [NSTimeZone defaultTimeZone];
-                NSTimeZone *newTimeZone = nil;
+                NSTimeZone *initialTimeZone = [NSTimeZone localTimeZone];
                 
-                BOOL isInitialTimeZoneGMT = ([initialTimeZone.abbreviation isEqualToString:@"GMT"]);
-                if (!isInitialTimeZoneGMT) {
-                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-                } else {
-                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
-                }
-                assert(initialTimeZone.secondsFromGMT != newTimeZone.secondsFromGMT);
+                NSTimeZone *newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
+                [NSTimeZone stub:@selector(defaultTimeZone) andReturn:newTimeZone];
+                [NSTimeZone stub:@selector(localTimeZone) andReturn:newTimeZone];
+                
                 NSDate *date = [currentDate dateByAddingTimeInterval:[initialTimeZone secondsFromGMT] - [newTimeZone secondsFromGMT]];
-                [NSTimeZone setDefaultTimeZone:newTimeZone];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
@@ -878,12 +782,15 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.second : @0,
                 }];
                 [[[date dateAtStartOfDay] should] equal:expectDate];
-                
-                [NSTimeZone setDefaultTimeZone:initialTimeZone];
             });
         });
     });
     describe(@"-dateAtStartOfNextDay", ^{
+        beforeEach(^{
+            NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+            [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
+            [NSTimeZone stub:@selector(localTimeZone) andReturn:timeZone];
+        });
         context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *subject;
             beforeEach(^{
@@ -940,6 +847,9 @@ SPEC_BEGIN(EscortAdjustingDates)
         context(@"when default time zone is changed", ^{
             __block NSDate *currentDate;
             beforeEach(^{
+                NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+                [NSTimeZone stub:@selector(localTimeZone) andReturn:timeZone];
+                
                 currentDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
@@ -950,18 +860,13 @@ SPEC_BEGIN(EscortAdjustingDates)
                 }];
             });
             it(@"should return start of day in new time zone", ^{
-                NSTimeZone *initialTimeZone = [NSTimeZone defaultTimeZone];
-                NSTimeZone *newTimeZone = nil;
+                NSTimeZone *initialTimeZone = [NSTimeZone localTimeZone];
                 
-                BOOL isInitialTimeZoneGMT = ([initialTimeZone.abbreviation isEqualToString:@"GMT"]);
-                if (!isInitialTimeZoneGMT) {
-                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-                } else {
-                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
-                }
-                assert(initialTimeZone.secondsFromGMT != newTimeZone.secondsFromGMT);
+                NSTimeZone *newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
+                [NSTimeZone stub:@selector(defaultTimeZone) andReturn:newTimeZone];
+                [NSTimeZone stub:@selector(localTimeZone) andReturn:newTimeZone];
+                
                 NSDate *date = [currentDate dateByAddingTimeInterval:[initialTimeZone secondsFromGMT] - [newTimeZone secondsFromGMT]];
-                [NSTimeZone setDefaultTimeZone:newTimeZone];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
                     AZ_DateUnit.month : @10,
@@ -971,12 +876,15 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.second : @0,
                 }];
                 [[[date dateAtStartOfNextDay] should] equal:expectDate];
-                
-                [NSTimeZone setDefaultTimeZone:initialTimeZone];
             });
         });
     });
     describe(@"-dateAtEndOfDay", ^{
+        beforeEach(^{
+            NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+            [NSTimeZone stub:@selector(defaultTimeZone) andReturn:timeZone];
+            [NSTimeZone stub:@selector(localTimeZone) andReturn:timeZone];
+        });
         context(@"when the date is 2010-10-10 00:00:00", ^{
             __block NSDate *subject;
             __block NSDate *currentDate;
@@ -1036,19 +944,12 @@ SPEC_BEGIN(EscortAdjustingDates)
                 }];
             });
             it(@"should return end of day in new time zone", ^{
-                NSTimeZone *initialTimeZone = [NSTimeZone defaultTimeZone];
-                NSTimeZone *newTimeZone = nil;
+                NSTimeZone *initialTimeZone = [NSTimeZone localTimeZone];
                 
-                BOOL isInitialTimeZoneGMT = ([initialTimeZone.abbreviation isEqualToString:@"GMT"]);
-                if (!isInitialTimeZoneGMT) {
-                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-                } else {
-                    newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
-                }
+                NSTimeZone *newTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PET"];
+                [NSTimeZone stub:@selector(defaultTimeZone) andReturn:newTimeZone];
+                [NSTimeZone stub:@selector(localTimeZone) andReturn:newTimeZone];
                 
-                assert(initialTimeZone.secondsFromGMT != newTimeZone.secondsFromGMT);
-                
-                [NSTimeZone setDefaultTimeZone:newTimeZone];
                 NSDate *date = [currentDate dateByAddingTimeInterval:[initialTimeZone secondsFromGMT] - [newTimeZone secondsFromGMT]];
                 NSDate *expectDate = [NSDate AZ_dateByUnit:@{
                     AZ_DateUnit.year : @2010,
@@ -1059,8 +960,6 @@ SPEC_BEGIN(EscortAdjustingDates)
                     AZ_DateUnit.second : @59,
                 }];
                 [[[date dateAtEndOfDay] should] equal:expectDate];
-                
-                [NSTimeZone setDefaultTimeZone:initialTimeZone];
             });
         });
     });
