@@ -3,6 +3,5 @@ platform :ios, '11.3'
 
 target :Test do
 	pod 'Kiwi'
-	pod 'NLTQuickCheck'
 	pod 'AZDateBuilder'
 end
