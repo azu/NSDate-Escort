@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '11.3'
+
 target :Test do
 	pod 'Kiwi'
-	pod 'NLTQuickCheck'
 	pod 'AZDateBuilder'
 end
