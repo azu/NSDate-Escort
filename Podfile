@@ -5,3 +5,7 @@ target :Test do
 	pod 'Kiwi'
 	pod 'AZDateBuilder'
 end
+
+target :SwiftTest do
+	pod 'Quick'
+end
