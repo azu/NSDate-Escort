@@ -25,6 +25,7 @@
 		BE10D2C220FCC68300B616FA /* NSDate_Escort_Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0BE99C1E9B221000D736C7 /* NSDate_Escort_Cocoa.framework */; };
 		BE10D2C820FCC68B00B616FA /* Date+Escort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10D2B720FCC65600B616FA /* Date+Escort.swift */; };
 		BE10D2CA21020B8500B616FA /* EscortDecomposingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10D2C921020B8500B616FA /* EscortDecomposingSpec.swift */; };
+		BE10D2CC2103125F00B616FA /* EscortExtractSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10D2CB2103125F00B616FA /* EscortExtractSpec.swift */; };
 		BE5B7B151BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */; };
 		BEAD6D3E1EB337AA004A4A3B /* EscortAmountOfSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAD6D3D1EB337AA004A4A3B /* EscortAmountOfSpecs.m */; };
 		C5BD6A3A196287E30053103A /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */; };
@@ -73,6 +74,7 @@
 		BE10D2BF20FCC68300B616FA /* EscortComparingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortComparingSpec.swift; sourceTree = "<group>"; };
 		BE10D2C120FCC68300B616FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE10D2C921020B8500B616FA /* EscortDecomposingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortDecomposingSpec.swift; sourceTree = "<group>"; };
+		BE10D2CB2103125F00B616FA /* EscortExtractSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortExtractSpec.swift; sourceTree = "<group>"; };
 		BE5B7B0B1BBFB048005732C2 /* Benchmark.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Benchmark.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5B7B0F1BBFB048005732C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchMakeFormReferenceDate.m; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				BE10D2BF20FCC68300B616FA /* EscortComparingSpec.swift */,
 				BE10D2C921020B8500B616FA /* EscortDecomposingSpec.swift */,
+				BE10D2CB2103125F00B616FA /* EscortExtractSpec.swift */,
 				BE10D2C120FCC68300B616FA /* Info.plist */,
 			);
 			path = SwiftTest;
@@ -569,6 +572,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE10D2CC2103125F00B616FA /* EscortExtractSpec.swift in Sources */,
 				BE10D2C020FCC68300B616FA /* EscortComparingSpec.swift in Sources */,
 				BE10D2CA21020B8500B616FA /* EscortDecomposingSpec.swift in Sources */,
 				BE10D2C820FCC68B00B616FA /* Date+Escort.swift in Sources */,

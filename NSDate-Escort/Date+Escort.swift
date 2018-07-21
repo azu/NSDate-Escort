@@ -87,4 +87,28 @@ extension Date {
     public var nanosecond: Int {
         get { return type(of: self).currentCalendar.dateComponents([.nanosecond], from: self).nanosecond! }
     }
+    
+    public var gregorianYear: Int {
+        get {
+            var calendar = Calendar(identifier: .gregorian)
+            calendar.timeZone = NSTimeZone.local
+            return calendar.dateComponents([.year], from: self).year!
+        }
+        
+    }
+    
+    public var nearestHour: Int {
+        get {
+            let calendar = type(of: self).currentCalendar
+            let minuteRange = calendar.range(of: .minute, in: .hour, for: self)!
+            // always 30...
+            let halfMinuteInHour = (minuteRange.upperBound - minuteRange.lowerBound) / 2
+            if (minute < halfMinuteInHour) {
+                return hour
+            } else {
+                let anHourLater = self.add(hour: 1)
+                return anHourLater.hour
+            }
+        }
+    }
 }
