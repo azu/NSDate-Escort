@@ -32,60 +32,106 @@ extension Date {
         }
     }
     
+    //
+    public static func tomorrow() -> Date {
+        return Date.dateFormNow(day: 1)
+    }
+    
+    public static func yesterday() -> Date {
+        return Date.dateFormNow(day: -1)
+    }
+    
+    public static func dateFormNow(day: Int) -> Date {
+        return Date().add(day: day)
+    }
+    
+    // comparing
+    public func isEqual(ignoringTime date: Date) -> Bool {
+        let calendar = type(of: self).currentCalendar
+        let components: Set<Calendar.Component> = [.era, .year, .month, .day]
+        let left = calendar.dateComponents(components, from: self)
+        let right = calendar.dateComponents(components, from: date)
+        return left.era == right.era
+            && left.year == right.year
+            && left.month == right.month
+            && left.day == right.day
+    }
+    
+    public func isToday() -> Bool {
+        return self.isEqual(ignoringTime: Date())
+    }
+    
+    public func isTomorrow() -> Bool {
+        return self.isEqual(ignoringTime: Date.tomorrow())
+    }
+    
+    public func isYesterday() -> Bool {
+        return self.isEqual(ignoringTime: Date.yesterday())
+    }
+    
+    public func add(day: Int? = nil, hour: Int? = nil) -> Date {
+        var components = DateComponents()
+        components.day = day
+        components.hour = hour
+        let calendar = type(of: self).currentCalendar
+        return calendar.date(byAdding: components, to: self)!
+    }
+    
+    // decomposing
     public var era: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.era], from: self).era! }
+        get { return type(of: self).currentCalendar.component(.era, from: self) }
     }
     
     public var year: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.year], from: self).year! }
+        get { return type(of: self).currentCalendar.component(.year, from: self) }
     }
     
     public var month: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.month], from: self).month! }
+        get { return type(of: self).currentCalendar.component(.month, from: self) }
     }
     
     public var day: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.day], from: self).day! }
+        get { return type(of: self).currentCalendar.component(.day, from: self) }
     }
     
     public var hour: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.hour], from: self).hour! }
+        get { return type(of: self).currentCalendar.component(.hour, from: self) }
     }
     
     public var minute: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.minute], from: self).minute! }
+        get { return type(of: self).currentCalendar.component(.minute, from: self) }
     }
     
     public var second: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.second], from: self).second! }
+        get { return type(of: self).currentCalendar.component(.second, from: self) }
     }
     
     public var weekday: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.weekday], from: self).weekday! }
+        get { return type(of: self).currentCalendar.component(.weekday, from: self) }
     }
     
     public var weekdayOrdinal: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.weekdayOrdinal], from: self).weekdayOrdinal! }
+        get { return type(of: self).currentCalendar.component(.weekdayOrdinal, from: self) }
     }
     
     public var quarter: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.quarter], from: self).quarter! }
+        get { return type(of: self).currentCalendar.component(.quarter, from: self) }
     }
     
     public var weekOfMonth: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.weekOfMonth], from: self).weekOfMonth! }
+        get { return type(of: self).currentCalendar.component(.weekOfMonth, from: self) }
     }
     
     public var weekOfYear: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.weekOfYear], from: self).weekOfYear! }
+        get { return type(of: self).currentCalendar.component(.weekOfYear, from: self) }
     }
     
     public var yearForWeekOfYear: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.yearForWeekOfYear], from: self).yearForWeekOfYear! }
+        get { return type(of: self).currentCalendar.component(.yearForWeekOfYear, from: self) }
     }
     
     public var nanosecond: Int {
-        get { return type(of: self).currentCalendar.dateComponents([.nanosecond], from: self).nanosecond! }
+        get { return type(of: self).currentCalendar.component(.nanosecond, from: self) }
     }
     
     public var gregorianYear: Int {
