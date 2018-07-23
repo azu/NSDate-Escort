@@ -45,6 +45,34 @@ extension Date {
         return Date().add(day: day)
     }
     
+    //
+    public func startDateOfWeekday() -> Date {
+        return date(of: .weekOfYear).date
+    }
+    
+    public func endDateOfWeekday() -> Date {
+        let (date, interval) = self.date(of: .weekOfYear)
+        return date.addingTimeInterval(interval - 1)
+    }
+    
+    public func startDateOfMonth() -> Date {
+        return date(of: .month).date
+    }
+    
+    public func endDateOfMonth() -> Date {
+        let (date, interval) = self.date(of: .month)
+        return date.addingTimeInterval(interval - 1)
+    }
+    
+    public func date(of unit: NSCalendar.Unit) -> (date: Date, interval: TimeInterval) {
+        let calendar = type(of: self).currentCalendar as NSCalendar
+        var start: NSDate?
+        var interval: TimeInterval = 0
+        calendar.range(of: unit, start: &start, interval: &interval, for: self)
+        return (start! as Date, interval)
+    }
+        
+    
     // comparing
     public func isEqual(ignoringTime date: Date) -> Bool {
         let calendar = type(of: self).currentCalendar
@@ -69,10 +97,52 @@ extension Date {
         return self.isEqual(ignoringTime: Date.yesterday())
     }
     
-    public func add(day: Int? = nil, hour: Int? = nil) -> Date {
+    public func isSameWeek(as date: Date) -> Bool {
+        let leftComponents = type(of: self).currentCalendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: self)
+        let rightComponents = type(of: self).currentCalendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)
+        return leftComponents.weekOfYear == rightComponents.weekOfYear
+            && leftComponents.yearForWeekOfYear == rightComponents.yearForWeekOfYear
+    }
+    
+    public func isThisWeek() -> Bool {
+        return self.isSameWeek(as: Date())
+    }
+    
+    public func isNextWeek() -> Bool {
+        return self.isSameWeek(as: Date().add(weekOfYear: 1))
+    }
+    
+    public func isLastWeek() -> Bool {
+        return self.isSameWeek(as: Date().add(weekOfYear: -1))
+    }
+    
+    public func isSameMonth(as date: Date) -> Bool {
+        let calendar = Calendar(identifier: .gregorian)
+        let leftComponents = calendar.dateComponents([.era, .year, .month], from: self)
+        let rightComponents = calendar.dateComponents([.era, .year, .month], from: date)
+        return leftComponents.era == rightComponents.era
+            && leftComponents.year == rightComponents.year
+            && leftComponents.month == rightComponents.month
+    }
+    
+    public func add(era: Int? = nil, year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil, nanosecond: Int? = nil, weekday: Int? = nil, weekdayOrdinal: Int? = nil, quarter: Int? = nil, weekOfMonth: Int? = nil, weekOfYear: Int? = nil, yearForWeekOfYear: Int? = nil) -> Date {
         var components = DateComponents()
+        
+        components.era = era
+        components.year = year
+        components.month = month
         components.day = day
         components.hour = hour
+        components.minute = minute
+        components.second = second
+        components.nanosecond = nanosecond
+        components.weekday = weekday
+        components.weekdayOrdinal = weekdayOrdinal
+        components.quarter = quarter
+        components.weekOfMonth = weekOfMonth
+        components.weekOfYear = weekOfYear
+        components.yearForWeekOfYear = yearForWeekOfYear
+        
         let calendar = type(of: self).currentCalendar
         return calendar.date(byAdding: components, to: self)!
     }
@@ -134,6 +204,7 @@ extension Date {
         get { return type(of: self).currentCalendar.component(.nanosecond, from: self) }
     }
     
+    // extract
     public var gregorianYear: Int {
         get {
             var calendar = Calendar(identifier: .gregorian)

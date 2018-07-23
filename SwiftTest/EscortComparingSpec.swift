@@ -133,5 +133,210 @@ class EscortComparingSpec: QuickSpec {
                 XCTAssertFalse(laterDate.isYesterday())
             }
         }
+        describe("isSameWeekAsDate") {
+            context("today is 2010-10-10") {
+                let currentDate = Date.date(by: [
+                    .year: 2010,
+                    .month: 10,
+                    .day: 10,
+                    ])
+                it("same date should return false") {
+                    XCTAssertTrue(currentDate.isSameWeek(as: currentDate))
+                }
+                context("next day (monday)") {
+                    context("firstWeekday is sunday") {
+                        beforeEach {
+                            var beginingOfMondayCalendar = Calendar(identifier: .gregorian)
+                            beginingOfMondayCalendar.firstWeekday = 1
+                            Date._currentCalendar = beginingOfMondayCalendar
+                            Date.identifier = .gregorian
+                        }
+                        afterEach {
+                            Date._currentCalendar = nil
+                            Date.identifier = nil
+                        }
+                        it("should return true") {
+                            XCTAssertTrue(currentDate.isSameWeek(as: currentDate.add(day: 1)))
+                        }
+                    }
+                    context("firstWeekday is monday") {
+                        beforeEach {
+                            var beginingOfMondayCalendar = Calendar(identifier: .gregorian)
+                            beginingOfMondayCalendar.firstWeekday = 2
+                            Date._currentCalendar = beginingOfMondayCalendar
+                            Date.identifier = .gregorian
+                        }
+                        afterEach {
+                            Date._currentCalendar = nil
+                            Date.identifier = nil
+                        }
+                        it("should return true") {
+                            XCTAssertFalse(currentDate.isSameWeek(as: currentDate.add(day: 1)))
+                        }
+                    }
+                }
+                context("within this week") {
+                    it("firstOfWeek should return true") {
+                        XCTAssertTrue(currentDate.isSameWeek(as: currentDate.startDateOfWeekday()))
+                    }
+                    it("endOfWeek should return true") {
+                        XCTAssertTrue(currentDate.isSameWeek(as: currentDate.endDateOfWeekday()))
+                    }
+                }
+                it("when same the week, but difference year should return false") {
+                    XCTAssertFalse(currentDate.isSameWeek(as: currentDate.add(year: 1)))
+                }
+                it("next week should return false") {
+                    XCTAssertFalse(currentDate.isSameWeek(as: currentDate.addingTimeInterval(currentDate.date(of: .weekOfYear).interval)))
+                }
+                it("last week should return false") {
+                    XCTAssertFalse(currentDate.isSameWeek(as: currentDate.addingTimeInterval(-(currentDate.date(of: .weekOfYear).interval))))
+                }
+            }
+            context("today is 2015-03-30") {
+                let currentDate = Date.date(by: [
+                    .year: 2015,
+                    .month: 3,
+                    .day: 30,
+                    ])
+                it("same date should return false") {
+                    XCTAssertTrue(currentDate.isSameWeek(as: currentDate))
+                }
+                context("within this week") {
+                    it("firstOfWeek should return true") {
+                        XCTAssertTrue(currentDate.isSameWeek(as: currentDate.startDateOfWeekday()))
+                    }
+                    it("endOfWeek should return true") {
+                        XCTAssertTrue(currentDate.isSameWeek(as: currentDate.endDateOfWeekday()))
+                    }
+                }
+                it("when same the week, but difference year should return false") {
+                    XCTAssertFalse(currentDate.isSameWeek(as: currentDate.add(year: 1)))
+                }
+                it("next week should return false") {
+                    XCTAssertFalse(currentDate.isSameWeek(as: currentDate.addingTimeInterval(currentDate.date(of: .weekOfYear).interval)))
+                }
+                it("last week should return false") {
+                    XCTAssertFalse(currentDate.isSameWeek(as: currentDate.addingTimeInterval(-(currentDate.date(of: .weekOfYear).interval))))
+                }
+            }
+            context("today is 1989-01-07") {
+                let currentDate = Date.date(by: [
+                    .year: 1989,
+                    .month: 1,
+                    .day: 7,
+                    ])
+                beforeEach {
+                    var beginingOfMondayCalendar = Calendar(identifier: .japanese)
+                    beginingOfMondayCalendar.firstWeekday = 2
+                    Date._currentCalendar = beginingOfMondayCalendar
+                    Date.identifier = .japanese
+                }
+                afterEach {
+                    Date._currentCalendar = nil
+                    Date.identifier = nil
+                }
+                it("next era of same week should return true") {
+                    XCTAssertTrue(currentDate.isSameWeek(as: currentDate.add(day: 1)))
+                }
+            }
+        }
+        describe("isThisWeek") {
+            let currentDate = Date()
+            it("when now should return true") {
+                XCTAssertTrue(currentDate.isThisWeek())
+            }
+            it("when start date of weekday should return true") {
+                XCTAssertTrue(currentDate.startDateOfWeekday().isThisWeek())
+            }
+            it("when end date of weekday should return true") {
+                XCTAssertTrue(currentDate.endDateOfWeekday().isThisWeek())
+            }
+            it("when last week should return false") {
+                XCTAssertFalse(currentDate.startDateOfWeekday().addingTimeInterval(-1).isThisWeek())
+            }
+            it("when next week should return false") {
+                XCTAssertFalse(currentDate.endDateOfWeekday().addingTimeInterval(1).isThisWeek())
+            }
+        }
+        describe("isNextWeek") {
+            let currentDate = Date().add(weekOfYear: 1)
+            it("when next week should return true") {
+                XCTAssertTrue(currentDate.isNextWeek())
+            }
+            it("when start date of weekday should return true") {
+                XCTAssertTrue(currentDate.startDateOfWeekday().isNextWeek())
+            }
+            it("when end date of weekday should return true") {
+                XCTAssertTrue(currentDate.endDateOfWeekday().isNextWeek())
+            }
+            it("when last week should return false") {
+                XCTAssertFalse(currentDate.startDateOfWeekday().addingTimeInterval(-1).isNextWeek())
+            }
+            it("when next week should return false") {
+                XCTAssertFalse(currentDate.endDateOfWeekday().addingTimeInterval(1).isNextWeek())
+            }
+        }
+        describe("isLastWeek") {
+            let currentDate = Date().add(weekOfYear: -1)
+            it("when next week should return true") {
+                XCTAssertTrue(currentDate.isLastWeek())
+            }
+            it("when start date of weekday should return true") {
+                XCTAssertTrue(currentDate.startDateOfWeekday().isLastWeek())
+            }
+            it("when end date of weekday should return true") {
+                XCTAssertTrue(currentDate.endDateOfWeekday().isLastWeek())
+            }
+            it("when last week should return false") {
+                XCTAssertFalse(currentDate.startDateOfWeekday().addingTimeInterval(-1).isLastWeek())
+            }
+            it("when next week should return false") {
+                XCTAssertFalse(currentDate.endDateOfWeekday().addingTimeInterval(1).isLastWeek())
+            }
+        }
+        describe("isSameMonthAsDate") {
+            context("today is 2010-10-10") {
+                let currentDate = Date.date(by: [
+                    .year: 2010,
+                    .month: 10,
+                    .day: 10,
+                    ])
+                it("same day should return true") {
+                    XCTAssertTrue(currentDate.isSameMonth(as: currentDate))
+                }
+                it("with in this month at start of month should return true") {
+                    XCTAssertTrue(currentDate.isSameMonth(as: currentDate.startDateOfMonth()))
+                }
+                it("with in this month at end of month should return true") {
+                    XCTAssertTrue(currentDate.isSameMonth(as: currentDate.endDateOfMonth()))
+                }
+                it("with in last month at end of month should return false") {
+                    XCTAssertFalse(currentDate.isSameMonth(as: currentDate.startDateOfMonth().addingTimeInterval(-1)))
+                }
+                it("with in next month at start of month should return false") {
+                    XCTAssertFalse(currentDate.isSameMonth(as: currentDate.endDateOfMonth().addingTimeInterval(1)))
+                }
+                it("next year should return false") {
+                    XCTAssertFalse(currentDate.isSameMonth(as: currentDate.add(year: 1)))
+                }
+            }
+            context("today is 1989-01-07") {
+                let currentDate = Date.date(by: [
+                    .year: 1989,
+                    .month: 1,
+                    .day: 7,
+                    ])
+                beforeEach {
+                    Date.identifier = .japanese
+                }
+                afterEach {
+                    Date.identifier = nil
+                }
+                it("next era of same month should return true") {
+                    XCTAssertTrue(currentDate.isSameMonth(as: currentDate.add(day: 1)))
+                }
+            }
+        }
     }
 }
