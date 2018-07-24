@@ -125,6 +125,10 @@ extension Date {
             && leftComponents.month == rightComponents.month
     }
     
+    public func isThisMonth() -> Bool {
+        return self.isSameWeek(as: Date())
+    }
+    
     public func add(era: Int? = nil, year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil, nanosecond: Int? = nil, weekday: Int? = nil, weekdayOrdinal: Int? = nil, quarter: Int? = nil, weekOfMonth: Int? = nil, weekOfYear: Int? = nil, yearForWeekOfYear: Int? = nil) -> Date {
         var components = DateComponents()
         

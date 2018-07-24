@@ -337,6 +337,28 @@ class EscortComparingSpec: QuickSpec {
                     XCTAssertTrue(currentDate.isSameMonth(as: currentDate.add(day: 1)))
                 }
             }
+            context("today is 2010-02-13") {
+                let currentDate = Date.date(by: [
+                    .year: 2010,
+                    .month: 2,
+                    .day: 13,
+                    ])
+                beforeEach {
+                    Date.identifier = .chinese
+                }
+                afterEach {
+                    Date.identifier = nil
+                }
+                it("next era of same month should return true") {
+                    XCTAssertTrue(currentDate.isSameMonth(as: currentDate.add(day: 1)))
+                }
+            }
+        }
+        describe("isThisMonth") {
+            let currentDate = Date()
+            it("when sameMonth as Date should return true") {
+                XCTAssertTrue(currentDate.isThisMonth())
+            }
         }
     }
 }
