@@ -46,12 +46,11 @@ extension Date {
     }
     
     //
-    public func startDateOfWeekday() -> Date {
-        return date(of: .weekOfYear).date
+    public func startDateOfYear() -> Date {
+        return date(of: .year).date
     }
-    
-    public func endDateOfWeekday() -> Date {
-        let (date, interval) = self.date(of: .weekOfYear)
+    public func endDateOfYear() -> Date {
+        let (date, interval) = self.date(of: .year)
         return date.addingTimeInterval(interval - 1)
     }
     
@@ -61,6 +60,15 @@ extension Date {
     
     public func endDateOfMonth() -> Date {
         let (date, interval) = self.date(of: .month)
+        return date.addingTimeInterval(interval - 1)
+    }
+    
+    public func startDateOfWeekday() -> Date {
+        return date(of: .weekOfYear).date
+    }
+    
+    public func endDateOfWeekday() -> Date {
+        let (date, interval) = self.date(of: .weekOfYear)
         return date.addingTimeInterval(interval - 1)
     }
     
@@ -74,6 +82,50 @@ extension Date {
         
     
     // comparing
+    public func isSameYear(as date: Date) -> Bool {
+        let calendar = Calendar(identifier: .gregorian)
+        let leftComponents = calendar.dateComponents([.era, .year], from: self)
+        let rightComponents = calendar.dateComponents([.era, .year], from: date)
+        return leftComponents.era == rightComponents.era
+            && leftComponents.year == rightComponents.year
+    }
+    
+    public func isThisYear() -> Bool {
+        return self.isSameYear(as: Date())
+    }
+    
+    public func isSameMonth(as date: Date) -> Bool {
+        let calendar = Calendar(identifier: .gregorian)
+        let leftComponents = calendar.dateComponents([.era, .year, .month], from: self)
+        let rightComponents = calendar.dateComponents([.era, .year, .month], from: date)
+        return leftComponents.era == rightComponents.era
+            && leftComponents.year == rightComponents.year
+            && leftComponents.month == rightComponents.month
+    }
+    
+    public func isThisMonth() -> Bool {
+        return self.isSameWeek(as: Date())
+    }
+    
+    public func isSameWeek(as date: Date) -> Bool {
+        let leftComponents = type(of: self).currentCalendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: self)
+        let rightComponents = type(of: self).currentCalendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)
+        return leftComponents.weekOfYear == rightComponents.weekOfYear
+            && leftComponents.yearForWeekOfYear == rightComponents.yearForWeekOfYear
+    }
+    
+    public func isThisWeek() -> Bool {
+        return self.isSameWeek(as: Date())
+    }
+    
+    public func isNextWeek() -> Bool {
+        return self.isSameWeek(as: Date().add(weekOfYear: 1))
+    }
+    
+    public func isLastWeek() -> Bool {
+        return self.isSameWeek(as: Date().add(weekOfYear: -1))
+    }
+    
     public func isEqual(ignoringTime date: Date) -> Bool {
         let calendar = type(of: self).currentCalendar
         let components: Set<Calendar.Component> = [.era, .year, .month, .day]
@@ -97,36 +149,12 @@ extension Date {
         return self.isEqual(ignoringTime: Date.yesterday())
     }
     
-    public func isSameWeek(as date: Date) -> Bool {
-        let leftComponents = type(of: self).currentCalendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: self)
-        let rightComponents = type(of: self).currentCalendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)
-        return leftComponents.weekOfYear == rightComponents.weekOfYear
-            && leftComponents.yearForWeekOfYear == rightComponents.yearForWeekOfYear
+    public func isInPast() -> Bool {
+        return self < Date()
     }
     
-    public func isThisWeek() -> Bool {
-        return self.isSameWeek(as: Date())
-    }
-    
-    public func isNextWeek() -> Bool {
-        return self.isSameWeek(as: Date().add(weekOfYear: 1))
-    }
-    
-    public func isLastWeek() -> Bool {
-        return self.isSameWeek(as: Date().add(weekOfYear: -1))
-    }
-    
-    public func isSameMonth(as date: Date) -> Bool {
-        let calendar = Calendar(identifier: .gregorian)
-        let leftComponents = calendar.dateComponents([.era, .year, .month], from: self)
-        let rightComponents = calendar.dateComponents([.era, .year, .month], from: date)
-        return leftComponents.era == rightComponents.era
-            && leftComponents.year == rightComponents.year
-            && leftComponents.month == rightComponents.month
-    }
-    
-    public func isThisMonth() -> Bool {
-        return self.isSameWeek(as: Date())
+    public func isInFuture() -> Bool {
+        return Date() < self
     }
     
     public func add(era: Int? = nil, year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil, nanosecond: Int? = nil, weekday: Int? = nil, weekdayOrdinal: Int? = nil, quarter: Int? = nil, weekOfMonth: Int? = nil, weekOfYear: Int? = nil, yearForWeekOfYear: Int? = nil) -> Date {

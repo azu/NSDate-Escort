@@ -360,5 +360,89 @@ class EscortComparingSpec: QuickSpec {
                 XCTAssertTrue(currentDate.isThisMonth())
             }
         }
+        describe("isSameYearAsDate") {
+            context("today is 2010-10-10") {
+                let currentDate = Date.date(by: [
+                    .year: 2010,
+                    .month: 10,
+                    .day: 10,
+                    ])
+                context("within this year") {
+                    it("date at start of year should return true") {
+                        XCTAssertTrue(currentDate.isSameYear(as: currentDate.startDateOfYear()))
+                    }
+                    it("date at end of year should return true") {
+                        XCTAssertTrue(currentDate.isSameYear(as: currentDate.endDateOfYear()))
+                    }
+                }
+                context("without this year") {
+                    it("date at last of year should return false") {
+                        XCTAssertFalse(currentDate.isSameYear(as: currentDate.startDateOfYear().add(second: -1 - Int(arc4random()))))
+                    }
+                    it("date at last of year should return false") {
+                        XCTAssertFalse(currentDate.isSameYear(as: currentDate.endDateOfYear().add(second: 1 + Int(arc4random()))))
+                    }
+                }
+            }
+            context("today is 1988-01-07") {
+                let currentDate = Date.date(by: [
+                    .year: 1988,
+                    .month: 1,
+                    .day: 7,
+                    ])
+                beforeEach {
+                    Date.identifier = .japanese
+                }
+                afterEach {
+                    Date.identifier = nil
+                }
+                it("next era of same year should return true") {
+                    XCTAssertTrue(currentDate.isSameYear(as: currentDate.add(day: 1)))
+                }
+            }
+            context("today is 2010-02-13") {
+                let currentDate = Date.date(by: [
+                    .year: 2010,
+                    .month: 2,
+                    .day: 13,
+                    ])
+                beforeEach {
+                    Date.identifier = .chinese
+                }
+                afterEach {
+                    Date.identifier = nil
+                }
+                it("next era of same year should return true") {
+                    XCTAssertTrue(currentDate.isSameYear(as: currentDate.add(day: 1)))
+                }
+            }
+        }
+        describe("isThisYear") {
+            let currentDate = Date()
+            it("within this year should return true") {
+                XCTAssertTrue(currentDate.isThisYear())
+            }
+            it("other year should return true") {
+                XCTAssertFalse(currentDate.add(year: 1 + Int(arc4random())).isThisYear())
+            }
+        }
+        describe("isInPast") {
+            let currentDate = Date()
+            it("when earlier time should return true") {
+                XCTAssertFalse(currentDate.add(second: 1).isInPast())
+            }
+            it("when later time should return false") {
+                XCTAssertTrue(currentDate.add(second: -1).isInPast())
+            }
+        }
+        describe("isInFuture") {
+            let currentDate = Date()
+            it("when future time should return true") {
+                XCTAssertTrue(currentDate.add(second: 1).isInFuture())
+            }
+            it("when past time should return false") {
+                XCTAssertFalse(currentDate.add(second: -1).isInFuture())
+            }
+        }
     }
 }
