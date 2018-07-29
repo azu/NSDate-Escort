@@ -157,6 +157,25 @@ extension Date {
         return Date() < self
     }
     
+    // date roles
+    public func isTypicallyWorkday() -> Bool {
+        return !self.isTypicallyWeekend()
+    }
+    
+    public func isTypicallyWeekend() -> Bool {
+        let calendar = type(of: self).currentCalendar
+        let weekdayRange = calendar.maximumRange(of: .weekday)
+        let weekdayOfDate = calendar.component(.weekday, from: self)
+        return weekdayOfDate == weekdayRange!.lowerBound || weekdayOfDate == weekdayRange!.upperBound - 1
+    }
+    /*
+     NSCalendar *calendar = [NSDate AZ_currentCalendar];
+     NSRange weekdayRange = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
+     NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:self];
+     NSInteger weekdayOfDate = [components weekday];
+     return (weekdayOfDate == weekdayRange.location || weekdayOfDate == weekdayRange.location + weekdayRange.length - 1);
+     }*/
+    
     public func add(era: Int? = nil, year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil, nanosecond: Int? = nil, weekday: Int? = nil, weekdayOrdinal: Int? = nil, quarter: Int? = nil, weekOfMonth: Int? = nil, weekOfYear: Int? = nil, yearForWeekOfYear: Int? = nil) -> Date {
         var components = DateComponents()
         
