@@ -49,27 +49,17 @@ extension Date {
     public func startDateOfYear() -> Date {
         return date(of: .year).date
     }
-    public func endDateOfYear() -> Date {
-        let (date, interval) = self.date(of: .year)
-        return date.addingTimeInterval(interval - 1)
-    }
     
     public func startDateOfMonth() -> Date {
         return date(of: .month).date
-    }
-    
-    public func endDateOfMonth() -> Date {
-        let (date, interval) = self.date(of: .month)
-        return date.addingTimeInterval(interval - 1)
     }
     
     public func startDateOfWeekday() -> Date {
         return date(of: .weekOfYear).date
     }
     
-    public func endDateOfWeekday() -> Date {
-        let (date, interval) = self.date(of: .weekOfYear)
-        return date.addingTimeInterval(interval - 1)
+    public func startDateOfDay() -> Date {
+        return date(of: .day).date
     }
     
     public func date(of unit: NSCalendar.Unit) -> (date: Date, interval: TimeInterval) {

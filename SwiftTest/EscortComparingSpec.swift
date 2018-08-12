@@ -180,7 +180,9 @@ class EscortComparingSpec: QuickSpec {
                         XCTAssertTrue(currentDate.isSameWeek(as: currentDate.startDateOfWeekday()))
                     }
                     it("endOfWeek should return true") {
-                        XCTAssertTrue(currentDate.isSameWeek(as: currentDate.endDateOfWeekday()))
+                        let (startDate, interval) = currentDate.date(of: .weekOfYear)
+                        let weekend = startDate.addingTimeInterval(interval - 1)
+                        XCTAssertTrue(currentDate.isSameWeek(as: weekend))
                     }
                 }
                 it("when same the week, but difference year should return false") {
@@ -207,7 +209,9 @@ class EscortComparingSpec: QuickSpec {
                         XCTAssertTrue(currentDate.isSameWeek(as: currentDate.startDateOfWeekday()))
                     }
                     it("endOfWeek should return true") {
-                        XCTAssertTrue(currentDate.isSameWeek(as: currentDate.endDateOfWeekday()))
+                        let (startDate, interval) = currentDate.date(of: .weekOfYear)
+                        let weekend = startDate.addingTimeInterval(interval - 1)
+                        XCTAssertTrue(currentDate.isSameWeek(as: weekend))
                     }
                 }
                 it("when same the week, but difference year should return false") {
@@ -250,13 +254,17 @@ class EscortComparingSpec: QuickSpec {
                 XCTAssertTrue(currentDate.startDateOfWeekday().isThisWeek())
             }
             it("when end date of weekday should return true") {
-                XCTAssertTrue(currentDate.endDateOfWeekday().isThisWeek())
+                let (startDate, interval) = currentDate.date(of: .weekOfYear)
+                let weekend = startDate.addingTimeInterval(interval - 1)
+                XCTAssertTrue(weekend.isThisWeek())
             }
             it("when last week should return false") {
                 XCTAssertFalse(currentDate.startDateOfWeekday().addingTimeInterval(-1).isThisWeek())
             }
             it("when next week should return false") {
-                XCTAssertFalse(currentDate.endDateOfWeekday().addingTimeInterval(1).isThisWeek())
+                let (startDate, interval) = currentDate.date(of: .weekOfYear)
+                let nextWeek = startDate.addingTimeInterval(interval)
+                XCTAssertFalse(nextWeek.isThisWeek())
             }
         }
         describe("isNextWeek") {
@@ -268,13 +276,17 @@ class EscortComparingSpec: QuickSpec {
                 XCTAssertTrue(currentDate.startDateOfWeekday().isNextWeek())
             }
             it("when end date of weekday should return true") {
-                XCTAssertTrue(currentDate.endDateOfWeekday().isNextWeek())
+                let (startDate, interval) = currentDate.date(of: .weekOfYear)
+                let weekend = startDate.addingTimeInterval(interval - 1)
+                XCTAssertTrue(weekend.isNextWeek())
             }
             it("when last week should return false") {
                 XCTAssertFalse(currentDate.startDateOfWeekday().addingTimeInterval(-1).isNextWeek())
             }
             it("when next week should return false") {
-                XCTAssertFalse(currentDate.endDateOfWeekday().addingTimeInterval(1).isNextWeek())
+                let (startDate, interval) = currentDate.date(of: .weekOfYear)
+                let nextWeek = startDate.addingTimeInterval(interval)
+                XCTAssertFalse(nextWeek.isNextWeek())
             }
         }
         describe("isLastWeek") {
@@ -286,13 +298,17 @@ class EscortComparingSpec: QuickSpec {
                 XCTAssertTrue(currentDate.startDateOfWeekday().isLastWeek())
             }
             it("when end date of weekday should return true") {
-                XCTAssertTrue(currentDate.endDateOfWeekday().isLastWeek())
+                let (startDate, interval) = currentDate.date(of: .weekOfYear)
+                let weekend = startDate.addingTimeInterval(interval - 1)
+                XCTAssertTrue(weekend.isLastWeek())
             }
             it("when last week should return false") {
                 XCTAssertFalse(currentDate.startDateOfWeekday().addingTimeInterval(-1).isLastWeek())
             }
             it("when next week should return false") {
-                XCTAssertFalse(currentDate.endDateOfWeekday().addingTimeInterval(1).isLastWeek())
+                let (startDate, interval) = currentDate.date(of: .weekOfYear)
+                let nextWeek = startDate.addingTimeInterval(interval)
+                XCTAssertFalse(nextWeek.isLastWeek())
             }
         }
         describe("isSameMonthAsDate") {
@@ -309,13 +325,17 @@ class EscortComparingSpec: QuickSpec {
                     XCTAssertTrue(currentDate.isSameMonth(as: currentDate.startDateOfMonth()))
                 }
                 it("with in this month at end of month should return true") {
-                    XCTAssertTrue(currentDate.isSameMonth(as: currentDate.endDateOfMonth()))
+                    let (startDate, interval) = currentDate.date(of: .month)
+                    let endOfMonth = startDate.addingTimeInterval(interval - 1)
+                    XCTAssertTrue(currentDate.isSameMonth(as: endOfMonth))
                 }
                 it("with in last month at end of month should return false") {
                     XCTAssertFalse(currentDate.isSameMonth(as: currentDate.startDateOfMonth().addingTimeInterval(-1)))
                 }
                 it("with in next month at start of month should return false") {
-                    XCTAssertFalse(currentDate.isSameMonth(as: currentDate.endDateOfMonth().addingTimeInterval(1)))
+                    let (startDate, interval) = currentDate.date(of: .month)
+                    let nextMonth = startDate.addingTimeInterval(interval)
+                    XCTAssertFalse(currentDate.isSameMonth(as: nextMonth))
                 }
                 it("next year should return false") {
                     XCTAssertFalse(currentDate.isSameMonth(as: currentDate.add(year: 1)))
@@ -372,7 +392,9 @@ class EscortComparingSpec: QuickSpec {
                         XCTAssertTrue(currentDate.isSameYear(as: currentDate.startDateOfYear()))
                     }
                     it("date at end of year should return true") {
-                        XCTAssertTrue(currentDate.isSameYear(as: currentDate.endDateOfYear()))
+                        let (startDate, interval) = currentDate.date(of: .year)
+                        let endOfYear = startDate.addingTimeInterval(interval - 1)
+                        XCTAssertTrue(currentDate.isSameYear(as: endOfYear))
                     }
                 }
                 context("without this year") {
@@ -380,7 +402,9 @@ class EscortComparingSpec: QuickSpec {
                         XCTAssertFalse(currentDate.isSameYear(as: currentDate.startDateOfYear().add(second: -1 - Int(arc4random()))))
                     }
                     it("date at last of year should return false") {
-                        XCTAssertFalse(currentDate.isSameYear(as: currentDate.endDateOfYear().add(second: 1 + Int(arc4random()))))
+                        let (startDate, interval) = currentDate.date(of: .year)
+                        let nextyear = startDate.addingTimeInterval(interval)
+                        XCTAssertFalse(currentDate.isSameYear(as: nextyear))
                     }
                 }
             }
