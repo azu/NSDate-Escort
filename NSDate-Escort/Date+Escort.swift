@@ -158,13 +158,31 @@ extension Date {
         let weekdayOfDate = calendar.component(.weekday, from: self)
         return weekdayOfDate == weekdayRange!.lowerBound || weekdayOfDate == weekdayRange!.upperBound - 1
     }
-    /*
-     NSCalendar *calendar = [NSDate AZ_currentCalendar];
-     NSRange weekdayRange = [calendar maximumRangeOfUnit:NSCalendarUnitWeekday];
-     NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:self];
-     NSInteger weekdayOfDate = [components weekday];
-     return (weekdayOfDate == weekdayRange.location || weekdayOfDate == weekdayRange.location + weekdayRange.length - 1);
-     }*/
+    
+    // retrieving interval
+    public func seconds(after date: Date) -> Int {
+        return Date.currentCalendar.dateComponents([.second], from: self, to: date).second!
+    }
+    
+    public func minutes(after date: Date) -> Int {
+        return Date.currentCalendar.dateComponents([.minute], from: self, to: date).minute!
+    }
+    
+    public func hours(after date: Date) -> Int {
+        return Date.currentCalendar.dateComponents([.hour], from: self, to: date).hour!
+    }
+    
+    public func days(after date: Date) -> Int {
+        return Date.currentCalendar.dateComponents([.day], from: self, to: date).day!
+    }
+    
+    public func months(after date: Date) -> Int {
+        return Date.currentCalendar.dateComponents([.month], from: self, to: date).month!
+    }
+    
+    public func years(after date: Date) -> Int {
+        return Date.currentCalendar.dateComponents([.year], from: self, to: date).year!
+    }
     
     public func add(era: Int? = nil, year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil, second: Int? = nil, nanosecond: Int? = nil, weekday: Int? = nil, weekdayOrdinal: Int? = nil, quarter: Int? = nil, weekOfMonth: Int? = nil, weekOfYear: Int? = nil, yearForWeekOfYear: Int? = nil) -> Date {
         var components = DateComponents()

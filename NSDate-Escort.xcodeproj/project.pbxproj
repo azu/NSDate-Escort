@@ -29,6 +29,7 @@
 		BE1650DB210D994300868737 /* EscortDateRoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1650DA210D994300868737 /* EscortDateRoles.swift */; };
 		BE1650DD210DAC5700868737 /* EscortClassSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1650DC210DAC5700868737 /* EscortClassSpec.swift */; };
 		BE1650DF212037FD00868737 /* EscortAdjustingDatesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1650DE212037FD00868737 /* EscortAdjustingDatesSpec.swift */; };
+		BE1650E12121340B00868737 /* EscortRetrievingIntervalsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1650E02121340B00868737 /* EscortRetrievingIntervalsSpec.swift */; };
 		BE5B7B151BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */; };
 		BEAD6D3E1EB337AA004A4A3B /* EscortAmountOfSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAD6D3D1EB337AA004A4A3B /* EscortAmountOfSpecs.m */; };
 		C5BD6A3A196287E30053103A /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */; };
@@ -81,6 +82,7 @@
 		BE1650DA210D994300868737 /* EscortDateRoles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortDateRoles.swift; sourceTree = "<group>"; };
 		BE1650DC210DAC5700868737 /* EscortClassSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortClassSpec.swift; sourceTree = "<group>"; };
 		BE1650DE212037FD00868737 /* EscortAdjustingDatesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortAdjustingDatesSpec.swift; sourceTree = "<group>"; };
+		BE1650E02121340B00868737 /* EscortRetrievingIntervalsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortRetrievingIntervalsSpec.swift; sourceTree = "<group>"; };
 		BE5B7B0B1BBFB048005732C2 /* Benchmark.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Benchmark.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5B7B0F1BBFB048005732C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchMakeFormReferenceDate.m; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				BE1650DA210D994300868737 /* EscortDateRoles.swift */,
 				BE10D2C921020B8500B616FA /* EscortDecomposingSpec.swift */,
 				BE10D2CB2103125F00B616FA /* EscortExtractSpec.swift */,
+				BE1650E02121340B00868737 /* EscortRetrievingIntervalsSpec.swift */,
 				BE10D2C120FCC68300B616FA /* Info.plist */,
 			);
 			path = SwiftTest;
@@ -581,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE1650E12121340B00868737 /* EscortRetrievingIntervalsSpec.swift in Sources */,
 				BE1650DF212037FD00868737 /* EscortAdjustingDatesSpec.swift in Sources */,
 				BE10D2CC2103125F00B616FA /* EscortExtractSpec.swift in Sources */,
 				BE10D2C020FCC68300B616FA /* EscortComparingSpec.swift in Sources */,
