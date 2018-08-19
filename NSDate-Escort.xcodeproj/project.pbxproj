@@ -21,10 +21,30 @@
 		BE0BE9A01E9B221000D736C7 /* NSDate-Escort.h in Headers */ = {isa = PBXBuildFile; fileRef = BE0BE99E1E9B221000D736C7 /* NSDate-Escort.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE0BE9A41E9B221D00D736C7 /* NSDate+Escort.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B5C5CD74BE7F1C57C3F0DB /* NSDate+Escort.m */; };
 		BE0BE9AE1E9B238F00D736C7 /* NSDate_Escort_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = BE0BE9AC1E9B238F00D736C7 /* NSDate_Escort_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BE10D2C020FCC68300B616FA /* EscortComparingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10D2BF20FCC68300B616FA /* EscortComparingSpec.swift */; };
+		BE10D2C220FCC68300B616FA /* NSDate_Escort_Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0BE99C1E9B221000D736C7 /* NSDate_Escort_Cocoa.framework */; };
+		BE10D2C820FCC68B00B616FA /* Date+Escort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10D2B720FCC65600B616FA /* Date+Escort.swift */; };
+		BE10D2CA21020B8500B616FA /* EscortDecomposingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10D2C921020B8500B616FA /* EscortDecomposingSpec.swift */; };
+		BE10D2CC2103125F00B616FA /* EscortExtractSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10D2CB2103125F00B616FA /* EscortExtractSpec.swift */; };
+		BE1650DB210D994300868737 /* EscortDateRoles.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1650DA210D994300868737 /* EscortDateRoles.swift */; };
+		BE1650DD210DAC5700868737 /* EscortClassSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1650DC210DAC5700868737 /* EscortClassSpec.swift */; };
+		BE1650DF212037FD00868737 /* EscortAdjustingDatesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1650DE212037FD00868737 /* EscortAdjustingDatesSpec.swift */; };
+		BE1650E12121340B00868737 /* EscortRetrievingIntervalsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1650E02121340B00868737 /* EscortRetrievingIntervalsSpec.swift */; };
 		BE5B7B151BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */; };
 		BEAD6D3E1EB337AA004A4A3B /* EscortAmountOfSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAD6D3D1EB337AA004A4A3B /* EscortAmountOfSpecs.m */; };
 		C5BD6A3A196287E30053103A /* AZNSDateKiwiMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */; };
+		D61E21D1C84D29A4E5422F51 /* libPods-SwiftTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B01BA43AF189F3F78DC164D /* libPods-SwiftTest.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE10D2C320FCC68300B616FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7355ABD317638E8900DD1EC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE0BE99B1E9B221000D736C7;
+			remoteInfo = NSDate_Escort_Cocoa;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		17B5C01AAD723EBDDDCC62A1 /* EscortDateRoles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortDateRoles.m; sourceTree = "<group>"; };
@@ -45,6 +65,7 @@
 		73FCA17418DE837D009ED4AD /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
 		73FCA17618DE837D009ED4AD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		73FCA17A18DE837D009ED4AD /* Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Prefix.pch"; sourceTree = "<group>"; };
+		7B01BA43AF189F3F78DC164D /* libPods-SwiftTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SwiftTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BFDB70869B017E5594994DF /* libPods-Test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0BE99C1E9B221000D736C7 /* NSDate_Escort_Cocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NSDate_Escort_Cocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0BE99E1E9B221000D736C7 /* NSDate-Escort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSDate-Escort.h"; path = "../NSDate-Escort_Cocoa/NSDate-Escort.h"; sourceTree = "<group>"; };
@@ -52,12 +73,24 @@
 		BE0BE9AA1E9B238F00D736C7 /* NSDate_Escort_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NSDate_Escort_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0BE9AC1E9B238F00D736C7 /* NSDate_Escort_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDate_Escort_iOS.h; sourceTree = "<group>"; };
 		BE0BE9AD1E9B238F00D736C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE10D2B720FCC65600B616FA /* Date+Escort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Escort.swift"; sourceTree = "<group>"; };
+		BE10D2BD20FCC68200B616FA /* SwiftTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE10D2BF20FCC68300B616FA /* EscortComparingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortComparingSpec.swift; sourceTree = "<group>"; };
+		BE10D2C120FCC68300B616FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE10D2C921020B8500B616FA /* EscortDecomposingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortDecomposingSpec.swift; sourceTree = "<group>"; };
+		BE10D2CB2103125F00B616FA /* EscortExtractSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortExtractSpec.swift; sourceTree = "<group>"; };
+		BE1650DA210D994300868737 /* EscortDateRoles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortDateRoles.swift; sourceTree = "<group>"; };
+		BE1650DC210DAC5700868737 /* EscortClassSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortClassSpec.swift; sourceTree = "<group>"; };
+		BE1650DE212037FD00868737 /* EscortAdjustingDatesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortAdjustingDatesSpec.swift; sourceTree = "<group>"; };
+		BE1650E02121340B00868737 /* EscortRetrievingIntervalsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscortRetrievingIntervalsSpec.swift; sourceTree = "<group>"; };
 		BE5B7B0B1BBFB048005732C2 /* Benchmark.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Benchmark.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE5B7B0F1BBFB048005732C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE5B7B131BBFB0AD005732C2 /* BenchMakeFormReferenceDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BenchMakeFormReferenceDate.m; sourceTree = "<group>"; };
 		BEAD6D3D1EB337AA004A4A3B /* EscortAmountOfSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscortAmountOfSpecs.m; sourceTree = "<group>"; };
 		C5BD6A37196287E30053103A /* AZNSDateKiwiMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNSDateKiwiMatcher.h; sourceTree = "<group>"; };
 		C5BD6A38196287E30053103A /* AZNSDateKiwiMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNSDateKiwiMatcher.m; sourceTree = "<group>"; };
+		CF296903783DAA88609CE74A /* Pods-SwiftTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftTest/Pods-SwiftTest.release.xcconfig"; sourceTree = "<group>"; };
+		E747142ADB2B90EBAEE2595E /* Pods-SwiftTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftTest/Pods-SwiftTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +113,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE10D2BA20FCC68200B616FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE10D2C220FCC68300B616FA /* NSDate_Escort_Cocoa.framework in Frameworks */,
+				D61E21D1C84D29A4E5422F51 /* libPods-SwiftTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +149,7 @@
 			children = (
 				17B5C8039CF17DE12A52A9B3 /* NSDate+Escort.h */,
 				17B5C5CD74BE7F1C57C3F0DB /* NSDate+Escort.m */,
+				BE10D2B720FCC65600B616FA /* Date+Escort.swift */,
 			);
 			path = "NSDate-Escort";
 			sourceTree = "<group>";
@@ -126,6 +169,7 @@
 				BE5B7B0C1BBFB048005732C2 /* Benchmark */,
 				BE0BE99D1E9B221000D736C7 /* NSDate-Escort_Cocoa */,
 				BE0BE9AB1E9B238F00D736C7 /* NSDate_Escort_iOS */,
+				BE10D2BE20FCC68300B616FA /* SwiftTest */,
 				7355ABE017638E9600DD1EC2 /* Frameworks */,
 				7355ABDF17638E9600DD1EC2 /* Products */,
 				17B5C4F653B336A415A1AD4C /* NSDate-Escort */,
@@ -141,6 +185,7 @@
 				BE5B7B0B1BBFB048005732C2 /* Benchmark.xctest */,
 				BE0BE99C1E9B221000D736C7 /* NSDate_Escort_Cocoa.framework */,
 				BE0BE9AA1E9B238F00D736C7 /* NSDate_Escort_iOS.framework */,
+				BE10D2BD20FCC68200B616FA /* SwiftTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				8BFDB70869B017E5594994DF /* libPods-Test.a */,
+				7B01BA43AF189F3F78DC164D /* libPods-SwiftTest.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -200,6 +246,21 @@
 			path = NSDate_Escort_iOS;
 			sourceTree = "<group>";
 		};
+		BE10D2BE20FCC68300B616FA /* SwiftTest */ = {
+			isa = PBXGroup;
+			children = (
+				BE1650DE212037FD00868737 /* EscortAdjustingDatesSpec.swift */,
+				BE1650DC210DAC5700868737 /* EscortClassSpec.swift */,
+				BE10D2BF20FCC68300B616FA /* EscortComparingSpec.swift */,
+				BE1650DA210D994300868737 /* EscortDateRoles.swift */,
+				BE10D2C921020B8500B616FA /* EscortDecomposingSpec.swift */,
+				BE10D2CB2103125F00B616FA /* EscortExtractSpec.swift */,
+				BE1650E02121340B00868737 /* EscortRetrievingIntervalsSpec.swift */,
+				BE10D2C120FCC68300B616FA /* Info.plist */,
+			);
+			path = SwiftTest;
+			sourceTree = "<group>";
+		};
 		BE5B7B0C1BBFB048005732C2 /* Benchmark */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +284,8 @@
 			children = (
 				6DD8C2208BC805D0B99E5503 /* Pods-Test.debug.xcconfig */,
 				5DBBC214A3239FD7DB605EF7 /* Pods-Test.release.xcconfig */,
+				E747142ADB2B90EBAEE2595E /* Pods-SwiftTest.debug.xcconfig */,
+				CF296903783DAA88609CE74A /* Pods-SwiftTest.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -304,6 +367,25 @@
 			productReference = BE0BE9AA1E9B238F00D736C7 /* NSDate_Escort_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		BE10D2BC20FCC68200B616FA /* SwiftTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE10D2C520FCC68300B616FA /* Build configuration list for PBXNativeTarget "SwiftTest" */;
+			buildPhases = (
+				9078C6BD826678D6E826CCBC /* [CP] Check Pods Manifest.lock */,
+				BE10D2B920FCC68200B616FA /* Sources */,
+				BE10D2BA20FCC68200B616FA /* Frameworks */,
+				BE10D2BB20FCC68200B616FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE10D2C420FCC68300B616FA /* PBXTargetDependency */,
+			);
+			name = SwiftTest;
+			productName = SwiftTest;
+			productReference = BE10D2BD20FCC68200B616FA /* SwiftTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BE5B7B0A1BBFB048005732C2 /* Benchmark */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE5B7B101BBFB048005732C2 /* Build configuration list for PBXNativeTarget "Benchmark" */;
@@ -327,14 +409,22 @@
 		7355ABD317638E8900DD1EC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				TargetAttributes = {
+					73FCA16D18DE837D009ED4AD = {
+						LastSwiftMigration = 0940;
+					};
 					BE0BE99B1E9B221000D736C7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
 					BE0BE9A91E9B238F00D736C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					BE10D2BC20FCC68200B616FA = {
+						CreatedOnToolsVersion = 9.4.1;
 						ProvisioningStyle = Automatic;
 					};
 					BE5B7B0A1BBFB048005732C2 = {
@@ -358,6 +448,7 @@
 				BE5B7B0A1BBFB048005732C2 /* Benchmark */,
 				BE0BE99B1E9B221000D736C7 /* NSDate_Escort_Cocoa */,
 				BE0BE9A91E9B238F00D736C7 /* NSDate_Escort_iOS */,
+				BE10D2BC20FCC68200B616FA /* SwiftTest */,
 			);
 		};
 /* End PBXProject section */
@@ -385,6 +476,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BE10D2BB20FCC68200B616FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE5B7B091BBFB048005732C2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -395,6 +493,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9078C6BD826678D6E826CCBC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E37CDD676E2886EF4585F0C5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,6 +580,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BE10D2B920FCC68200B616FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE1650E12121340B00868737 /* EscortRetrievingIntervalsSpec.swift in Sources */,
+				BE1650DF212037FD00868737 /* EscortAdjustingDatesSpec.swift in Sources */,
+				BE10D2CC2103125F00B616FA /* EscortExtractSpec.swift in Sources */,
+				BE10D2C020FCC68300B616FA /* EscortComparingSpec.swift in Sources */,
+				BE10D2CA21020B8500B616FA /* EscortDecomposingSpec.swift in Sources */,
+				BE10D2C820FCC68B00B616FA /* Date+Escort.swift in Sources */,
+				BE1650DB210D994300868737 /* EscortDateRoles.swift in Sources */,
+				BE1650DD210DAC5700868737 /* EscortClassSpec.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE5B7B071BBFB048005732C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -473,6 +604,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE10D2C420FCC68300B616FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE0BE99B1E9B221000D736C7 /* NSDate_Escort_Cocoa */;
+			targetProxy = BE10D2C320FCC68300B616FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		73FCA17518DE837D009ED4AD /* InfoPlist.strings */ = {
@@ -595,9 +734,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Test/Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.efcl.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -637,9 +779,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "Test/Test-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.efcl.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -874,6 +1018,87 @@
 			};
 			name = Release;
 		};
+		BE10D2C620FCC68300B616FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E747142ADB2B90EBAEE2595E /* Pods-SwiftTest.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SwiftTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akuraru.SwiftTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BE10D2C720FCC68300B616FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF296903783DAA88609CE74A /* Pods-SwiftTest.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = SwiftTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akuraru.SwiftTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		BE5B7B111BBFB048005732C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -994,6 +1219,15 @@
 			buildConfigurations = (
 				BE0BE9AF1E9B238F00D736C7 /* Debug */,
 				BE0BE9B01E9B238F00D736C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE10D2C520FCC68300B616FA /* Build configuration list for PBXNativeTarget "SwiftTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE10D2C620FCC68300B616FA /* Debug */,
+				BE10D2C720FCC68300B616FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

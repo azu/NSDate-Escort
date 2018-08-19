@@ -38,7 +38,26 @@
                ReferencedContainer = "container:NSDate-Escort.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BE10D2BC20FCC68200B616FA"
+               BuildableName = "SwiftTest.xctest"
+               BlueprintName = "SwiftTest"
+               ReferencedContainer = "container:NSDate-Escort.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "73FCA16D18DE837D009ED4AD"
+            BuildableName = "Test.xctest"
+            BlueprintName = "Test"
+            ReferencedContainer = "container:NSDate-Escort.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -70,6 +89,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "73FCA16D18DE837D009ED4AD"
+            BuildableName = "Test.xctest"
+            BlueprintName = "Test"
+            ReferencedContainer = "container:NSDate-Escort.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
