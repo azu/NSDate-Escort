@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.4'
+platform :ios, '12.0'
 
 target :Test do
 	pod 'Kiwi'
@@ -7,6 +7,7 @@ target :Test do
 end
 
 target :SwiftTest do
+	swift_version= '4.2'
 	pod 'Quick'
 	pod 'AZDateBuilder/Swift'
 end

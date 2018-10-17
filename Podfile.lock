@@ -1,0 +1,28 @@
+PODS:
+  - AZDateBuilder (1.0.2):
+    - AZDateBuilder/ObjC (= 1.0.2)
+  - AZDateBuilder/ObjC (1.0.2)
+  - AZDateBuilder/Swift (1.0.2)
+  - Kiwi (3.0.0)
+  - Quick (1.3.2)
+
+DEPENDENCIES:
+  - AZDateBuilder
+  - AZDateBuilder/Swift
+  - Kiwi
+  - Quick
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AZDateBuilder
+    - Kiwi
+    - Quick
+
+SPEC CHECKSUMS:
+  AZDateBuilder: a456d75c522a75bc81bd6d6f2593c4b2dfd117ad
+  Kiwi: fbeafef0f00e4d8f7dcb3420a4930afe70af77f7
+  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
+
+PODFILE CHECKSUM: e0fe954703b359a5ec8f12c6b057a27a463c8579
+
+COCOAPODS: 1.5.3
