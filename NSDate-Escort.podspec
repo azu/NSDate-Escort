@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "NSDate-Escort"
-  s.version      = "2.0.0"
+  s.version      = "2.0.1"
   s.summary      = "A NSDate utility library that is compatible with NSDate-Extensions API."
   s.homepage     = "https://github.com/azu/NSDate-Escort"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -12,7 +12,8 @@ Pod::Spec.new do |s|
   }
   s.requires_arc = true
 
-  s.ios.deployment_target  = '11.4'
+  s.swift_version = '4.2'
+  s.ios.deployment_target  = '10.3'
   s.osx.deployment_target  = '10.13'
 
   s.default_subspec = 'ObjC'
