@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '12.0'
+platform :ios, '11.4'
 
 target :Test do
 	pod 'Kiwi'
