@@ -42,6 +42,20 @@ Current Status : **RELEASE**
 
 #pragma mark - Relative dates from the current date
 
++ (NSDate *)dateTomorrow;
++ (NSDate *)dateYesterday;
++ (NSDate *)dateWithDaysFromNow:(NSInteger) dDays;
++ (NSDate *)dateWithDaysBeforeNow:(NSInteger) dDays;
++ (NSDate *)dateWithHoursFromNow:(NSInteger) dHours;
++ (NSDate *)dateWithHoursBeforeNow:(NSInteger) dHours;
++ (NSDate *)dateWithMinutesFromNow:(NSInteger) dMinutes;
++ (NSDate *)dateWithMinutesBeforeNow:(NSInteger) dMinutes;
+
+#pragma mark - Comparing dates
+
+- (BOOL)isEqualToDateIgnoringTime:(NSDate *) otherDate;
+- (BOOL)isToday;
+- (BOOL)isTomorrow;
 - (BOOL)isYesterday;
 - (BOOL)isSameWeekAsDate:(NSDate *) aDate;
 - (BOOL)isThisWeek;
@@ -76,14 +90,17 @@ Current Status : **RELEASE**
 - (NSDate *)dateByAddingSeconds:(NSInteger) dSeconds;
 - (NSDate *)dateBySubtractingSeconds:(NSInteger) dSeconds;
 - (NSDate *)dateAtStartOfDay;
-- (NSDate *)dateAtEndOfDay;
+- (NSDate *)dateAtStartOfNextDay;
 - (NSDate *)dateAtStartOfWeek;
-- (NSDate *)dateAtEndOfWeek;
+- (NSDate *)dateAtStartOfNextWeek;
 - (NSDate *)dateAtStartOfMonth;
-- (NSDate *)dateAtEndOfMonth;
+- (NSDate *)dateAtStartOfNextMonth;
 - (NSDate *)dateAtStartOfYear;
-- (NSDate *)dateAtEndOfYear;
+- (NSDate *)dateAtStartOfNextYear;
+
 #pragma mark - Retrieving intervals
+- (NSInteger)secondsAfterDate:(NSDate *) aDate;
+- (NSInteger)secondsBeforeDate:(NSDate *) aDate;
 - (NSInteger)minutesAfterDate:(NSDate *) aDate;
 - (NSInteger)minutesBeforeDate:(NSDate *) aDate;
 - (NSInteger)hoursAfterDate:(NSDate *) aDate;
@@ -92,10 +109,15 @@ Current Status : **RELEASE**
 - (NSInteger)daysBeforeDate:(NSDate *) aDate;
 - (NSInteger)monthsAfterDate:(NSDate *) aDate;
 - (NSInteger)monthsBeforeDate:(NSDate *) aDate;
-/**
-* return distance days
-*/
 - (NSInteger)distanceInDaysToDate:(NSDate *) aDate;
+
+#pragma mark amount
+
+- (NSInteger)hoursOfDay;
+- (NSInteger)daysOfMonth;
+- (NSInteger)daysOfYear;
+- (NSInteger)monthsOfYear;
+
 #pragma mark - Decomposing dates
 /**
 * return nearest hour
@@ -113,6 +135,12 @@ Current Status : **RELEASE**
 @property(readonly) NSInteger lastDayOfWeekday;
 // e.g. 2nd Tuesday of the month == 2
 @property(readonly) NSInteger nthWeekday;
+@property(readonly) NSInteger year;
+@property(readonly) NSInteger gregorianYear;
+@end
+
+NS_ASSUME_NONNULL_END
+
 ```
 
 ## Contributing
