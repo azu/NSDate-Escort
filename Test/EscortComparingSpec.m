@@ -565,13 +565,6 @@ SPEC_BEGIN(EscortComparingSpec)
                         [[theValue(match) should] beYes];
                     });
                 });
-                context(@"at end of month", ^{
-                    it(@"should be yes", ^{
-                        NSDate *endOfMonth = [currentDate dateAtEndOfMonth];
-                        BOOL match = [currentDate isSameMonthAsDate:endOfMonth];
-                        [[theValue(match) should] beYes];
-                    });
-                });
             });
             context(@"next month", ^{
                 __block NSDate *nextMonth;
@@ -706,16 +699,6 @@ SPEC_BEGIN(EscortComparingSpec)
                     });
                     it(@"should be yes", ^{
                         BOOL match = [currentDate isSameYearAsDate:startOfYear];
-                        [[theValue(match) should] beYes];
-                    });
-                });
-                context(@"at end of year", ^{
-                    __block NSDate *endOfYear;
-                    beforeEach(^{
-                        endOfYear = [currentDate dateAtEndOfYear];
-                    });
-                    it(@"should be yes", ^{
-                        BOOL match = [currentDate isSameYearAsDate:endOfYear];
                         [[theValue(match) should] beYes];
                     });
                 });
